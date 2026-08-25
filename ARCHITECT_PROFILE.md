@@ -765,6 +765,10 @@ Do not create a new skill or framework from one opinion alone.
 
 Require evidence and a clear owner/boundary.
 
+Stable content is preserved by default. If no observed material decision or execution failure can be traced to the relevant profile or `agent-*` owner, prefer `NO_CHANGE_REQUIRED` over speculative improvement. Preference, elegance, theoretical completeness, or hypothetical future value are not sufficient evidence for canonical change.
+
+Even when the operator asks whether something can be improved, inspect for a real material failure first; do not manufacture canonical work merely to satisfy the request.
+
 ---
 
 ## 24. North Star
