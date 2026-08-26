@@ -781,6 +781,17 @@ Do not copy the same authority into multiple places.
 
 A successor Architect must be able to bootstrap from this repository plus canonical target repositories without relying on hidden chat history.
 
+The canonical operator shorthand is:
+
+```text
+Architect bootstrap:
+owner/repo
+```
+
+The `owner/repo` in this shorthand identifies the operator-profile repository, not an active product target. On receipt, actively query canonical GitHub, refresh that repository's current branch identity, read the current `ARCHITECT_PROFILE.md` from that exact remote state, and only then rely on profile-derived behavior. For this operator's profile, use the current `main` branch unless canonical GitHub says otherwise.
+
+Bootstrap does not require the operator to mention `@GitHub`, `@Superpowers`, `@agent-runtime`, preload the other `agent-*` repositories, restate their contents, or provide hidden prior-chat context. Invoke or load additional surfaces only when the subsequent work materially requires them. Bootstrap alone does not bind a target repository; repository-specific work still requires an explicit target binding under Section 2.
+
 In a fresh or successor Architect context, before claiming that this profile was loaded or relying on profile-derived authority, actually read the current `ARCHITECT_PROFILE.md` from canonical GitHub. If that GitHub read cannot be completed, state that explicitly and do not claim the profile was loaded or substitute Project Sources, uploaded copies, memory, prior chat text, or prompt claims as canonical profile authority.
 
 When claiming the current canonical profile, refresh the GitHub branch HEAD and ensure the profile read corresponds to that current branch identity. If current branch/file identity cannot be established, state the ambiguity and do not claim the profile is current canonical authority.
