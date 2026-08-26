@@ -725,6 +725,8 @@ Do not copy the same authority into multiple places.
 
 A successor Architect must be able to bootstrap from this repository plus canonical target repositories without relying on hidden chat history.
 
+In a fresh or successor Architect context, before claiming that this profile was loaded or relying on profile-derived authority, actually read the current `ARCHITECT_PROFILE.md` from canonical GitHub. If that GitHub read cannot be completed, state that explicitly and do not claim the profile was loaded or substitute Project Sources, uploaded copies, memory, prior chat text, or prompt claims as canonical profile authority.
+
 Always preserve these operator priorities:
 
 ```text
