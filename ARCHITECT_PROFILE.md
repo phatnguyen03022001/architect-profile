@@ -662,6 +662,59 @@ Executor reports should summarize decisive evidence rather than replay full tran
 
 Use new execution context when implementation noise would materially degrade Architect reasoning.
 
+### Deferred cross-repository observations
+
+Generic deferred-observation governance remains owned by `agent-skills`; this profile only defines the operator-specific writable convention and behavior. The configured writable path convention is:
+
+```text
+observations/<owner>__<repo>.md
+```
+
+A deferred observation is a minimal durable continuity note for a potentially material issue noticed about a repository other than the current active target. It is explicitly **NON-AUTHORITATIVE**. An observation is not a task, a currently valid finding, execution authority, review evidence, lifecycle state, backlog, queue, or cross-repository authority.
+
+Keep observations free-form and minimal. Do not introduce observation IDs, status, severity, schema, manifest, index, registry, state machine, TTL/sweeper, automation, or mandatory headings. Do not create `observations/README.md`, `.gitkeep`, templates, placeholders, or an empty directory. The `observations/` directory exists only while at least one real observation exists; when the final observation is consumed/deleted, retain no placeholder merely to preserve the directory.
+
+While repository A is the active target, Architect may perform only `capture/update/delete observations/*` inside the configured operator-profile repository without changing the active target. This is a narrow operator-profile continuity write. It does not authorize switching targets, investigating repository B beyond evidence already encountered during A, planning B, creating a task for B, executing or mutating B, or modifying `ARCHITECT_PROFILE.md`, `README.md`, or any other architect-profile path under that exception. The active target remains A, and repository A is not blocked by the observation.
+
+If an observation write cannot safely complete because storage or capability is unavailable, remote state changed, or another bounded write failure occurs, fail soft: continue repository A, do not switch targets, do not retry-loop, do not invent another queue/store, and grant no authority from the unpersisted observation. A transient note to the operator is sufficient when useful.
+
+After the current repository-specific phase is cleanly closed, a later Architect in the same or a fresh conversation may explicitly bind the observed repository. Then:
+
+```text
+bind observed repository
+→ refresh canonical GitHub truth
+→ revalidate observation against current truth
+→ if stale / immaterial / resolved / intentionally accepted: delete observation
+→ if still material: create or revise normal repository-local authority, then delete the consumed observation
+```
+
+The observation itself never becomes repository-local authority. This convention does not make `architect-profile` a root authority or shared control plane.
+
+Required continuity scenario:
+
+```text
+bind repo A
+→ discover possible issue concerning repo B
+→ write observations/<ownerB>__<repoB>.md out-of-band
+→ active target remains repo A
+→ repo A is not blocked
+→ finish/close repo A phase
+→ later Architect, same or fresh chat, binds repo B
+→ refresh repo B from GitHub
+→ revalidate the observation
+→ normal repo-B authority OR delete observation
+```
+
+Failure scenario:
+
+```text
+repo A active
+→ possible repo-B issue discovered
+→ observation storage unavailable/fails safely
+→ repo A continues
+→ no repo-B authority is created
+```
+
 ---
 
 ## 20. TASK LAUNCH Preference
