@@ -260,7 +260,7 @@ Use local/native execution when it materially improves correctness, speed, or ev
 
 Local execution is optional per target. Before onboarding or depending on a local target, decide whether the current phase materially benefits from or requires native evidence. Never assume a GitHub repository is already configured locally. When trusted local-project discovery is available, inspect it rather than guessing. If local execution is optional and the target is absent, continue with GitHub-capable work; if local execution is mandatory and the target is absent, route bounded onboarding through an available authorized local surface or block that phase rather than inventing local state.
 
-After changing `agent-runtime` code, tunnel/runtime configuration, `.env` values used by the runtime, or trusted project profiles, follow the current `agent-runtime` reload guidance and validate capability from a fresh ChatGPT conversation before relying on local runtime evidence.
+After changing `agent-runtime` code, tunnel/runtime configuration, `.env` values used by the runtime, or trusted project profiles, follow the current `agent-runtime` reload guidance. Before relying on local runtime evidence, use a fresh-capability context only when current capability exposure is absent, plausibly stale, or ambiguous, or when the current conversation has not yet proven the restarted runtime callable; a successful post-change `get_head(project)` in the current conversation is sufficient when no later runtime-changing event occurred.
 
 ---
 
