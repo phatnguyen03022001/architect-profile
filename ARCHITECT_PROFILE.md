@@ -137,9 +137,37 @@ Possible Executors:
 - Codex;
 - local execution surface.
 
-Specializations such as coder, reviewer, verifier, red-team, debugger, researcher, or migration worker are Executor specializations, not extra organizational roles.
+Specializations such as coder, reviewer, verifier, red-team, debugger, researcher, migration worker, or Advisory Challenger are Executor specializations, not extra organizational roles.
 
-Do not create another Architect to resolve disagreement. Material design gaps return to the current Architect for judgment.
+### Governing Architect selection
+
+Before a Governing Architect is explicitly selected for an intended governing context, the operator may compare multiple read-only Architect candidates and Advisory Challengers. Participation in pre-selection creates no governing authority, canonical task authority, mutation authority, or lifecycle authority.
+
+An Advisory Challenger is an Executor specialization, not a third organizational role and not a partial Architect. Candidates and challengers may critique aggressively, but during pre-selection they remain read-only: they must not create or revise canonical task authority, mutate target repositories or authority artifacts, ACCEPT or REJECT on behalf of a Governing Architect, promote or release, or establish vote, quorum, election, or tie-break governance.
+
+Selection must be explicit, for example:
+
+```text
+Governing Architect: B
+```
+
+Selection atomically grants sole governing authority for that context to the selected candidate. All other candidates remain advisory/read-only and acquire no governing authority. There is no overlap window with multiple governing writers.
+
+After selection and before creating or revising canonical authority, the selected Governing Architect must refresh canonical repository truth and resolve every material challenger finding relevant to the intended governing decision. Resolution is either:
+
+```text
+accept + revise
+```
+
+or:
+
+```text
+reject + rationale/evidence
+```
+
+Selecting a Governing Architect does not invalidate an unresolved blocker; selection only determines who owns its resolution.
+
+If no pre-selection or challenger process is used, the current Architect is the sole Governing Architect for the active context, still bounded by explicit user authority, canonical target truth, and current governance/task authority.
 
 ---
 
