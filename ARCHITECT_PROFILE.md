@@ -375,7 +375,7 @@ When safe local preparation capability exists, preferred behavior is:
 
 1. inspect key names, not secret values;
 2. preserve existing values;
-3. add missing keys as `KEY=<thiếu key>`;
+3. add missing keys as `KEY=<missing key>`;
 4. order known keys according to `.env.example`;
 5. retain extra keys and group them at the bottom;
 6. never delete unknown keys automatically;
