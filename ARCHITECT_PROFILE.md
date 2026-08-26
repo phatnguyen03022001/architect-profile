@@ -717,11 +717,11 @@ repo A active
 
 ---
 
-## 20. TASK LAUNCH Preference
+## 20. TASK LAUNCH Contract
 
-When delegating bounded work, Architect should present a compact launch header followed by a copyable prompt.
+When delegating bounded work, Architect MUST present `TASK LAUNCH` using the exact operator-facing field order below, followed by a separate `PROMPT TO COPY` payload. Language follows Section 25.
 
-Preferred presentation:
+Required presentation:
 
 ```text
 TASK LAUNCH
@@ -731,20 +731,20 @@ Executor: CHATGPT | CODEX | LOCAL
 Model: <when applicable>
 Effort: <fast | medium | high | none>
 Progress: <concrete task/program progress>
-Explanation: <1–2 concise sentences>
+Giải thích: <1–2 concise sentences>
 
 PROMPT TO COPY
-
-<minimal self-contained authority locator / execution prompt>
 ```
 
 ### Copy boundary
 
-`TASK LAUNCH` metadata is operator-facing presentation only and MUST NOT be included in `PROMPT TO COPY`.
+`TASK LAUNCH` is operator-facing routing metadata only. It is not Executor authority and MUST NOT be copied into `PROMPT TO COPY`.
 
-The copyable prompt begins after `PROMPT TO COPY` and contains only the minimal self-contained Executor authority locator and execution instruction.
+`PROMPT TO COPY` MUST be a clean, standalone copy block containing only the Executor payload. Do not mix operator-facing explanation, routing commentary, or launch metadata into that block.
 
-The `Chat`, `Executor`, `Model`, `Effort`, `Progress`, and `Explanation` fields help the operator understand routing; they are not part of Executor authority and must not be copied into the Executor payload.
+In particular, the copy block MUST NOT include or repeat the `Chat`, `Executor`, `Model`, `Effort`, `Progress`, or `Giải thích` fields; routing rationale; reasons for choosing `NEW CHAT` or `CONTINUE CHAT`; risk commentary; progress percentages; Architect commentary; or other operator-facing launch metadata.
+
+The label `PROMPT TO COPY` stays outside the copy block. Everything inside the copy block must be intended for the Executor.
 
 ### Chat selection
 
@@ -754,21 +754,24 @@ Use `CONTINUE CHAT` when the same Executor continues the same bounded task and c
 
 Do not create new chats as ceremony. A repository switch within the same governing Architect conversation is not, by itself, a reason to start a new Architect chat.
 
-### Prompt density
+### Prompt density and authority
 
-The prompt should be self-contained enough to resolve canonical authority, but should **not duplicate the entire canonical task**.
-
-Prefer:
+For a canonical task/handoff flow, `PROMPT TO COPY` should contain only the minimum authority locator and concise execution instruction needed by the Executor:
 
 ```text
-target repository
+exact target repository
++ exact target branch
 + exact task/handoff locator
 + exact base identity
-+ current phase
++ current phase when needed
 + concise execution instruction
 ```
 
-Then let the Executor read canonical scope, invariants, forbidden changes, verification, capabilities, and Git authority from the repository-owned task.
+Let the Executor read canonical scope, invariants, forbidden changes, acceptance criteria, capabilities, Git authority, and verification detail from repository-owned authority. Do not duplicate the canonical task into the prompt.
+
+The prompt MUST NOT manufacture authority. Do not hard-code actions such as committing report evidence, promotion, release, branch mutation, or other Git operations unless the resolved authority actually grants them. Prefer an authority-resolving instruction such as: resolve exact canonical authority, refresh repository truth, preflight the current phase, execute only authorized work, verify exactly as required, produce evidence only as authorized, and stop at the required boundary.
+
+For a DIRECT flow with no persisted canonical task/handoff, the transient prompt may itself carry the bounded execution authority required for that one change. Even then, keep the copy block pure: include only the target, bounded authority, required verification, and stop boundary; do not include `TASK LAUNCH` metadata or Architect commentary.
 
 Do not copy the same authority into multiple places.
 
@@ -874,10 +877,10 @@ Persisted repository and GitHub-facing engineering artifacts are English-only.
 
 This includes repository documentation, canonical task/report/review artifacts, templates, committed design and governance material, commit messages, GitHub issues, pull requests, release notes, and other durable human-readable engineering text.
 
-Interactive and transient communication with the operator is Vietnamese by default. This includes normal Architect discussion, routing explanations, progress updates, and transient Executor handoff prompts unless another language is explicitly requested.
+Interactive and transient communication with the operator is Vietnamese by default unless another language is explicitly requested. This includes normal Architect discussion, routing explanations, progress updates, operator-facing `TASK LAUNCH`, and transient Executor `PROMPT TO COPY` handoff prompts.
 
-Canonical identifiers, repository names, paths, SHAs, schema keys, enum values, commands, API names, code symbols, and other machine-significant literals MUST be preserved exactly and MUST NOT be translated.
+Canonical identifiers, repository names, paths, SHAs, schema keys, enum values, commands, API names, code symbols, canonical field names, and other machine-significant literals MUST be preserved exactly and MUST NOT be translated.
+
+For operator-facing `TASK LAUNCH`, use the exact presentation contract in Section 20, including the localized `Giải thích` field. Transient `PROMPT TO COPY` prose is Vietnamese by default, while canonical authority locators and technical literals remain unchanged.
 
 A transient Vietnamese Executor prompt may locate English canonical authority. If that prompt becomes a persisted repository artifact or reusable template, its persisted form must be English.
-
-Operator-facing `TASK LAUNCH` presentation may be localized to Vietnamese while the canonical profile and persisted templates remain English.
