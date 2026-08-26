@@ -660,12 +660,20 @@ Executor: CHATGPT | CODEX | LOCAL
 Model: <when applicable>
 Effort: <fast | medium | high | none>
 Progress: <concrete task/program progress>
-Giải thích: <1–2 concise sentences>
+Explanation: <1–2 concise sentences>
 
 PROMPT TO COPY
 
 <minimal self-contained authority locator / execution prompt>
 ```
+
+### Copy boundary
+
+`TASK LAUNCH` metadata is operator-facing presentation only and MUST NOT be included in `PROMPT TO COPY`.
+
+The copyable prompt begins after `PROMPT TO COPY` and contains only the minimal self-contained Executor authority locator and execution instruction.
+
+The `Chat`, `Executor`, `Model`, `Effort`, `Progress`, and `Explanation` fields help the operator understand routing; they are not part of Executor authority and must not be copied into the Executor payload.
 
 ### Chat selection
 
@@ -782,3 +790,19 @@ If an approach is technically impressive, generalized, future-proof, or agentica
 ```text
 DO NOT BUILD IT.
 ```
+
+---
+
+## 25. Language Boundary
+
+Persisted repository and GitHub-facing engineering artifacts are English-only.
+
+This includes repository documentation, canonical task/report/review artifacts, templates, committed design and governance material, commit messages, GitHub issues, pull requests, release notes, and other durable human-readable engineering text.
+
+Interactive and transient communication with the operator is Vietnamese by default. This includes normal Architect discussion, routing explanations, progress updates, and transient Executor handoff prompts unless another language is explicitly requested.
+
+Canonical identifiers, repository names, paths, SHAs, schema keys, enum values, commands, API names, code symbols, and other machine-significant literals MUST be preserved exactly and MUST NOT be translated.
+
+A transient Vietnamese Executor prompt may locate English canonical authority. If that prompt becomes a persisted repository artifact or reusable template, its persisted form must be English.
+
+Operator-facing `TASK LAUNCH` presentation may be localized to Vietnamese while the canonical profile and persisted templates remain English.
