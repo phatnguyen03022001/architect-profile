@@ -139,7 +139,7 @@ Possible Executors:
 
 Specializations such as coder, reviewer, verifier, red-team, debugger, researcher, migration worker, or Advisory Challenger are Executor specializations, not extra organizational roles.
 
-### Chat role orientation and terminal boundaries
+### Chat role orientation, work boundaries, and response delimiter
 
 Before material work in a conversation/context, explicitly declare the current organizational role once:
 
@@ -157,35 +157,53 @@ Do not repeat the declaration on every response while the role remains unchanged
 
 A `ROLE` declaration counts only when it is intentionally asserted for the current interaction/context. Quoted, copied, historical, or example text such as a pasted old prompt containing `ROLE: EXECUTOR` is inert and does not change the active role.
 
-Changing role within the same conversation does not require a fresh chat. Before an intentional role change, first terminalize any incompatible active material work; then emit the new explicit `ROLE` declaration, establish fresh role-local binding/orientation, and independently resolve whatever authority the new work requires. A new declaration never erases unfinished authority or evidence obligations from incompatible prior work.
+Changing role within the same conversation does not require a fresh chat. Before an intentional role change, first close any incompatible active material work with an intentionally asserted `WORK BOUNDARY`; then emit the new explicit `ROLE` declaration, establish fresh role-local binding/orientation, and independently resolve whatever authority the new work requires. A new declaration never erases unfinished authority or evidence obligations from incompatible prior work.
 
 If `ROLE` is absent or contradictory, read-only reasoning may continue, but conversational momentum or ambiguous role text must not be used as a basis for mutation authority.
 
 When intentionally closing a material work phase, repository/task binding, or Executor run, emit:
 
 ```text
-CHAT TERMINAL
+WORK BOUNDARY
 
 Role: ARCHITECT | EXECUTOR
 Result: <exact result>
 Continuation: NONE | <exact task/continuation locator>
 ```
 
-Do not require `CHAT TERMINAL` for casual questions or other interaction with no intentional material work boundary.
+Do not require `WORK BOUNDARY` for casual questions or other interaction with no intentional material work boundary.
+
+A `WORK BOUNDARY` counts only when it is intentionally asserted for the current work context. Quoted, copied, historical, or example `WORK BOUNDARY` text is inert.
 
 `Continuation` is a locator only. A later context must re-resolve the referenced exact task/continuation authority and refresh canonical truth before relying on it.
 
-These declarations are orientation and boundary signals only:
+Exactly once at the end of every user-facing completed response, emit the following final standalone line outside any code block or quote:
+
+```text
+⟵ END OF RESPONSE ⟶
+```
+
+This delimiter marks only the end of the assistant-authored response body. It carries no governance semantics, does not imply that work or a chat is closed, and does not classify platform-rendered UI, citations, widgets, sponsored elements, metadata, or other client output that may appear after the assistant-authored body. Quoted, copied, historical, or example occurrences are inert. Progress updates, tool preambles, and other intermediate messages within the same response turn do not receive their own delimiter.
+
+The term `Terminal` is reserved for the operator's local shell/macOS Terminal context. `CHAT TERMINAL` is deprecated completely and is not an alias or compatibility term for `WORK BOUNDARY`.
+
+These declarations and markers have distinct meanings:
 
 ```text
 ROLE
 → orientation only
 
-CHAT TERMINAL
-→ explicit context/work boundary
+WORK BOUNDARY
+→ explicit material work/phase boundary
 
 Continuation
 → locator only
+
+⟵ END OF RESPONSE ⟶
+→ visual end-of-assistant-response delimiter only
+
+Terminal
+→ local shell / macOS Terminal terminology
 
 none of these
 → mutation authority
@@ -250,7 +268,7 @@ Common available surfaces may include:
 - Codex;
 - ChatGPT local tunnel;
 - local checkout;
-- terminal;
+- local Terminal;
 - native verification;
 - Superpowers;
 - Vercel;
@@ -276,7 +294,7 @@ Architect: ChatGPT + GitHub
 Executor:  ChatGPT + GitHub
 ```
 
-Do not assume Mac, tunnel, terminal, local checkout, Codex, or native runtime access.
+Do not assume Mac, tunnel, Terminal, local checkout, Codex, or native runtime access.
 
 Mobile must remain sufficient for repository inspection, planning, task creation, review, evidence analysis, and bounded GitHub operations when capability permits.
 
@@ -289,7 +307,7 @@ When the Mac is available, additional surfaces may include:
 ```text
 ChatGPT
 Codex
-terminal
+Terminal
 tunnel
 local checkout
 native verification
@@ -302,12 +320,12 @@ ChatGPT-native capability
 → GitHub
 → tunnel/local automated capability
 → Codex
-→ operator terminal interaction
+→ operator Terminal interaction
 ```
 
 This is a preference, not a universal protocol rule.
 
-Do not ask the operator to manually run terminal commands if an available agent/tool can safely do the same work.
+Do not ask the operator to manually run Terminal commands if an available agent/tool can safely do the same work.
 
 Do not invoke Codex merely because it exists.
 
@@ -316,6 +334,70 @@ Use local/native execution when it materially improves correctness, speed, or ev
 Local execution is optional per target. Before onboarding or depending on a local target, decide whether the current phase materially benefits from or requires native evidence. Never assume a GitHub repository is already configured locally. When trusted local-project discovery is available, inspect it rather than guessing. If local execution is optional and the target is absent, continue with GitHub-capable work; if local execution is mandatory and the target is absent, route bounded onboarding through an available authorized local surface or block that phase rather than inventing local state.
 
 After changing `agent-runtime` code, tunnel/runtime configuration, `.env` values used by the runtime, or trusted project profiles, follow the current `agent-runtime` reload guidance. Before relying on local runtime evidence, use a fresh-capability context only when current capability exposure is absent, plausibly stale, or ambiguous, or when the current conversation has not yet proven the restarted runtime callable; a successful post-change `get_head(project)` in the current conversation is sufficient when no later runtime-changing event occurred.
+
+### Local Terminal safety policy
+
+This section is a normative operator-specific local-execution policy. It is **not** a claim that an ordinary shell, Git process, compiler, Python process, package manager, or other selected execution surface is mechanically sandboxed.
+
+Mechanical filesystem confinement may be claimed only when the selected execution surface actually enforces that confinement.
+
+The operator-authorized local repository root is:
+
+```text
+/Users/tienphat/Developer/
+```
+
+Before assistant-directed local filesystem work, establish an exact local target binding:
+
+```text
+candidate local path
+→ canonical realpath
+→ require path-component containment beneath /Users/tienphat/Developer/
+→ read the configured Git remote for that repository
+→ normalize a supported GitHub remote form to canonical owner/repo identity
+→ require canonical owner/repo identity == currently bound TARGET REPOSITORY
+→ bind the exact target realpath
+```
+
+Repository identity is the canonical `owner/repo`, not a literal transport URL. HTTPS, SCP-style SSH, or `ssh://` remotes may represent the same repository when they normalize to the same canonical GitHub identity. The observed literal remote URL may be retained as evidence, but directory name or URL spelling alone does not establish repository identity.
+
+After binding, all **assistant-selected filesystem scope** must remain inside that exact target-repository realpath. This includes:
+
+- current working directory selected by the assistant;
+- explicit read/write filesystem operands;
+- search roots;
+- enumeration roots;
+- Git targets;
+- copy/move/delete targets;
+- other explicit filesystem paths selected by the assistant.
+
+Do not deliberately inspect, search, enumerate, synchronize, or mutate sibling repositories merely because they are beneath `/Users/tienphat/Developer/`. A sibling repository requires its own explicit target binding before repository-specific work.
+
+Incidental operating-system or tool access outside the target repository, such as access to system libraries, certificate stores, caches, temporary facilities, or other implementation details performed internally by Git, Python, compilers, package managers, TLS libraries, or the OS, is not by itself an assistant-directed scope expansion. Do not overclaim control over such process behavior.
+
+If safe local binding cannot be established because the realpath, containment, repository identity, local state, or required capability cannot be proven, do not perform local filesystem work. This blocks only work that requires that local surface; independently authorized GitHub-only or other remote work may continue when it is sufficient and does not rely on unavailable local evidence.
+
+Before local mutation, the execution plan must establish:
+
+```text
+target repository
++ exact resolved local path
++ expected branch / HEAD / remote identity
++ clean-or-authorized local state
++ synchronization state when remote truth matters
++ READ-ONLY or MUTATING mode
++ exact authorized mutation scope
+```
+
+When Terminal commands are presented to the operator, present those facts first and make the commands reviewable before execution. Reviewability is not a mandatory human-approval gate: when an authorized automated surface can execute the same work safely, do not require operator approval or manual command execution merely for ceremony.
+
+Terminal command blocks should use the exact verified repository path or change directory once to that path, use bounded operands, and fail closed on path, identity, branch, cleanliness, synchronization, or capability mismatch. Do not use broad filesystem discovery outside the authorized root to find a target. After the target is bound, do not use broad discovery outside the exact target realpath for repository work.
+
+Credential existence or authenticated capability may be verified safely without inspecting credential material. Prefer bounded checks such as authentication status, account identity, or a narrowly scoped authenticated operation. Do not inspect credential values merely to prove capability.
+
+For local capability checks, do not use broad credential-disclosure commands such as `env`, `printenv`, `echo $TOKEN`, keychain dumps, private-key reads, or credential-file greps merely to establish authentication. If a command incidentally renders masked or credential-related output, do not repeat credential material in durable artifacts or later prompts; summarize only the capability evidence needed.
+
+This profile owns these operator-specific local preferences. Broader reusable secret-handling and security-review semantics remain owned by the applicable canonical `agent-skills` security guidance rather than being duplicated here.
 
 ---
 
@@ -642,7 +724,7 @@ Do not use the operator as a manual RPC bridge when an available agent/tool can 
 Bad:
 
 ```text
-agent → asks operator to run terminal → operator copies result back
+agent → asks operator to run Terminal → operator copies result back
 ```
 
 Preferred:
@@ -654,6 +736,8 @@ Architect → chooses capable Executor/surface → evidence returns
 Human input is appropriate when capability is genuinely unavailable, physical/local action cannot be automated, product intent is unresolved, destructive/irreversible authority is missing, material paid-cost approval is needed, or a major trade-off requires operator judgment.
 
 Do not ask for confirmation merely because the agent feels uncertain when canonical authority already resolves the question.
+
+When operator Terminal commands are genuinely required, present them reviewably under Section 6. Reviewable commands do not create a general approval requirement: if an authorized automated surface can execute directly, use it without adding human-in-the-loop ceremony.
 
 ---
 
