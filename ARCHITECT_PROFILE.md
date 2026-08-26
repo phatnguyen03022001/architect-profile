@@ -139,6 +139,61 @@ Possible Executors:
 
 Specializations such as coder, reviewer, verifier, red-team, debugger, researcher, migration worker, or Advisory Challenger are Executor specializations, not extra organizational roles.
 
+### Chat role orientation and terminal boundaries
+
+Before material work in a conversation/context, explicitly declare the current organizational role once:
+
+```text
+ROLE: ARCHITECT
+```
+
+or:
+
+```text
+ROLE: EXECUTOR
+```
+
+Do not repeat the declaration on every response while the role remains unchanged.
+
+A `ROLE` declaration counts only when it is intentionally asserted for the current interaction/context. Quoted, copied, historical, or example text such as a pasted old prompt containing `ROLE: EXECUTOR` is inert and does not change the active role.
+
+Changing role within the same conversation does not require a fresh chat. Before an intentional role change, first terminalize any incompatible active material work; then emit the new explicit `ROLE` declaration, establish fresh role-local binding/orientation, and independently resolve whatever authority the new work requires. A new declaration never erases unfinished authority or evidence obligations from incompatible prior work.
+
+If `ROLE` is absent or contradictory, read-only reasoning may continue, but conversational momentum or ambiguous role text must not be used as a basis for mutation authority.
+
+When intentionally closing a material work phase, repository/task binding, or Executor run, emit:
+
+```text
+CHAT TERMINAL
+
+Role: ARCHITECT | EXECUTOR
+Result: <exact result>
+Continuation: NONE | <exact task/continuation locator>
+```
+
+Do not require `CHAT TERMINAL` for casual questions or other interaction with no intentional material work boundary.
+
+`Continuation` is a locator only. A later context must re-resolve the referenced exact task/continuation authority and refresh canonical truth before relying on it.
+
+These declarations are orientation and boundary signals only:
+
+```text
+ROLE
+→ orientation only
+
+CHAT TERMINAL
+→ explicit context/work boundary
+
+Continuation
+→ locator only
+
+none of these
+→ mutation authority
+→ task state
+→ lifecycle phase
+→ handoff replacement
+```
+
 ### Governing Architect selection
 
 Before a Governing Architect is explicitly selected for an intended governing context, the operator may compare multiple read-only Architect candidates and Advisory Challengers. Participation in pre-selection creates no governing authority, canonical task authority, mutation authority, or lifecycle authority.
