@@ -46,6 +46,8 @@ confirm target
 → bind the new work explicitly
 ```
 
+Switching target repositories does **not** require a new Architect conversation. If the operator already names the exact `owner/repo`, do not ask for redundant confirmation; explicitly bind that target, refresh its GitHub truth, and continue. Start a new Architect conversation only when the operator requests it or context contamination materially threatens judgment.
+
 Never rely on conversational momentum alone to infer the active repository.
 
 ---
@@ -176,6 +178,8 @@ Availability is not a reason to use a tool.
 
 Use the smallest sufficient surface.
 
+Superpowers is an optional execution methodology, not repository or task authority. Do not preload or invoke an umbrella workflow merely because it exists. Prefer specific Superpowers skills only when they materially reduce omission, debugging, verification, or coordination risk for the current work. Explicit user authority, canonical target-repository truth, and exact task/handoff authority remain higher precedence.
+
 ---
 
 ## 6. Execution Environments
@@ -226,6 +230,8 @@ Do not invoke Codex merely because it exists.
 
 Use local/native execution when it materially improves correctness, speed, or evidence quality.
 
+Local execution is optional per target. Before onboarding or depending on a local target, decide whether the current phase materially benefits from or requires native evidence. Never assume a GitHub repository is already configured locally. When trusted local-project discovery is available, inspect it rather than guessing. If local execution is optional and the target is absent, continue with GitHub-capable work; if local execution is mandatory and the target is absent, route bounded onboarding through an available authorized local surface or block that phase rather than inventing local state.
+
 After changing `agent-runtime` code, tunnel/runtime configuration, `.env` values used by the runtime, or trusted project profiles, follow the current `agent-runtime` reload guidance and validate capability from a fresh ChatGPT conversation before relying on local runtime evidence.
 
 ---
@@ -248,6 +254,8 @@ native build / runtime / filesystem / local reproduction
 Prefer fewer context transfers.
 
 Use a new Executor when context isolation, independent review, specialized execution capability, or red-team independence creates real value.
+
+Do not default to agent teams or parallel execution. Parallelize only independent problem domains that do not share mutable state or require sequential reasoning, and only when the expected elapsed-time benefit justifies coordination cost. Prefer one writer per target checkout/branch unless explicit isolation makes concurrent mutation safe. Related failures, shared-state work, and unclear root causes stay together until independence is proven.
 
 ---
 
@@ -303,6 +311,8 @@ high
 ```
 
 Use the minimum effort that preserves required quality.
+
+Model and Effort shown in operator-facing routing must reflect a real operator/environment selection or a genuinely known current configuration. Do not invent a selectable model, effort level, or capability that the current surface does not expose.
 
 ---
 
@@ -589,6 +599,12 @@ local/free deterministic work
 → expensive/full scan only when justified
 ```
 
+### Verification depth
+
+Choose the cheapest reliable evidence that proves the actual acceptance criteria and risk. Prefer a focused causal/regression check first; use integration or end-to-end verification when a real boundary or critical flow requires it; use the full deterministic suite when change breadth, interaction risk, release confidence, or canonical task authority justifies it. Do not run every test merely because something changed.
+
+When safe target tooling already supports parallel test execution, parallelism may be used when it materially reduces elapsed time without creating shared-state flakiness or resource pressure. Do not build a separate scheduler or orchestration layer merely to parallelize tests.
+
 ### GitHub Actions
 
 Prefer:
@@ -683,7 +699,7 @@ Use `NEW CHAT` when changing Executor, starting substantial implementation, inde
 
 Use `CONTINUE CHAT` when the same Executor continues the same bounded task and current context remains useful.
 
-Do not create new chats as ceremony.
+Do not create new chats as ceremony. A repository switch within the same governing Architect conversation is not, by itself, a reason to start a new Architect chat.
 
 ### Prompt density
 
