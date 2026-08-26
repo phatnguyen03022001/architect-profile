@@ -226,6 +226,8 @@ Do not invoke Codex merely because it exists.
 
 Use local/native execution when it materially improves correctness, speed, or evidence quality.
 
+After changing `agent-runtime` code, tunnel/runtime configuration, `.env` values used by the runtime, or trusted project profiles, follow the current `agent-runtime` reload guidance and validate capability from a fresh ChatGPT conversation before relying on local runtime evidence.
+
 ---
 
 ## 7. Executor Selection
