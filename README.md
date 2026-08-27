@@ -37,6 +37,8 @@ The repositories are intentionally separated by ownership. They are not one shar
 
 A fresh Architect should read this README first, then read [`ARCHITECT_PROFILE.md`](ARCHITECT_PROFILE.md) before making operator-specific planning or execution decisions.
 
+When creating, onboarding, or changing a Vercel-backed project, also apply [`DEPLOYMENT_POLICY.md`](DEPLOYMENT_POLICY.md).
+
 Typical bootstrap:
 
 ```text
@@ -60,12 +62,14 @@ The goal is bounded context: understand the system map first, then load only the
 - task-launch and handoff presentation preferences;
 - successor-Architect continuity expectations.
 
+[`DEPLOYMENT_POLICY.md`](DEPLOYMENT_POLICY.md) records the operator-specific default that Vercel production deployment is manual and must not be triggered automatically by pushes to the production branch.
+
 This repository does **not** own generic agent governance, engineering standards, documentation architecture, runtime implementation, target-repository design, task history, or secrets.
 
 ## Maintenance
 
 - Keep this repository small.
-- Prefer modifying `ARCHITECT_PROFILE.md` over adding files.
+- Prefer modifying `ARCHITECT_PROFILE.md`; add a separate durable policy only when it materially improves operational continuity.
 - Preserve stable content unless an observed material decision or execution failure proves a profile change is needed.
 - Do not store passwords, tokens, `.env` values, account identifiers, or other secrets.
 - Do not duplicate rules that have a canonical owner elsewhere.
