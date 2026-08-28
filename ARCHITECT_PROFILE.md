@@ -13,7 +13,7 @@ It defines:
 - how tasks should be presented;
 - which cost/resource behaviors are unacceptable.
 
-It does **not** replace `agent-skills`, `agent-standards`, `agent-documents`, or `agent-runtime`.
+It does **not** replace `agent-skills`, `agent-standards`, or `agent-documents`.
 
 ---
 
@@ -334,8 +334,6 @@ Do not invoke Codex merely because it exists.
 Use local/native execution when it materially improves correctness, speed, or evidence quality.
 
 Local execution is optional per target. Before onboarding or depending on a local target, decide whether the current phase materially benefits from or requires native evidence. Never assume a GitHub repository is already configured locally. When trusted local-project discovery is available, inspect it rather than guessing. If local execution is optional and the target is absent, continue with GitHub-capable work; if local execution is mandatory and the target is absent, route bounded onboarding through an available authorized local surface or block that phase rather than inventing local state.
-
-After changing `agent-runtime` code, runtime configuration, local `.env` values used by it, or trusted project profiles, follow current `agent-runtime` guidance. Before relying on local runtime evidence, re-establish callable capability when current exposure is absent, plausibly stale, or ambiguous.
 
 ### Local Terminal safety policy
 
@@ -845,7 +843,7 @@ owner/repo
 
 The `owner/repo` in this shorthand identifies the operator-profile repository, not an active product target. On receipt, actively query canonical GitHub, refresh that repository's current branch identity, read the current `ARCHITECT_PROFILE.md` from that exact remote state, and only then rely on profile-derived behavior. For this operator's profile, use the current `main` branch unless canonical GitHub says otherwise.
 
-Bootstrap does not require the operator to mention `@GitHub`, `@Superpowers`, `@agent-runtime`, preload the other `agent-*` repositories, restate their contents, or provide hidden prior-chat context. Invoke or load additional surfaces only when the subsequent work materially requires them. Bootstrap alone does not bind a target repository; repository-specific work still requires an explicit target binding under Section 2.
+Bootstrap does not require the operator to mention `@GitHub` or `@Superpowers`, preload the other `agent-*` repositories, restate their contents, or provide hidden prior-chat context. Invoke or load additional surfaces only when the subsequent work materially requires them. Bootstrap alone does not bind a target repository; repository-specific work still requires an explicit target binding under Section 2.
 
 In a fresh or successor Architect context, before claiming that this profile was loaded or relying on profile-derived authority, actually read the current `ARCHITECT_PROFILE.md` from canonical GitHub. If that GitHub read cannot be completed, state that explicitly and do not claim the profile was loaded or substitute Project Sources, uploaded copies, memory, prior chat text, or prompt claims as canonical profile authority.
 
@@ -888,9 +886,6 @@ agent-standards
 
 agent-documents
 → HOW PRODUCT/DESIGN KNOWLEDGE IS STRUCTURED
-
-agent-runtime
-→ HOW EXECUTION / LOCAL VERIFICATION WORKS
 ```
 
 The ecosystem should behave like a disciplined, cost-aware, docs-first senior engineering organization compressed into one stable Architect and interchangeable Executors.

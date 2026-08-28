@@ -10,7 +10,7 @@ It is intentionally small, operator-specific, and designed to be read before rep
 
 ## System role
 
-`architect-profile` is the operator layer in a five-repository engineering system:
+`architect-profile` is the operator layer in a four-repository engineering system:
 
 ```text
 architect-profile
@@ -24,9 +24,6 @@ agent-standards
 
 agent-documents
 → HOW PRODUCT / DESIGN KNOWLEDGE IS STRUCTURED
-
-agent-runtime
-→ HOW OPTIONAL LOCAL EXECUTION / VERIFICATION WORKS
 ```
 
 Actual product truth, source code, live tasks, environment-specific configuration, and deployment state remain in the target repository.
