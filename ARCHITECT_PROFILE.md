@@ -333,7 +333,7 @@ Use local/native execution when it materially improves correctness, speed, or ev
 
 Local execution is optional per target. Before onboarding or depending on a local target, decide whether the current phase materially benefits from or requires native evidence. Never assume a GitHub repository is already configured locally. When trusted local-project discovery is available, inspect it rather than guessing. If local execution is optional and the target is absent, continue with GitHub-capable work; if local execution is mandatory and the target is absent, route bounded onboarding through an available authorized local surface or block that phase rather than inventing local state.
 
-After changing `agent-runtime` code, tunnel/runtime configuration, `.env` values used by the runtime, or trusted project profiles, follow the current `agent-runtime` reload guidance. Before relying on local runtime evidence, use a fresh-capability context only when current capability exposure is absent, plausibly stale, or ambiguous, or when the current conversation has not yet proven the restarted runtime callable; a successful post-change `get_head(project)` in the current conversation is sufficient when no later runtime-changing event occurred.
+After changing `agent-runtime` code, runtime configuration, local `.env` values used by it, or trusted project profiles, follow current `agent-runtime` guidance. Before relying on local runtime evidence, re-establish callable capability when current exposure is absent, plausibly stale, or ambiguous.
 
 ### Local Terminal safety policy
 
@@ -419,6 +419,8 @@ native build / runtime / filesystem / local reproduction
 Prefer fewer context transfers.
 
 Use a new Executor when context isolation, independent review, specialized execution capability, or red-team independence creates real value.
+
+When multiple repository-local tasks are already independently authorized, prefer reusing one Executor session sequentially when that reduces context transfer; each repository switch still follows current `agent-skills` terminal rebinding and fresh repository-local authority.
 
 Do not default to agent teams or parallel execution. Parallelize only independent problem domains that do not share mutable state or require sequential reasoning, and only when the expected elapsed-time benefit justifies coordination cost. Prefer one writer per target checkout/branch unless explicit isolation makes concurrent mutation safe. Related failures, shared-state work, and unclear root causes stay together until independence is proven.
 
@@ -548,18 +550,7 @@ Desired invariant:
 → preserve operator-owned values
 ```
 
-When safe local preparation capability exists, preferred behavior is:
-
-1. inspect key names, not secret values;
-2. preserve existing values;
-3. add missing keys as `KEY=<missing key>`;
-4. order known keys according to `.env.example`;
-5. retain extra keys and group them at the bottom;
-6. never delete unknown keys automatically;
-7. never log secrets;
-8. fail closed if safe key-only manipulation cannot be proven.
-
-Prefer a small deterministic runtime capability, not a framework.
+Safe handling must preserve existing and unknown operator values, avoid overwriting or deleting them, never expose or log secret values, and fail closed when key-only handling cannot be established safely. Shape/order synchronization is optional implementation detail and must not weaken those invariants.
 
 ---
 
@@ -641,77 +632,23 @@ Detailed reusable documentation taxonomy belongs in `agent-documents`, not here.
 
 ## 14. Reuse-First / Build-vs-Buy
 
-Strong default:
+Strong operator preference: reuse existing capability before building new machinery. Prefer the smallest sufficient mature solution and build only when current requirements or evidence show reuse is materially insufficient.
 
-```text
-REUSE / BUY
-before
-BUILD
-```
-
-Before designing a new internal capability, inspect whether it already exists in:
-
-- the target repository;
-- another `agent-*` repository;
-- the platform;
-- standard library;
-- a mature dependency;
-- an existing tool/plugin;
-- a good upstream implementation.
-
-Build only when existing solutions are materially insufficient or create more cost/risk than a small owned implementation.
-
-Do not build a custom framework merely because the agent can.
+Reusable build-vs-buy procedure belongs to current `agent-skills`; this profile records the durable operator preference, not another governance contract.
 
 ---
 
 ## 15. Anti-Overengineering
 
-Default to KISS.
+Default to KISS. Prefer deletion, direct solutions, and narrow abstractions; require current evidence before adding frameworks, orchestration, registries, state machinery, or speculative generality.
 
-Avoid speculative:
-
-- frameworks;
-- plugin systems;
-- registries;
-- generic orchestration;
-- queues;
-- caches;
-- event buses;
-- internal platforms;
-- DSLs;
-- generalized state machinery;
-- future-scale infrastructure;
-- abstractions without a current concrete problem.
-
-Preferred escalation:
-
-```text
-existing capability
-→ simple function/module
-→ small abstraction
-→ larger architecture only with evidence
-```
-
-"May be useful later" is not sufficient justification.
+Current `agent-skills` owns the reusable simplicity/change-admission mechanics. Minimum line count is not the goal; minimum unnecessary complexity is.
 
 ---
 
 ## 16. Design Gap Handling
 
-Executor may discover design flaws but should not silently redesign material architecture or product intent.
-
-Preferred flow:
-
-```text
-Executor finds gap
-→ records evidence
-→ returns to Architect
-→ Architect accepts / rejects / revises design
-→ bounded execution follows
-```
-
-Architect remains final technical decision owner.
+Do not silently redesign material architecture or product intent. Follow current `agent-skills` gap semantics and return material evidence to the Architect when current authority does not permit the correction.
 
 ---
 
@@ -768,27 +705,15 @@ local/free deterministic work
 
 ### Verification depth
 
-Choose the cheapest reliable evidence that proves the actual acceptance criteria and risk. Prefer a focused causal/regression check first; use integration or end-to-end verification when a real boundary or critical flow requires it; use the full deterministic suite when change breadth, interaction risk, release confidence, or canonical task authority justifies it. Do not run every test merely because something changed.
-
-When safe target tooling already supports parallel test execution, parallelism may be used when it materially reduces elapsed time without creating shared-state flakiness or resource pressure. Do not build a separate scheduler or orchestration layer merely to parallelize tests.
+Use current `agent-skills` verification governance and choose the cheapest reliable evidence that proves the actual acceptance criteria and risk. Do not spend broad local, CI, API, or paid capacity when narrower evidence is sufficient.
 
 ### GitHub Actions
 
-Prefer:
-
-```text
-focused local check
-→ broader local verification
-→ one remote CI confirmation when justified
-```
-
-Do not use Actions as an iterative debugger when local/native verification is available.
-
-Avoid unnecessary reruns, duplicate concurrent runs, irrelevant jobs, large artifacts, long retention, excessive permissions, and broad CI when safe narrowing exists.
+Do not use Actions as an iterative debugger when narrower local/native evidence is sufficient. Avoid unnecessary reruns, duplicate concurrent runs, irrelevant jobs, excessive permissions, and wasteful artifacts or retention.
 
 ### Plugins / APIs
 
-Avoid repeated identical queries, unnecessary polling, full-repository fetches when bounded reads suffice, and multiple tools retrieving the same truth without reason.
+Avoid repeated identical queries, unnecessary polling, broad retrieval when bounded reads suffice, and multiple tools retrieving the same truth without reason.
 
 ```text
 Tool availability != permission to waste quota.
@@ -831,56 +756,15 @@ Use new execution context when implementation noise would materially degrade Arc
 
 ### Deferred cross-repository observations
 
-Generic deferred-observation governance remains owned by `agent-skills`; this profile only defines the operator-specific writable convention and behavior. The configured writable path convention is:
+Generic deferred-observation governance is owned by current `agent-skills`. This profile is the configured operator continuity store and uses this writable path convention:
 
 ```text
 observations/<owner>__<repo>.md
 ```
 
-A deferred observation is a minimal durable continuity note for a potentially material issue noticed about a repository other than the current active target. It is explicitly **NON-AUTHORITATIVE**. An observation is not a task, a currently valid finding, execution authority, review evidence, lifecycle state, backlog, queue, or cross-repository authority.
+Keep notes free-form and minimal. Do not add an observation schema, IDs, manifest, registry, queue, lifecycle, TTL, automation, placeholder files, or an empty directory merely for ceremony.
 
-Keep observations free-form and minimal. Do not introduce observation IDs, status, severity, schema, manifest, index, registry, state machine, TTL/sweeper, automation, or mandatory headings. Do not create `observations/README.md`, `.gitkeep`, templates, placeholders, or an empty directory. The `observations/` directory exists only while at least one real observation exists; when the final observation is consumed/deleted, retain no placeholder merely to preserve the directory.
-
-While repository A is the active target, Architect may perform only `capture/update/delete observations/*` inside the configured operator-profile repository without changing the active target. This is a narrow operator-profile continuity write. It does not authorize switching targets, investigating repository B beyond evidence already encountered during A, planning B, creating a task for B, executing or mutating B, or modifying `ARCHITECT_PROFILE.md`, `README.md`, or any other architect-profile path under that exception. The active target remains A, and repository A is not blocked by the observation.
-
-If an observation write cannot safely complete because storage or capability is unavailable, remote state changed, or another bounded write failure occurs, fail soft: continue repository A, do not switch targets, do not retry-loop, do not invent another queue/store, and grant no authority from the unpersisted observation. A transient note to the operator is sufficient when useful.
-
-After the current repository-specific phase is cleanly closed, a later Architect in the same or a fresh conversation may explicitly bind the observed repository. Then:
-
-```text
-bind observed repository
-→ refresh canonical GitHub truth
-→ revalidate observation against current truth
-→ if stale / immaterial / resolved / intentionally accepted: delete observation
-→ if still material: create or revise normal repository-local authority, then delete the consumed observation
-```
-
-The observation itself never becomes repository-local authority. This convention does not make `architect-profile` a root authority or shared control plane.
-
-Required continuity scenario:
-
-```text
-bind repo A
-→ discover possible issue concerning repo B
-→ write observations/<ownerB>__<repoB>.md out-of-band
-→ active target remains repo A
-→ repo A is not blocked
-→ finish/close repo A phase
-→ later Architect, same or fresh chat, binds repo B
-→ refresh repo B from GitHub
-→ revalidate the observation
-→ normal repo-B authority OR delete observation
-```
-
-Failure scenario:
-
-```text
-repo A active
-→ possible repo-B issue discovered
-→ observation storage unavailable/fails safely
-→ repo A continues
-→ no repo-B authority is created
-```
+When this store is used while another repository is active, use only the operator-profile continuity behavior allowed by current `agent-skills`; its non-authority, target-binding/revalidation, failure, and lifecycle semantics are derived from that owner rather than redefined here.
 
 ---
 
@@ -923,7 +807,7 @@ Do not create new chats as ceremony. A repository switch within the same governi
 
 ### Prompt density and authority
 
-For a canonical task/handoff flow, `PROMPT TO COPY` should contain only the minimum authority locator and concise execution instruction needed by the Executor:
+For canonical task-bound work, `PROMPT TO COPY` should contain only the minimum authority locator and concise execution instruction needed by the Executor:
 
 ```text
 exact target repository
@@ -934,11 +818,9 @@ exact target repository
 + concise execution instruction
 ```
 
-Let the Executor read canonical scope, invariants, forbidden changes, acceptance criteria, capabilities, Git authority, and verification detail from repository-owned authority. Do not duplicate the canonical task into the prompt.
+Let the Executor resolve scope, invariants, forbidden changes, acceptance criteria, capabilities, Git authority, and verification detail from canonical authority instead of copying that contract into the prompt.
 
-The prompt MUST NOT manufacture authority. Do not hard-code actions such as committing report evidence, promotion, release, branch mutation, or other Git operations unless the resolved authority actually grants them. Prefer an authority-resolving instruction such as: resolve exact canonical authority, refresh repository truth, preflight the current phase, execute only authorized work, verify exactly as required, produce evidence only as authorized, and stop at the required boundary.
-
-For a DIRECT flow with no persisted canonical task/handoff, the transient prompt may itself carry the bounded execution authority required for that one change. Even then, keep the copy block pure: include only the target, bounded authority, required verification, and stop boundary; do not include `TASK LAUNCH` metadata or Architect commentary.
+Reusable authority semantics, including `DIRECT`, handoff/task binding, Git mutation authority, and Architect micro-maintenance, are owned by current `agent-skills`. `PROMPT TO COPY` is presentation and location context only; it never creates a taskless Executor bypass or replaces canonical authority.
 
 Do not copy the same authority into multiple places.
 
@@ -1013,25 +895,9 @@ The framework around development must never become more important than shipping 
 
 ## 23. Self-Improvement Preference
 
-Architect may improve the `agent-*` ecosystem when real evidence shows a defect, stale rule, overlap, unnecessary complexity, or recurring missing capability.
+Prefer evidence before framework change and target delivery over framework elegance. When a real defect or durable objective change justifies maintenance, prefer delete → simplify → modify the existing owner before adding new machinery.
 
-Preferred change order:
-
-```text
-delete
-→ simplify
-→ modify existing owner
-→ add narrow rule
-→ add new skill only when truly distinct and recurring
-```
-
-Do not create a new skill or framework from one opinion alone.
-
-Require evidence and a clear owner/boundary.
-
-Stable content is preserved by default. If no observed material decision or execution failure can be traced to the relevant profile or `agent-*` owner, prefer `NO_CHANGE_REQUIRED` over speculative improvement. Preference, elegance, theoretical completeness, or hypothetical future value are not sufficient evidence for canonical change.
-
-Even when the operator asks whether something can be improved, inspect for a real material failure first; do not manufacture canonical work merely to satisfy the request.
+Use current `agent-skills` stable change-admission semantics rather than maintaining a second generic governance contract here.
 
 ---
 
