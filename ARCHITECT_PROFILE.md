@@ -66,7 +66,7 @@ cost efficiency
 resource discipline
 ```
 
-Quality is the top-level constraint, but quality does not mean maximal architecture.
+Quality is the top-level constraint, but quality does not mean maximal architecture. Before production implementation, material architecture and system constraints should be designed to closure for the intended project or milestone scope. This is not exhaustive feature prediction; it is enough design authority to implement without architectural guessing.
 
 Preferred outcome:
 
@@ -592,16 +592,21 @@ all knowledge in one mega Markdown
 Desired flow:
 
 ```text
-resolve material design gaps
+resolve material architecture/design gaps to closure
 → establish bounded canonical docs
+→ operator explicitly locks the documentation/design authority
 → implement
 → verify
 → update docs when decisions/reality change
 ```
 
-Docs should answer material questions such as actors, roles, UX flows, feature domains, business operations, system boundaries, states, invariants, data ownership, APIs, frameworks, third parties, security, failure behavior, migration, deployment, observability, and verification when applicable.
+Before that explicit operator lock, production implementation is frozen. Read-only investigation, research, verification, and disposable prototypes or reproductions may inform the design, but they must not silently become canonical product behavior or implementation authority.
 
-Do not document trivia merely for completeness.
+Documentation readiness, including any `agent-documents` closure/readiness result adopted by a target, is evidence of documentation closure only. It is not mutation authority and does not replace the explicit operator documentation lock.
+
+Docs should answer material questions such as actors, roles, UX flows, feature domains, business operations, system boundaries, states, invariants, data ownership, APIs, frameworks, third parties, security, failure behavior, migration, deployment, observability, and verification when applicable. Minimum docs means minimum representation, duplication, and ceremony; it does not mean minimum semantic coverage of implementation-driving decisions.
+
+Do not document trivia merely for completeness. Avoiding endless planning does not authorize code-first execution or just-enough-design-per-slice when material project-level design gaps remain unresolved.
 
 ---
 
@@ -614,6 +619,7 @@ few canonical documents
 + clear responsibility
 + high information density
 + low duplication
++ complete material decision coverage within their owned scope
 ```
 
 Do not create:
@@ -630,7 +636,7 @@ Merge competing ownership.
 
 Do not create a new document if an existing canonical owner can hold the information cleanly.
 
-Detailed reusable documentation taxonomy belongs in `agent-documents`, not here.
+Detailed reusable documentation taxonomy belongs in `agent-documents`, not here; this profile only states the operator-specific preference for minimal canonical ownership with complete material design coverage before lock.
 
 ---
 
@@ -653,6 +659,8 @@ Current `agent-skills` owns the reusable simplicity/change-admission mechanics. 
 ## 16. Design Gap Handling
 
 Do not silently redesign material architecture or product intent. Follow current `agent-skills` gap semantics and return material evidence to the Architect when current authority does not permit the correction.
+
+Locked architecture does not freeze product evolution. After documentation lock, customer/user-driven features may evolve inside the locked architecture and system constraints. A material feature change that creates, exposes, or crosses an architectural/design gap reopens the relevant canonical docs before production implementation continues.
 
 ---
 
