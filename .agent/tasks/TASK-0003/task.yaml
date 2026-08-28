@@ -1,0 +1,192 @@
+protocol_version: 3
+
+task_id: TASK-0003
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: discovered_gap
+  task_id: "agent-runtime/TASK-0007"
+  gap_id: "ARCHITECT_PROFILE_RUNTIME_REFERENCE_RECONCILIATION"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "33f138c56dee6a2a1e8b8a6dc52b1399452ef177"
+
+architect_analysis_skills:
+  - architect
+  - executor
+  - simplicity
+  - verification
+
+execution_skills:
+  required:
+    - executor
+    - simplicity
+    - verification
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "phatnguyen03022001/agent-runtime TASK-0007 revision 2 accepted review at 3acaffd35c7a353153356f734b548b4d43fa43a2"
+    role: "Accepted READY_FOR_DELETION_PLANNING evidence identifies architect-profile/README.md and architect-profile/ARCHITECT_PROFILE.md as current operational references that must be reconciled before final agent-runtime decommission."
+    precedence: 1
+  - source: "phatnguyen03022001/agent-runtime TASK-0006 revision 2 accepted DELETE_CANDIDATE assessment"
+    role: "Accepted architectural judgment that no current runtime responsibility earned ongoing MCP/tunnel/profile/state complexity under the trusted generic Terminal model."
+    precedence: 2
+  - source: "phatnguyen03022001/agent-skills@33f138c56dee6a2a1e8b8a6dc52b1399452ef177"
+    role: "Current protocol-v3 durable review, authority/capability/consequence, and generic execution semantics."
+    precedence: 3
+  - source: "phatnguyen03022001/architect-profile@d80e30401c44dc256b01b69c1911a9797e53af3c"
+    role: "Exact current profile subject before this bounded reconciliation task."
+    precedence: 4
+
+structure_authority:
+  status: RESOLVED
+  source: "Existing README.md, ARCHITECT_PROFILE.md, and canonical task/report/review structure only."
+  rationale: "This is a two-file current-documentation reconciliation. No new execution subsystem, replacement runtime, compatibility layer, lifecycle state, or historical rewrite is justified."
+
+objective: "Remove agent-runtime from the current operator-facing system map and execution policy so architect-profile accurately describes the accepted trusted generic Terminal model before agent-runtime is finally decommissioned, while preserving all historical task/report/review evidence unchanged."
+
+scope:
+  required_changes:
+    - "Update README.md only where it currently presents agent-runtime as a live member/capability of the system. The current active system description must no longer tell successors that agent-runtime is an available optional local execution/verification plane."
+    - "Update ARCHITECT_PROFILE.md only where current operational guidance still treats agent-runtime as a live execution environment/capability or requires runtime-specific reload/callable-capability handling. Preserve the accepted direct authorized Terminal/local-shell model, exact target binding, behavioral /Users/tienphat/Developer boundary, .agent-scratch convention, secret discipline, consequence-based guards, and GitHub canonical truth."
+    - "Do not replace agent-runtime with another runtime, broker, wrapper, sandbox, daemon, tunnel abstraction, capability registry, or named subsystem. The existing generic Terminal/local execution model is the replacement owner where relevant."
+    - "Do not rewrite .agent/tasks/** historical references to agent-runtime. Historical task/report/review evidence remains truthful history and is not current operational guidance."
+    - "Do not mutate agent-runtime, agent-documents, agent-skills, agent-standards, local machine state, tunnel profiles, repository metadata, or any other repository."
+    - "Verify the final current README.md and ARCHITECT_PROFILE.md contain no remaining operational statement that agent-runtime is a live execution capability. Any remaining literal agent-runtime token outside .agent/tasks must be explicitly classified as intentional non-operational history; otherwise remove/rewrite it within the two authorized files."
+    - "Produce TASK-0003/report.yaml in a separate report-only commit and stop at Governing Architect review."
+
+  allowed_existing_files_or_components:
+    - README.md
+    - ARCHITECT_PROFILE.md
+    - .agent/tasks/TASK-0003/task.yaml
+  expected_files_are_restrictive: true
+
+invariants:
+  - "ChatGPT remains the trusted operator agent; GitHub remains canonical repository truth."
+  - "Direct authorized Terminal/local shell remains normal generic engineering capability, not a command broker or mechanical sandbox."
+  - "Authority, capability, and consequence remain distinct."
+  - "The behavioral working root and exact repository-binding semantics remain unchanged."
+  - "No sibling repository gains authority through this task."
+  - "Historical .agent/tasks/** evidence remains unchanged."
+  - "Repository topology remains exactly {main}."
+
+forbidden_changes:
+  - "Do not modify any file other than README.md, ARCHITECT_PROFILE.md, and the new TASK-0003/report.yaml."
+  - "Do not add a replacement local-runtime abstraction or new system component."
+  - "Do not rewrite historical task/report/review artifacts."
+  - "Do not mutate other repositories, local runtime/tunnel/config/state, secrets, tags, releases, repository metadata, permissions, or branches."
+  - "Do not perform unrelated profile cleanup or wording modernization."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0003/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+    - repository_content_write
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Current system map no longer presents agent-runtime as live infrastructure."
+    evidence_required: "README.md current-system language is reconciled while historical .agent/tasks evidence remains untouched."
+  - id: AC-2
+    requirement: "Current operator execution policy no longer depends on agent-runtime."
+    evidence_required: "ARCHITECT_PROFILE.md removes/reconciles runtime-specific live execution/reload guidance while preserving direct Terminal, binding, secret, scratch, and consequence semantics."
+  - id: AC-3
+    requirement: "No replacement subsystem or ownership drift is introduced."
+    evidence_required: "Exact diff adds no broker/runtime/sandbox/registry/daemon abstraction and does not move generic execution ownership out of existing profile/agent-skills semantics."
+  - id: AC-4
+    requirement: "Historical evidence remains truthful."
+    evidence_required: "No .agent/tasks/TASK-0001 or TASK-0002 historical artifact is modified; literal historical references may remain there."
+  - id: AC-5
+    requirement: "Execution is minimal and repository-local."
+    evidence_required: "Implementation changes only README.md and ARCHITECT_PROFILE.md; report is a separate report-only child; topology stays {main}."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Refresh canonical GitHub truth; require main equals exact handoff base and topology exactly {main}; resolve TASK-0003 revision 1, accepted agent-runtime TASK-0007 review, and pinned agent-skills revision; preflight required EXECUTION capabilities."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Inspect exact current README.md and ARCHITECT_PROFILE.md occurrences of agent-runtime and distinguish live operational guidance from historical .agent/tasks evidence."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Implement the smallest two-file reconciliation. Preserve trusted direct Terminal/local execution semantics and do not introduce a replacement subsystem."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Verify exact implementation diff touches only README.md and ARCHITECT_PROFILE.md and that no current operational agent-runtime reference remains in those files. Historical .agent/tasks references must remain unchanged."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Commit/push implementation non-force to main after fresh exact-parent check; then create TASK-0003/report.yaml as a separate report-only commit, verify sole parent/diff/final main/topology, and stop at Governing Architect review."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
