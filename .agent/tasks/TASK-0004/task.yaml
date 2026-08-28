@@ -1,0 +1,196 @@
+protocol_version: 3
+
+task_id: TASK-0004
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: maintainer_objective_change
+  task_id: ""
+  gap_id: "DESIGN_CLOSURE_BEFORE_IMPLEMENTATION"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical-profile
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "33f138c56dee6a2a1e8b8a6dc52b1399452ef177"
+
+architect_analysis_skills:
+  - architect
+  - executor
+  - simplicity
+  - verification
+
+execution_skills:
+  required:
+    - executor
+    - simplicity
+    - verification
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "Explicit operator decision in current Architect context"
+    role: "Durable operator objective: architecture/design is completed to high-standard closure before production implementation; minimum docs means minimum representation with complete material decision coverage, and production implementation begins only after explicit operator documentation lock."
+    precedence: 1
+  - source: "phatnguyen03022001/architect-profile@fefd4f8b7b7fa965524b42ff8a42087609936388"
+    role: "Current profile subject whose docs-first wording is materially too weak and permits successor Architects to infer just-enough-design-per-slice."
+    precedence: 2
+  - source: "phatnguyen03022001/agent-skills@33f138c56dee6a2a1e8b8a6dc52b1399452ef177"
+    role: "Reusable task-governance authority; operator-specific doctrine remains owned by architect-profile rather than duplicated into generic protocol."
+    precedence: 3
+
+structure_authority:
+  status: RESOLVED
+  source: "ARCHITECT_PROFILE.md existing Sections 3, 12, 13, and 16 only."
+  rationale: "This is an operator-profile semantic correction. No new document, workflow engine, lifecycle artifact, or cross-repository governance mechanism is justified."
+
+objective: "Make the operator's architecture-first documentation gate unambiguous for successor Architects: design the material architecture/system constraints to closure before production implementation, keep the canonical documentation surface minimal and ownership-driven while covering every material implementation-driving gap, require explicit operator documentation lock before production implementation begins, and keep post-lock features evolutionary/customer-driven inside those locked architectural constraints."
+
+scope:
+  required_changes:
+    - "Update ARCHITECT_PROFILE.md so 'minimum docs' is explicitly minimum representation, duplication, and ceremony, not minimum semantic/design coverage. Canonical docs must answer every material implementation-driving question within the intended project/milestone scope before production implementation begins."
+    - "Clarify the operator's preferred sequence: architecture/design authority is developed to closure first; documentation closure/readiness evidence alone does not authorize implementation; explicit operator documentation lock is the implementation gate."
+    - "Clarify that before lock, production implementation is frozen. Read-only investigation, research, verification, and disposable prototypes/reproductions may be used to inform design but must not silently become canonical product behavior or implementation authority."
+    - "Clarify that architecture/system constraints are held to a high standard before implementation, while product features remain evolutionary and customer/user-driven after lock when they stay inside the locked architecture. A material feature change that creates or crosses an architectural/design gap reopens the relevant canonical docs before implementation continues."
+    - "Preserve anti-overplanning guidance, but make clear that avoiding endless planning does not authorize code-first or just-enough-design-per-slice when material project-level design gaps remain unresolved."
+    - "Preserve the documentation-boundary preference: few canonical owners, high information density, low duplication, no mega-file owning unrelated responsibilities, and split/shard by semantic ownership rather than arbitrary size."
+    - "Where agent-documents is adopted by a target, treat its closure/readiness result as evidence of documentation closure only; do not duplicate its taxonomy/model in this profile and do not reinterpret DOCS_READY as execution authority."
+    - "Do not modify README.md, .agent/tasks/TASK-0001 through TASK-0003, agent-skills, agent-documents, agent-standards, agent-runtime, or any target product repository."
+    - "Produce TASK-0004/report.yaml in a separate report-only commit and stop at Governing Architect review."
+
+  allowed_existing_files_or_components:
+    - ARCHITECT_PROFILE.md
+    - .agent/tasks/TASK-0004/task.yaml
+  expected_files_are_restrictive: true
+
+invariants:
+  - "architect-profile remains the sole owner of this operator-specific preference; reusable documentation taxonomy/closure semantics remain in agent-documents and generic work governance remains in agent-skills."
+  - "GitHub remains canonical repository truth."
+  - "KISS remains required: minimum unnecessary complexity, not minimum architectural rigor."
+  - "LOCK ARCHITECTURE does not mean FREEZE PRODUCT; post-lock features may evolve within the locked constraints."
+  - "No profile wording may imply that structural documentation readiness is itself mutation/execution authority."
+  - "Repository topology remains exactly {main}."
+
+forbidden_changes:
+  - "Do not modify any file other than ARCHITECT_PROFILE.md and the new TASK-0004/report.yaml."
+  - "Do not add a new document, phase registry, lock file, state machine, workflow engine, readiness database, scorecard, checklist subsystem, or framework layer."
+  - "Do not copy the agent-documents concern taxonomy or validator semantics into architect-profile."
+  - "Do not change reusable agent-skills protocol semantics or agent-standards claim/evidence semantics."
+  - "Do not turn feature evolution into upfront exhaustive feature specification; the lock concerns material architecture/design constraints and the project/milestone questions necessary to implement without architectural guessing."
+  - "Do not perform unrelated profile cleanup or wording modernization."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0004/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+    - repository_content_write
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "A fresh successor Architect cannot reasonably infer just-enough-design-per-slice as this operator's default pre-implementation model."
+    evidence_required: "ARCHITECT_PROFILE.md explicitly distinguishes minimum representation from complete material decision coverage and requires architecture/design closure before production implementation."
+  - id: AC-2
+    requirement: "The implementation gate is explicit."
+    evidence_required: "Profile distinguishes documentation readiness/closure from explicit operator lock and states that production implementation does not begin before that lock."
+  - id: AC-3
+    requirement: "High architectural rigor and feature evolution are both preserved."
+    evidence_required: "Profile states architecture/system constraints are designed to high standard before implementation while customer/user-driven features may evolve after lock inside those constraints; architectural crossings reopen docs."
+  - id: AC-4
+    requirement: "Minimal documentation surface remains a first-class constraint."
+    evidence_required: "Profile preserves few canonical owners, high information density, low duplication, and ownership-based sharding while rejecting mega-doc and one-file-per-thought failure modes."
+  - id: AC-5
+    requirement: "Ownership remains clean."
+    evidence_required: "No agent-documents taxonomy, agent-standards semantics, or generic agent-skills protocol is redefined; only operator-specific doctrine is added."
+  - id: AC-6
+    requirement: "Execution is bounded and repository-local."
+    evidence_required: "Implementation changes only ARCHITECT_PROFILE.md; report is a separate report-only child; topology remains {main}."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Refresh canonical GitHub truth; require main equals exact handoff base and topology exactly {main}; resolve TASK-0004 revision 1 and pinned agent-skills revision; preflight required EXECUTION capabilities."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Inspect current Sections 3, 12, 13, and 16 and identify the exact ambiguity that currently permits just-enough-design-per-slice interpretation."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Implement the smallest coherent wording correction in ARCHITECT_PROFILE.md only; prefer subtraction/replacement over duplicated doctrine."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Semantic review: verify explicit pre-code closure + operator-lock gate, minimum-representation/complete-coverage distinction, architecture-vs-feature evolution boundary, reopening rule, and ownership preservation."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Verify exact implementation diff touches only ARCHITECT_PROFILE.md, contains no new framework/state machinery, and introduces no contradiction with existing GitHub canonical truth, KISS, or documentation-boundary preferences."
+      required: true
+    - id: CHECK-6
+      command_or_check: "Commit/push implementation non-force to main after fresh exact-parent check; then create TASK-0004/report.yaml as a separate report-only commit, verify sole parent/diff/final main/topology, and stop at Governing Architect review."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
