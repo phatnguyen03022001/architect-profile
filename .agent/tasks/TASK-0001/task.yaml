@@ -1,0 +1,208 @@
+protocol_version: 3
+
+task_id: TASK-0001
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: follow_up
+  task_id: ""
+  gap_id: "PROFILE_OWNERSHIP_SUBTRACTION"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical-profile
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "fe3fd6de46c6e2220edbcadfb27f12c8dd23b2d6"
+
+architect_analysis_skills:
+  - architect
+  - simplicity
+  - verification
+
+execution_skills:
+  required:
+    - executor
+    - simplicity
+    - verification
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "Current operator approval after Governing Architect synthesis of the independent architect-profile audit, Claude blind-spot review, and advisory Sub-Architect review."
+    role: "Current user authority to perform the final bounded architect-profile cleanup before target pilot."
+    precedence: 1
+  - source: "ARCHITECT_PROFILE.md and README.md at b9d9d8824ed278432a1266e81f8fb28ffe2e42d3"
+    role: "Exact profile subject containing operator-specific value plus the adjudicated ownership/duplication candidates."
+    precedence: 2
+  - source: "phatnguyen03022001/agent-skills@fe3fd6de46c6e2220edbcadfb27f12c8dd23b2d6"
+    role: "Pinned canonical owner of reusable task governance, sequential Executor rebinding, DIRECT/micro-maintenance semantics, deferred-observation governance, gap handling, verification governance, and stable change-admission semantics."
+    precedence: 3
+
+structure_authority:
+  status: RESOLVED
+  source: "Existing ARCHITECT_PROFILE.md plus the current README ownership boundary."
+  rationale: "The correction is subtraction/reconciliation inside the existing canonical profile. No new profile subsystem, schema, registry, lifecycle, role, skill, or reusable governance artifact is justified. The only new artifact beyond the Architect-owned task is its Executor report."
+
+objective: "Reduce architect-profile to a cleaner operator-specific layer by deleting or deriving reusable governance already owned by agent-skills, correcting the taskless-DIRECT conflict, preserving high-value operator/machine/safety/presentation semantics, and adding at most one concise operator routing preference for sequential reuse of one Executor session across independently authorized repository-local tasks."
+
+scope:
+  required_changes:
+    - "Treat the pinned agent-skills revision as the canonical reusable-governance owner. Before deleting profile prose on that basis, inspect the exact corresponding current agent-skills semantics and preserve any genuine operator-specific override or continuity requirement that is not derivable from that owner."
+    - "Deferred observations: reduce the near-complete generic observation contract in Section 19. Preserve the operator-specific path convention `observations/<owner>__<repo>.md`, the fact that this profile is the configured continuity store, and only the operator-specific behavior needed to use that store. Reusable non-authority, target-switching, revalidation, failure, and lifecycle semantics should be referenced/derived from current agent-skills rather than locally redefined. Do not create observation schema, IDs, manifest, registry, queue, state machine, TTL, or automation."
+    - "Generic governance/engineering mechanics: subtract detailed reusable procedure from Sections 14-16, the generic verification mechanics inside Section 18, and Section 23 where current agent-skills already owns the semantics. Preserve concise durable operator preferences such as reuse-first, KISS, anti-overengineering, cheapest-sufficient evidence/cost discipline, low human-in-loop, evidence-before-framework-change, and target delivery over framework elegance."
+    - "Local `.env` preference: preserve the operator-owned-state and secret-safety invariants (do not expose values, do not overwrite/delete unknown operator values, fail closed when safe handling cannot be established), but remove or generalize the profile-local transformation recipe when it is merely reusable implementation mechanics. Do not add tooling or change actual secrets/configuration."
+    - "TASK LAUNCH: preserve the exact operator-facing field order, localized `Giải thích`, copy boundary, chat-routing preference, and minimal-prompt preference. Remove/derive generic task/handoff/Git/mutation-authority semantics already owned by agent-skills. The profile must not become a second task protocol."
+    - "Correct the current DIRECT conflict: remove the statement that a DIRECT flow with no persisted canonical task/handoff may use the transient prompt itself as execution authority. Current agent-skills defines DIRECT as a canonical task lane; taskless mutation is only the separately defined Architect micro-maintenance exception when its exact predicates are satisfied. Do not create another taskless semantic-change bypass."
+    - "Runtime guidance: keep only operator-specific freshness/routing preference. Do not restate agent-runtime implementation/reload facts beyond the minimum reference needed to know when to re-establish callable capability."
+    - "Selective deduplication: remove repeated detailed restatements that add maintenance/context tax, but preserve short bootstrap/navigation reminders where repetition has independent value. Do not optimize for minimum line count."
+    - "Preserve the high-value operator-specific areas unless a direct contradiction is found: Local Terminal safety policy and `/Users/tienphat/Developer/` confinement/binding rules; ROLE/WORK BOUNDARY and quoted/copied/historical-marker inert semantics; final response delimiter semantics; current-GitHub bootstrap/current-profile identity rules; workstation/environment, branch, model/effort, language, cost/quota, human-attention, docs-first, and execution-surface preferences."
+    - "Add at most one concise operator routing preference, in the existing Executor-selection/presentation area if useful: when multiple repository-local tasks are already independently authorized, prefer reusing one Executor session sequentially when that reduces context transfer; each repository remains governed by normal agent-skills terminal-rebinding and fresh repository-local authority. Do not introduce `MULTI_REPO_BATCH` vocabulary, a program authority, transaction, registry, scheduler, or cross-repository state."
+    - "Do not rename Architect/Governing Architect/Executor terminology merely for elegance. Naming overload was audited but no material permission defect was reproduced."
+    - "Update README.md only if the implementation would otherwise leave a concrete contradiction with its existing ownership/maintenance statement. Otherwise leave README unchanged."
+    - "Produce an Executor report in a separate report-only commit and stop at Governing Architect review."
+  allowed_existing_files_or_components:
+    - ARCHITECT_PROFILE.md
+    - README.md
+    - .agent/tasks/TASK-0001/task.yaml
+  expected_files_are_restrictive: true
+
+invariants:
+  - "architect-profile remains the operator-specific layer: HOW TO WORK WITH THIS OPERATOR; it does not become a generic governance, standards, documents, runtime, or orchestration owner."
+  - "The repository remains main-only with branch topology exactly {main}; no dev/staging branch is created for ceremony."
+  - "Terminal/local filesystem safety, secret non-disclosure, exact target binding, and canonical-GitHub bootstrap protections are not weakened."
+  - "ROLE, WORK BOUNDARY, continuation locator, and end-of-response delimiter remain semantically distinct; pasted/quoted/historical markers remain inert."
+  - "Operator-facing TASK LAUNCH presentation remains exact and separate from PROMPT TO COPY."
+  - "DIRECT is not represented as a taskless semantic-change bypass; current agent-skills remains the semantic owner of DIRECT and micro-maintenance."
+  - "Sequential reuse of an Executor session, if mentioned, is only an operator routing preference over existing repository-local rebinding semantics and creates no cross-repository authority."
+  - "No automatic FOLLOW_UP→UNK→standards mapping, global experience store, ontology, registry, lifecycle, new role, new skill, or sixth repository is introduced."
+  - "No rejected/deferred Claude blind-spot finding is silently implemented. Verifier fingerprint/semantic sufficiency remains WAIT_FOR_TARGET_EVIDENCE."
+  - "The correction is subtraction-first. Added prose must earn its existence by resolving a concrete current ambiguity or preserving operator-specific behavior."
+
+forbidden_changes:
+  - "Do not modify LICENSE."
+  - "Do not create a dev/staging branch, PR workflow, CI, Actions, release, tag, repository metadata change, or promotion machinery."
+  - "Do not add a new profile schema, manifest, registry, state store, observation framework, task variant, protocol version, role, skill, executor profile taxonomy, or lifecycle."
+  - "Do not modify agent-skills, agent-standards, agent-documents, or agent-runtime. Cross-repository access in this task is read-only and only to verify claimed semantic ownership."
+  - "Do not remove or materially weaken the Local Terminal safety policy, exact local-root/repository binding, secret-safe capability rules, role/work-boundary protections, quoted-marker inert semantics, current-GitHub bootstrap, or language/TASK-LAUNCH presentation behavior."
+  - "Do not turn DIRECT into a taskless bypass or invent another authority path for small semantic changes."
+  - "Do not normalize distinct vocabulary merely for consistency, including APPROVED vs ACCEPTED or unrelated generation/model/run identities."
+  - "Do not redesign product-vision ownership, standards assessment, documents taxonomy, runtime verifier semantics, promotion lineage, or target lifecycle."
+  - "Do not perform stylistic rewrite of the entire profile, optimize for arbitrary line-count reduction, or delete repetition whose bootstrap/navigation/safety value is independently justified."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0001/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Reusable governance that the profile explicitly defers to agent-skills is no longer redundantly defined at near-contract depth in architect-profile."
+    evidence_required: "Exact diff plus pinned agent-skills comparison identifies the deleted/derived generic semantics and shows any retained local prose has a concrete operator-specific reason."
+  - id: AC-2
+    requirement: "The taskless-DIRECT conflict is closed without creating a replacement bypass."
+    evidence_required: "Final profile contains no authority claim that a DIRECT transient prompt may replace canonical task/handoff authority; any taskless mutation reference is limited to the current agent-skills micro-maintenance exception by reference rather than local redefinition."
+  - id: AC-3
+    requirement: "Operator-specific high-value behavior is preserved."
+    evidence_required: "Final inspection confirms Terminal safety/local-root binding, secret non-disclosure, ROLE/WORK BOUNDARY and inert-marker semantics, current-GitHub bootstrap, TASK LAUNCH presentation/copy boundary, workstation/model/language/cost/human-in-loop preferences remain materially intact."
+  - id: AC-4
+    requirement: "Deferred-observation and `.env` sections are reduced to operator-specific responsibility without losing their intended safety boundary."
+    evidence_required: "Final sections preserve operator continuity/secret invariants while no longer carrying unnecessary generic lifecycle/implementation recipes already owned elsewhere."
+  - id: AC-5
+    requirement: "Any multi-repository Executor convenience remains presentation/routing only."
+    evidence_required: "If added, the final text is at most a concise preference referencing existing agent-skills sequential rebinding; it creates no shared authority, program state, transaction, lifecycle, or new named protocol mechanism."
+  - id: AC-6
+    requirement: "The cleanup is subtraction-first and bounded."
+    evidence_required: "Implementation changes only ARCHITECT_PROFILE.md and README.md only if concretely necessary; no unrelated semantics are added, no other repository is mutated, and exact final diff is reviewable as ownership/subtraction rather than a rewrite."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "At execution start refresh canonical GitHub truth and require main equals the exact handoff base, branches exactly {main}, TASK-0001 revision 1 resolves at that base, and pinned agent-skills fe3fd6de46c6e2220edbcadfb27f12c8dd23b2d6 is available. Preflight required EXECUTION capabilities before mutation."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Before editing, read the exact current agent-skills owner sections for sequential Executor rebinding/PROGRAM, deferred observations, DIRECT/micro-maintenance, gap handling, verification governance, and stable change admission. Record which profile prose is externally derivable versus genuinely operator-specific."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Perform one bounded subtraction/reconciliation pass. Prefer deletion/short reference over paraphrased duplicate prose. Preserve every explicitly protected operator-specific invariant."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Inspect the exact final Markdown for internal contradictions, broken headings/code fences, stale local ownership claims, duplicated taskless-DIRECT authority, and accidental weakening of protected safety/presentation semantics."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Review the exact implementation diff against b9d9d8824ed278432a1266e81f8fb28ffe2e42d3 plus this planning commit. Prove all semantic additions/deletions are attributable to the authorized findings and that README is unchanged unless a concrete contradiction required it."
+      required: true
+    - id: CHECK-6
+      command_or_check: "Commit/push the implementation non-force to main only after re-reading remote main and requiring it still equals the exact execution base. Do not create any branch."
+      required: true
+    - id: CHECK-7
+      command_or_check: "Create .agent/tasks/TASK-0001/report.yaml with exact ownership-comparison, preservation, diff, Git-action, and final-ref evidence. Commit/push it separately, then verify its sole parent is the implementation commit, its diff is report-only, main equals the report commit, and branches remain exactly {main}."
+      required: true
+  authoritative_verification:
+    required: true
+    mechanism: "Exact pinned-owner comparison + final Markdown semantic/diff inspection"
+    expected_signal: "All AC-1..AC-6 PROVEN with no protected invariant weakened and no unowned governance expansion"
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
