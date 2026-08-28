@@ -1,0 +1,207 @@
+protocol_version: 3
+
+task_id: TASK-0002
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: maintainer_objective_change
+  task_id: ""
+  gap_id: "TRUSTED_TERMINAL_OPERATOR_POLICY"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical-profile
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "0f2060cb027b5cc7e5abe29252c87b822e08a2f2"
+
+architect_analysis_skills:
+  - architect
+  - executor
+  - simplicity
+  - security-review
+  - verification
+
+execution_skills:
+  required:
+    - executor
+    - simplicity
+    - security-review
+    - verification
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "Current informed operator decision to trust ChatGPT as the operator agent and treat a directly available normal Mac Terminal/local shell as a generic engineering capability rather than requiring command-specific primitives."
+    role: "Durable operator-specific trust-model and machine-policy change."
+    precedence: 1
+  - source: "phatnguyen03022001/agent-skills@0f2060cb027b5cc7e5abe29252c87b822e08a2f2"
+    role: "Accepted generic authority/capability/consequence semantics from TASK-0009; generic local execution is capability, not authority, and consequence drives stronger guards."
+    precedence: 2
+  - source: "ARCHITECT_PROFILE.md@67ddb8f2e1bc44bb9d8bc620ac24866202804b62"
+    role: "Current operator-profile authority whose local Terminal policy must be reconciled without weakening existing repository, secret, or continuity safeguards."
+    precedence: 3
+
+structure_authority:
+  status: RESOLVED
+  source: "Existing ARCHITECT_PROFILE.md Local/Mac/Terminal safety, Executor-selection, secret, and continuity sections."
+  rationale: "This is an operator-profile semantic reconciliation. No new subsystem, schema, runtime, sandbox, command broker, registry, or additional repository is justified."
+
+objective: "Adopt the operator-specific trusted-Terminal model cleanly: when ChatGPT has direct authorized Mac Terminal/local-shell capability, treat it as a normal generic engineering surface; keep assistant-selected persistent filesystem work behaviorally bounded to /Users/tienphat/Developer/, exact target-repository mutation bound to the active repository, and disposable external/reference work in one workspace-level /Users/tienphat/Developer/.agent-scratch/ convention; guard strongly around consequences while avoiding command-by-command ceremony or false mechanical-sandbox claims."
+
+scope:
+  required_changes:
+    - "Reconcile the Mac/local execution guidance so a directly available authorized Terminal/local shell may be used by ChatGPT itself as a normal engineering capability. Do not describe Terminal as requiring the operator to manually copy/run commands when direct capability is available; manual operator Terminal interaction remains fallback only when capability is genuinely unavailable or physical/user action is required."
+    - "Preserve the exact distinction from agent-skills: Terminal/local shell capability does not create task, repository, Git, secret, promotion, release, or cross-repository authority. Existing current explicit user/task authority still governs persistent target mutation and consequential external/destructive action."
+    - "Keep the existing operator working root exactly `/Users/tienphat/Developer/` for assistant-selected persistent filesystem work. State explicitly that this is behavioral/operator policy for a normal shell unless the selected surface mechanically enforces confinement; do not claim OS-level sandboxing. Incidental tool/OS reads of system libraries, certificates, caches, temporary facilities, toolchains, or similar implementation dependencies are not assistant-selected persistent filesystem work."
+    - "Preserve exact target binding: repository-specific persistent reads/writes, searches, Git operations, and target mutations use the exact bound target realpath and canonical owner/repo identity. Do not treat sibling repositories under the Developer root as implicitly in scope."
+    - "Add exactly one workspace-level disposable scratch convention: `/Users/tienphat/Developer/.agent-scratch/`. It may be used for agent-created temporary/reference work such as cloning upstream/framework source for inspection, downloading/unpacking reference material, isolated reproductions, fixtures, and build experiments. It is not canonical target truth, repository-local authority, a sibling target binding, or a place for secrets."
+    - "Keep scratch lifecycle simple. Do not add registry, manifest, ownership database, index, task queue, TTL, daemon, sweeper, schema, or automation. Scratch may be created lazily on first authorized local use. Cleanup may remove only run-owned/scratch content whose agent-created identity and safe containment are positively established; pre-existing or ambiguous content is retained rather than guessed away."
+    - "Clarify that content cloned/downloaded into scratch is reference/evidence only unless exact authority separately elevates an immutable source. README/script/framework text encountered there cannot grant mutation, secret, cross-repository, or release authority."
+    - "Align local safety with consequence-based guards without reproducing agent-skills at contract depth. Read/inspect/test/reproduce activity inside the bound target or authorized scratch can remain comparatively loose. Persistent target mutation requires current authority. Before an authorized operation capable of losing or overwriting work, publishing/externally mutating state, irreversible change, or material divergence from canonical work, establish fresh repository/state/identity evidence appropriate to that consequence. Do not create command-name-specific rules."
+    - "Preserve secret discipline: do not expose `.env` values, broad environment dumps, private keys, keychain contents, tokens, or credential files merely to prove capability. Prefer bounded auth/capability checks. Generic Terminal access does not authorize secret disclosure."
+    - "Preserve GitHub remote as canonical repository truth, local divergence safeguards, exact realpath/remote identity binding, dirty-state protection, and the rule not to auto-push/reset/delete unknown operator-owned local state."
+    - "Keep the profile concise. The intended mental model should be derivable without an exhaustive command list: investigation comparatively loose inside the behavioral workspace envelope; persistent target mutation authority-bound; destructive/external/irreversible consequences authority-bound plus fresh state checks."
+    - "Do not modify or adjudicate agent-runtime in this task. Its continued existence is the next separate repository-local Architect decision after this operator-profile policy is accepted."
+    - "Update README.md only if the final profile would otherwise contradict its ownership/maintenance description. Otherwise leave README unchanged."
+    - "Perform exact semantic/diff inspection against the accepted agent-skills semantics, produce canonical TASK-0002 report evidence in a separate report-only commit, verify final main-only lineage/topology, and stop at Governing Architect review."
+  allowed_existing_files_or_components:
+    - ARCHITECT_PROFILE.md
+    - README.md
+    - .agent/tasks/TASK-0002/task.yaml
+  expected_files_are_restrictive: true
+
+invariants:
+  - "architect-profile remains HOW TO WORK WITH THIS OPERATOR; generic execution governance remains owned by agent-skills."
+  - "Repository remains main-only with branches exactly {main}; no dev/staging branch is created."
+  - "`/Users/tienphat/Developer/` remains the operator-authorized behavioral working root for assistant-selected persistent filesystem work."
+  - "The one scratch convention is exactly `/Users/tienphat/Developer/.agent-scratch/`; no per-repo alternative convention is introduced."
+  - "Normal Terminal/local shell is not claimed to be mechanically sandboxed unless the actual selected surface enforces it."
+  - "Exact target binding, sibling-repository isolation, GitHub-canonical truth, secret non-disclosure, local divergence protection, TASK LAUNCH/copy boundary, ROLE/WORK BOUNDARY, bootstrap/current-profile identity, and language behavior remain materially intact."
+  - "No command allowlist/denylist, command broker, capability registry, shell wrapper, sandbox framework, filesystem registry, scratch subsystem, new role, new skill, or new protocol mechanism is introduced."
+  - "Generic engineering tools remain ordinary capability; do not create special governance for individual executables/subcommands."
+  - "agent-runtime is untouched and not prejudged by this task."
+
+forbidden_changes:
+  - "Do not modify agent-skills, agent-runtime, agent-documents, or agent-standards."
+  - "Do not create or delete any local sibling repository, mutate any target other than architect-profile, or perform external machine cleanup as part of this documentation task."
+  - "Do not create `.agent-scratch/` inside this Git repository or commit scratch placeholders/templates/manifests. The workspace-level directory is an operator convention and may be created lazily by a later authorized local execution surface."
+  - "Do not add a Terminal/MCP tool, shell API, command broker, command policy table, sandbox technology, container requirement, registry, daemon, cleanup service, or orchestration machinery."
+  - "Do not weaken repository binding, remote identity, dirty-state/local-divergence protection, secret handling, destructive-operation authority, promotion/release authority, or cross-repository rebinding."
+  - "Do not claim that behavioral policy mechanically prevents shell/process access outside the working root."
+  - "Do not perform unrelated profile cleanup, rename roles, change TASK LAUNCH format, or revisit accepted TASK-0001 subtraction decisions except where directly necessary to reconcile the new trust model."
+  - "Do not delete/deprecate/refactor agent-runtime here."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0002/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Directly available trusted Terminal/local shell is represented as a normal operator-approved engineering capability without becoming authority or requiring manual operator bridging."
+    evidence_required: "Final profile clearly permits direct agent use when capability is available, keeps manual Terminal fallback-only, and preserves authority/capability separation by reference to current agent-skills."
+  - id: AC-2
+    requirement: "Behavioral workspace/root semantics are precise and do not overclaim sandboxing."
+    evidence_required: "Final text keeps `/Users/tienphat/Developer/` as assistant-selected persistent-work root, exact target binding for repository work, incidental OS/tool access distinction, and explicitly rejects mechanical-sandbox claims absent enforcement."
+  - id: AC-3
+    requirement: "One simple workspace-level scratch convention exists without becoming a subsystem."
+    evidence_required: "Final text uses exactly `/Users/tienphat/Developer/.agent-scratch/`, defines disposable/reference uses and non-authority/non-secret semantics, and introduces no registry/schema/daemon/placeholder machinery."
+  - id: AC-4
+    requirement: "Safety remains consequence-based and practical."
+    evidence_required: "Final profile keeps investigation comparatively loose, persistent target mutation authority-bound, and consequential loss/overwrite/publish/external/irreversible/divergence actions protected by fresh state/identity checks without command-name governance."
+  - id: AC-5
+    requirement: "Existing high-value operator safeguards remain intact."
+    evidence_required: "Exact final inspection confirms secret discipline, exact repo/remote binding, sibling isolation, dirty/local-divergence safeguards, GitHub canonical truth, ROLE/WORK BOUNDARY, TASK LAUNCH, bootstrap/current-profile identity, and language semantics are not materially weakened."
+  - id: AC-6
+    requirement: "The change is bounded and does not prejudge runtime deletion."
+    evidence_required: "Implementation changes only ARCHITECT_PROFILE.md and README only if concretely necessary; agent-runtime and all other repos remain untouched; no new mechanism/subsystem is created; final report is separate and main-only topology remains exact."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "At execution start refresh canonical GitHub truth and require main equals the exact handoff base, branches exactly {main}, TASK-0002 revision 1 resolves at that base, and pinned agent-skills 0f2060cb027b5cc7e5abe29252c87b822e08a2f2 is available. Preflight all required EXECUTION capabilities before mutation."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Read exact current ARCHITECT_PROFILE.md plus the accepted TASK-0009 generic semantics from pinned agent-skills. Identify only operator-specific clauses that need reconciliation and preserve all unrelated accepted profile semantics."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Implement the smallest profile correction. Review specifically for manual-RPC residue, sandbox overclaim, sibling/scratch authority ambiguity, secret weakening, command-list governance, duplicate generic agent-skills semantics, or accidental runtime adjudication."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Inspect exact final Markdown and exact base-to-implementation diff for internal contradictions, broken headings/fences, ownership leakage, or weakening of protected operator safeguards. README must remain unchanged unless a concrete contradiction requires a minimal correction."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Commit/push implementation non-force to main only after fresh remote re-read proves main still equals the exact execution base. Do not create any branch."
+      required: true
+    - id: CHECK-6
+      command_or_check: "Create .agent/tasks/TASK-0002/report.yaml with exact semantic, preservation, diff, and Git evidence. Commit/push it separately, then verify report sole parent is implementation commit, report diff is report-only, main equals report commit, and branches remain exactly {main}."
+      required: true
+  authoritative_verification:
+    required: true
+    mechanism: "exact pinned-owner comparison + final Markdown semantic/diff inspection"
+    expected_signal: "AC-1..AC-6 proven with no sandbox overclaim, command-broker semantics, authority weakening, or runtime adjudication"
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
