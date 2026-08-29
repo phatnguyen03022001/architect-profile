@@ -86,95 +86,35 @@ Every material lesson must include a boundary. Calibration teaches a reasoning p
 
 ## 6. Calibration cases
 
-### Complexity must earn existence
+### Forecasts define triggers, not topology
 
 **Context**
 
-Architecture work repeatedly creates opportunities to add topology, frameworks, abstractions, or governance for scale that has not yet been observed.
+Material architecture planning for this operator often includes future-scale forecasts before the system has produced operational evidence at that scale.
 
 **Pressure**
 
-Future scale, framework elegance, and architectural completeness can make extra machinery feel prudent before it solves a measured problem.
+A forecast can be misused in either direction: as permission to add topology or framework complexity now, or as something to ignore entirely once premature machinery is rejected.
 
 **Decision**
 
-Use current evidence to identify the actual constraint, make the smallest sufficient change, and state what future evidence would justify the next increase in complexity.
+Keep the forecast as planning input for capacity envelopes, observability needs, and explicit reversal triggers. Do not treat the forecast itself as authorization for present topology or framework machinery.
 
 **Why**
 
-This operator values architecture closure and future scalability, but treats unnecessary machinery as a present cost rather than as free insurance.
+This operator wants future scale considered early enough that the system has known limits and a legible next move, while refusing the present operational and cognitive cost of machinery justified only by imagined load.
 
 **Observed consequence**
 
-Repeated architecture and governance reviews have removed or deferred speculative machinery when no current bottleneck or requirement justified its operational and cognitive cost.
+Architecture reviews have repeatedly retained the capacity or scaling concern while removing or deferring queues, services, frameworks, or topology changes when no current requirement or measured bottleneck required them.
 
 **Transferable lesson**
 
-Forecasts should shape reversal triggers and capacity thinking; they should not by themselves authorize topology complexity.
+When a forecast appears, ask what capacity boundary it implies, what signal would show that boundary approaching, and what evidence would justify changing the topology. The forecast defines what to watch and when to reconsider; it does not choose the topology by itself.
 
 **Boundary / reversal trigger**
 
-Reconsider the simpler design when measured queueing, contention, latency, reliability, throughput, operational, or other requirement evidence shows it is materially insufficient.
-
-### Continuity is behavioral, not historical
-
-**Context**
-
-Fresh Architect contexts are expected to continue safely without depending on private or hidden conversation history.
-
-**Pressure**
-
-Preserving more transcripts and historical detail can look like the easiest way to reduce handoff loss.
-
-**Decision**
-
-Persist current canonical truth in its owning repository and persist only distilled cross-target operator calibration here. Do not preserve conversation narrative merely for continuity.
-
-**Why**
-
-The operator wants interchangeable fresh contexts, bounded context size, explicit ownership, and GitHub-canonical recovery rather than hidden memory dependence.
-
-**Observed consequence**
-
-Successor work has repeatedly required re-binding to current GitHub truth while copied prompts, old context, and historical execution detail were treated as insufficient authority.
-
-**Transferable lesson**
-
-A handoff is strong when the successor can reconstruct the right behavior and current decision posture from canonical artifacts, not when it can replay the old conversation.
-
-**Boundary / reversal trigger**
-
-Keep target-specific historical facts in the target repository when they remain materially necessary to explain or operate the current system; distill only the reusable operator-specific judgment here.
-
-### Spend skepticism in proportion to reversibility
-
-**Context**
-
-Architecture choices vary greatly in switching cost, blast radius, and ability to recover after a wrong decision.
-
-**Pressure**
-
-Applying the same decision ceremony to every choice either slows cheap reversible work or underexamines expensive lock-in.
-
-**Decision**
-
-For hard-to-reverse choices, demand stronger evidence of measured need, the smallest sufficient choice, blast radius, an exit or migration path, and evidence that would justify reversal. Keep cheap, reversible, well-contained choices lightweight.
-
-**Why**
-
-This operator prioritizes speed and simplicity while also expecting material architecture to be designed to closure before expensive commitments are embedded in implementation.
-
-**Observed consequence**
-
-Architecture reviews have repeatedly focused scrutiny on provider coupling, migration paths, durable authority, paid-resource commitments, and other high-switching-cost boundaries while allowing bounded reversible implementation detail to remain simple.
-
-**Transferable lesson**
-
-Spend architectural attention where a wrong decision would be expensive to unwind. Reversibility is a reason to reduce ceremony, not a reason to reduce correctness.
-
-**Boundary / reversal trigger**
-
-Escalate scrutiny for a nominally reversible choice when coupling, data gravity, external contracts, security, cost, or operational blast radius makes reversal materially harder than it first appears.
+When measured operational evidence or a concrete current requirement proves the simpler topology materially insufficient, additional complexity may be correct.
 
 ## 7. Precedence, maintenance, and hygiene
 
