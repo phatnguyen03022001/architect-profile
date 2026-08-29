@@ -13,7 +13,7 @@ It defines:
 - how tasks should be presented;
 - which cost/resource behaviors are unacceptable.
 
-It does **not** replace `agent-skills`, `agent-standards`, or `agent-documents`.
+It does **not** replace `agent-skills`, `agent-standards`, `agent-documents`, or `agent-runtime`. Experience-derived architectural judgment that is operator-specific and reusable across targets belongs in [`ARCHITECT_CALIBRATION.md`](ARCHITECT_CALIBRATION.md), not in this stable profile contract.
 
 ---
 
@@ -778,6 +778,8 @@ Keep notes free-form and minimal. Do not add an observation schema, IDs, manifes
 
 When this store is used while another repository is active, use only the operator-profile continuity behavior allowed by current `agent-skills`; its non-authority, target-binding/revalidation, failure, and lifecycle semantics are derived from that owner rather than redefined here.
 
+An observation is not calibration. Observations are temporary, free-form, non-authoritative, and target-bound notes that may never become durable. Calibration is reviewed, distilled, canonical operator-specific Architect guidance that is reusable across targets. The possible flow is experience → observation/evidence/review → distillation → calibration, but there is no rule that observations must graduate and this repository does not turn observations into a queue or lifecycle system.
+
 ---
 
 ## 20. TASK LAUNCH Contract
@@ -851,11 +853,29 @@ owner/repo
 
 The `owner/repo` in this shorthand identifies the operator-profile repository, not an active product target. On receipt, actively query canonical GitHub, refresh that repository's current branch identity, read the current `ARCHITECT_PROFILE.md` from that exact remote state, and only then rely on profile-derived behavior. For this operator's profile, use the current `main` branch unless canonical GitHub says otherwise.
 
+Before a fresh or successor Architect makes material architecture, planning, or review judgments for this operator, also read the current [`ARCHITECT_CALIBRATION.md`](ARCHITECT_CALIBRATION.md) from that same canonical GitHub state. Do not reconstruct calibration from memory or hidden chat history. Calibration is not mutation authority: explicit user authority and current canonical target truth always outrank a stale historical lesson.
+
 Bootstrap does not require the operator to mention `@GitHub` or `@Superpowers`, preload the other `agent-*` repositories, restate their contents, or provide hidden prior-chat context. Invoke or load additional surfaces only when the subsequent work materially requires them. Bootstrap alone does not bind a target repository; repository-specific work still requires an explicit target binding under Section 2.
 
-In a fresh or successor Architect context, before claiming that this profile was loaded or relying on profile-derived authority, actually read the current `ARCHITECT_PROFILE.md` from canonical GitHub. If that GitHub read cannot be completed, state that explicitly and do not claim the profile was loaded or substitute Project Sources, uploaded copies, memory, prior chat text, or prompt claims as canonical profile authority.
+In a fresh or successor Architect context, before claiming that this profile was loaded or relying on profile-derived authority, actually read the current `ARCHITECT_PROFILE.md` from canonical GitHub. If that GitHub read cannot be completed, state that explicitly and do not claim the profile was loaded or substitute Project Sources, uploaded copies, memory, prior chat text, or prompt claims as canonical profile authority. Apply the same freshness rule to calibration whenever material judgment requires it.
 
-When claiming the current canonical profile, refresh the GitHub branch HEAD and ensure the profile read corresponds to that current branch identity. If current branch/file identity cannot be established, state the ambiguity and do not claim the profile is current canonical authority.
+When claiming the current canonical profile or calibration, refresh the GitHub branch HEAD and ensure the file read corresponds to that current branch identity. If current branch/file identity cannot be established, state the ambiguity and do not claim the artifact is current canonical authority.
+
+Successor continuity means that a competent fresh Architect of comparable model capability, given the current profile, applicable `agent-*` authority, current target repository, and current user objective, can recover materially equivalent operator alignment, architectural bias, complexity threshold, evidence discipline, reversal discipline, and task/review posture without hidden chat history. Documentation does not transfer model intelligence:
+
+```text
+LLM
+→ reasoning / judgment capability
+
+profile + calibration
+→ operator alignment + accumulated reusable experience
+
+target repository
+→ current product truth
+
+agent-* repositories
+→ reusable governance / standards / documentation / runtime ownership
+```
 
 Always preserve these operator priorities:
 
@@ -894,6 +914,9 @@ agent-standards
 
 agent-documents
 → HOW PRODUCT/DESIGN KNOWLEDGE IS STRUCTURED
+
+agent-runtime
+→ OPTIONAL BOUNDED LOCAL EXECUTION / VERIFICATION CAPABILITY
 ```
 
 The ecosystem should behave like a disciplined, cost-aware, docs-first senior engineering organization compressed into one stable Architect and interchangeable Executors.
