@@ -1,0 +1,199 @@
+protocol_version: 3
+
+task_id: TASK-0005
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: maintainer_objective_change
+  task_id: ""
+  gap_id: "PROMPT_KNOWLEDGE_PROVENANCE_BOUNDARY"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical-profile
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "533eaef0dbed13c5bbfdad1195218d8382a38e5c"
+
+architect_analysis_skills:
+  - architect
+  - executor
+  - simplicity
+  - verification
+
+execution_skills:
+  required:
+    - executor
+    - simplicity
+    - verification
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "Explicit operator decision in current Architect context"
+    role: "Durable operator objective: preserve prompts/conversation history against loss or distortion while keeping raw history non-authoritative, successor bootstrap compact, target truth canonical, and learned architectural judgment distilled/evolvable."
+    precedence: 1
+  - source: "phatnguyen03022001/architect-profile@7d0fe8aaa58711a8e308e3cc78cb8ac27fbd6dbc"
+    role: "Current operator profile and calibration boundary: successor continuity must not depend on hidden chat history; observations are non-authoritative; calibration is distilled and excludes raw transcripts."
+    precedence: 2
+  - source: "phatnguyen03022001/agent-skills@533eaef0dbed13c5bbfdad1195218d8382a38e5c"
+    role: "Current reusable governance and cost/capability routing authority; this task must not duplicate generic task or execution semantics."
+    precedence: 3
+
+structure_authority:
+  status: RESOLVED
+  source: "ARCHITECT_PROFILE.md existing Context Hygiene and Successor Architect Continuity sections only."
+  rationale: "This is an operator-specific provenance/continuity semantic correction. No archive implementation, schema, registry, service, repository, or automation is justified."
+
+objective: "Define a compact three-layer provenance boundary for this operator: raw conversation/prompt history may be preserved as private forensic backup with authority NONE; material user intent, corrections, overrides, and decisions must be distilled into the narrowest canonical target/profile owner before later work relies on them; reusable cross-target architectural judgment may be distilled into calibration under its existing admission rules. Preserve successor bootstrap from canonical repositories rather than raw history and do not claim continuous archival capability that the current ChatGPT+GitHub-only environment cannot prove."
+
+scope:
+  required_changes:
+    - "Update ARCHITECT_PROFILE.md only with a concise provenance boundary distinguishing L0 RAW, L1 DISTILLED INTENT, and L2 LEARNED JUDGMENT."
+    - "Define L0 RAW as optional/private forensic backup of prompts/conversation exports or equivalent source history with authority NONE. Raw history is not target truth, task authority, profile authority, calibration, or normal bootstrap input."
+    - "Define L1 DISTILLED INTENT as material user requests, corrections, constraints, overrides, and decisions that affect future work, persisted to the narrowest canonical owner: target repository for target/product truth; architect-profile only for durable operator-specific working preferences; existing task/review/decision artifacts where their current owner already applies."
+    - "Define L2 LEARNED JUDGMENT as reviewed, cross-target reusable operator-specific architectural judgment admitted to ARCHITECT_CALIBRATION.md under its existing rules; do not weaken its transcript/secret exclusions."
+    - "State that raw archival completeness and canonical engineering completeness are separate. Failure or unavailability of raw archival capture must not be disguised as complete backup and must not silently block otherwise well-grounded target work unless the missing history is materially required to resolve authority or intent."
+    - "Preserve raw originals when archival tooling exists; normalization, deduplication, indexing, summarization, or search views must be derived and must not overwrite the forensic source. Do not prescribe a specific backup product in this task."
+    - "Keep raw history out of public/canonical governance repositories by default and never persist credentials, secrets, tokens, private account identifiers, or sensitive personal data merely for continuity."
+    - "Successor Architect bootstrap remains profile + calibration + applicable agent-* authority + target canonical truth. Raw archive is retrieved only for explicit provenance/reconstruction need, not loaded by default."
+    - "Do not promise automatic/continuous capture from ChatGPT consumer UI, do not require browser scraping/extensions, and do not add an archive service or sixth governance repository."
+    - "Keep current main-only topology and produce TASK-0005/report.yaml as a separate report-only commit after implementation, then stop at Governing Architect review."
+
+  allowed_existing_files_or_components:
+    - ARCHITECT_PROFILE.md
+    - .agent/tasks/TASK-0005/task.yaml
+  expected_files_are_restrictive: true
+
+invariants:
+  - "GitHub canonical target/profile truth outranks raw prompt history."
+  - "Raw history has authority NONE and is never a normal bootstrap dependency."
+  - "Material target-specific intent belongs to the target repository, not architect-profile."
+  - "Calibration remains distilled, compact, operator-specific, cross-target reusable, evidence-derived, and non-transcript."
+  - "No new governance repository, archive service, database, registry, queue, daemon, browser scraper, transcript schema, or lifecycle system is introduced."
+  - "No claim of archival completeness is made without evidence."
+  - "Repository topology remains exactly {main}."
+
+forbidden_changes:
+  - "Do not modify ARCHITECT_CALIBRATION.md; its current ownership/admission/hygiene rules are already sufficient."
+  - "Do not modify README.md, earlier task/report/review history, agent-skills, agent-documents, agent-standards, agent-runtime, or target repositories."
+  - "Do not add raw prompt/chat transcripts, exported conversation payloads, account lists, credentials, secrets, or personal archives to this repository."
+  - "Do not select or integrate restic, SOPS, age, cloud storage, email, browser extensions, scraping, export automation, or another archival product in this task."
+  - "Do not create a prompt registry, prompt versioning system, vector database, transcript database, ingestion pipeline, synchronization service, or second source of authority."
+  - "Do not reinterpret raw history as proof that overrides current explicit user authority or current canonical target truth."
+  - "Do not perform unrelated profile cleanup or framework expansion."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0005/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+    - repository_content_write
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Raw prompt/history preservation cannot become engineering authority."
+    evidence_required: "Profile explicitly defines L0 RAW as forensic/private/non-authoritative and excludes it from normal target truth, task authority, calibration, and bootstrap."
+  - id: AC-2
+    requirement: "Material user intent has a canonical distillation path."
+    evidence_required: "Profile defines L1 and routes target-specific product/design/constraint decisions to target-owned canonical artifacts while keeping durable operator-specific preferences in architect-profile."
+  - id: AC-3
+    requirement: "Reusable learned judgment remains compact and evolvable."
+    evidence_required: "Profile defines L2 as calibration governed by existing admission, evidence, boundary/reversal, revision, deletion, and transcript/secret hygiene semantics without duplicating them."
+  - id: AC-4
+    requirement: "Forensic preservation does not inflate successor context."
+    evidence_required: "Profile keeps raw archive out of default bootstrap and allows retrieval only for explicit provenance/reconstruction need."
+  - id: AC-5
+    requirement: "The current mobile/ChatGPT+GitHub environment is represented honestly."
+    evidence_required: "Profile does not claim continuous consumer-UI capture, automatic exports, local backup tooling, or archival completeness without evidence; no Mac/local capability is made mandatory."
+  - id: AC-6
+    requirement: "Correction stays minimal and correctly owned."
+    evidence_required: "Implementation modifies only ARCHITECT_PROFILE.md; no archive machinery/new repository/schema/tool integration is added; report is separate and topology remains {main}."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Refresh canonical GitHub truth; require main equals exact handoff base and topology exactly {main}; resolve TASK-0005 revision 1 and pinned agent-skills revision; preflight required GitHub-only EXECUTION capabilities."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Inspect current Context Hygiene, Successor Architect Continuity, and ARCHITECT_CALIBRATION.md boundary. Confirm calibration already excludes transcripts/secrets and identify only the missing raw-vs-distilled provenance semantics."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Implement the smallest coherent wording correction in ARCHITECT_PROFILE.md only. Prefer a compact subsection and references to existing canonical owners over duplicated doctrine."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Semantic review against AC-1..AC-5: no raw authority, correct L1 ownership, L2 calibration boundary preserved, no bootstrap inflation, no unsupported continuous-capture claim, no archive product selection."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Before each write refresh main and require exact expected parent. Verify base-to-implementation diff changes only ARCHITECT_PROFILE.md and introduces no transcript/archive artifacts or unrelated cleanup."
+      required: true
+    - id: CHECK-6
+      command_or_check: "Commit/push implementation non-force to main; then create TASK-0005/report.yaml as a separate report-only commit, verify sole parents/exact diffs/final main/topology, and stop at Governing Architect review."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
