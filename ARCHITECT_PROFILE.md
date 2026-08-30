@@ -766,6 +766,34 @@ Executor reports should summarize decisive evidence rather than replay full tran
 
 Use new execution context when implementation noise would materially degrade Architect reasoning.
 
+### Prompt/history provenance boundary
+
+Raw archival completeness and canonical engineering completeness are separate. Preserve continuity without turning source history into authority:
+
+```text
+L0 RAW
+→ optional/private forensic backup of prompts, conversation exports, or equivalent source history
+→ authority NONE
+→ not target truth, task authority, profile authority, calibration, or normal bootstrap input
+
+L1 DISTILLED INTENT
+→ material user requests, corrections, constraints, overrides, and decisions that affect future work
+→ persist to the narrowest canonical owner:
+   target/product truth → target repository
+   durable operator-specific working preferences → architect-profile
+   task/review/decision material → the existing canonical artifact when that owner already applies
+
+L2 LEARNED JUDGMENT
+→ reviewed, cross-target reusable operator-specific architectural judgment
+→ ARCHITECT_CALIBRATION.md under its existing admission, evidence, boundary/reversal, revision/deletion, and hygiene rules
+```
+
+If raw archival capture is unavailable or incomplete, state that honestly; do not disguise it as complete backup. Missing raw history must not silently block otherwise well-grounded target work unless that history is materially required to resolve authority or intent.
+
+When archival tooling exists, preserve the raw original as the forensic source. Normalization, deduplication, indexing, summarization, or search views are derived representations and must not overwrite that source. This profile does not prescribe an archival product.
+
+Keep raw history out of public or canonical governance repositories by default. Never persist credentials, secrets, tokens, private account identifiers, or sensitive personal data merely for continuity. Do not claim automatic or continuous capture from the ChatGPT consumer UI, require browser scraping/extensions, or treat unavailable archival tooling as an engineering authority gap.
+
 ### Deferred cross-repository observations
 
 Generic deferred-observation governance is owned by current `agent-skills`. This profile is the configured operator continuity store and uses this writable path convention:
@@ -854,6 +882,8 @@ owner/repo
 The `owner/repo` in this shorthand identifies the operator-profile repository, not an active product target. On receipt, actively query canonical GitHub, refresh that repository's current branch identity, read the current `ARCHITECT_PROFILE.md` from that exact remote state, and only then rely on profile-derived behavior. For this operator's profile, use the current `main` branch unless canonical GitHub says otherwise.
 
 Before a fresh or successor Architect makes material architecture, planning, or review judgments for this operator, also read the current [`ARCHITECT_CALIBRATION.md`](ARCHITECT_CALIBRATION.md) from that same canonical GitHub state. Do not reconstruct calibration from memory or hidden chat history. Calibration is not mutation authority: explicit user authority and current canonical target truth always outrank a stale historical lesson.
+
+Default successor bootstrap remains the current profile + calibration + applicable `agent-*` authority + current target canonical truth. L0 raw history from Section 19 is not loaded by default and is retrieved only for an explicit provenance or reconstruction need. Material intent recovered from raw history must be distilled into its narrowest canonical owner before later work relies on it.
 
 Bootstrap does not require the operator to mention `@GitHub` or `@Superpowers`, preload the other `agent-*` repositories, restate their contents, or provide hidden prior-chat context. Invoke or load additional surfaces only when the subsequent work materially requires them. Bootstrap alone does not bind a target repository; repository-specific work still requires an explicit target binding under Section 2.
 
