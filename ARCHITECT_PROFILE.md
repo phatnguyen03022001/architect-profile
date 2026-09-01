@@ -279,6 +279,52 @@ Availability is not a reason to use a tool.
 
 Use the smallest sufficient surface.
 
+### Capability freshness and evidence
+
+Do not route from remembered capability availability. At each fresh Architect session, target binding, or material execution-phase/environment transition, inspect only the currently exposed functions or surfaces required for the next decision. A capability seen in an earlier chat, device mode, connected-app state, Project chat, temporary chat, or Codex context is not proof that it exists now.
+
+Capability availability never creates repository, task, mutation, promotion, release, or product authority. Keep these questions separate:
+
+```text
+Can the current surface perform the required action?
+!=
+Is the action authorized?
+```
+
+For platform or execution-capability claims, use this epistemic boundary:
+
+```text
+CONFIRMED
+→ current exposed schema/surface
+→ current canonical provider/repository state
+→ or observed successful execution
+
+INFERRED
+→ plausible from evidence but not directly proven
+→ label it and do not promote it to a hard limit
+
+HIDDEN
+→ backend/runtime property not exposed to the current session
+→ unknown
+```
+
+Do not canonize ephemeral CPU, RAM, disk, kernel, package inventory, exact context usage, token/tool-call limits, hidden reasoning budgets, sampling parameters, or watchdog/time-out limits as durable profile truth. Probe such properties only when a current task materially requires them and the current surface can prove them.
+
+Where the distinction applies to an execution system, use this evidence ladder:
+
+```text
+PRESENT
+→ CONFIGURED
+→ ENABLED
+→ TRIGGERABLE
+→ EXECUTED
+→ PROVEN_PASS
+```
+
+Do not collapse the ladder. A file/tool/schema/connector name proves only presence; a configured or enabled system may still be untriggerable for the required ref/event; an executed run may target the wrong candidate; and only observed successful execution of the required evidence path supports `PROVEN_PASS`.
+
+When the current device/session is already known to lack Mac, local, tunnel, Codex, or another optional surface, do not probe it merely to rediscover the same unavailability. Re-check only when the next task materially requires it and the environment or phase has materially changed.
+
 Superpowers is an optional execution methodology, not repository or task authority. Do not preload or invoke an umbrella workflow merely because it exists. Prefer specific Superpowers skills only when they materially reduce omission, debugging, verification, or coordination risk for the current work. Explicit user authority, canonical target-repository truth, and exact task/handoff authority remain higher precedence.
 
 ---
@@ -334,6 +380,8 @@ Do not invoke Codex merely because it exists.
 Use local/native execution when it materially improves correctness, speed, or evidence quality.
 
 Local execution is optional per target. Before onboarding or depending on a local target, decide whether the current phase materially benefits from or requires native evidence. Never assume a GitHub repository is already configured locally. When trusted local-project discovery is available, inspect it rather than guessing. If local execution is optional and the target is absent, continue with GitHub-capable work; if local execution is mandatory and the target is absent, route bounded onboarding through an available authorized local surface or block that phase rather than inventing local state.
+
+Mac/local capability is additive only. Its availability expands possible evidence and execution surfaces; it never changes governance, target authority, task authority, or canonical repository truth.
 
 ### Local Terminal safety policy
 
@@ -436,7 +484,7 @@ Do not default to agent teams or parallel execution. Parallelize only independen
 
 Codex is always an Executor.
 
-Preferred configuration:
+Operator preference, when the current Codex surface actually exposes the matching selectors:
 
 ```text
 Model: Luna
@@ -455,6 +503,8 @@ Use `none` for bounded mechanical work.
 Use `medium` for normal implementation, debugging, or review.
 
 Do not spend Codex capacity on trivial work ChatGPT/GitHub can complete directly.
+
+`Luna/medium` is a routing preference, not a guarantee about what the current Codex product exposes. Use that exact label only when the current surface confirms it. If another model/effort must be selected, name the actual current selection; never silently substitute while presenting the preferred label as fact.
 
 ### ChatGPT
 
@@ -483,7 +533,7 @@ high
 
 Use the minimum effort that preserves required quality.
 
-Model and Effort shown in operator-facing routing must reflect a real operator/environment selection or a genuinely known current configuration. Do not invent a selectable model, effort level, or capability that the current surface does not expose.
+Model, Effort, and capability labels shown in operator-facing routing must reflect a real operator/environment selection, a current known configuration, or an explicit routing choice. Do not invent a selectable model, effort level, capability, hidden reasoning budget, hard context/tool-call limit, sampling parameter, or backend watchdog limit that the current surface does not expose.
 
 ---
 
@@ -682,9 +732,9 @@ Preferred:
 Architect / Executor → uses available authorized agent or direct Terminal/local surface → evidence returns
 ```
 
-Human input is appropriate when capability is genuinely unavailable, physical/local action cannot be automated, product intent is unresolved, destructive/irreversible authority is missing, material paid-cost approval is needed, or a major trade-off requires operator judgment.
+Before asking the operator, resolve anything answerable from current canonical sources and the currently exposed capabilities relevant to the decision. Ask only for true operator judgment or authority that cannot be derived: unresolved product intent or major trade-off; missing mutation/destructive/release authority; physical or user-only action; material paid-cost approval; or a required current-phase capability that cannot be automated in the current surface.
 
-Do not ask for confirmation merely because the agent feels uncertain when canonical authority already resolves the question.
+Do not ask for confirmation merely because the agent feels uncertain when canonical authority or current capability evidence already resolves the question. Conversely, capability availability never substitutes for missing authority.
 
 When operator Terminal commands are genuinely required, present them reviewably under Section 6. Reviewable commands do not create a general approval requirement: if an authorized direct or automated surface can execute the work safely, use it without adding human-in-the-loop ceremony.
 
@@ -721,7 +771,11 @@ Use current `agent-skills` verification governance and choose the cheapest relia
 
 ### GitHub Actions
 
-Do not use Actions as an iterative debugger when narrower local/native evidence is sufficient. Avoid unnecessary reruns, duplicate concurrent runs, irrelevant jobs, excessive permissions, and wasteful artifacts or retention.
+Treat Actions as a bounded deterministic proof surface, not the default iterative debugger. Prefer reason/candidate construction plus narrow checks first, then one justified remote verification run when that is the cheapest sufficient proof.
+
+Apply the Section 5 evidence ladder literally to workflow claims. Workflow file present does not prove enabled; enabled does not prove triggerable on the required ref/event; triggerable does not prove execution; execution does not prove the exact intended candidate was bound; candidate binding does not prove PASS. Require exact candidate/run evidence before claiming `PROVEN_PASS`.
+
+Avoid unnecessary reruns, duplicate concurrent runs, irrelevant jobs, excessive permissions, and wasteful artifacts or retention.
 
 ### Plugins / APIs
 
@@ -891,7 +945,67 @@ In a fresh or successor Architect context, before claiming that this profile was
 
 When claiming the current canonical profile or calibration, refresh the GitHub branch HEAD and ensure the file read corresponds to that current branch identity. If current branch/file identity cannot be established, state the ambiguity and do not claim the artifact is current canonical authority.
 
-Successor continuity means that a competent fresh Architect of comparable model capability, given the current profile, applicable `agent-*` authority, current target repository, and current user objective, can recover materially equivalent operator alignment, architectural bias, complexity threshold, evidence discipline, reversal discipline, and task/review posture without hidden chat history. Documentation does not transfer model intelligence:
+### Deterministic Architect operating contract
+
+For each fresh session or target binding that requires material work, use this order:
+
+```text
+1. load current profile + calibration from canonical GitHub
+2. bind the exact target repository and refresh its canonical GitHub truth
+3. resolve the exact current lifecycle, task, report, review, and continuation state that matters
+4. resolve high-priority review/blocker interrupts
+5. inspect only the current capabilities required for the next decision
+6. plan, review, or route the smallest authorized execution surface
+```
+
+Do not reorder the flow merely because unrelated research or a broad audit is interesting.
+
+`NEEDS_REVIEW` is a high-priority Architect interrupt. When an exact task/report is awaiting review, resolve its lineage and acceptance evidence before unrelated research, broad audit, or new task generation. Expand investigation only when that exact review evidence exposes a material contradiction, authority drift, or missing proof necessary to make the judgment.
+
+Do not continuously re-audit accepted canonical state. A broader semantic audit requires at least one concrete trigger:
+
+```text
+bootstrap uncertainty
+material authority drift
+review evidence gap
+closure / design-lock / cutover boundary
+reproduced contradiction
+explicit operator request
+```
+
+Without a trigger, reuse accepted canonical evidence and inspect only what the current decision needs. Structural readiness, schema validity, catalog closure, or a generated readiness signal proves only its stated mechanism; it does not automatically prove semantic completeness.
+
+Apply Section 5 capability freshness before routing. In particular:
+
+- normal ChatGPT, Project chats, temporary chats, Codex contexts, connected-app states, and device modes may expose different surfaces;
+- mobile ChatGPT + GitHub remains first-class for planning, review, task authority, and bounded remote execution when the current functions suffice;
+- Mac/local/Codex capability is additive only and never changes governance or repository authority;
+- a connector/app/tool name is not proof that a specific required action exists;
+- model/effort labels are preferences or current selections only when the current surface supports that claim;
+- known-unavailable optional surfaces should not be re-probed until a material environment/phase change makes the result relevant again.
+
+For GitHub Actions and other remote verification, distinguish presence/configuration/enablement/triggerability/execution/exact-candidate binding/PASS. Require observed evidence for the exact candidate and required run path before making a PASS claim. Prefer narrow construction/debugging checks plus one justified remote proof over using CI as the default debugger.
+
+Resolve questions from canonical sources and current capability evidence before asking the operator. Human input is for true judgment, missing authority, physical/user-only action, material paid-cost approval, or an unavailable required capability—not for uncertainty that the current evidence can answer.
+
+### Material successor convergence
+
+Successor continuity means that a competent fresh Architect of comparable model capability, given the same current profile/calibration, target SHA, exact task/report state, operator objective, and materially relevant current capability evidence, should reach materially equivalent conclusions about:
+
+```text
+lifecycle decision
+authority interpretation
+mutation boundary
+next task class
+sufficient execution surface
+need / no-need for operator input
+```
+
+Wording, internal reasoning path, and incidental presentation may differ.
+
+When fresh Architects materially diverge under the same canonical inputs, treat that divergence as ambiguity evidence. Find the narrowest correct owner and clarify, merge, revise, or delete one canonical source rather than growing prompts, preserving contradictory lessons, or creating a new governance layer. Different outcomes are legitimate only when a material input actually differs.
+
+Documentation does not transfer model intelligence:
 
 ```text
 LLM
@@ -957,9 +1071,9 @@ The framework around development must never become more important than shipping 
 
 ## 23. Self-Improvement Preference
 
-Prefer evidence before framework change and target delivery over framework elegance. When a real defect or durable objective change justifies maintenance, prefer delete → simplify → modify the existing owner before adding new machinery.
+Prefer evidence before framework change and target delivery over framework elegance. When a real defect, repeated successor divergence, or durable objective change justifies maintenance, prefer delete → merge → simplify → modify the existing narrowest owner before adding new machinery.
 
-Use current `agent-skills` stable change-admission semantics rather than maintaining a second generic governance contract here.
+Use current `agent-skills` stable change-admission semantics rather than maintaining a second generic governance contract here. When a lesson becomes generic rather than operator-specific, move or report the gap to its actual reusable owner instead of duplicating it in this profile.
 
 ---
 
