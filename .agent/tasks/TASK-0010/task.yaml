@@ -1,0 +1,204 @@
+protocol_version: 3
+
+task_id: TASK-0010
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: maintainer_objective_change
+  task_id: ""
+  gap_id: "EXTERNAL_BEHAVIOR_PATTERN_TRANSFER_AUDIT"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "1a3c44c744cb6b8cbb6f5cf3d75152aff8055268"
+
+external_reference:
+  repository: multica-ai/andrej-karpathy-skills
+  revision: "2c606141936f1eeef17fa3043a72095b4765b9c2"
+  authority: COMPARATIVE_ONLY
+  minimum_files:
+    - README.md
+    - CLAUDE.md
+    - skills/karpathy-guidelines/SKILL.md
+
+comparison_snapshots:
+  architect_profile:
+    repository: phatnguyen03022001/architect-profile
+    revision: "648387ff5242f661d333925354d46e2980e1ae7b"
+  agent_skills:
+    repository: phatnguyen03022001/agent-skills
+    revision: "1a3c44c744cb6b8cbb6f5cf3d75152aff8055268"
+  agent_standards:
+    repository: phatnguyen03022001/agent-standards
+    revision: "456f95f58a93b7d8be7765c7aa3751905571ac26"
+  agent_documents:
+    repository: phatnguyen03022001/agent-documents
+    revision: "acb3f02616e700190586681306a86905792e4c07"
+  agent_runtime:
+    repository: phatnguyen03022001/agent-runtime
+    revision: "a256e24c63f76195a228e285aab6561f1ce1f80c"
+
+structure_authority:
+  status: RESOLVED
+  source: "Current five-repository ownership model plus the operator's explicit request to evaluate transferable behavioral lessons from multica-ai/andrej-karpathy-skills."
+  rationale: "External guidelines may suggest useful questions but cannot create authority or work. Transfer is allowed only where current evidence shows a material gap not already owned by the five-repository system."
+
+objective: >-
+  Perform a bounded read-only transfer audit of the Karpathy-inspired coding guidelines against the current five-repository support system. Determine whether mutation traceability, goal/evidence framing, behavioral compression, and observable behavior signals reveal any materially missing semantics or merely restate existing ownership. Reject external heuristics that would increase human-loop, encourage out-of-scope refactoring, universalize tests-first, collapse repository boundaries, or add doctrine without reproduced benefit. Produce no semantic mutation and no follow-up task automatically.
+
+candidate_patterns:
+  - id: KP-1
+    name: mutation_traceability
+    external_idea: "Every changed line should trace directly to the requested objective."
+    system_translation: "Every persistent mutation should trace to authorized objective -> task scope -> acceptance/evidence need."
+  - id: KP-2
+    name: goal_evidence_framing
+    external_idea: "Prefer verifiable success criteria over vague imperative instructions."
+    system_translation: "Prefer end-state objective + evidence-required + boundaries over unnecessary implementation micromanagement when authority permits Executor judgment."
+  - id: KP-3
+    name: behavioral_compression
+    external_idea: "A small set of memorable behavioral rules can improve agent reliability."
+    system_translation: "Determine whether fresh-agent bootstrap already exposes a sufficiently compressed mental model before lazy-loading deeper protocol/detail; do not create a duplicate mega-summary."
+  - id: KP-4
+    name: observable_behavior_over_doctrine_count
+    external_idea: "Judge guidelines by reduced unnecessary diffs, rewrites, and late clarification."
+    system_translation: "Assess whether current convergence/audit evidence already measures useful behavior such as scope discipline, revision churn, operator intervention, unnecessary tool/CI calls, and evidence sufficiency without creating a benchmark framework."
+
+classification_rule:
+  allowed:
+    - ALREADY_OWNED
+    - ADOPTABLE_GAP
+    - REJECT_FOR_THIS_SYSTEM
+    - POST_PILOT_ONLY
+  adoptable_gap_requirement: >-
+    ADOPTABLE_GAP requires exact current evidence that the behavior is materially missing or ambiguous in the narrowest canonical owner and that the omission can cause wrong mutation, extra operator intervention, unnecessary work/cost, or weaker evidence. External popularity, elegance, or wording alone is insufficient.
+
+scope:
+  required_changes:
+    - "Read the external reference only at exact revision 2c606141936f1eeef17fa3043a72095b4765b9c2 and only the minimum files required to resolve KP-1..KP-4."
+    - "Compare KP-1..KP-4 against exact current canonical owners in the five pinned snapshots. Reuse immutable evidence and stop once each predicate is resolved."
+    - "For KP-1, inspect whether current task/simplicity/executor semantics already require surgical scope and whether a stronger objective->scope->evidence traceability invariant would add material protection rather than duplicate existing rules."
+    - "For KP-2, distinguish useful declarative success criteria from over-prescriptive step lists, while preserving exact authority, acceptance criteria, verification, and fail-closed behavior."
+    - "For KP-3, test whether a compact fresh-agent mental model is already discoverable from current entrypoints; do not add a summary merely because the external repo is shorter."
+    - "For KP-4, identify only behavior signals already derivable from real task/review/convergence evidence. Do not create telemetry, scoring, benchmark, analytics, or persistent evaluation infrastructure."
+    - "Explicitly reject ask-human-first uncertainty handling when canonical evidence/tools can resolve the uncertainty before operator escalation."
+    - "Explicitly reject LOC-count-driven refactoring, universal tests-first doctrine, drive-by cleanup, and collapsing the five ownership boundaries into one CLAUDE.md or equivalent authority file."
+    - "Classify each candidate pattern exactly once as ALREADY_OWNED, ADOPTABLE_GAP, REJECT_FOR_THIS_SYSTEM, or POST_PILOT_ONLY, with exact evidence and narrowest owner where applicable."
+    - "End with one disposition: NO_CHANGE, BOUNDED_FOLLOW_UP_JUSTIFIED, or POST_PILOT_ONLY. Do not create the follow-up task in this execution."
+    - "Publish only .agent/tasks/TASK-0010/report.yaml as a separate report-only child and stop at NEEDS_REVIEW."
+
+  allowed_existing_files_or_components:
+    - .agent/tasks/TASK-0010/task.yaml
+  expected_files_are_restrictive: true
+
+invariants:
+  - "The external repository is comparative evidence only and never normative authority."
+  - "No current five-repository semantic owner changes in this task."
+  - "No new skill, doctrine layer, mega-summary, benchmark harness, telemetry system, plugin, installer, registry, orchestrator, or shared mutable control plane is created."
+  - "agent-skills TASK-0014 remains untouched and must not be preempted or contaminated by this audit."
+  - "Phone-only ChatGPT + GitHub is sufficient; do not probe Mac, Codex, agent-runtime, tunnel, or local execution."
+  - "architect-profile topology remains exactly {main}."
+
+forbidden_changes:
+  - "Do not modify ARCHITECT_PROFILE.md, ARCHITECT_CALIBRATION.md, README.md, agent-skills semantics, standards, documents, runtime, target repositories, workflows, issues, PRs, releases, tags, or branch settings."
+  - "Do not copy or vendor CLAUDE.md, SKILL.md, plugin files, Cursor rules, or external wording into any canonical owner."
+  - "Do not treat repository popularity, stars, forks, or external adoption as engineering evidence for semantic transfer."
+  - "Do not convert heuristic line-count reduction into a refactoring requirement."
+  - "Do not require operator clarification before exhausting canonical evidence when the ambiguity is resolvable without human judgment."
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0010/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+    - repository_content_write
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "External evidence is exact and bounded."
+    evidence_required: "Report records external revision 2c606141936f1eeef17fa3043a72095b4765b9c2 and the minimum exact files read; popularity/adoption metrics do not drive conclusions."
+  - id: AC-2
+    requirement: "All four candidate patterns are compared against current canonical ownership."
+    evidence_required: "KP-1..KP-4 each receive exactly one allowed classification with exact supporting owner/evidence."
+  - id: AC-3
+    requirement: "No duplicate doctrine is admitted as improvement."
+    evidence_required: "ALREADY_OWNED is used wherever current semantics materially cover the behavior even if external wording is more concise."
+  - id: AC-4
+    requirement: "Any ADOPTABLE_GAP is evidence-backed and narrow."
+    evidence_required: "A proposed gap identifies a concrete current failure/ambiguity, consequence, narrowest canonical owner, and smallest subtractive/rewrite surface; otherwise no follow-up is justified."
+  - id: AC-5
+    requirement: "Unsafe or mismatched external heuristics are rejected explicitly."
+    evidence_required: "Report addresses ask-human-first, LOC-driven refactoring, universal tests-first, drive-by cleanup, and one-file authority collapse."
+  - id: AC-6
+    requirement: "The audit does not interfere with TASK-0014 or mutate semantics."
+    evidence_required: "Exact diff from task base through report adds only TASK-0010/report.yaml after this task commit; agent-skills and all other repositories remain unchanged by this execution."
+  - id: AC-7
+    requirement: "Disposition is bounded."
+    evidence_required: "Report ends NO_CHANGE, BOUNDED_FOLLOW_UP_JUSTIFIED, or POST_PILOT_ONLY and creates no follow-up task."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Resolve TASK-0010 revision 1 at the exact handoff base; confirm architect-profile topology {main} and all pinned comparison snapshots are readable."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Read only the minimum external and internal evidence required for KP-1..KP-4; reuse immutable evidence and stop once each classification predicate is resolved."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Verify every claimed transferable lesson maps to one existing narrow owner or one exact evidence-backed gap; reject benchmark/popularity-driven work."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Publish only TASK-0010/report.yaml as the report-only child and verify no semantic or cross-repository mutation."
+      required: true
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - USER_STOP
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
