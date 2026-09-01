@@ -250,7 +250,7 @@ Governing Architect: B
 
 Selection atomically grants sole governing authority for that context to the selected candidate. All other candidates remain advisory/read-only and acquire no governing authority. There is no overlap window with multiple governing writers.
 
-After selection and before creating or revising canonical authority, the selected Governing Architect must refresh canonical GitHub truth and resolve every material challenger finding relevant to the intended governing decision. Resolution is either:
+After selection and before creating or revising canonical authority, the selected Governing Architect must refresh canonical repository truth and resolve every material challenger finding relevant to the intended governing decision. Resolution is either:
 
 ```text
 accept + revise
