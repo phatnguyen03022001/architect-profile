@@ -1,0 +1,192 @@
+protocol_version: 3
+
+task_id: TASK-0009
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: maintainer_objective_change
+  task_id: ""
+  gap_id: "ECOSYSTEM_PRODUCTIZATION_EVIDENCE_AUDIT"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ac652aae8516a7313175994ff1a9d9b2700f5b63"
+
+architect_analysis_skills:
+  - architect
+  - simplicity
+  - verification
+
+execution_skills:
+  required:
+    - simplicity
+    - verification
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+audit_snapshots:
+  architect_profile:
+    repository: phatnguyen03022001/architect-profile
+    revision: "442dfc21741529f78dd4e5719c601991c7df18ea"
+  agent_skills:
+    repository: phatnguyen03022001/agent-skills
+    revision: "ac652aae8516a7313175994ff1a9d9b2700f5b63"
+  agent_standards:
+    repository: phatnguyen03022001/agent-standards
+    revision: "456f95f58a93b7d8be7765c7aa3751905571ac26"
+  agent_documents:
+    repository: phatnguyen03022001/agent-documents
+    revision: "acb3f02616e700190586681306a86905792e4c07"
+  agent_runtime:
+    repository: phatnguyen03022001/agent-runtime
+    revision: "a256e24c63f76195a228e285aab6561f1ce1f80c"
+
+structure_authority:
+  status: RESOLVED
+  source: "Existing architect-profile operator/ecosystem strategy ownership plus immutable read-only snapshots of the five support repositories."
+  rationale: "The reported gap is about ecosystem operability/productization posture versus intentional operator-specific/non-OSS boundaries. The correct first move is evidence classification, not framework or distribution implementation."
+
+objective: >-
+  Perform an evidence-grade read-only audit of the five support repositories that separates internal engineering quality from operator/target operability, release/distribution maturity, OSS-style productization, and intentional non-goals. Determine which observed weaknesses are real current target/operator friction, which are deferred post-pilot productization opportunities, which are deliberate boundary choices, and which are benchmark noise. Produce no implementation backlog automatically and make no semantic changes.
+
+scope:
+  required_changes:
+    - "Read only the minimum canonical entrypoints, authority owners, validation/release surfaces, and repository metadata needed from the five pinned snapshots. Stop gathering once each audit predicate is resolved."
+    - "Evaluate the ecosystem as a support system for target repositories first, not as an OSS product by default. Treat OSS maturity, installability, integrations, community adoption, branch protection, packaging, releases, and external battle-testing as separate dimensions rather than proxies for engineering correctness."
+    - "Reconstruct the smallest fresh phone-only happy path a competent new Architect/Executor would need to follow from target binding and bootstrap through documentation/design closure, task creation, execution, verification, review, and continuation. Identify every material cross-repository hop, hidden prerequisite, duplicated concept, manual relay, or discoverability burden that cannot be resolved from current canonical guidance."
+    - "Classify every material finding as exactly one of: CURRENT_OPERABILITY_GAP, TARGET_DERIVED_FRICTION, POST_PILOT_PRODUCTIZATION_OPPORTUNITY, INTENTIONAL_NON_GOAL, RELEASE_ASSURANCE_GAP, or BENCHMARK_ONLY_NOISE."
+    - "For CURRENT_OPERABILITY_GAP or TARGET_DERIVED_FRICTION, require reproduced current evidence and identify the narrowest canonical owner. Do not infer a gap merely because ECC, Spec Kit, another OSS project, or a template tool exposes a broader feature set."
+    - "For POST_PILOT_PRODUCTIZATION_OPPORTUNITY, state the concrete trigger that would make it worth implementing, the expected user benefit, likely owner, and the smallest reversible surface. Do not create CLI/plugin/installer/integration work merely to improve an OSS-style score."
+    - "Assess Template Creator only as a presentation/materialization fit. It must not become canonical authority, code/protocol verifier, standards validator, runtime surface, or cross-repository control plane."
+    - "Assess repository release/branch-protection/check state factually at the pinned snapshots, but distinguish a deliberate development-branch posture from a release-assurance defect. Unprotected refs are evidence, not automatically a bug."
+    - "Do not use numeric maturity scores as acceptance authority. If scores are included for communication, explicitly label them heuristic and subordinate them to evidence-backed findings."
+    - "Produce a compact recommendation at the end: NO_ACTION_NOW, POST_PILOT_ONLY, or BOUNDED_FOLLOW_UP_JUSTIFIED. Any follow-up candidate must cite reproduced evidence and must not be created by this task."
+    - "Publish only TASK-0009/report.yaml as a separate report-only child and stop at NEEDS_REVIEW."
+
+  allowed_existing_files_or_components:
+    - .agent/tasks/TASK-0009/task.yaml
+  expected_files_are_restrictive: true
+
+invariants:
+  - "architect-profile remains operator-specific and is not redesigned as a generic OSS product."
+  - "agent-runtime remains an optional bounded local accelerator; breadth relative to general agent runtimes is not a defect by itself."
+  - "agent-skills taxonomy and protocol are not expanded by this audit."
+  - "agent-standards and agent-documents authority/validator semantics remain untouched."
+  - "No CLI, installer, package, plugin adapter, integration matrix, template authority, registry, orchestrator, shared mutable control plane, benchmark harness, or cross-repository mutation is introduced."
+  - "Phone-only ChatGPT + GitHub is the active execution posture for this audit; do not probe Mac, Codex, agent-runtime, tunnel, or local shell."
+  - "Pinned snapshot facts are evidence for this audit only and do not become permanent claims about future repository state."
+  - "The audit does not preempt or mutate the open agent-skills TASK-0014 fault-convergence trial."
+  - "architect-profile topology remains exactly {main}."
+
+forbidden_changes:
+  - "Do not modify ARCHITECT_PROFILE.md, ARCHITECT_CALIBRATION.md, README.md, protocol/skill/standard/document/runtime semantics, workflows, branch settings, releases, tags, or any repository other than the TASK-0009 report artifact."
+  - "Do not create follow-up tasks/issues/PRs from findings."
+  - "Do not turn ECC, Spec Kit, Template Creator, or any external product into normative authority."
+  - "Do not recommend breadth, integrations, packaging, branch protection, or OSS ceremony without a stated current objective or reproduced friction."
+  - "Do not collapse the five repository ownership boundaries into one canonical mega-document or control plane."
+  - "Do not audit unrelated target-product implementation quality."
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0009/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_metadata_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+    - repository_content_write
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "All five repositories are assessed from exact pinned evidence, not remembered summaries."
+    evidence_required: "Report records exact revisions and cites the minimum canonical files/metadata used for each material finding."
+  - id: AC-2
+    requirement: "Engineering quality is separated from productization/OSS maturity."
+    evidence_required: "No install/community/integration/release gap is allowed to lower an engineering-governance conclusion unless it materially affects the current support-system objective."
+  - id: AC-3
+    requirement: "The phone-only happy path is reconstructed end to end."
+    evidence_required: "Report shows target bind/bootstrap -> docs/design -> task -> execute -> verify -> review/continue and identifies only material unresolved friction across that path."
+  - id: AC-4
+    requirement: "Every material observation receives one bounded classification."
+    evidence_required: "Each finding is classified as CURRENT_OPERABILITY_GAP, TARGET_DERIVED_FRICTION, POST_PILOT_PRODUCTIZATION_OPPORTUNITY, INTENTIONAL_NON_GOAL, RELEASE_ASSURANCE_GAP, or BENCHMARK_ONLY_NOISE with rationale and owner where applicable."
+  - id: AC-5
+    requirement: "Benchmark breadth does not manufacture work."
+    evidence_required: "ECC/Spec Kit/Template Creator-style capabilities are treated only as comparative evidence; absent current objective or reproduced friction they produce no implementation recommendation."
+  - id: AC-6
+    requirement: "Release and repository-enforcement evidence is interpreted proportionally."
+    evidence_required: "Branch protection/check/release state is reported factually and distinguished between dev posture, main/release assurance, and actual current risk."
+  - id: AC-7
+    requirement: "The audit ends with a bounded disposition rather than a framework backlog."
+    evidence_required: "Report chooses NO_ACTION_NOW, POST_PILOT_ONLY, or BOUNDED_FOLLOW_UP_JUSTIFIED and any candidate follow-up has an evidence trigger, expected benefit, narrow owner, and no task creation."
+  - id: AC-8
+    requirement: "Audit is mutation-free except for its report evidence."
+    evidence_required: "Exact diff from task base through report adds only .agent/tasks/TASK-0009/report.yaml after task creation; no semantic or cross-repository mutation occurs."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Resolve TASK-0009 revision 1 at the exact handoff base and confirm architect-profile topology {main}; prove all five audit snapshots are readable and immutable."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Inspect only the minimum entrypoints/authority owners/validators/release metadata needed to satisfy AC-1..AC-7. Reuse exact immutable evidence in the same binding and stop when predicates are resolved."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Reconstruct the phone-only end-to-end support-system happy path and classify every material friction/non-goal/productization observation without external benchmark authority leakage."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Verify no semantic file or other repository was mutated; publish TASK-0009/report.yaml as the sole report-only child and stop at NEEDS_REVIEW."
+      required: true
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - USER_STOP
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
