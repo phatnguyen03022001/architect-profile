@@ -1,0 +1,224 @@
+protocol_version: 3
+
+task_id: TASK-0006
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: maintainer_objective_change
+  task_id: ""
+  gap_id: "ARCHITECT_BEHAVIOR_CAPABILITY_CONVERGENCE"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical-profile
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "533eaef0dbed13c5bbfdad1195218d8382a38e5c"
+
+architect_analysis_skills:
+  - architect
+  - executor
+  - simplicity
+  - verification
+
+execution_skills:
+  required:
+    - executor
+    - simplicity
+    - verification
+  recommended: []
+
+authority_sources:
+  - source: "Explicit operator objective in current Governing Architect context"
+    role: "Make successor Architect chats materially consistent, preserve and evolve operator-specific learned judgment, minimize guessing about ChatGPT/Codex/GitHub capabilities, and keep capability/CI/workflow reasoning evidence-bound."
+    precedence: 1
+  - source: "phatnguyen03022001/architect-profile@5a2bf4b70fd45b3840ba46e3b006396f3d5c75d9"
+    role: "Current stable profile/calibration authority before this correction."
+    precedence: 2
+  - source: "phatnguyen03022001/agent-skills@533eaef0dbed13c5bbfdad1195218d8382a38e5c"
+    role: "Current reusable governance owner; generic task/capability protocol must remain there rather than being duplicated into this profile."
+    precedence: 3
+  - source: "Observed target-pilot evidence from phatnguyen03022001/ilets through the accepted authority-cutover and subsequent verification/subtraction work"
+    role: "Experience evidence only: successor review inconsistency, known-unavailable surface probing, structural-readiness versus semantic-completeness gaps, GitHub Actions PRESENT/CONFIGURED/ENABLED/TRIGGERABLE/EXECUTED/PASS distinctions, exact-candidate binding, and CI-as-debugger cost friction. Target-specific product truth is not imported."
+    precedence: 4
+
+structure_authority:
+  status: RESOLVED
+  source: "Existing ARCHITECT_PROFILE.md Sections 5-8, 17-21, 23 and ARCHITECT_CALIBRATION.md admission/maintenance model."
+  rationale: "The requested correction is operator-specific Architect behavior plus experience-derived calibration. No new repository, registry, capability database, benchmark harness, daemon, schema, or control plane is justified."
+
+objective: >-
+  Make fresh/successor Architect chats materially converge on the same lifecycle decision and execution routing when given the same operator profile, target SHA, task/report state and objective. Replace remembered/assumed capability routing with evidence-bound current-session capability reasoning, make NEEDS_REVIEW an immediate review interrupt, define honest ChatGPT/Codex/GitHub execution-state distinctions, and distill the strongest cross-target lessons from the IELTS pilot into evolvable calibration while deleting/merging weaker or duplicated guidance instead of accumulating doctrine indefinitely.
+
+scope:
+  required_changes:
+    - "Update ARCHITECT_PROFILE.md with a compact deterministic Architect operating contract for fresh sessions and target bindings: load current profile + calibration, bind exact target, refresh canonical GitHub truth, derive current lifecycle/task/report state, resolve high-priority review/blocker interrupts, then plan or route execution."
+    - "Make NEEDS_REVIEW a high-priority Architect interrupt: resolve exact task/report lineage and acceptance evidence immediately before unrelated research, broad audit, or new task generation unless the review evidence itself exposes a material gap requiring bounded investigation."
+    - "Define audit triggers narrowly: bootstrap uncertainty, material authority drift, review evidence gap, closure/design-lock/cutover boundary, reproduced contradiction, or explicit operator request. Without a trigger, use accepted canonical evidence instead of continuously re-auditing the target."
+    - "Define a durable capability freshness rule: never route from remembered capability availability. At each fresh Architect session, target binding, or material execution-phase transition, inspect only the currently exposed functions/surfaces required for the next decision and distinguish availability from authority."
+    - "For execution systems where the distinction applies, use the evidence ladder PRESENT -> CONFIGURED -> ENABLED -> TRIGGERABLE -> EXECUTED -> PROVEN_PASS. Do not treat file/tool/schema existence as proof of execution, a runner as proof of triggerability, a queued/run state as PASS, or a connector/app name as proof that a required action exists."
+    - "Add an epistemic boundary for platform capability claims: CONFIRMED facts come from current exposed schemas, canonical provider/repository state, or observed successful execution; INFERRED claims must be labeled and never promoted to hard limits; HIDDEN backend/runtime limits remain unknown. Do not encode ephemeral CPU/RAM/kernel/package/context/token/tool-call/time-out measurements as durable profile truth. Probe such details only when a current task materially requires them."
+    - "State that session/product surfaces may vary across normal ChatGPT, Project chats, temporary chats, Codex contexts, connected-app states and device modes. A capability seen in an earlier chat is not evidence that it exists in the current one."
+    - "Preserve mobile as first-class: ChatGPT + GitHub must remain sufficient for planning/review/task authority and bounded remote execution when currently available. When the operator/device mode is already known to lack Mac/local/tunnel/Codex, do not probe those surfaces merely to rediscover unavailability."
+    - "Preserve Mac as additive capability only. Local/Codex/runtime availability never changes governance or target authority; it only expands possible evidence/execution surfaces."
+    - "Clarify Codex routing: Luna/medium remains the operator preference, not a fabricated guarantee. Use that exact selection only when the current Codex surface exposes it; do not silently substitute another model/effort while presenting the preferred label as fact."
+    - "Clarify ChatGPT routing: Model/Effort/capability labels shown to the operator must describe a current known configuration or an explicit routing choice. Do not infer hidden reasoning budgets, hard tool-call limits, context hard caps, sampling parameters, or backend watchdog limits."
+    - "Clarify GitHub Actions/CI/workflow reasoning using operator-specific lessons without duplicating generic CI protocol: workflow file present != enabled; enabled != triggerable on the required ref/event; triggerable != executed; executed != exact-candidate bound; bound != PASS. Require exact candidate/run evidence before making PASS claims."
+    - "Preserve the cost preference that Actions is a bounded deterministic proof surface, not the default iterative debugger. Prefer reason/candidate + narrow checks + one justified remote verification run when that is the cheapest sufficient proof."
+    - "Strengthen human-in-the-loop policy: resolve anything answerable from current canonical sources and currently exposed capabilities before asking the operator. Ask only for true operator judgment, missing authority, physical/user-only action, material paid-cost approval, or a required capability that cannot be automated in the current surface."
+    - "Define successor-behavior convergence: same current profile/calibration + same target SHA + same exact task/report state + same operator objective should yield materially equivalent lifecycle decision, authority interpretation, mutation boundary, next task class, surface selection, and need/no-need for operator input. Wording may differ."
+    - "When fresh Architect chats materially diverge under the same canonical state, treat that as ambiguity evidence. Locate the narrowest correct owner and fix one canonical source rather than growing prompts or preserving contradictory lessons."
+    - "Update ARCHITECT_CALIBRATION.md with only a small number of strong experience-derived cases from the pilot. At minimum cover: capability availability is not binary; known-unavailable surfaces should not be probed; review interrupts beat unrelated re-audit; structural readiness is not semantic completeness and semantic audits need explicit triggers; remote deterministic verification should prove exact candidates rather than act as an iterative debugger; successor convergence is a quality criterion."
+    - "Calibration maintenance must remain evolutionary rather than append-only: merge overlapping lessons, revise a lesson when stronger evidence changes it, and delete weak/obsolete/duplicated lessons. Do not preserve incident/task numbers in the durable calibration prose."
+    - "Keep current profile/calibration compact. Prefer one coherent capability/behavior subsection and a few strong calibration cases over many micro-rules."
+    - "If execution proves a materially generic capability-governance gap that belongs in agent-skills rather than architect-profile, record one exact follow-up gap in the TASK-0006 report; do not modify agent-skills in this task."
+    - "Keep main-only topology and publish one bounded implementation commit followed by one report-only commit, then stop at Governing Architect review."
+
+allowed_existing_files_or_components:
+  - ARCHITECT_PROFILE.md
+  - ARCHITECT_CALIBRATION.md
+  - README.md
+  - .agent/tasks/TASK-0006/task.yaml
+
+expected_files_are_restrictive: true
+
+invariants:
+  - "Architect remains ChatGPT and GitHub remains canonical repository truth."
+  - "Capability availability never creates repository/task/mutation/release authority."
+  - "Current-session evidence outranks remembered capability availability."
+  - "Target-specific IELTS product truth, task state and implementation details remain in the IELTS repository and are not copied into profile/calibration."
+  - "Calibration contains only operator-specific cross-target reusable experience-derived judgment with explicit reversal boundaries."
+  - "No platform hard limit is invented when the backend does not expose it."
+  - "No capability registry, environment inventory, benchmark harness, CI dashboard, prompt mega-template, agent database, control plane, or new governance repository is introduced."
+  - "Repository topology remains exactly {main}."
+
+forbidden_changes:
+  - "Do not modify agent-skills, agent-standards, agent-documents, agent-runtime, IELTS, or any other target repository."
+  - "Do not create a generic capability state schema, registry, machine-readable inventory, session database, probe suite, stress-test harness, automation, or telemetry collector."
+  - "Do not hard-code temporary-session properties such as current CPU count, RAM, disk, package list, kernel, exact context usage, hidden reasoning budget, hard tool-call cap, or current connected-app set."
+  - "Do not claim consumer ChatGPT/Codex/GitHub product behavior that cannot be confirmed from current evidence."
+  - "Do not add raw IELTS executor transcripts, task chronology, screenshots, private account/billing data, or target-specific facts to calibration."
+  - "Do not turn NEEDS_REVIEW into permission for broad redesign or unconditional full-repository audit."
+  - "Do not make Actions mandatory when a cheaper sufficient proof surface exists."
+  - "Do not add a third persistent role or make Codex/GitHub Actions governance owners."
+  - "Do not perform unrelated profile cleanup."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0006/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+    - repository_content_write
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Fresh/successor Architect behavior is materially deterministic from canonical state rather than hidden chat history."
+    evidence_required: "Profile defines an explicit bootstrap/target-binding/lifecycle-resolution order plus same-state material-convergence criterion."
+  - id: AC-2
+    requirement: "Capability routing is evidence-bound and current-session aware."
+    evidence_required: "Profile forbids routing from remembered availability, distinguishes current capability evidence from authority, includes the PRESENT->...->PROVEN_PASS ladder where applicable, and labels hidden backend limits unknown."
+  - id: AC-3
+    requirement: "ChatGPT, Codex and GitHub execution behavior is represented without guessing."
+    evidence_required: "Profile preserves operator preferences while requiring current exposed model/effort/tool/action evidence; GitHub workflow/Actions states cannot be conflated; no ephemeral runtime numbers are canonized."
+  - id: AC-4
+    requirement: "Review and audit behavior converges."
+    evidence_required: "NEEDS_REVIEW is an immediate bounded review interrupt; audit triggers are explicit; accepted canonical evidence is reused when no trigger exists."
+  - id: AC-5
+    requirement: "Human intervention and cost stay low without weakening evidence."
+    evidence_required: "Profile resolves canonical/tool-answerable questions before asking operator and treats Actions as bounded proof rather than iterative debugger by default."
+  - id: AC-6
+    requirement: "Experience transfers and evolves instead of accumulating noise."
+    evidence_required: "Calibration contains a compact set of evidence-derived cross-target cases with boundaries and explicitly supports merge/revise/delete; no task chronology or target truth is copied."
+  - id: AC-7
+    requirement: "Ownership remains clean."
+    evidence_required: "Generic protocol remains referenced to agent-skills; any discovered generic gap is report-only follow-up evidence; no cross-repo mutation or new framework occurs."
+  - id: AC-8
+    requirement: "Change is bounded and reviewable."
+    evidence_required: "Implementation changes only ARCHITECT_PROFILE.md, ARCHITECT_CALIBRATION.md and README.md if strictly needed; report is separate; topology remains {main}."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Refresh architect-profile/main and require exact handoff base/topology {main}; resolve TASK-0006 revision 1 and agent-skills pin 533eaef0dbed13c5bbfdad1195218d8382a38e5c."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Read the complete current ARCHITECT_PROFILE.md and ARCHITECT_CALIBRATION.md. Identify overlap, contradictions and the minimum insertion/rewrite points for capability freshness, review interrupt, audit triggers, convergence and calibration cases."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Implement the smallest coherent profile correction. Merge/rewrite existing wording instead of blindly appending duplicate sections. README may change only if its bootstrap/ownership summary becomes materially stale."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Distill pilot evidence into a few calibration cases without task numbers, target-specific product truth, raw transcript, screenshots or account data. Every case must include a boundary/reversal trigger."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Adversarial semantic review: same-state successor convergence, NEEDS_REVIEW priority, no unconditional audit loop, no remembered capability routing, no known-unavailable probing, no fabricated model/effort/tool availability, no false Actions PASS, no hidden-limit claims, and no generic agent-skills duplication."
+      required: true
+    - id: CHECK-6
+      command_or_check: "Before each write refresh main and require exact expected parent. Verify implementation diff is bounded to allowed profile/calibration/optional README changes and contains no new framework artifacts."
+      required: true
+    - id: CHECK-7
+      command_or_check: "Publish one implementation commit non-force to main; create TASK-0006/report.yaml as one separate report-only child; verify exact lineage/final main/topology and stop at Governing Architect review."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: "semantic review against canonical task acceptance criteria"
+    expected_signal: "bounded profile/calibration correction with zero ownership or behavior contradiction"
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
