@@ -1,0 +1,150 @@
+protocol_version: 3
+
+task_id: TASK-0011
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: maintainer_objective_change
+  task_id: ""
+  gap_id: "OPERATOR_REPOSITORY_LANGUAGE_BOUNDARY"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "1fcf5a2ebeeec7f3e1498d207148a9cd81a95456"
+
+structure_authority:
+  status: RESOLVED
+  source: "Explicit operator communication preference."
+  rationale: >-
+    The language boundary is operator-specific interaction behavior, not generic task/protocol semantics. architect-profile is the narrow canonical owner. Fresh Executors still need the preference propagated in launch/handoff text because they should not need to load architect-profile solely to discover chat language.
+
+objective: >-
+  Make operator-facing Architect and Executor communication Vietnamese by default while keeping repository-persisted engineering artifacts English by default. Encode the rule narrowly in ARCHITECT_PROFILE.md, require concise propagation into Executor launch prompts, preserve exact source-language evidence, and avoid introducing protocol/schema/language-framework machinery.
+
+scope:
+  required_changes:
+    - "Update only ARCHITECT_PROFILE.md with the smallest durable operator/repository language boundary."
+    - "State that Architect and Executor user-facing chat communication should be Vietnamese by default unless the operator explicitly requests another language for that interaction."
+    - "State that repository-persisted engineering content should be English by default, including task/report/review artifacts, documentation, engineering prose, code comments, commit messages, issue/PR titles and bodies/comments, workflow descriptions, and similar durable repository surfaces."
+    - "Require the Architect to propagate a concise instruction into fresh Executor launch/handoff prompts: communicate with the operator in Vietnamese; persist repository artifacts in English. This routing instruction is not task authority and must not require a protocol/schema field."
+    - "Preserve logs, errors, exact quotations, identifiers, external evidence, and source material in their original language when translation would weaken fidelity."
+    - "Allow explicit target product localization/content and an explicit repository-specific language contract to override the default only for the affected content; do not translate localized product data merely to satisfy the engineering-artifact default."
+    - "Do not retroactively translate existing repository history or artifacts."
+    - "Preserve all existing capability, review, cost, authority, convergence, and low-human-loop behavior."
+    - "Publish the implementation and then a separate canonical TASK-0011 report; stop at NEEDS_REVIEW."
+  allowed_existing_files_or_components:
+    - ARCHITECT_PROFILE.md
+    - .agent/tasks/TASK-0011/task.yaml
+  expected_files_are_restrictive: true
+
+invariants:
+  - "architect-profile remains the sole owner of this operator-specific language preference."
+  - "agent-skills and all other repositories remain semantically unchanged by this task."
+  - "No language field is added to Task Protocol, report/review schema, task template, or any generic skill contract."
+  - "No translation service, localization framework, prompt registry, policy engine, or other new machinery is introduced."
+  - "Repository artifacts created by TASK-0011 itself remain English."
+  - "architect-profile topology remains exactly {main}."
+
+forbidden_changes:
+  - "Do not modify ARCHITECT_CALIBRATION.md unless the implementation proves the stable profile cannot express the rule without ambiguity; if that happens, stop and report rather than expanding scope."
+  - "Do not modify README.md, agent-skills, agent-standards, agent-documents, agent-runtime, target repositories, workflows, branch settings, issues, PRs, releases, or tags."
+  - "Do not add bilingual duplication of canonical repository prose."
+  - "Do not translate exact logs/errors/evidence merely for presentation."
+  - "Do not require fresh Executors to load architect-profile solely to discover the language preference when the Architect can propagate the two-line instruction in the launch prompt."
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0011/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+    - repository_content_write
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Operator-facing chat language is unambiguous."
+    evidence_required: "ARCHITECT_PROFILE.md states Vietnamese-by-default for Architect and Executor user-facing communication, with explicit operator-request override."
+  - id: AC-2
+    requirement: "Repository-persisted language is unambiguous."
+    evidence_required: "ARCHITECT_PROFILE.md states English-by-default for durable engineering repository artifacts and names representative surfaces without creating a schema taxonomy."
+  - id: AC-3
+    requirement: "Fresh Executor propagation is explicit and minimal."
+    evidence_required: "Profile requires a concise language instruction in Executor launch/handoff prompts and explicitly states that this is routing/presentation behavior, not task authority or a protocol field."
+  - id: AC-4
+    requirement: "Evidence fidelity and legitimate localization are preserved."
+    evidence_required: "Exact logs/errors/quotes/source evidence retain original language when fidelity matters; product localization or explicit repository language contracts are not overwritten by the default."
+  - id: AC-5
+    requirement: "No generic framework expansion occurs."
+    evidence_required: "Only ARCHITECT_PROFILE.md changes semantically; no protocol/schema/skill/runtime/document/standards owner changes and no translation/localization machinery is added."
+  - id: AC-6
+    requirement: "Existing behavior remains intact."
+    evidence_required: "Capability freshness, GitHub SSOT, review priority, convergence, authority boundaries, cost/resource discipline, and phone-only posture remain materially unchanged."
+  - id: AC-7
+    requirement: "Publication lineage is bounded."
+    evidence_required: "Implementation changes only ARCHITECT_PROFILE.md; report is a separate report-only child adding only TASK-0011/report.yaml; topology remains {main}."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Resolve TASK-0011 revision 1 at the exact handoff base and confirm topology {main}."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Compare base-to-implementation and prove only ARCHITECT_PROFILE.md changes semantically."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Inspect the resulting profile for the Vietnamese-chat / English-repository boundary, Executor prompt propagation, evidence-fidelity exception, and localization exception."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Publish exactly one report-only child and verify parent/diff/topology before returning NEEDS_REVIEW."
+      required: true
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - USER_STOP
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
