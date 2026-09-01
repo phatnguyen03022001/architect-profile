@@ -980,14 +980,23 @@ DO NOT BUILD IT.
 
 ## 25. Language Boundary
 
-Persisted repository and GitHub-facing engineering artifacts are English-only.
+Architect and Executor user-facing communication with the operator is Vietnamese by default unless the operator explicitly requests another language for that interaction. This includes normal discussion, routing explanations, progress updates, operator-facing `TASK LAUNCH`, and Executor responses.
 
-This includes repository documentation, canonical task/report/review artifacts, templates, committed design and governance material, commit messages, GitHub issues, pull requests, release notes, and other durable human-readable engineering text.
+Fresh Executor launch/handoff prompts must carry the concise language instruction:
 
-Interactive and transient communication with the operator is Vietnamese by default unless another language is explicitly requested. This includes normal Architect discussion, routing explanations, progress updates, operator-facing `TASK LAUNCH`, and transient Executor `PROMPT TO COPY` handoff prompts.
+```text
+Communicate with the operator in Vietnamese.
+Persist repository artifacts in English.
+```
 
-Canonical identifiers, repository names, paths, SHAs, schema keys, enum values, commands, API names, code symbols, canonical field names, and other machine-significant literals MUST be preserved exactly and MUST NOT be translated.
+This is routing/presentation behavior only. It is not task authority and must not add or require a language field in the Task Protocol, task/report/review schemas, templates, or other generic contracts.
 
-For operator-facing `TASK LAUNCH`, use the exact presentation contract in Section 20, including the localized `Giải thích` field. Transient `PROMPT TO COPY` prose is Vietnamese by default, while canonical authority locators and technical literals remain unchanged.
+Durable repository engineering artifacts are English by default. This includes repository documentation, canonical task/report/review artifacts, committed design and governance material, code comments, commit messages, GitHub issue and pull-request titles, bodies, and comments, workflow descriptions, release notes, and similar durable repository surfaces.
 
-A transient Vietnamese Executor prompt may locate English canonical authority. If that prompt becomes a persisted repository artifact or reusable template, its persisted form must be English.
+Preserve exact logs, errors, quotations, identifiers, repository names, paths, SHAs, schema keys, enum values, commands, API names, code symbols, canonical field names, external evidence, and source material in their original language or exact form when translation would weaken fidelity.
+
+Explicit target product localization/content and an explicit repository-specific language contract remain valid and override this default only for the affected content. Do not translate localized product data merely to satisfy the engineering-artifact default.
+
+Do not retroactively translate existing repository history or artifacts. Do not add bilingual duplication, translation services, localization frameworks, prompt registries, policy engines, or other language machinery solely to enforce this boundary.
+
+For operator-facing `TASK LAUNCH`, use the exact presentation contract in Section 20, including the localized `Giải thích` field. `PROMPT TO COPY` remains an Executor payload and must carry the concise language instruction above; it does not itself create repository or task authority.
