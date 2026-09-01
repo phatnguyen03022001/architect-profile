@@ -1,0 +1,186 @@
+protocol_version: 3
+
+task_id: TASK-0012
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: "TERMINAL_IDENTITY_FOOTER_RENDERING"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "8258c93725af4e073add2659bf1d5e88d64304ff"
+
+structure_authority:
+  status: RESOLVED
+  source: "Explicit operator presentation decision plus ACCEPTED agent-skills TASK-0015 revision 3 terminal-identity semantics."
+  rationale: >-
+    agent-skills owns the reusable semantic fields and non-authority meaning of terminal identity.
+    architect-profile owns the operator-specific visual rendering. The legacy end-of-response delimiter is
+    active only in ARCHITECT_PROFILE.md; historical task/report references remain immutable evidence and are not migration targets.
+
+objective: >-
+  Replace the legacy arrow-style end-of-response delimiter with a concise operator-specific terminal identity footer
+  using middle-dot separators. Keep the footer presentation-only and truthful, preserve generic terminal-identity
+  semantics already accepted in agent-skills, and avoid adding status, timing, lifecycle, branch, SHA, or telemetry data.
+
+scope:
+  required_changes:
+    - "Update only ARCHITECT_PROFILE.md semantically."
+    - >-
+      Replace the active standalone `⟵ END OF RESPONSE ⟶` rule with an exact terminal identity footer rendered as
+      `ARCHITECT · owner/repo · TASK-NNNN · rev N` for a task-bound Architect response and
+      `EXECUTOR · owner/repo · TASK-NNNN · rev N` for a task-bound Executor response.
+    - >-
+      Use the exact canonical owner/repo target identity, canonical task ID, and canonical task revision. Use lowercase
+      `rev` followed by the integer revision. Use exactly one U+00B7 middle dot with one ASCII space on each side as each separator.
+    - >-
+      For an Architect response with an active target repository but no canonical task bound, render
+      `ARCHITECT · owner/repo · NO TASK`. Never invent a task ID or revision.
+    - >-
+      If a user-facing completed response has no truthful active target repository binding, do not invent repository or task identity;
+      render the organizational role followed by `NO TARGET · NO TASK` using the same middle-dot separator convention.
+    - >-
+      Keep the footer as the final standalone assistant-authored line outside code blocks and quotes, emitted exactly once per
+      user-facing completed response. Progress/tool updates within the same turn do not receive their own footer.
+    - >-
+      State explicitly that the footer is presentation/continuity context only. It creates no authority, task binding,
+      lifecycle state, result, acceptance, continuation, promotion, release, review, evidence, or work boundary.
+    - >-
+      Preserve the semantic distinction among ROLE, WORK BOUNDARY, Continuation, and terminal identity. Quoted, copied,
+      historical, or example footer text remains inert.
+    - >-
+      Keep terminal identity outside PROMPT TO COPY and copied handoff content. Fresh Executor launch metadata/prompt structure remains unchanged.
+    - >-
+      Remove the legacy arrow delimiter as an active rendering rule and remove it from the active marker mapping in
+      ARCHITECT_PROFILE.md. Do not rewrite historical task/report artifacts that mention the old delimiter.
+    - >-
+      Do not add elapsed time, timestamps, timing availability, model, effort, branch, SHA, report state, lifecycle state,
+      PASS/FAIL, or other status fields to the footer. TASK-0015 operational timing remains repository report evidence only.
+    - "Publish the implementation and then a separate canonical TASK-0012 report; stop at NEEDS_REVIEW."
+  allowed_existing_files_or_components:
+    - ARCHITECT_PROFILE.md
+    - .agent/tasks/TASK-0012/task.yaml
+  expected_files_are_restrictive: true
+
+invariants:
+  - "architect-profile remains the owner of operator-specific footer punctuation/rendering."
+  - "agent-skills terminal-identity semantics remain unchanged and are not duplicated as a new governance model."
+  - "Exactly two organizational roles remain Architect and Executor."
+  - "The footer remains presentation-only and never substitutes for ROLE, WORK BOUNDARY, task/handoff authority, report/review evidence, or continuation authority."
+  - "Canonical repository identity in the footer is owner/repo, not an ambiguous short repository name."
+  - "Task-bound footer contains exactly role, owner/repo, canonical task ID, and canonical task revision."
+  - "No timing or status data is added to the footer."
+  - "PROMPT TO COPY structure and routing metadata remain unchanged."
+  - "Historical .agent task/report/review artifacts remain byte-unchanged."
+  - "architect-profile topology remains exactly {main}."
+
+forbidden_changes:
+  - "Do not modify ARCHITECT_CALIBRATION.md, README.md, agent-skills, agent-standards, agent-documents, agent-runtime, or any target product repository."
+  - "Do not modify TASK-0001 through TASK-0011 artifacts."
+  - "Do not add a new protocol/schema field, lifecycle state, role, task artifact type, footer registry, renderer module, template engine, or telemetry mechanism."
+  - "Do not retain `⟵ END OF RESPONSE ⟶` as an active compatibility alias or emit both old and new terminal markers."
+  - "Do not use pipes, arrows, brackets, labels, JSON/YAML, or multi-line status blocks for the terminal identity footer."
+  - "Do not add timestamps, elapsed duration, model/effort, branch/SHA, acceptance state, result, or continuation locator to the footer."
+  - "Do not create branches, PRs, issues, tags, releases, workflows, or repository metadata changes."
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0012/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+    - repository_content_write
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Task-bound Architect and Executor footer rendering is exact and unambiguous."
+    evidence_required: "ARCHITECT_PROFILE.md uses ROLE · owner/repo · TASK-NNNN · rev N with exact middle-dot spacing and canonical identities."
+  - id: AC-2
+    requirement: "No-task/no-target states remain truthful without invented identity."
+    evidence_required: "Architect active-target/no-task rendering is explicit, and no-target fallback does not invent repository/task values."
+  - id: AC-3
+    requirement: "Legacy arrow delimiter is retired only from active profile behavior."
+    evidence_required: "Active profile rule/mapping no longer prescribes the old delimiter, while historical task/report artifacts remain untouched."
+  - id: AC-4
+    requirement: "Footer semantics remain presentation-only and distinct from governance markers."
+    evidence_required: "Profile explicitly preserves ROLE, WORK BOUNDARY, Continuation, prompt-copy, authority, and lifecycle distinctions."
+  - id: AC-5
+    requirement: "Footer remains deliberately minimal."
+    evidence_required: "No timing, status, model/effort, branch/SHA, result, acceptance, lifecycle, or continuation fields are added."
+  - id: AC-6
+    requirement: "Implementation scope and publication lineage are bounded."
+    evidence_required: "Implementation changes only ARCHITECT_PROFILE.md; report is a report-only direct child; topology remains {main}."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Resolve TASK-0012 revision 1 at the exact handoff base and confirm topology {main}."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Compare base-to-implementation and prove only ARCHITECT_PROFILE.md changes semantically."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Inspect exact task-bound Architect/Executor footer strings, active-target NO TASK, and truthful no-target fallback; confirm U+00B7 middle-dot spacing."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Confirm the old arrow delimiter is no longer an active rule/mapping in ARCHITECT_PROFILE.md and that historical .agent artifacts are unchanged."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Confirm footer remains presentation-only, outside PROMPT TO COPY, and contains no timing/status/branch/SHA/model/continuation fields."
+      required: true
+    - id: CHECK-6
+      command_or_check: "Publish exactly one report-only child and verify parent/diff/topology before returning NEEDS_REVIEW."
+      required: true
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - USER_STOP
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
