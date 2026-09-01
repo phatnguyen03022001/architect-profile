@@ -1,0 +1,197 @@
+protocol_version: 3
+
+task_id: TASK-0013
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: "POST_CYCLE_LEARNING_CHECKPOINT"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "560cdf8a76c9866de17e2b5783d651bc8a941157"
+
+structure_authority:
+  status: RESOLVED
+  source: "Explicit operator objective plus existing ARCHITECT_PROFILE.md ownership and ARCHITECT_CALIBRATION.md admission/maintenance rules."
+  rationale: >-
+    ARCHITECT_CALIBRATION.md already defines what experience may become durable calibration and how lessons are revised,
+    deleted, moved, merged, or rejected. The reproduced gap is operational: a fresh Architect is not explicitly told when
+    to perform a lightweight learning/culling check after material work. The smallest sufficient correction is therefore
+    one profile behavior change only; no calibration rewrite, schema, queue, registry, automation, or cross-repository mutation is required.
+
+objective: >-
+  Add a lightweight evidence-triggered post-cycle learning checkpoint so successor Architects preserve reusable lessons,
+  revise or remove stale ones, and route generic or target-specific learning to the narrowest canonical owner without
+  turning every task into a retrospective, increasing token cost materially, or creating a learning framework.
+
+scope:
+  required_changes:
+    - "Update only ARCHITECT_PROFILE.md semantically."
+    - >-
+      Add a concise post-cycle learning checkpoint for a Governing Architect at the close of a material work cycle when
+      the cycle produced a concrete learning signal such as a repeated correction, successor divergence, reproduced failure,
+      repeated friction, meaningful outcome/trade-off, or explicit operator request to preserve/update learned judgment.
+    - >-
+      The checkpoint must not run as a broad retrospective after every task or response. If no material learning signal exists,
+      do not inspect historical chats, reopen accepted work, create an observation, create a task, or mutate any repository merely
+      to prove that no lesson exists.
+    - >-
+      When a material learning signal exists, classify the smallest appropriate disposition as one of the reasoning outcomes
+      `NONE`, `REVISE`, `ADD`, `DELETE`, or `MOVE`. These labels are local reasoning shorthand only: they are not a protocol field,
+      lifecycle state, persisted checklist, review field, report field, registry entry, or new artifact type.
+    - >-
+      `NONE` means the evidence does not justify a durable learning mutation and the checkpoint ends with zero repository mutation.
+      Prefer `NONE` over speculative, duplicate, trivial, one-off, or weakly evidenced lessons.
+    - >-
+      `REVISE`, `ADD`, `DELETE`, and `MOVE` must first resolve the narrowest canonical owner. Operator-specific, cross-target,
+      experience-derived architectural judgment may be admitted to ARCHITECT_CALIBRATION.md only under its existing admission rule.
+      Generic governance belongs to agent-skills; engineering/evidence semantics to agent-standards; documentation ownership/closure
+      to agent-documents; execution capability/local tooling to agent-runtime; target-specific current truth to the target repository.
+    - >-
+      The checkpoint itself creates no mutation authority and must not silently switch the active target repository. If the correct
+      owner differs from the current active target, preserve only the minimum non-authoritative observation when existing profile rules
+      already permit that; otherwise stop and require a later explicit repository binding and normal task/mutation authority before changing that owner.
+    - >-
+      Prefer revising, merging, moving, or deleting existing guidance over appending another parallel rule. Never retain a lesson because
+      an earlier Architect wrote it, and never duplicate another canonical owner's truth merely to make successor bootstrap self-contained.
+    - >-
+      Keep the checkpoint context-light: inspect only evidence materially needed to evaluate the concrete learning signal and existing
+      nearby owner guidance. Do not scan all prior tasks, reports, reviews, chats, repositories, or calibration cases by default.
+    - >-
+      Preserve existing bootstrap, one-active-target, review-priority, observation, calibration ownership, task authority, terminal identity,
+      capability-routing, and repository SSOT semantics. This task adds no cross-repository orchestrator, shared queue, learning pipeline,
+      benchmark harness, scoring system, periodic audit, cron, dashboard, database, registry, or automatic lesson promotion.
+    - "Publish the implementation and then a separate canonical TASK-0013 report; stop at NEEDS_REVIEW."
+  allowed_existing_files_or_components:
+    - ARCHITECT_PROFILE.md
+    - ARCHITECT_CALIBRATION.md
+    - .agent/tasks/TASK-0013/task.yaml
+  expected_files_are_restrictive: true
+
+invariants:
+  - "architect-profile remains the owner of operator-specific Architect behavior and learned-judgment routing."
+  - "ARCHITECT_CALIBRATION.md admission, case shape, ownership, maintenance, and hygiene semantics remain unchanged in this task."
+  - "The semantic implementation changes exactly ARCHITECT_PROFILE.md."
+  - "Learning checkpoint is evidence-triggered, not mandatory ceremony after every task or response."
+  - "NONE/REVISE/ADD/DELETE/MOVE are reasoning shorthand only and create no schema, artifact, lifecycle state, or authority."
+  - "No learning disposition itself grants mutation authority or permits silent cross-repository target switching."
+  - "Narrowest canonical ownership remains authoritative; duplicate cross-repository doctrine is forbidden."
+  - "No historical chat/task/report/review scan or backfill is required."
+  - "No automatic lesson promotion, telemetry backend, learning service, queue, registry, database, dashboard, cron, or benchmark harness is introduced."
+  - "Exactly two organizational roles remain Architect and Executor."
+  - "architect-profile topology remains exactly {main}."
+
+forbidden_changes:
+  - "Do not modify ARCHITECT_CALIBRATION.md, README.md, or historical .agent task/report/review artifacts."
+  - "Do not modify agent-skills, agent-standards, agent-documents, agent-runtime, or any target product repository."
+  - "Do not add a learning schema, lesson ID registry, task field, review field, report field, lifecycle state, role, queue, backlog, score, benchmark, analytics store, database, dashboard, workflow, cron, or automation."
+  - "Do not require a retrospective, historical scan, or calibration mutation after every task, review, response, or work boundary."
+  - "Do not make observations authoritative or automatically promote observations into calibration."
+  - "Do not switch repositories or mutate another owner as an implicit side effect of the checkpoint."
+  - "Do not turn NONE/REVISE/ADD/DELETE/MOVE into persisted metadata or a new protocol vocabulary."
+  - "Do not create branches, PRs, issues, tags, releases, workflows, or repository metadata changes."
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0013/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+    - repository_content_write
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Fresh Architects receive an explicit evidence-triggered post-cycle learning checkpoint without mandatory ceremony."
+    evidence_required: "ARCHITECT_PROFILE.md defines concrete material learning signals and explicitly avoids broad retrospectives when no signal exists."
+  - id: AC-2
+    requirement: "Learning dispositions are minimal and non-protocol."
+    evidence_required: "Profile uses NONE/REVISE/ADD/DELETE/MOVE only as local reasoning shorthand and explicitly denies schema/lifecycle/artifact/authority meaning."
+  - id: AC-3
+    requirement: "Durable learning routes to the narrowest canonical owner and preserves existing calibration admission rules."
+    evidence_required: "Profile maps operator-specific calibration, generic governance, standards, documents, runtime, and target truth to their existing owners without duplicating doctrine."
+  - id: AC-4
+    requirement: "Checkpoint cannot cause hidden cross-repository mutation or automatic promotion."
+    evidence_required: "Profile requires explicit later binding/authority for a different owner and keeps observations non-authoritative and non-automatic."
+  - id: AC-5
+    requirement: "The mechanism is optimized for token/cost discipline."
+    evidence_required: "Profile requires only evidence-local inspection, no all-history/all-repository scan, no persisted NONE log, no automatic retrospective, and no framework infrastructure."
+  - id: AC-6
+    requirement: "Implementation and publication remain bounded."
+    evidence_required: "Implementation changes only ARCHITECT_PROFILE.md; report is a report-only direct child; topology remains {main}."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Resolve TASK-0013 revision 1 at the exact handoff base and confirm topology exactly {main}."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Compare base-to-implementation and prove only ARCHITECT_PROFILE.md changes semantically."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Inspect the learning-signal trigger and prove no mandatory retrospective occurs when no material signal exists."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Confirm NONE/REVISE/ADD/DELETE/MOVE remain non-persisted reasoning shorthand and create no authority, schema, artifact, lifecycle, or automatic mutation semantics."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Confirm narrowest-owner routing matches existing profile/calibration ownership and requires separate explicit binding/authority before mutation of another repository."
+      required: true
+    - id: CHECK-6
+      command_or_check: "Confirm no historical scan/backfill, learning framework, registry, queue, database, dashboard, cron, benchmark harness, or unrelated semantic change was introduced."
+      required: true
+    - id: CHECK-7
+      command_or_check: "Publish exactly one report-only child and verify parent/diff/topology before returning NEEDS_REVIEW."
+      required: true
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - USER_STOP
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
