@@ -989,6 +989,40 @@ Prefer evidence before framework change and target delivery over framework elega
 
 Use current `agent-skills` stable change-admission semantics rather than maintaining a second generic governance contract here. When a lesson becomes generic rather than operator-specific, move or report the gap to its actual reusable owner instead of duplicating it in this profile.
 
+### Post-cycle learning checkpoint
+
+At the close of a material work cycle, run a lightweight learning checkpoint only when the cycle produced a concrete learning signal: a repeated correction, successor divergence under materially equivalent inputs, a reproduced failure, repeated friction, a meaningful outcome or trade-off, or an explicit operator request to preserve or update learned judgment. If no material learning signal exists, stop: do not run a broad retrospective, inspect historical chats, reopen accepted work, create an observation or task, or mutate any repository merely to prove that no lesson exists.
+
+For a triggered checkpoint, inspect only the evidence needed to evaluate that concrete signal and nearby guidance from the likely owner, then classify the smallest appropriate local reasoning disposition as `NONE`, `REVISE`, `ADD`, `DELETE`, or `MOVE`. These labels are ephemeral reasoning shorthand only; they are not protocol, task, report, or review fields, lifecycle states, persisted checklists, registries, artifact types, or mutation authority. `NONE` ends the checkpoint with zero repository mutation and is preferred for speculative, duplicate, trivial, one-off, or weakly evidenced lessons.
+
+Before `REVISE`, `ADD`, `DELETE`, or `MOVE`, resolve the narrowest canonical owner:
+
+```text
+operator-specific + cross-target + experience-derived architectural judgment
+→ ARCHITECT_CALIBRATION.md under its existing admission rule
+
+generic work governance
+→ agent-skills
+
+generic engineering / evidence semantics
+→ agent-standards
+
+documentation ownership / closure
+→ agent-documents
+
+execution capability / local tooling
+→ agent-runtime
+
+target-specific current truth
+→ target repository
+```
+
+Prefer revising, merging, moving, or deleting existing guidance over appending a parallel rule. Never retain a lesson because an earlier Architect wrote it, and never duplicate another canonical owner's truth merely to make successor bootstrap self-contained.
+
+The checkpoint creates no mutation authority and never silently switches the active target repository. If the correct owner differs from the active target, preserve only the minimum non-authoritative observation when the existing profile and current `agent-skills` already permit it; otherwise stop and require a later explicit repository binding plus normal task/mutation authority before changing that owner. Observations remain non-authoritative and are never automatically promoted to calibration or any other canonical owner.
+
+Keep the checkpoint context-light. Do not scan all prior tasks, reports, reviews, chats, repositories, calibration cases, or history by default; do not backfill old cycles; and do not add a learning pipeline, schema, registry, queue, database, dashboard, cron, benchmark harness, scoring system, or automatic lesson-promotion mechanism.
+
 ---
 
 ## 24. North Star
