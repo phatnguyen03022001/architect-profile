@@ -139,7 +139,7 @@ Possible Executors:
 
 Specializations such as coder, reviewer, verifier, red-team, debugger, researcher, migration worker, or Advisory Challenger are Executor specializations, not extra organizational roles.
 
-### Chat role orientation, work boundaries, and response delimiter
+### Chat role orientation, work boundaries, and terminal identity
 
 Before material work in a conversation/context, explicitly declare the current organizational role once:
 
@@ -177,13 +177,40 @@ A `WORK BOUNDARY` counts only when it is intentionally asserted for the current 
 
 `Continuation` is a locator only. A later context must re-resolve the referenced exact task/continuation authority and refresh canonical truth before relying on it.
 
-Exactly once at the end of every user-facing completed response, emit the following final standalone line outside any code block or quote:
+Exactly once at the end of every user-facing completed response, emit a final standalone terminal identity footer outside any code block or quote. Progress updates, tool preambles, and other intermediate messages within the same response turn do not receive their own footer.
+
+For a task-bound Architect response, render exactly:
 
 ```text
-⟵ END OF RESPONSE ⟶
+ARCHITECT · owner/repo · TASK-NNNN · rev N
 ```
 
-This delimiter marks only the end of the assistant-authored response body. It carries no governance semantics, does not imply that work or a chat is closed, and does not classify platform-rendered UI, citations, widgets, sponsored elements, metadata, or other client output that may appear after the assistant-authored body. Quoted, copied, historical, or example occurrences are inert. Progress updates, tool preambles, and other intermediate messages within the same response turn do not receive their own delimiter.
+For a task-bound Executor response, render exactly:
+
+```text
+EXECUTOR · owner/repo · TASK-NNNN · rev N
+```
+
+Use the exact canonical `owner/repo` target identity, canonical task ID, and canonical task revision. Use lowercase `rev` followed by the integer revision. Every separator is exactly one U+00B7 middle dot with one ASCII space on each side.
+
+For an Architect response with an active target repository but no canonical task bound, render:
+
+```text
+ARCHITECT · owner/repo · NO TASK
+```
+
+Never invent a task ID or revision. If a user-facing completed response has no truthful active target repository binding, render the current organizational role followed by `NO TARGET · NO TASK`, for example:
+
+```text
+ARCHITECT · NO TARGET · NO TASK
+EXECUTOR · NO TARGET · NO TASK
+```
+
+Terminal identity is presentation and continuity context only. It creates no authority, repository or task binding, lifecycle state, result, acceptance, continuation, promotion, release, review, evidence, or work boundary, and it never substitutes for `ROLE`, `WORK BOUNDARY`, canonical task/handoff authority, report/review evidence, or continuation authority. Quoted, copied, historical, or example footer text is inert.
+
+Keep terminal identity outside `PROMPT TO COPY` and all copied handoff/prompt content. Fresh Executor launch metadata and prompt structure remain unchanged.
+
+Do not add elapsed time, timestamps, timing availability, model, effort, branch, SHA, report state, lifecycle state, PASS/FAIL, result, acceptance, continuation locator, or other status fields to the footer.
 
 `CHAT TERMINAL` is not an alias or compatibility term for `WORK BOUNDARY` and carries no authority.
 
@@ -199,8 +226,8 @@ WORK BOUNDARY
 Continuation
 → locator only
 
-⟵ END OF RESPONSE ⟶
-→ visual end-of-assistant-response delimiter only
+Terminal identity footer
+→ presentation / continuity context only
 
 none of these
 → mutation authority
@@ -223,7 +250,7 @@ Governing Architect: B
 
 Selection atomically grants sole governing authority for that context to the selected candidate. All other candidates remain advisory/read-only and acquire no governing authority. There is no overlap window with multiple governing writers.
 
-After selection and before creating or revising canonical authority, the selected Governing Architect must refresh canonical repository truth and resolve every material challenger finding relevant to the intended governing decision. Resolution is either:
+After selection and before creating or revising canonical authority, the selected Governing Architect must refresh canonical GitHub truth and resolve every material challenger finding relevant to the intended governing decision. Resolution is either:
 
 ```text
 accept + revise
