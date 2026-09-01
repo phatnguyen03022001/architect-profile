@@ -1,0 +1,150 @@
+protocol_version: 3
+
+task_id: TASK-0007
+task_revision: 1
+report_revision: 1
+state: REPORTED
+
+task_source:
+  path: .agent/tasks/TASK-0007/task.yaml
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical-profile
+  authorized_base_head: "f26848c5e97559cce9b776d88fe8bf74c84b0b36"
+  pre_execution_head: "f26848c5e97559cce9b776d88fe8bf74c84b0b36"
+  final_execution_head: "9f585f2d8fcc72c7d8c77a9bcec2343e8d46b18b"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "533eaef0dbed13c5bbfdad1195218d8382a38e5c"
+  observed_revision: "533eaef0dbed13c5bbfdad1195218d8382a38e5c"
+
+execution_skills_used:
+  required:
+    - executor
+    - simplicity
+    - verification
+  recommended: []
+  external: []
+
+pre_execution_checks:
+  protocol_version_supported: true
+  handoff_type_confirmed: true
+  task_at_base_confirmed: true
+  task_identity_confirmed: true
+  architect_binding_confirmed: true
+  repository_confirmed: true
+  branch_confirmed: true
+  base_head_confirmed: true
+  remote_topology_confirmed_exactly_main: true
+  skill_revision_confirmed: true
+  required_execution_skills_available: true
+  structure_authority_confirmed: true
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  available:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  missing: []
+  passed: true
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: ""
+  evidence: "TASK-0007 designates semantic subtraction review rather than a separate authoritative verifier. Evidence is exact canonical GitHub state, pinned skill authority, complete profile inspection, base-to-candidate diff inspection, current-content searches for removed local path/scratch mechanics, exact lineage, and adversarial review against AC-1..AC-7 and CHECK-1..CHECK-7."
+
+implementation:
+  commit: "9f585f2d8fcc72c7d8c77a9bcec2343e8d46b18b"
+  parent: "f26848c5e97559cce9b776d88fe8bf74c84b0b36"
+  message: "docs(profile): subtract terminal execution doctrine"
+  published_non_force_to_main: true
+  changed_files_exactly:
+    - ARCHITECT_PROFILE.md
+  diff_stats:
+    ARCHITECT_PROFILE.md: "+36/-149"
+  diff_note: "One-file subtraction. The large Local Terminal safety policy, exact workstation/path/scratch rules, direct shell routing, operator command-block mechanics, and local credential-probe detail were removed. No replacement framework, registry, matrix, shell policy, runtime artifact, calibration expansion, README change, or cross-repository mutation was introduced."
+
+implementation_summary:
+  - "Made phone-only ChatGPT + GitHub the current active operating posture and preserved bounded remote execution when current exposed capabilities suffice."
+  - "Removed Terminal as an Architect-selected execution surface and collapsed future native work into one optional local-execution abstraction whose implementation and bounding are owned by agent-runtime."
+  - "Reduced Architect-level local safety to exact target/state/capability/authority invariants and GitHub-SSOT semantics; deleted exact local path, scratch, shell-command, broad-discovery, and credential-check mechanics."
+  - "Made Mac, Codex, agent-runtime, tunnel, and local execution dormant during known phone-only operation without treating their current absence as permanent; requalification occurs only after material environment change or explicit operator request."
+  - "Preserved capability freshness, CONFIRMED/INFERRED/HIDDEN, PRESENT->CONFIGURED->ENABLED->TRIGGERABLE->EXECUTED->PROVEN_PASS, NEEDS_REVIEW priority, bounded audit triggers, low-human-in-loop behavior, and material successor convergence."
+  - "Left ARCHITECT_CALIBRATION.md unchanged because its existing ownership boundary already assigns execution capability/local tool implementation to agent-runtime and its capability-routing lesson already carries the needed freshness/recheck boundary. README.md remains materially current."
+
+changed_files:
+  - path: ARCHITECT_PROFILE.md
+    summary: "Subtracts Terminal-specific Architect doctrine, establishes phone-only ChatGPT+GitHub as the active posture, and delegates future local implementation mechanics to agent-runtime while preserving only Architect-level invariants."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+
+commits_created:
+  - sha: "9f585f2d8fcc72c7d8c77a9bcec2343e8d46b18b"
+    message: "docs(profile): subtract terminal execution doctrine"
+
+pushed: true
+promoted_to_main: false
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: PROVEN
+    evidence: "The profile no longer routes normal Architect/Executor work to local Terminal or contains the former Local Terminal safety-policy section. Local execution is represented only as an optional capability while exact target/state/authority/evidence boundaries remain. The historical CHAT TERMINAL phrase is retained only as an explicit non-authority/non-alias statement for WORK BOUNDARY and is not an execution surface."
+  - criterion_id: AC-2
+    status: PROVEN
+    evidence: "Section 6 states that agent-runtime owns how local shell/process/filesystem execution is implemented and bounded. Architect-level text owns only GitHub canonicality, exact target/state/capability/scope proof, authority separation, bounded future qualification, fail-closed behavior, and owner routing for a missing capability."
+  - criterion_id: AC-3
+    status: PROVEN
+    evidence: "Section 5 now declares phone-only ChatGPT + GitHub as the current active posture while explicitly stating that dormant capability absence is temporary evidence rather than a permanent platform claim; Section 5 freshness semantics remain intact."
+  - criterion_id: AC-4
+    status: PROVEN
+    evidence: "Sections 5, 6, 8, and 21 avoid probing or routing to Mac/Codex/agent-runtime/tunnel/local execution during known phone-only operation and require material environment change or explicit operator request before reconsideration."
+  - criterion_id: AC-5
+    status: PROVEN
+    evidence: "Base-to-implementation diff is one file at +36/-149, a net removal of 113 lines. Exact local paths, scratch convention, direct shell routing/escalation, manual command-block policy, broad filesystem discovery rules, and local credential-probe mechanics were deleted without an equivalent replacement abstraction."
+  - criterion_id: AC-6
+    status: PROVEN
+    evidence: "Current profile still contains capability freshness, CONFIRMED/INFERRED/HIDDEN, the full execution evidence ladder, NEEDS_REVIEW priority, explicit semantic-audit triggers, low-human-in-loop resolution-before-ask behavior, and same-input material successor convergence."
+  - criterion_id: AC-7
+    status: PROVEN
+    evidence: "Implementation is exactly one non-force commit from the authorized base and changes only ARCHITECT_PROFILE.md. ARCHITECT_CALIBRATION.md and README.md remain unchanged; no cross-repository mutation occurred; topology remained {main}; this report is the separate report-only child."
+
+executor_checks:
+  - check_id: CHECK-1
+    result: PASS
+    evidence: "Before mutation, architect-profile branches were refreshed as exactly {main}; main was exactly f26848c5e97559cce9b776d88fe8bf74c84b0b36; TASK-0007 revision 1 was read at that exact base; required executor/simplicity/verification skills were read from exact pin 533eaef0dbed13c5bbfdad1195218d8382a38e5c."
+  - check_id: CHECK-2
+    result: PASS
+    evidence: "The complete base ARCHITECT_PROFILE.md was read in bounded ranges. The Terminal-first Mac routing, direct shell semantics, Local Terminal safety policy, exact /Users path binding, .agent-scratch convention, manual command-block rules, broad local discovery boundaries, and local credential-probe mechanics were identified as implementation detail to subtract."
+  - check_id: CHECK-3
+    result: PASS
+    evidence: "The profile was rewritten by subtraction rather than by adding a deprecation layer: the large local policy was deleted and replaced only with compact phone-first routing, capability freshness, agent-runtime ownership, future bounded qualification, and fail-closed local invariants."
+  - check_id: CHECK-4
+    result: PASS
+    evidence: "Adversarial review confirms no direct Terminal/local-shell route remains, no operator copy/paste command loop was reintroduced, GitHub remains SSOT, current phone-only governance remains sufficient, dormant optional capabilities are not probed, future missing local capability routes to agent-runtime, and TASK-0006 convergence/capability semantics remain."
+  - check_id: CHECK-5
+    result: PASS
+    evidence: "Diff is +36/-149 and removes the dominant execution/local-safety implementation-detail block. ARCHITECT_CALIBRATION.md was intentionally left unchanged because its existing capability-routing case and ownership boundary already express the relevant reusable lesson without duplication."
+  - check_id: CHECK-6
+    result: PASS
+    evidence: "Immediately before implementation publication, main/topology were refreshed at the exact authorized parent. Base-to-implementation comparison is exactly one commit ahead, zero behind, with only ARCHITECT_PROFILE.md changed. Before report publication, main was refreshed again at exact implementation HEAD 9f585f2d8fcc72c7d8c77a9bcec2343e8d46b18b."
+  - check_id: CHECK-7
+    result: PENDING_POST_REPORT_COMMIT
+    evidence: "Implementation is published non-force to main as 9f585f2d8fcc72c7d8c77a9bcec2343e8d46b18b. This report is being committed as the required separate report-only child; exact report parent/diff/final main/topology verification follows after publication."
+
+discovered_gaps: []
+structural_observations: []
+deviations_from_task: []
+blockers: []
+
+result: NEEDS_REVIEW
