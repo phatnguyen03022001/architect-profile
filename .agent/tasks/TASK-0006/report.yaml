@@ -1,0 +1,161 @@
+protocol_version: 3
+
+task_id: TASK-0006
+task_revision: 1
+report_revision: 1
+state: REPORTED
+
+task_source:
+  path: .agent/tasks/TASK-0006/task.yaml
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical-profile
+  authorized_base_head: "739504f8ab8d2896b9dbf9b885842dc87ee11e73"
+  pre_execution_head: "739504f8ab8d2896b9dbf9b885842dc87ee11e73"
+  final_execution_head: "b5c81a7607724311559744d85567032dd07890aa"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "533eaef0dbed13c5bbfdad1195218d8382a38e5c"
+  observed_revision: "533eaef0dbed13c5bbfdad1195218d8382a38e5c"
+
+execution_skills_used:
+  required:
+    - executor
+    - simplicity
+    - verification
+  recommended: []
+  external: []
+
+pre_execution_checks:
+  protocol_version_supported: true
+  handoff_type_confirmed: true
+  task_at_base_confirmed: true
+  task_identity_confirmed: true
+  architect_binding_confirmed: true
+  repository_confirmed: true
+  branch_confirmed: true
+  base_head_confirmed: true
+  remote_topology_confirmed_exactly_main: true
+  skill_revision_confirmed: true
+  required_execution_skills_available: true
+  structure_authority_confirmed: true
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  available:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  missing: []
+  passed: true
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: ""
+  evidence: "TASK-0006 requires semantic verification rather than a designated authoritative verifier. Evidence is exact canonical GitHub state, pinned skill authority, base-to-candidate diff inspection, exact commit lineage, and adversarial review against AC-1..AC-8 and CHECK-1..CHECK-6."
+
+implementation:
+  commit: "b5c81a7607724311559744d85567032dd07890aa"
+  parent: "739504f8ab8d2896b9dbf9b885842dc87ee11e73"
+  message: "docs(profile): calibrate deterministic architect behavior"
+  published_non_force_to_main: true
+  changed_files_exactly:
+    - ARCHITECT_PROFILE.md
+    - ARCHITECT_CALIBRATION.md
+  diff_stats:
+    ARCHITECT_PROFILE.md: "+122/-8"
+    ARCHITECT_CALIBRATION.md: "+151/-1"
+  diff_note: "Bounded semantic rewrite/merge only. README.md remained unchanged because its bootstrap and ownership summary stayed materially current. No framework, registry, runtime inventory, harness, workflow, or cross-repository artifact was introduced."
+
+implementation_summary:
+  - "Added one coherent operator-specific capability-freshness contract: current-session evidence outranks remembered availability, capability remains separate from authority, and platform claims are classified as CONFIRMED, INFERRED, or HIDDEN."
+  - "Defined the PRESENT -> CONFIGURED -> ENABLED -> TRIGGERABLE -> EXECUTED -> PROVEN_PASS evidence ladder without turning it into a registry or generic protocol replacement."
+  - "Made NEEDS_REVIEW an immediate bounded Architect interrupt, constrained broad semantic audits to explicit triggers, and required accepted canonical evidence to be reused when no trigger exists."
+  - "Clarified mobile as first-class, Mac/local/Codex as additive only, Luna/medium as a conditional operator preference, and ChatGPT/Codex capability labels as current-evidence claims rather than fabricated guarantees."
+  - "Made GitHub Actions a bounded exact-candidate proof surface rather than the default iterative debugger and strengthened the low-human-in-loop rule to resolve canonical/tool-answerable questions before asking the operator."
+  - "Defined material successor convergence from the same canonical inputs and treats same-state divergence as ambiguity evidence to repair in the narrowest existing owner instead of growing prompts or governance machinery."
+  - "Distilled five strong cross-target calibration cases with explicit reversal boundaries while retaining the existing forecast lesson and evolutionary merge/revise/delete maintenance model."
+
+changed_files:
+  - path: ARCHITECT_PROFILE.md
+    summary: "Defines deterministic Architect bootstrap/review/audit routing, current-session capability evidence boundaries, exact execution-state claims, low-human-in-loop behavior, and material successor convergence."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+  - path: ARCHITECT_CALIBRATION.md
+    summary: "Distills strong operator-specific cross-target lessons for capability routing, review priority, semantic-audit triggers, exact-candidate remote verification, and successor divergence, each with reversal boundaries."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+
+commits_created:
+  - sha: "b5c81a7607724311559744d85567032dd07890aa"
+    message: "docs(profile): calibrate deterministic architect behavior"
+
+pushed: true
+promoted_to_main: false
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: PROVEN
+    evidence: "ARCHITECT_PROFILE.md now gives an explicit fresh-session/target-binding order from current profile+calibration through exact target/lifecycle state, review/blocker interrupts, capability inspection and routing, plus a same-input material-convergence criterion."
+  - criterion_id: AC-2
+    status: PROVEN
+    evidence: "The profile forbids routing from remembered availability, separates capability from authority, defines current-session freshness and the PRESENT->CONFIGURED->ENABLED->TRIGGERABLE->EXECUTED->PROVEN_PASS ladder, and keeps hidden backend/runtime limits unknown."
+  - criterion_id: AC-3
+    status: PROVEN
+    evidence: "Luna/medium is explicitly a conditional operator preference, ChatGPT/Codex model/effort/capability labels require current evidence or explicit routing, ephemeral runtime limits are not canonized, and workflow/Actions states cannot be conflated."
+  - criterion_id: AC-4
+    status: PROVEN
+    evidence: "NEEDS_REVIEW is an immediate bounded review interrupt. Broader semantic audit is limited to bootstrap uncertainty, material authority drift, review evidence gap, closure/design-lock/cutover boundary, reproduced contradiction, or explicit operator request; otherwise accepted canonical evidence is reused."
+  - criterion_id: AC-5
+    status: PROVEN
+    evidence: "The profile resolves canonical-source/current-capability questions before asking the operator and treats Actions as bounded exact-candidate proof rather than iterative debugging by default."
+  - criterion_id: AC-6
+    status: PROVEN
+    evidence: "Calibration contains a compact evidence-derived set of reusable cases with explicit boundary/reversal triggers and retains merge/revise/delete maintenance. It contains no task numbers, target-specific product truth, transcripts, screenshots, or account data."
+  - criterion_id: AC-7
+    status: PROVEN
+    evidence: "Generic work governance remains owned by agent-skills; the profile limits itself to operator-specific behavior and learned judgment. No cross-repository mutation or new reusable governance framework was introduced, and no material generic follow-up gap was discovered."
+  - criterion_id: AC-8
+    status: PROVEN
+    evidence: "Implementation is one commit from the exact base and changes only ARCHITECT_PROFILE.md and ARCHITECT_CALIBRATION.md. README.md is untouched, topology is {main}, and this report is the separately constructed report-only child."
+
+executor_checks:
+  - check_id: CHECK-1
+    result: PASS
+    evidence: "Canonical branches were refreshed before mutation: topology was exactly {main}, main was exactly 739504f8ab8d2896b9dbf9b885842dc87ee11e73, TASK-0006 revision 1 was resolved at that base, and required agent-skills were read from exact pin 533eaef0dbed13c5bbfdad1195218d8382a38e5c."
+  - check_id: CHECK-2
+    result: PASS
+    evidence: "The complete base ARCHITECT_PROFILE.md and ARCHITECT_CALIBRATION.md were read. Existing ownership, environment, model/effort, human-in-loop, Actions cost, successor bootstrap, self-improvement, admission and calibration maintenance semantics were used as rewrite/merge points rather than duplicated into new owners."
+  - check_id: CHECK-3
+    result: PASS
+    evidence: "The correction is confined to the two canonical owners. Existing profile sections were rewritten/extended coherently; README.md stayed current and unchanged; no additional file or mechanism was needed."
+  - check_id: CHECK-4
+    result: PASS
+    evidence: "Five strong reusable calibration cases were distilled without task identifiers or target product truth. Every case has a Boundary / reversal trigger and calibration remains evolutionary rather than append-only."
+  - check_id: CHECK-5
+    result: PASS
+    evidence: "Adversarial semantic review confirms same-state successor convergence, NEEDS_REVIEW priority, explicit audit triggers without an unconditional audit loop, no remembered capability routing, no repeated known-unavailable probing rule, no fabricated model/effort/tool guarantees, no false Actions PASS claim, no hidden-limit canonization, and no generic agent-skills duplication."
+  - check_id: CHECK-6
+    result: PASS
+    evidence: "Immediately before implementation publication, main was refreshed and still exactly the authorized base with topology {main}. Base-to-implementation comparison is one commit ahead and changes only ARCHITECT_PROFILE.md (+122/-8) and ARCHITECT_CALIBRATION.md (+151/-1). After publication, main was refreshed at exact implementation HEAD b5c81a7607724311559744d85567032dd07890aa before constructing this report child."
+  - check_id: CHECK-7
+    result: PENDING_POST_REPORT_COMMIT
+    evidence: "Implementation is published non-force to main as b5c81a7607724311559744d85567032dd07890aa. This report is being committed as the required separate report-only child; exact report parent/diff/final main/topology verification follows after publication."
+
+discovered_gaps: []
+structural_observations: []
+deviations_from_task: []
+blockers: []
+
+result: NEEDS_REVIEW
