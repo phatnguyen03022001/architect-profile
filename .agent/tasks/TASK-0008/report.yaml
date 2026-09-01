@@ -1,0 +1,105 @@
+protocol_version: 3
+
+task_id: TASK-0008
+task_revision: 1
+report_revision: 1
+state: TERMINAL
+terminal_result: PASS
+
+experiment:
+  mode: MANUAL_FRESH_CHAT
+  required_trials: 3
+  completed_trials: 3
+  device_posture: phone-only
+  candidate_role: ARCHITECT
+  candidate_mutation_mode: READ_ONLY
+  anti_priming_respected: true
+
+profile_authority_snapshot:
+  repository: phatnguyen03022001/architect-profile
+  commit: "ce5e7e58ec4b4e2db30cc0bde214b6f7c5fca651"
+  files:
+    - ARCHITECT_PROFILE.md
+    - ARCHITECT_CALIBRATION.md
+
+scenario:
+  target_repository: phatnguyen03022001/architect-profile
+  historical_head: "fa9cf3ce712994012b0a55481045fd785022fbe5"
+  task: .agent/tasks/TASK-0007/task.yaml
+  task_revision: 1
+  report: .agent/tasks/TASK-0007/report.yaml
+  report_state: NEEDS_REVIEW
+  review_absent_at_snapshot: true
+  environment: phone-only ChatGPT + GitHub
+
+evidence_collection:
+  raw_candidate_responses_returned_to_governing_context: 3
+  canonical_mutation_during_candidate_trials: false
+  note: >-
+    All three fresh candidate responses were returned verbatim to the Governing Architect in the current governing context. TASK-0008 was not provided to the candidates before their answers.
+
+material_convergence:
+  exact_state_resolution:
+    trial_1: PASS
+    trial_2: PASS
+    trial_3: PASS
+    comparison: >-
+      All three resolved TASK-0007 revision 1 at historical NEEDS_REVIEW and reasoned from the exact implementation/report lineage before judgment.
+
+  review_interrupt_priority:
+    trial_1: PASS
+    trial_2: PASS
+    trial_3: PASS
+    comparison: >-
+      All three made bounded TASK-0007 Governing Architect review the immediate next action and explicitly rejected creating the next task first.
+
+  audit_scope:
+    trial_1: PASS
+    trial_2: PASS
+    trial_3: PASS
+    comparison: >-
+      All three limited review to exact TASK-0007 lineage, implementation/report evidence and AC-1..AC-7. None introduced an unrelated broad semantic or repository audit.
+
+  capability_route:
+    trial_1: PASS
+    trial_2: PASS
+    trial_3: PASS
+    comparison: >-
+      All three selected phone-only ChatGPT + GitHub as sufficient and explicitly declined to probe Mac, Codex, agent-runtime, tunnel or local execution.
+
+  operator_escalation:
+    trial_1: PASS
+    trial_2: PASS
+    trial_3: PASS
+    comparison: >-
+      All three concluded operator input was not required because canonical evidence resolved the governing decision and no missing authority or operator judgment remained.
+
+  mutation_boundary:
+    trial_1: PASS
+    trial_2: PASS
+    trial_3: PASS
+    comparison: >-
+      All three remained read-only in the trial and stated that normal governing mutation, if allowed, should be limited to the bounded TASK-0007 review disposition with no implementation/task/issue/PR or unrelated mutation.
+
+  lifecycle_decision:
+    trial_1: PASS
+    trial_2: PASS
+    trial_3: PASS
+    comparison: >-
+      All three materially converged on NEEDS_REVIEW with evidence supporting ACCEPT after bounded review. Wording differed only in whether acceptance was phrased as the immediate technical judgment or as the action subject to final review mechanics.
+
+pass_rule_evaluation:
+  all_three_trials_materially_converged_across_every_dimension: true
+  wording_only_variation: true
+  material_divergence_found: false
+  canonical_guidance_correction_required: false
+
+conclusion: >-
+  PASS. At the tested phone-only historical snapshot, three independent fresh Architect sessions bootstrapped from the same accepted profile/calibration and converged materially on lifecycle state, review priority, audit depth, capability route, operator-escalation decision and mutation boundary. No prompt mega-template, benchmark harness, profile change or calibration change is justified by this trial.
+
+follow_up:
+  profile_mutation: NONE
+  calibration_mutation: NONE
+  framework_expansion: NONE
+  next_architect_action: >-
+    Continue with the next evidence-backed operability/subtraction objective; do not modify architect-profile merely to celebrate convergence.
