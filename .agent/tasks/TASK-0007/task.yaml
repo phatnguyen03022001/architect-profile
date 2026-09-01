@@ -1,0 +1,214 @@
+protocol_version: 3
+
+task_id: TASK-0007
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: maintainer_objective_change
+  task_id: ""
+  gap_id: "TERMINAL_SURFACE_SUBTRACTION"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical-profile
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "533eaef0dbed13c5bbfdad1195218d8382a38e5c"
+
+architect_analysis_skills:
+  - architect
+  - executor
+  - simplicity
+  - verification
+
+execution_skills:
+  required:
+    - executor
+    - simplicity
+    - verification
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "Explicit operator objective in current Governing Architect context"
+    role: "Current operator decision: phone-only is the active operating mode; Mac, Codex and agent-runtime are temporarily dormant; Terminal should be eliminated as a first-class Architect execution surface and treated as an implementation detail beneath agent-runtime/local execution. If agent-runtime proves insufficient when Mac is available again, improve agent-runtime then rather than preserving Terminal doctrine now."
+    precedence: 1
+  - source: "phatnguyen03022001/architect-profile@465945544fd71ba62197bd79780fecbb9c1712a7"
+    role: "Current accepted profile/calibration authority including capability freshness, phone-first operation, additive Mac capability and successor convergence."
+    precedence: 2
+  - source: "phatnguyen03022001/agent-skills@533eaef0dbed13c5bbfdad1195218d8382a38e5c"
+    role: "Reusable governance owner; this task must not duplicate generic execution protocol or mutate agent-skills."
+    precedence: 3
+
+structure_authority:
+  status: RESOLVED
+  source: "ARCHITECT_PROFILE.md current environment/execution/local-safety sections plus ARCHITECT_CALIBRATION.md maintenance rules."
+  rationale: "This is a subtraction and abstraction-boundary correction in operator-specific Architect behavior. Terminal implementation details should not remain a large Architect-level governance surface when local execution is intended to be mediated by agent-runtime. No agent-runtime mutation is justified while Mac/local capability is currently dormant and untestable."
+
+objective: >-
+  Simplify the Architect execution model for the operator by making phone-only ChatGPT + GitHub the active/default operating posture, removing Terminal as a first-class Architect routing/governance surface, and reducing Mac/Codex/local specifics to dormant additive capabilities that are re-qualified only when the environment actually changes. Local shell/process/filesystem safety and execution implementation belong behind agent-runtime; if that abstraction later proves insufficient when Mac is available, repair agent-runtime then rather than retaining duplicated Terminal doctrine in architect-profile.
+
+scope:
+  required_changes:
+    - "Update ARCHITECT_PROFILE.md by coherent subtraction/merge, not additive doctrine. Remove Terminal from the set of Architect-selected execution surfaces and from normal routing/escalation language."
+    - "Replace direct Terminal/local-shell routing semantics with one compact local-execution abstraction: Architect may select a currently proven local execution capability when materially needed; agent-runtime owns HOW local shell/process/filesystem execution is implemented and bounded."
+    - "Remove or substantially collapse the large Local Terminal safety policy, exact local path/scratch/command mechanics, and other shell-implementation details that no longer belong in Architect-level behavior. Preserve only the minimum operator-specific invariant needed at this owner: local execution never changes GitHub SSOT/governance and must prove exact target/state/capability before consequential mutation."
+    - "Treat current operating posture as phone-first: ChatGPT Architect + ChatGPT Executor + GitHub SSOT, with GitHub Actions or other current remote proof surfaces only when they are currently ENABLED/TRIGGERABLE and materially justified."
+    - "Mac, Codex and agent-runtime are dormant optional capabilities while the operator is phone-only. Do not make current work depend on them and do not probe them merely to rediscover unavailability."
+    - "Do not make the temporary absence of Mac/Codex/runtime a permanent product claim. Preserve capability-freshness semantics: when the environment materially changes, re-evaluate only the needed capabilities from current evidence."
+    - "When Mac/local capability becomes relevant again, require a bounded qualification of agent-runtime against the task-required local capabilities rather than restoring Terminal as an Architect surface. If a material capability is missing, the resulting gap belongs to agent-runtime unless evidence proves another owner."
+    - "Preserve Codex as an optional Executor only when currently exposed and useful; do not discuss or route to it during known phone-only operation unless the environment changes or the operator explicitly asks. Preserve the existing conditional model/effort preference without claiming availability."
+    - "Preserve existing capability epistemics from TASK-0006: current evidence over remembered availability, CONFIRMED/INFERRED/HIDDEN and PRESENT->CONFIGURED->ENABLED->TRIGGERABLE->EXECUTED->PROVEN_PASS."
+    - "Preserve mobile as first-class and low-human-in-loop. Do not replace removed Terminal doctrine with operator copy/paste command rituals. Physical/manual operator action remains fallback only when it is genuinely user-only and cannot be automated by an authorized current surface."
+    - "Audit ARCHITECT_CALIBRATION.md for whether one concise abstraction/subtraction lesson is materially useful. Prefer revising/merging an existing capability-routing case over adding a new case. Leave calibration unchanged if profile-level correction is sufficient."
+    - "Keep README.md unchanged unless the execution-surface summary becomes materially stale."
+    - "Keep main-only topology and publish one bounded implementation commit followed by one report-only commit, then stop at Governing Architect review."
+
+  allowed_existing_files_or_components:
+    - ARCHITECT_PROFILE.md
+    - ARCHITECT_CALIBRATION.md
+    - README.md
+    - .agent/tasks/TASK-0007/task.yaml
+  expected_files_are_restrictive: true
+
+invariants:
+  - "Architect remains ChatGPT; GitHub remote remains canonical repository truth."
+  - "Exactly two organizational roles remain Architect and Executor."
+  - "Phone-only work remains capable of planning, task authority, review, evidence analysis and bounded GitHub execution when current capabilities permit."
+  - "Terminal is not a repository/task/governance authority and after this correction is not a first-class Architect routing surface."
+  - "Local execution is optional/additive and never changes canonical authority."
+  - "agent-runtime owns local execution implementation details when that capability is in use; architect-profile owns only operator-specific selection/behavior boundaries."
+  - "No claim is made that agent-runtime is currently sufficient for future Mac work without evidence."
+  - "No Mac/Codex/runtime probe is required in the current phone-only environment."
+  - "Repository topology remains exactly {main}."
+
+forbidden_changes:
+  - "Do not modify agent-runtime, agent-skills, agent-standards, agent-documents, IELTS, or any other repository."
+  - "Do not test Mac, local shell, tunnel, Codex or agent-runtime in the current phone-only environment."
+  - "Do not create a new local-execution framework, terminal wrapper, capability registry, environment matrix, probe suite, shell policy file, runtime database or control plane."
+  - "Do not preserve Terminal doctrine merely as fallback documentation. If future agent-runtime qualification exposes a real missing capability, record and repair that gap then."
+  - "Do not hard-code temporary session availability or claim Mac/Codex/runtime are permanently unavailable."
+  - "Do not replace Terminal with another implementation-specific shell/tool name in Architect routing."
+  - "Do not weaken exact target binding, mutation authority, secret boundaries, evidence requirements or GitHub SSOT semantics."
+  - "Do not perform unrelated profile cleanup."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0007/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+    - repository_content_write
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Terminal is removed from the Architect execution model without losing necessary governance invariants."
+    evidence_required: "Profile no longer routes Architect/Executor work to Terminal or preserves a large Terminal-specific safety policy; exact target/state/authority/evidence boundaries remain intact at the appropriate abstraction level."
+  - id: AC-2
+    requirement: "Local execution ownership is clean."
+    evidence_required: "Profile states what the Architect may require from local execution and delegates HOW shell/process/filesystem execution is implemented to agent-runtime, without claiming current future sufficiency."
+  - id: AC-3
+    requirement: "Phone-only is the active/default posture without becoming a false permanent capability claim."
+    evidence_required: "Profile supports ChatGPT + GitHub as the current first-class path, avoids dormant-surface probing, and reuses capability freshness when the environment later changes."
+  - id: AC-4
+    requirement: "Mac/Codex/runtime dormancy does not contaminate current routing."
+    evidence_required: "Known phone-only operation does not trigger Mac/Codex/runtime probing or recommendations; optional capabilities are reconsidered only after material environment change or explicit operator request."
+  - id: AC-5
+    requirement: "Subtraction reduces profile complexity."
+    evidence_required: "Net execution-environment/local-safety doctrine is materially smaller or simpler; no replacement framework, registry, matrix or shell-specific policy is introduced."
+  - id: AC-6
+    requirement: "Existing Fellow-level behavior from TASK-0006 survives."
+    evidence_required: "Capability freshness, epistemic labels, execution evidence ladder, NEEDS_REVIEW priority, audit triggers, low-human-in-loop and successor-convergence semantics remain materially intact."
+  - id: AC-7
+    requirement: "Change remains correctly owned and bounded."
+    evidence_required: "Implementation changes only ARCHITECT_PROFILE.md plus calibration/README only if strictly needed; no cross-repo mutation; report is a separate child; topology remains {main}."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Refresh architect-profile/main; require exact handoff base and topology {main}; resolve TASK-0007 revision 1 and agent-skills pin 533eaef0dbed13c5bbfdad1195218d8382a38e5c."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Read the complete current environment/execution/local-safety sections and identify every Terminal-first, direct-shell, exact-local-path, scratch, manual-command or Mac/Codex routing rule whose implementation detail should leave Architect-level ownership."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Rewrite by subtraction: preserve only current phone-first routing, capability freshness, local-execution selection invariants, agent-runtime ownership boundary and future requalification rule. Do not merely append a deprecation paragraph above stale Terminal doctrine."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Adversarial semantic review: Terminal is not first-class; no manual-command loop is reintroduced; GitHub SSOT and exact authority remain; phone-only work is sufficient for current governance; dormant Mac/Codex/runtime are not probed; future local gaps route to agent-runtime; TASK-0006 convergence/capability semantics remain intact."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Measure subtraction qualitatively and by diff: execution/local-safety wording must be materially simplified, not expanded into an equivalent replacement framework. Calibration should be revised only if it reduces ambiguity or duplication."
+      required: true
+    - id: CHECK-6
+      command_or_check: "Before each write refresh main and require exact expected parent. Verify implementation diff is bounded to allowed profile/calibration/optional README changes and contains no runtime/cross-repository artifact."
+      required: true
+    - id: CHECK-7
+      command_or_check: "Publish one implementation commit non-force to main; create TASK-0007/report.yaml as one separate report-only child; verify exact lineage/final main/topology and stop at Governing Architect review."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: "semantic subtraction review against TASK-0007 acceptance criteria"
+    expected_signal: "smaller Architect execution model with Terminal abstracted behind agent-runtime and phone-first behavior preserved"
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
