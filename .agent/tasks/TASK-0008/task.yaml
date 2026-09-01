@@ -1,0 +1,108 @@
+protocol_version: 3
+
+task_id: TASK-0008
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: maintainer_objective_change
+  gap_id: SUCCESSOR_CONVERGENCE_PROOF
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical-profile
+
+execution_base:
+  mode: handoff_snapshot
+  exact_head: "ce5e7e58ec4b4e2db30cc0bde214b6f7c5fca651"
+
+profile_authority_snapshot:
+  repository: phatnguyen03022001/architect-profile
+  commit: "ce5e7e58ec4b4e2db30cc0bde214b6f7c5fca651"
+  files:
+    - ARCHITECT_PROFILE.md
+    - ARCHITECT_CALIBRATION.md
+
+objective: >-
+  Empirically test whether independent fresh ChatGPT Architect sessions, operating phone-only from the same canonical profile/calibration and the same exact target/task/report snapshot, converge on materially equivalent Architect decisions without hidden chat history, capability guessing, unnecessary audit expansion, or unnecessary operator escalation.
+
+experiment:
+  mode: MANUAL_FRESH_CHAT
+  required_trials: 3
+  device_posture: phone-only
+  candidate_role: ARCHITECT
+  candidate_mutation_mode: READ_ONLY
+
+  anti_priming_rule: >-
+    Candidate sessions must not read TASK-0008 before producing their answer. They may read only the exact profile/calibration authority snapshot and the pinned historical target scenario below, plus the exact task/report artifacts required to resolve that scenario. This prevents TASK-0008 expected-result wording from teaching the answer under test.
+
+  scenario:
+    target_repository: phatnguyen03022001/architect-profile
+    historical_head: "fa9cf3ce712994012b0a55481045fd785022fbe5"
+    task: .agent/tasks/TASK-0007/task.yaml
+    task_revision: 1
+    report: .agent/tasks/TASK-0007/report.yaml
+    report_state: NEEDS_REVIEW
+    review_absent_at_snapshot: true
+    environment: phone-only ChatGPT + GitHub
+
+  candidate_question: >-
+    Bootstrap as a fresh Architect from the exact profile/calibration snapshot, bind the exact historical target state, then state what the Governing Architect should do next and why. Do not mutate anything.
+
+  required_candidate_output:
+    - lifecycle_state
+    - immediate_next_action
+    - audit_scope_or_trigger
+    - capability_route
+    - operator_input_required
+    - mutation_boundary
+    - concise_rationale
+
+material_convergence_dimensions:
+  - "Exact target/task/report state is resolved before judgment."
+  - "NEEDS_REVIEW is treated as the immediate bounded interrupt."
+  - "No unrelated broad repository audit occurs without a concrete trigger."
+  - "Phone-only current capability evidence is sufficient for the review path; Mac, Codex, agent-runtime, tunnel and local execution are not probed merely because they exist historically."
+  - "The candidate does not ask the operator for information answerable from canonical GitHub state/current exposed capability."
+  - "The candidate remains read-only and does not persist ACCEPTED/REJECTED during this experiment."
+  - "Wording and internal reasoning may differ; lifecycle decision, authority interpretation, audit depth, capability route, operator-escalation decision and mutation boundary must be materially equivalent."
+
+pass_rule: >-
+  PASS only if all three fresh sessions materially converge across every listed dimension. Minor wording, ordering or explanation differences are irrelevant.
+
+failure_rule: >-
+  Any material divergence is evidence of ambiguous, duplicated or insufficient canonical guidance. Do not average answers or add a prompt mega-template. Identify the narrowest correct existing owner, then create one bounded correction only if the divergence is attributable to canonical guidance rather than genuinely different current capability evidence.
+
+scope:
+  allowed_mutations_during_evidence_collection: []
+  allowed_post_collection_mutations:
+    - .agent/tasks/TASK-0008/report.yaml
+  forbidden_changes:
+    - ARCHITECT_PROFILE.md
+    - ARCHITECT_CALIBRATION.md
+    - README.md
+    - "any other repository"
+
+invariants:
+  - "No Mac, Codex, agent-runtime, tunnel or local-runtime probe is part of this phone-only test."
+  - "No candidate session creates tasks, reviews, commits, branches, issues, PRs or other canonical mutation."
+  - "The historical TASK-0007 snapshot remains immutable test input."
+  - "The test measures material behavioral convergence, not byte-identical wording."
+  - "No benchmark harness, scoring framework, registry, CI job or permanent test machinery is introduced."
+
+completion:
+  evidence_required:
+    - "Three raw candidate responses returned to the Governing Architect in the current governing context."
+    - "A dimension-by-dimension material convergence comparison."
+  terminal_results:
+    - PASS
+    - DIVERGENCE_FOUND
+  on_pass: "Publish one report-only TASK-0008 result; do not modify profile/calibration merely to celebrate success."
+  on_divergence: "Publish one report-only TASK-0008 result identifying exact divergence and narrowest likely owner, then create a separate bounded correction task if justified."
+
+execution_ready: true
