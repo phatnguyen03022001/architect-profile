@@ -1,0 +1,154 @@
+protocol_version: 3
+
+task_id: TASK-0014
+task_revision: 1
+report_revision: 1
+state: REPORTED
+
+task_source:
+  path: .agent/tasks/TASK-0014/task.yaml
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical
+  authorized_base_head: "e99c704a3d1cd7516e1e02920a6a59fdc229b9ac"
+  pre_execution_head: "e99c704a3d1cd7516e1e02920a6a59fdc229b9ac"
+  final_execution_head: "9ca86f1a49b52764d89a37b19785934606569f9f"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "76f2d3877d1698f91eb5a6117e2301ed49480379"
+  observed_revision: "76f2d3877d1698f91eb5a6117e2301ed49480379"
+
+execution_skills_used:
+  required:
+    - executor
+    - simplicity
+    - verification
+  recommended: []
+  external:
+    - superpowers:using-superpowers
+    - superpowers:executing-plans
+    - superpowers:verification-before-completion
+
+pre_execution_checks:
+  protocol_version_supported: true
+  handoff_type_confirmed: true
+  task_at_base_confirmed: true
+  task_identity_confirmed: true
+  architect_binding_confirmed: true
+  repository_confirmed: true
+  branch_confirmed: true
+  base_head_confirmed: true
+  skill_revision_confirmed: true
+  required_execution_skills_available: true
+  structure_authority_confirmed: true
+  working_tree_clean: true
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+    - exact_diff_inspection
+  available:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+    - exact_diff_inspection
+  missing: []
+  passed: true
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: NOT_REQUIRED
+  evidence: "TASK-0014 requires deterministic GitHub identity, content, ownership, byte-count, diff, lineage, and topology inspection; no external authoritative verifier is designated."
+
+local_hygiene:
+  result: PASS
+  run_root: ""
+  cleanup_performed: false
+  retained: []
+  evidence: "Remote-only ChatGPT + GitHub execution; no local checkout, worktree, temporary run root, or Codex execution was used."
+
+changed_files:
+  - path: README.md
+    summary: "Reduce repository purpose and bootstrap to a compact owner map plus selective loading path; remove broad default preload expectations."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+  - path: ARCHITECT_PROFILE.md
+    summary: "Replace duplicated generic Architect governance with compact operator configuration covering durable priorities, execution-surface preferences, context/cost discipline, task presentation, language, and canonical owner routing."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+  - path: ARCHITECT_CALIBRATION.md
+    summary: "Prune generic governance cases and retain only compact operator-specific, cross-target, experience-derived judgment with explicit admission and reversal boundaries."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+
+commits_created:
+  - sha: "9ca86f1a49b52764d89a37b19785934606569f9f"
+    message: "profile: subtract duplicated architect context"
+
+pushed: true
+promoted_to_main: false
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: PROVEN
+    evidence: "ARCHITECT_PROFILE.md now declares operator configuration as its scope and routes generic role/lifecycle/task/review/verification/capability/release/handoff governance to pinned agent-skills instead of restating it. The refactor removed the prior role contract, terminal/work-boundary rules, governing-Architect selection, capability evidence ladder, generic branch/local-state rules, gap/review/verification procedure, and generic learning/governance machinery while retaining only operator preferences and concise owner routing."
+  - criterion_id: AC-2
+    status: PROVEN
+    evidence: "ARCHITECT_CALIBRATION.md now retains exactly two learned cases: forecast-as-trigger-not-topology and same-state-successor-divergence-as-ambiguity. Generic capability routing, review interrupt, structural-readiness, and exact-candidate remote-verification cases were deleted because their substance is reusable governance/evidence semantics already owned outside calibration. Admission text explicitly excludes generic capability/task/review/lifecycle/verification/release governance and profile restatements."
+  - criterion_id: AC-3
+    status: PROVEN
+    evidence: "README.md and ARCHITECT_PROFILE.md define selective bootstrap as profile first, then exact target truth, then only decision-relevant canonical owners/pinned skills, with calibration loaded only when learned operator-specific judgment can materially affect the decision. They explicitly reject default preload of all agent-* repositories, all calibration, raw chat history, historical tasks, or broad repository context while preserving required-authority loading."
+  - criterion_id: AC-4
+    status: PROVEN
+    evidence: "The reduced profile explicitly preserves quality/speed/simplicity/cost/resource discipline, docs-first with implementation bias, reuse-first, KISS/anti-overengineering, low human-in-loop, GitHub canonical truth, phone-only ChatGPT + GitHub as first-class, optional additive execution surfaces, evidence-based challenge of stale design, Vietnamese operator communication, English durable repository artifacts, and compact TASK LAUNCH/PROMPT TO COPY presentation. Codex preference is corrected to Luna when actually exposed, with xhigh as a maximum rather than a default or selection reason."
+  - criterion_id: AC-5
+    status: PROVEN
+    evidence: "Exact base-to-implementation comparison is one commit ahead and modifies only README.md, ARCHITECT_PROFILE.md, and ARCHITECT_CALIBRATION.md. No new top-level document, schema, registry, loader, generated manifest, context manager, workflow, dependency, service, queue, branch, repository, or cross-repository mutation was introduced."
+  - criterion_id: AC-6
+    status: PROVEN
+    evidence: "Non-authoritative byte telemetry from exact GitHub content metadata: README.md 3458 -> 2482 bytes; ARCHITECT_PROFILE.md 48792 -> 8728 bytes; ARCHITECT_CALIBRATION.md 15377 -> 4810 bytes; combined 67627 -> 16020 bytes, a reduction of 51607 bytes. Major deletions are duplicated generic role/lifecycle/capability/review/verification/task governance in the profile and four generic governance/evidence calibration cases. Semantic AC-1 through AC-5 remain the quality gate."
+  - criterion_id: AC-7
+    status: PROVEN
+    evidence: "Implementation candidate 9ca86f1a49b52764d89a37b19785934606569f9f is exactly one direct child of authorized base e99c704a3d1cd7516e1e02920a6a59fdc229b9ac and changes only the three authorized existing documents. This report is constructed as the sole new file on a report-only direct child of that final_execution_head; topology remains exactly {main}."
+
+executor_checks:
+  - check_id: CHECK-1
+    result: PASS
+    evidence: "TASK-0014 revision 1 resolved at authorized base e99c704a3d1cd7516e1e02920a6a59fdc229b9ac with state APPROVED, execution_ready true, structure_authority RESOLVED, pinned agent-skills revision 76f2d3877d1698f91eb5a6117e2301ed49480379, required executor/simplicity/verification skills, and topology exactly {main}. Immediately before implementation publication, main still matched the exact base."
+  - check_id: CHECK-2
+    result: PASS
+    evidence: "Ownership map before editing classified operator priorities/preferences, phone-first routing, language, launch presentation, selective context, and the two admitted calibration lessons as retained. Generic role/lifecycle/task/review/capability/verification/gap/continuation semantics mapped to pinned agent-skills; generic engineering/evidence semantics mapped to agent-standards; documentation closure to agent-documents; local execution implementation to agent-runtime; target truth/task authority to the target repository. The generic calibration cases were deleted rather than relocated or paraphrased."
+  - check_id: CHECK-3
+    result: PASS
+    evidence: "Fresh-bootstrap inspection of the exact implementation files shows README/profile load first, exact target truth second, decision-relevant owners/pinned skills only as needed, and calibration only when operator-specific learned judgment is material. Successor continuity remains reconstructible from canonical repositories without mandatory raw history or broad preload."
+  - check_id: CHECK-4
+    result: PASS
+    evidence: "Exact GitHub comparison e99c704a3d1cd7516e1e02920a6a59fdc229b9ac..9ca86f1a49b52764d89a37b19785934606569f9f reports ahead_by=1, behind_by=0, total_commits=1, with only ARCHITECT_CALIBRATION.md (+32/-221), ARCHITECT_PROFILE.md (+85/-963), and README.md (+33/-43) modified. Candidate root metadata keeps the pre-existing .agent tree unchanged, proving historical task/report/review artifacts were untouched by implementation."
+  - check_id: CHECK-5
+    result: PASS
+    evidence: "Exact base sizes were README.md 3458 bytes, ARCHITECT_PROFILE.md 48792 bytes, and ARCHITECT_CALIBRATION.md 15377 bytes. Exact implementation sizes are 2482, 8728, and 4810 bytes respectively. The telemetry is recorded only as context-reduction evidence and not used as a semantic correctness substitute."
+  - check_id: CHECK-6
+    result: PASS
+    evidence: "The implementation commit was created from the exact authorized base tree, inspected before publication, then fast-forwarded non-force to main after a fresh exact-base/topology check. The canonical report is constructed from the exact implementation tree with final_execution_head as its only parent and only .agent/tasks/TASK-0014/report.yaml added; final report lineage, remote files, exact diff, main ref, and topology are re-read after publication before returning NEEDS_REVIEW."
+
+discovered_gaps: []
+structural_observations: []
+deviations_from_task: []
+blockers: []
+
+working_tree_after:
+  clean: true
+  summary: "Remote-only GitHub execution; no local working tree or temporary execution artifacts were created."
+
+result: NEEDS_REVIEW
