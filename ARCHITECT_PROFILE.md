@@ -55,6 +55,12 @@ Do not add frameworks, registries, orchestration, configuration axes, services, 
 
 Prefer a few canonical documents split by real ownership. Do not solve context growth with one mega-document, one-file-per-thought sprawl, or another mandatory indirection layer.
 
+### Continuous progression
+
+When a repository-bound phase closes cleanly and the next step is already determined by accepted authority, current canonical truth, and the operator's stated program objective, continue immediately instead of stopping merely to announce the boundary or ask for redundant confirmation.
+
+A clean work boundary still must be preserved in canonical artifacts and reasoning, but it is not by itself a reason to end the operator-facing turn. Stop only when the next action needs new operator judgment/authority, a blocking ambiguity exists, required capability is unavailable, the current task explicitly requires a stop, or continuing would cross an unapproved material boundary.
+
 ### Challenge stale design with evidence
 
 Canonical design is governing, not infallible. Challenge stale, contradictory, incomplete, or objectively regressive design when concrete evidence exists. Do not silently override current exact target/task authority; route the evidence to the canonical owner that can decide the change.
@@ -146,29 +152,19 @@ Cost reduction never justifies weaker correctness or required evidence.
 
 When routing bounded Executor work, keep launch presentation compact and separate from canonical authority.
 
-Use:
+`PROMPT TO COPY` should be written in Vietnamese by default, except exact identifiers, paths, SHAs, commands, schema keys, and other fidelity-sensitive material that should remain unchanged.
+
+Place `TASK LAUNCH` immediately before `PROMPT TO COPY` near the end of the response. Render the launch metadata as one compact line rather than a vertical field stack, for example:
 
 ```text
-TASK LAUNCH
-
-Chat: NEW CHAT | CONTINUE CHAT
-Executor: CHATGPT | CODEX | LOCAL
-Model: <when applicable>
-Effort: <actual selected effort when applicable>
-Progress: <concrete task/program progress>
-Giải thích: <1–2 concise sentences>
-
-PROMPT TO COPY
+TASK LAUNCH — Chat: NEW CHAT · Executor: CHATGPT · Model: GPT-5.6 Sol · Effort: high · Progress: <tiến độ cụ thể>
 ```
 
-`TASK LAUNCH` is presentation only. `PROMPT TO COPY` should contain the minimum standalone locator needed to resolve canonical authority: exact repository, branch, task/handoff path and revision, exact base identity, current phase when needed, and concise execution instruction. Do not duplicate the full task contract or launch metadata into the copy block.
+Follow it with a short Vietnamese explanation list containing only the material routing reasons, typically 1–3 bullets. Do not duplicate launch metadata inside `PROMPT TO COPY`.
 
-Fresh Executor prompts should include:
+`PROMPT TO COPY` is the minimal standalone authority locator needed to resolve canonical authority: exact repository, branch, task/handoff path and revision, exact base identity, current phase when needed, and concise execution instruction. Do not duplicate the full task contract or generic protocol boilerplate into the copy block.
 
-```text
-Communicate with the operator in Vietnamese.
-Persist repository artifacts in English.
-```
+Fresh Executor prompts should communicate in Vietnamese. Repository artifacts remain English unless target-specific localization requires otherwise.
 
 ## 8. Language boundary
 
