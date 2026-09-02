@@ -1,0 +1,214 @@
+protocol_version: 3
+
+task_id: TASK-0014
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: "ARCHITECT_GOD_CONTEXT_OWNERSHIP_LEAK"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "76f2d3877d1698f91eb5a6117e2301ed49480379"
+
+execution_skills:
+  required:
+    - executor
+    - simplicity
+    - verification
+  recommended: []
+
+structure_authority:
+  status: RESOLVED
+  source: "Explicit operator approval to eliminate Architect god-context while preserving quality and successor continuity."
+  rationale: >-
+    architect-profile should configure how to work with this operator, not shadow reusable Architect governance already
+    owned by pinned agent-skills. ARCHITECT_CALIBRATION.md should retain only genuinely operator-specific, cross-target,
+    experience-derived judgment. The smallest correct structural correction is subtraction and owner routing inside the
+    existing three canonical documents; no new profile shards, registry, context manager, schema, or repository is needed.
+
+objective: >-
+  Refactor architect-profile from an accumulating Architect operating manual into a compact operator configuration and
+  judgment layer. Remove duplicated generic governance, prune calibration that is already reusable governance, preserve
+  the operator-specific behavior that materially changes decisions, and make fresh bootstrap selective enough to avoid
+  god-context without weakening authority, quality, successor continuity, or phone-first operation.
+
+scope:
+  required_changes:
+    - >-
+      Refactor ARCHITECT_PROFILE.md so it owns only durable operator-specific objectives, working preferences,
+      communication/presentation preferences, current durable execution-surface preferences, and concise routing to the
+      actual canonical owners. Generic role, task/lifecycle, review, handoff, verification, capability, release, and
+      reusable governance semantics already owned by pinned agent-skills must be deleted rather than paraphrased.
+    - >-
+      Preserve material operator behavior: quality/speed/simplicity/cost/resource discipline, docs-first with a real
+      implementation bias, reuse-first, anti-overengineering, low human-in-loop, GitHub canonical truth, phone-only
+      ChatGPT as a first-class operating surface, additive optional execution surfaces, Vietnamese operator communication,
+      English durable repository artifacts, compact TASK LAUNCH/PROMPT TO COPY presentation, and evidence-based challenge
+      of stale design.
+    - >-
+      Keep current phone execution routing compact. For Codex, preserve the explicit operator preference that when Codex
+      is actually selected and the current phone surface exposes the selector, use Luna; xhigh is the maximum permitted
+      effort, not a reason to select Codex or xhigh by default. Do not encode hidden or unproven capability limits.
+    - >-
+      Refactor ARCHITECT_CALIBRATION.md to keep only lessons that satisfy its own operator-specific + cross-target reusable
+      + experience-derived admission boundary. Delete or merge lessons whose substance is generic governance already
+      adequately owned by pinned agent-skills. Do not copy generic lessons into another file or repository as part of this task.
+    - >-
+      Update README.md only as needed so repository purpose, bootstrap, and ownership routing match the reduced profile.
+      Fresh bootstrap must not require loading every reusable authority or all calibration by default: load the profile,
+      bind target truth, then load calibration or other owners only when the current material judgment/task actually needs them.
+    - >-
+      Preserve canonical-owner boundaries: architect-profile = operator configuration; ARCHITECT_CALIBRATION.md = compact
+      operator-specific learned judgment; agent-skills = generic work governance; agent-standards = engineering/evidence
+      semantics; agent-documents = documentation structure/closure; agent-runtime = optional local execution capability;
+      target repository = product truth and exact task authority.
+    - >-
+      Prefer delete -> merge -> simplify -> rewrite. Do not replace one mega-document with multiple smaller mandatory
+      documents, indirection layers, generated manifests, registries, context caches, loaders, or a new framework.
+    - >-
+      Preserve historical .agent task/report/review artifacts unchanged. Publish one bounded implementation commit and a
+      separate canonical TASK-0014 report-only child, then stop at NEEDS_REVIEW.
+  allowed_existing_files_or_components:
+    - README.md
+    - ARCHITECT_PROFILE.md
+    - ARCHITECT_CALIBRATION.md
+    - .agent/tasks/TASK-0014/task.yaml
+  expected_files_are_restrictive: true
+
+invariants:
+  - "architect-profile remains operator-specific context, never target product authority or generic governance authority."
+  - "Exactly two organizational roles remain Architect and Executor as owned by pinned agent-skills."
+  - "No reduction may weaken explicit user authority, exact target binding, repository SSOT, fail-closed mutation boundaries, or durable review evidence."
+  - "Successor continuity must remain possible from canonical repositories without hidden chat history."
+  - "Selective loading must reduce default context, not hide authority required for the current decision."
+  - "Phone-only ChatGPT + GitHub remains a first-class Architect/Executor path when current capabilities suffice."
+  - "No new top-level document, schema, registry, loader, context manager, queue, service, workflow, dependency, branch, or repository is introduced."
+  - "Historical task/report/review evidence is immutable."
+  - "Repository topology remains exactly {main}."
+
+forbidden_changes:
+  - "Do not modify agent-skills, agent-standards, agent-documents, agent-runtime, IELTS, or any other repository."
+  - "Do not create new profile/config/calibration shards or relocate duplication into a new mandatory document."
+  - "Do not rewrite pinned agent-skills governance into shorter prose inside architect-profile. Route to the owner instead."
+  - "Do not delete operator-specific preferences merely to minimize byte count. File size is telemetry, not the acceptance criterion."
+  - "Do not change historical .agent tasks, reports, or reviews."
+  - "Do not create branches, PRs, issues, workflows, tags, releases, dependencies, automation, or repository metadata changes."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: revised_contract_required
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: AUTHORITY_REQUIRED
+
+structure_policy:
+  expected_new_files:
+    - .agent/tasks/TASK-0014/report.yaml
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: ""
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - STALE_STATE
+    - REVIEW_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+    - exact_diff_inspection
+  REVIEW:
+    - exact_commit_report_resolution
+    - repository_content_read
+    - repository_content_write
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Profile ownership is narrow and non-duplicative."
+    evidence_required: "ARCHITECT_PROFILE.md retains operator-specific configuration while generic governance already owned by pinned agent-skills is deleted and routed, not paraphrased."
+  - id: AC-2
+    requirement: "Calibration contains only admitted operator-specific learned judgment."
+    evidence_required: "Each retained calibration case materially depends on this operator; generic capability/review/verification/task governance is removed or merged away without creating another owner copy."
+  - id: AC-3
+    requirement: "Fresh bootstrap is selective rather than god-context preload."
+    evidence_required: "README/profile define a bounded bootstrap that loads target truth and only decision-relevant calibration/owners while preserving successor reconstruction and exact authority resolution."
+  - id: AC-4
+    requirement: "Material operator preferences survive subtraction."
+    evidence_required: "Quality, simplicity, docs/reuse discipline, cost/resource discipline, low human-in-loop, GitHub SSOT, phone-first operation, language boundary, compact launch presentation, and evidence-based design challenge remain explicit and coherent."
+  - id: AC-5
+    requirement: "No new context-management framework replaces the removed god-context."
+    evidence_required: "Final diff adds no new top-level documents, schemas, registries, loaders, generated manifests, workflows, dependencies, services, queues, or cross-repository mutations."
+  - id: AC-6
+    requirement: "Reduction is substantial without using byte count as correctness."
+    evidence_required: "Executor reports before/after byte counts for README/profile/calibration and explains the major ownership deletions; semantic checks AC-1 through AC-5 remain the actual quality gate."
+  - id: AC-7
+    requirement: "Publication is bounded and reconstructible."
+    evidence_required: "Implementation changes only README.md, ARCHITECT_PROFILE.md, and/or ARCHITECT_CALIBRATION.md; report is a report-only direct child; topology remains exactly {main}."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Verify exact handoff base, TASK-0014 revision 1, pinned agent-skills revision, and topology exactly {main}."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Build an ownership map for retained versus deleted profile/calibration sections and compare generic semantics against pinned agent-skills before editing."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Inspect final README/profile/calibration as a fresh-bootstrap path and prove required operator-specific decisions remain reachable without mandatory broad preload."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Inspect exact base-to-implementation diff; prove no historical .agent artifact or unlisted file changed and no generic governance was merely reworded into profile."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Record before/after byte counts for README.md, ARCHITECT_PROFILE.md, and ARCHITECT_CALIBRATION.md as non-authoritative context telemetry."
+      required: true
+    - id: CHECK-6
+      command_or_check: "Publish one implementation commit and one report-only direct child; re-read remote final files, diff, parent lineage, and topology before NEEDS_REVIEW."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
