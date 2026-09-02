@@ -1,75 +1,65 @@
 # architect-profile
 
-Canonical operator profile for successor ChatGPT Architects.
+Canonical operator configuration for successor ChatGPT Architects.
 
-This repository answers two related questions:
+This repository answers one question:
 
-> How should the Architect work with this operator?
+> How should an Architect work with this operator?
 
-> What reusable architectural judgment have prior Architects learned while doing so?
-
-It is intentionally small, operator-specific, and designed to be read before repository-specific work begins.
-
-## System role
-
-`architect-profile` is the operator layer in a five-repository engineering system:
-
-```text
-architect-profile
-→ HOW TO WORK WITH THIS OPERATOR
-→ WHAT REUSABLE OPERATOR-SPECIFIC ARCHITECTURAL JUDGMENT HAS BEEN LEARNED
-
-agent-skills
-→ HOW AGENTS GOVERN WORK
-
-agent-standards
-→ WHAT GOOD ENGINEERING LOOKS LIKE
-
-agent-documents
-→ HOW PRODUCT / DESIGN KNOWLEDGE IS STRUCTURED
-
-agent-runtime
-→ OPTIONAL BOUNDED LOCAL EXECUTION / VERIFICATION CAPABILITY
-```
-
-Actual product truth, source code, live tasks, environment-specific configuration, and deployment state remain in the target repository.
-
-The repositories are intentionally separated by ownership. They are not one shared mutable control plane and do not require a central orchestrator.
-
-## Entry point
-
-A fresh Architect should read this README first, then read [`ARCHITECT_PROFILE.md`](ARCHITECT_PROFILE.md) before making operator-specific planning or execution decisions. Before material architecture, planning, or review judgment, also read [`ARCHITECT_CALIBRATION.md`](ARCHITECT_CALIBRATION.md) from the same current canonical GitHub state. Calibration need not be loaded for trivial interaction where it cannot materially affect judgment.
-
-Typical bootstrap:
-
-```text
-architect-profile README
-→ ARCHITECT_PROFILE.md
-→ ARCHITECT_CALIBRATION.md when material judgment is required
-→ target repository README / canonical product authority
-→ applicable agent-* README
-→ only the deeper canonical artifacts required by the current task
-```
-
-The goal is bounded context: understand the system map first, then load only the authority needed for the current decision.
+It does not own generic agent governance or target-product truth.
 
 ## Ownership
 
-[`ARCHITECT_PROFILE.md`](ARCHITECT_PROFILE.md) is the canonical owner of stable operator contract, preferences, working model, and successor-bootstrap expectations.
+```text
+architect-profile
+→ durable operator configuration and working preferences
 
-[`ARCHITECT_CALIBRATION.md`](ARCHITECT_CALIBRATION.md) is the canonical owner of compact, reviewed, operator-specific architectural judgment distilled from experience when that judgment is reusable across target repositories.
+ARCHITECT_CALIBRATION.md
+→ compact operator-specific, cross-target, experience-derived judgment
 
-This repository does **not** own generic agent governance, generic engineering or evidence semantics, documentation architecture, runtime implementation, target-repository design, task history, or secrets.
+agent-skills
+→ generic work governance and task/execution semantics
+
+agent-standards
+→ generic engineering and evidence semantics
+
+agent-documents
+→ documentation structure and closure semantics
+
+agent-runtime
+→ optional local execution capability
+
+target repository
+→ product truth and exact task authority
+```
+
+If two sources appear to own the same rule, keep the rule with the narrowest canonical owner instead of copying it here.
+
+## Selective bootstrap
+
+A fresh Architect should load only the context required for the current decision:
+
+```text
+1. Read this README and ARCHITECT_PROFILE.md from current canonical GitHub main.
+2. Bind the exact target repository and refresh its canonical truth.
+3. Load only the canonical owner or pinned skill material required by the current task or judgment.
+4. Read ARCHITECT_CALIBRATION.md only when operator-specific learned judgment can materially change that judgment.
+5. Expand context only when required evidence is missing, stale, contradictory, or explicitly requested.
+```
+
+Do not preload every `agent-*` repository, all calibration, raw chat history, historical tasks, or broad repository context by default. Selective loading reduces context without hiding authority that is required for the current decision.
+
+Successor continuity must remain reconstructible from canonical repositories without hidden chat history.
 
 ## Maintenance
 
-- Keep this repository small.
-- Modify the existing canonical owner instead of adding files; `ARCHITECT_CALIBRATION.md` exists only because stable profile contract and experience-derived judgment have different semantic roles and change rates.
-- Preserve stable content unless an observed material decision or execution failure proves a profile or calibration change is needed.
-- Do not store passwords, tokens, `.env` values, account identifiers, or other secrets.
-- Do not duplicate rules that have a canonical owner elsewhere.
-- GitHub `main` is the canonical truth for this profile.
-- No CI, Actions, task protocol, dev/staging workflow, or runtime machinery is needed unless a concrete future requirement proves otherwise.
+- Keep this repository small and operator-specific.
+- Prefer delete → merge → simplify → rewrite.
+- Modify the existing canonical owner instead of creating profile shards, registries, loaders, manifests, context managers, or another framework.
+- Keep generic governance with `agent-skills` and target-specific truth with the target repository.
+- Preserve historical `.agent` task, report, and review evidence.
+- Never store secrets, credentials, tokens, private environment values, or sensitive personal data.
+- GitHub `main` is the canonical truth for this repository.
 
 ## License
 
