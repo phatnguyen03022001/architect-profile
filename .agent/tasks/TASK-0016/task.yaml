@@ -1,7 +1,7 @@
 protocol_version: 3
 
 task_id: TASK-0016
-task_revision: 2
+task_revision: 3
 state: APPROVED
 
 origin:
@@ -70,10 +70,10 @@ scope:
     - "Add a compact bootstrap entrypoint that resolves the current architect-profile commit, then the exact authority lock, then capability routing, target repository binding, topology, and execution mode without requiring chat memory or whole-repository preload."
     - "Add an authority lock that pins exact immutable accepted revisions for agent-skills, agent-standards, agent-documents, and agent-runtime. The lock must not self-pin architect-profile."
     - "Add a static capability routing index with exactly one canonical owner/path entrypoint per capability and no mutable registry/state/cache semantics."
-    - "Add the four operator execution surfaces CHATGPT_GITHUB, CODEX_CLOUD, CODEX_LOCAL, and AGENT_RUNTIME, normalized to REMOTE or LOCAL execution classes with GitHub authority and publication/local-workspace policy metadata sufficient for deterministic routing."
+    - "Add exactly four operator execution surfaces: CHATGPT_GITHUB, CHATGPT_LOCAL, CODEX_CLOUD, and CODEX_LOCAL. Normalize each surface by controller, location/class, and transport. CHATGPT_LOCAL uses AGENT_RUNTIME only as its local execution transport; AGENT_RUNTIME is not an execution mode, controller, organizational role, or peer of ChatGPT/Codex."
     - "Add one canonical operator-facing TASK LAUNCH rendering grammar so prompts are views over canonical task/handoff/repository/authority data rather than independently maintained authority text."
     - "Add an explicit repository contract for architect-profile declaring DEV_MAIN, working ref dev, stable ref main, and MANAGED_MIRROR local policy."
-    - "Provide deterministic validation proving every authority-lock SHA resolves, every routed capability path exists at its exact locked revision, each capability has exactly one canonical entrypoint, execution modes normalize without ambiguity, and the repository contract is explicit rather than inferred from checkout state."
+    - "Provide deterministic validation proving every authority-lock SHA resolves, every routed capability path exists at its exact locked revision, each capability has exactly one canonical entrypoint, execution surfaces normalize without ambiguity, and the repository contract is explicit rather than inferred from checkout state."
   allowed_existing_files_or_components:
     - "ARCHITECT_PROFILE.md"
     - "ARCHITECT_CALIBRATION.md"
@@ -84,15 +84,16 @@ scope:
 invariants:
   - "GitHub is canonical repository truth; chat context is non-authoritative convenience only."
   - "architect-profile/main remains stable during implementation; all OPM-01 implementation and report publication occur on dev."
-  - "After the one exact cleanup, remote branch topology is exactly {dev, main}."
+  - "After the one exact cleanup, remote branch topology is exactly {dev, main}; no staging or any third remote branch may exist."
   - "The exact architect-profile commit containing a validated lock is the authority-set identity; architect-profile must not self-pin inside the lock."
   - "A locked SHA or routed path that cannot be resolved fails closed; there is no fallback to main, dev, a nearby commit, or a closest available version."
   - "One capability has one canonical owner/path routing entrypoint. Cross-references may exist, but the routing index must never require the model to merge multiple semantic owners to resolve one capability."
-  - "Execution modes are routing/presentation context, not task authority and not a new organizational role, lifecycle, service, registry, daemon, or persistent execution engine."
+  - "Execution surfaces are routing/presentation context, not task authority and not a new organizational role, lifecycle, service, registry, daemon, or persistent execution engine."
+  - "CHATGPT_LOCAL means ChatGPT controls execution through the Agent Runtime tunnel to the local Mac. Agent Runtime is transport only. CODEX_LOCAL means Codex executes natively in the local workspace. CODEX_CLOUD means Codex executes in its cloud workspace. CHATGPT_GITHUB means ChatGPT operates through GitHub without the local Mac execution surface."
   - "Repository topology is explicit machine-readable target authority after bootstrap; it must never be inferred from the currently checked-out branch."
   - "DEV_MAIN is the operator bootstrap default for newly bootstrapped repositories, but an existing repository contract may explicitly declare another supported topology such as MAIN_ONLY."
   - "MANAGED_MIRROR means GitHub wins for canonical tracked repository state at idle/success boundaries; OPM-01 defines the policy but does not implement a sync daemon or destructive workspace sweep."
-  - "agent-runtime remains execution transport only; this task must not add project registry, synchronization state, workflow authority, planner, queue, daemon, or Git semantic ownership to agent-runtime."
+  - "agent-runtime remains execution transport only; this task must not add project registry, synchronization state, workflow authority, planner, queue, daemon, mode ownership, or Git semantic ownership to agent-runtime."
   - "agent-documents remains target product/design documentation authority; this task must not move task/handoff/report/review workflow templates into agent-documents."
   - "agent-standards remains engineering/evidence semantics authority; this task must not move Git workflow-state meanings such as publication or synchronization into agent-standards."
   - "Normal rollback of a future authority set must be representable by a new forward architect-profile activation commit; OPM-01 must not require force-moving main backward."
@@ -103,6 +104,7 @@ forbidden_changes:
   - "Do not create staging."
   - "Do not create any remote branch. The only branch creation permitted is a local tracking dev branch in the designated canonical local working copy when required to bind exact origin/dev."
   - "Do not delete any remote branch except exact __probe_should_not_create__."
+  - "Do not model AGENT_RUNTIME as an execution surface/mode peer of CHATGPT_GITHUB, CHATGPT_LOCAL, CODEX_CLOUD, or CODEX_LOCAL."
   - "Do not create program.lock, a persistent Execution Capsule, project registry, sync daemon, mode service/engine, database, queue, scheduler, or shared mutable cross-repository authority."
   - "Do not add a third organizational role."
   - "Do not duplicate full support-repository semantics into BOOTSTRAP; bootstrap must remain a compact locator/resolver entrypoint."
@@ -148,7 +150,7 @@ acceptance_criteria:
     requirement: "architect-profile has exact remote topology {dev, main} and explicit DEV_MAIN repository authority with dev as working ref, main as stable ref, and MANAGED_MIRROR local policy; no runtime inference from current checkout is required."
     evidence_required: "Fresh remote branch proof, machine-readable repository contract, validator/test evidence, and exact Git diff."
   - id: AC-2
-    requirement: "A compact bootstrap entrypoint can start from the exact architect-profile revision and mechanically locate the authority lock, capability routing, repository/topology resolution, and execution-mode resolution without whole-ecosystem preload or trusted chat state."
+    requirement: "A compact bootstrap entrypoint can start from the exact architect-profile revision and mechanically locate the authority lock, capability routing, repository/topology resolution, and execution-surface resolution without whole-ecosystem preload or trusted chat state."
     evidence_required: "Bootstrap artifact, bounded reconstruction test, and proof that chat history is not required input."
   - id: AC-3
     requirement: "The P1 authority lock pins exact immutable accepted revisions: agent-skills 337c0be6618090e704b345b1bf93df488a4985af; agent-standards 3f4950f280a3a35fee81471d4b83715fa72cf9ee; agent-documents 6918f46282f4a92bbc61071444a5ff5dab30ddc9; agent-runtime 9d5320d5afbc9aff20834801bfd6695b27cf2a0e, with no architect-profile self-pin and no fallback semantics."
@@ -157,8 +159,8 @@ acceptance_criteria:
     requirement: "Capability routing is static and deterministic: every declared capability resolves to exactly one canonical owner/path, every path exists at its exact locked revision, and duplicate or missing entrypoints fail validation."
     evidence_required: "Routing index and positive/negative validator tests."
   - id: AC-5
-    requirement: "The four execution surfaces CHATGPT_GITHUB, CODEX_CLOUD, CODEX_LOCAL, and AGENT_RUNTIME resolve unambiguously to REMOTE or LOCAL classes and carry sufficient routing metadata to distinguish native-machine access, managed-mirror use, and publication expectations without granting task authority."
-    evidence_required: "Machine-readable execution-mode contract and exhaustive normalization tests."
+    requirement: "Exactly four execution surfaces exist: CHATGPT_GITHUB, CHATGPT_LOCAL, CODEX_CLOUD, and CODEX_LOCAL. They resolve unambiguously by controller and location/class; CHATGPT_LOCAL binds transport AGENT_RUNTIME while CODEX_LOCAL uses native local execution. AGENT_RUNTIME itself is not a mode."
+    evidence_required: "Machine-readable execution-surface contract plus exhaustive positive and negative normalization tests."
   - id: AC-6
     requirement: "There is one canonical TASK LAUNCH rendering grammar driven from canonical inputs; operator-facing prompt text is presentation/view data and does not duplicate task authority."
     evidence_required: "Rendering grammar/template plus representative deterministic render fixtures for all four execution surfaces."
@@ -172,10 +174,10 @@ acceptance_criteria:
 verification:
   executor_checks:
     - id: CHECK-1
-      command_or_check: "Run the repository-native validator/test suite covering bootstrap, lock resolution, routing uniqueness/path existence, execution-mode normalization, repository contract, and rendering fixtures."
+      command_or_check: "Run the repository-native validator/test suite covering bootstrap, lock resolution, routing uniqueness/path existence, execution-surface normalization, repository contract, and rendering fixtures."
       required: true
     - id: CHECK-2
-      command_or_check: "Run negative tests proving unresolvable locked SHA, missing routed path, duplicate capability entrypoint, and ambiguous/unknown execution mode fail closed."
+      command_or_check: "Run negative tests proving unresolvable locked SHA, missing routed path, duplicate capability entrypoint, unknown/ambiguous execution surface, and AGENT_RUNTIME-as-mode all fail closed."
       required: true
     - id: CHECK-3
       command_or_check: "Run a fresh-context reconstruction fixture that starts with only the target/bootstrap locator and exact Git state and resolves the locked capability entrypoints without conversational memory."
