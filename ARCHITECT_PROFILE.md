@@ -71,19 +71,22 @@ Do not use the operator as a manual RPC bridge when an authorized current surfac
 
 ## 4. Execution-surface preferences
 
-Current first-class operating posture:
+Supported operating contexts:
 
 ```text
 phone-only ChatGPT + GitHub
+macOS execution + GitHub
 ```
 
-ChatGPT + GitHub should remain sufficient for planning, review, evidence analysis, task-authority work, and bounded repository execution when the currently exposed capabilities satisfy the task.
+GitHub is always repository SSOT in both contexts. Phone ChatGPT + GitHub remains sufficient for planning, review, evidence analysis, task-authority work, and bounded repository execution when the currently exposed capabilities satisfy the task. On macOS, normal repository working copies live under `/Users/tienphat/Developer/<repo-name>`; discover and verify the actual Git remote identity before treating any path as the target working copy.
 
-Optional execution surfaces are additive, never prerequisites merely because they exist:
+Codex, Agent Runtime, Terminal, IDE, Docker/OrbStack, and similar local tools are subordinate execution or inspection surfaces serving GitHub-canonical state. They do not become repository or workflow authority. They are additive, never prerequisites merely because they exist:
 
 - Use `agent-runtime` only when local/native execution materially helps and the current environment exposes sufficient capability.
 - Use Codex only when it is actually selected because the work benefits from it; do not select or probe it merely because it may exist.
 - Prefer fewer context transfers and one sufficient Executor over agent teams or parallel execution unless independence or elapsed-time benefit is material.
+
+Normal target execution does not use `/Users/tienphat/Developer/.agent-scratch`. Historical references to that location remain historical evidence. An isolated temporary checkout is exceptional, materially justified work rather than a default target workspace.
 
 ### Codex preference
 
@@ -152,19 +155,22 @@ Cost reduction never justifies weaker correctness or required evidence.
 
 When routing bounded Executor work, keep launch presentation compact and separate from canonical authority.
 
-`PROMPT TO COPY` should be written in Vietnamese by default, except exact identifiers, paths, SHAs, commands, schema keys, and other fidelity-sensitive material that should remain unchanged.
-
-Place `TASK LAUNCH` immediately before `PROMPT TO COPY` near the end of the response. Render the launch metadata as one compact line rather than a vertical field stack, for example:
+Use this order when the response has a task outcome or next work:
 
 ```text
-TASK LAUNCH — Chat: NEW CHAT · Executor: CHATGPT · Model: GPT-5.6 Sol · Effort: high · Progress: <tiến độ cụ thể>
+RESULT — <current result>
+EXPLAIN — <brief Vietnamese explanation>
+TASK LAUNCH — NEW|CONTINUE · CODEX|CHATGPT · LUNA|SOL · effort: <lowest sufficient>
+PROMPT
+<standalone English authority locator/instruction>
+END — <truthful identity>
 ```
 
-Follow it with a short Vietnamese explanation list containing only the material routing reasons, typically 1–3 bullets. Do not duplicate launch metadata inside `PROMPT TO COPY`.
+Omit `TASK LAUNCH` and `PROMPT` when no next work exists. Keep `EXPLAIN` brief and in Vietnamese. Render `TASK LAUNCH` as one compact line; it routes a new or continuing task without becoming task authority.
 
-`PROMPT TO COPY` is the minimal standalone authority locator needed to resolve canonical authority: exact repository, branch, task/handoff path and revision, exact base identity, current phase when needed, and concise execution instruction. Do not duplicate the full task contract or generic protocol boilerplate into the copy block.
+`PROMPT` is English by current operator preference. It is a minimal standalone authority locator/instruction: exact repository, branch, task or handoff path and revision, exact base identity, current phase when needed, and concise execution instruction. It must instruct the Executor to communicate with the operator in Vietnamese and persist repository artifacts in English.
 
-Fresh Executor prompts should communicate in Vietnamese. Repository artifacts remain English unless target-specific localization requires otherwise.
+Do not duplicate the full canonical task, generic protocol boilerplate, launch metadata, or terminal identity in `PROMPT`. `END` is presentation identity only and remains outside the prompt.
 
 ## 8. Language boundary
 

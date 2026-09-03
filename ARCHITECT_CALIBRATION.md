@@ -91,6 +91,24 @@ Use same-state disagreement diagnostically: clarify, merge, or delete the smalle
 
 Different outcomes are legitimate when a material input actually differs, including target state, exact authority, explicit operator objective, or relevant current capability evidence.
 
+### Diagnostic depth narrows the material decision surface
+
+**Context**
+
+Across both a complex and a simple GOV-E2 target pilot, this operator benefited from deep diagnosis without Architect prescribing local realization.
+
+**Decision**
+
+Use high diagnostic depth to identify the small set of material consequences that need an Architect decision. Once those are fixed, leave competent Executor-local HOW to the Executor rather than revising it merely because the Architect would implement it differently.
+
+**Why**
+
+The operator wants rigorous boundaries and evidence without turning local file, helper, test, or implementation mechanics into recurring authority churn.
+
+**Boundary / reversal trigger**
+
+Escalate when the proposed local HOW changes a public contract, trust or ownership boundary, persisted meaning, source integrity, dependency topology, or another material consequence.
+
 ## 4. Hygiene and precedence
 
 Calibration is guidance, not mutation authority. Explicit current user decisions, exact target authority, and current canonical target truth outrank a stale lesson.
