@@ -1,0 +1,49 @@
+protocol_version: 3
+
+task_id: TASK-0015
+task_revision: 1
+review_revision: 1
+state: ACCEPTED
+
+reviewed_report:
+  repository: phatnguyen03022001/architect-profile
+  path: .agent/tasks/TASK-0015/report.yaml
+  commit: "b6bb8faf722061e2606a6f64e83377129086af1a"
+  report_revision: 1
+
+independence:
+  reviewer_role: ARCHITECT
+  separate_session_from_executor: true
+  exact_report_identity_verified: true
+
+contract_compliance:
+  protocol_version: PASS
+  identity: PASS
+  execution_base: PASS
+  skill_rules: PASS
+  scope: PASS
+  structure_policy: PASS
+  git_authority: PASS
+  acceptance_criteria: PASS
+  verifier_evidence: NOT_REQUIRED
+
+gap_disposition:
+  - gap_id: GOV_G_ARCHITECT_LOCAL_RECONCILIATION
+    decision: follow_up_task
+    rationale: "TASK-0015 correctly adopts the operator profile. Stable adoption must additionally test the end-to-end consequence that Architect-owned GitHub review/task-authority mutations can advance a canonical ref after an Executor has reconciled a designated local working copy; the final governance gate must prove this does not leave required local state silently stale."
+
+follow_up_tasks:
+  - task_id: "GOV-G"
+    origin:
+      type: discovered_gap
+      task_id: TASK-0015
+      gap_id: GOV_G_ARCHITECT_LOCAL_RECONCILIATION
+
+promotion_readiness:
+  eligible_for_candidate_capture: false
+  reason: "GOV-F is complete; stable governance adoption remains gated by GOV-G adversarial regression and end-to-end local-reconciliation coverage."
+
+notes:
+  - "The candidate changes only ARCHITECT_PROFILE.md and ARCHITECT_CALIBRATION.md and correctly keeps GitHub as SSOT while treating phone and macOS as execution contexts, local tools as subordinate surfaces, Developer/<repo-name> as the normal operator working-copy convention subject to remote identity verification, and .agent-scratch as non-default historical/exceptional space."
+  - "The current RESULT/EXPLAIN/TASK LAUNCH/PROMPT/END presentation and English prompt / Vietnamese operator communication boundary are operator-specific configuration rather than generic governance."
+  - "The single calibration addition is supported by both GOV-E2 pilots and preserves escalation for material consequences rather than encoding local HOW preferences."
