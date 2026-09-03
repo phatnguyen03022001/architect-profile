@@ -71,33 +71,22 @@ Do not use the operator as a manual RPC bridge when an authorized current surfac
 
 ## 4. Execution-surface preferences
 
-Supported operating contexts:
+The canonical operator execution routing is machine-readable in [`.agent/bootstrap/bootstrap.json`](.agent/bootstrap/bootstrap.json). Exactly four execution surfaces exist:
 
-```text
-phone-only ChatGPT + GitHub
-macOS execution + GitHub
-```
+| Surface | Controller | Location | Transport | Model | Effort |
+| --- | --- | --- | --- | --- | --- |
+| `CHATGPT_GITHUB` | `CHATGPT` | `GITHUB` | `GITHUB` | `GPT-5.6 Sol` | `HIGH` |
+| `CHATGPT_LOCAL` | `CHATGPT` | `LOCAL` | `AGENT_RUNTIME` | `GPT-5.6 Sol` | `HIGH` |
+| `CODEX_CLOUD` | `CODEX` | `CLOUD` | `NATIVE` | `LUNA` | `XHIGH` |
+| `CODEX_LOCAL` | `CODEX` | `LOCAL` | `NATIVE` | `LUNA` | `XHIGH` |
 
-GitHub is always repository SSOT in both contexts. Phone ChatGPT + GitHub remains sufficient for planning, review, evidence analysis, task-authority work, and bounded repository execution when the currently exposed capabilities satisfy the task. On macOS, normal repository working copies live under `/Users/tienphat/Developer/<repo-name>`; discover and verify the actual Git remote identity before treating any path as the target working copy.
+`AGENT_RUNTIME` is transport only for `CHATGPT_LOCAL`. It is not an execution surface, mode, controller, organizational role, workflow authority, or peer of ChatGPT/Codex. `CODEX_LOCAL` executes natively in the local workspace; `CODEX_CLOUD` executes in its cloud workspace; `CHATGPT_GITHUB` operates through GitHub without the local Mac execution surface.
 
-Codex, Agent Runtime, Terminal, IDE, Docker/OrbStack, and similar local tools are subordinate execution or inspection surfaces serving GitHub-canonical state. They do not become repository or workflow authority. They are additive, never prerequisites merely because they exist:
+The model/effort mapping above is exact for these operator routes. Runtime availability may block the selected surface, but it must not silently substitute another model, effort, controller, or surface.
 
-- Use `agent-runtime` only when local/native execution materially helps and the current environment exposes sufficient capability.
-- Use Codex only when it is actually selected because the work benefits from it; do not select or probe it merely because it may exist.
-- Prefer fewer context transfers and one sufficient Executor over agent teams or parallel execution unless independence or elapsed-time benefit is material.
+GitHub remains repository SSOT for every surface. On macOS, normal repository working copies live under `/Users/tienphat/Developer/<repo-name>`; discover and verify the actual Git remote identity before treating any path as the target working copy. Local tools remain subordinate execution or inspection mechanisms serving GitHub-canonical state.
 
-Normal target execution does not use `/Users/tienphat/Developer/.agent-scratch`. Historical references to that location remain historical evidence. An isolated temporary checkout is exceptional, materially justified work rather than a default target workspace.
-
-### Codex preference
-
-When Codex is actually selected and the current phone surface exposes the relevant selectors:
-
-```text
-Model: Luna
-Effort: choose the lowest sufficient setting; xhigh is the maximum permitted effort
-```
-
-`xhigh` is a ceiling, not a default and not a reason to select Codex. `Luna` is a preference only when the current selector confirms that label. Never invent or persist hidden capability limits, model availability, reasoning budgets, context limits, quotas, CPU/RAM, package inventory, or other unproven runtime properties as profile truth.
+Prefer fewer context transfers and one sufficient Executor over agent teams or parallel execution unless independence or elapsed-time benefit is material. Normal target execution does not use `/Users/tienphat/Developer/.agent-scratch`; an isolated temporary checkout is exceptional, materially justified work rather than a default target workspace.
 
 ## 5. GitHub, context, and ownership
 
@@ -108,10 +97,12 @@ Use context selectively. Load the minimum canonical material that can change the
 Default fresh bootstrap:
 
 ```text
-architect-profile README + ARCHITECT_PROFILE.md
-→ bind exact target repository and refresh target truth
-→ load only decision-relevant canonical owners / pinned skills
-→ load ARCHITECT_CALIBRATION.md only when learned operator-specific judgment is materially relevant
+exact architect-profile commit P
+→ .agent/bootstrap/bootstrap.json @ P
+→ exact authority lock @ P
+→ canonical task/handoff target binding + explicit repository contract
+→ only required capability owner/path at its locked revision
+→ ARCHITECT_PROFILE.md and optional material calibration
 ```
 
 Do not preload all reusable governance, all calibration, raw conversation history, historical task evidence, or broad repository trees merely for completeness. Selective loading must never omit authority required for the current decision.
@@ -153,24 +144,24 @@ Cost reduction never justifies weaker correctness or required evidence.
 
 ## 7. Operator-facing task presentation
 
-When routing bounded Executor work, keep launch presentation compact and separate from canonical authority.
+When routing bounded Executor work, keep launch presentation compact and separate from canonical authority. The canonical rendering grammar and locator-only prompt template are in [`.agent/bootstrap/bootstrap.json`](.agent/bootstrap/bootstrap.json); render them from canonical task/handoff/repository data and the selected execution surface instead of maintaining independent authority text.
 
 Use this order when the response has a task outcome or next work:
 
 ```text
 RESULT — <current result>
 EXPLAIN — <brief Vietnamese explanation>
-TASK LAUNCH — NEW|CONTINUE · CODEX|CHATGPT · LUNA|SOL · effort: <lowest sufficient>
+TASK LAUNCH — NEW|CONTINUE · <execution surface> · <model from surface> · effort: <effort from surface>
 PROMPT
-<standalone English authority locator/instruction>
+<standalone English locator/instruction rendered from canonical inputs>
 END — <truthful identity>
 ```
 
-Omit `TASK LAUNCH` and `PROMPT` when no next work exists. Keep `EXPLAIN` brief and in Vietnamese. Render `TASK LAUNCH` as one compact line; it routes a new or continuing task without becoming task authority.
+Omit `TASK LAUNCH` and `PROMPT` when no next work exists. `TASK LAUNCH` is presentation only: `NEW|CONTINUE` plus one of `CHATGPT_GITHUB`, `CHATGPT_LOCAL`, `CODEX_CLOUD`, or `CODEX_LOCAL`, with model/effort derived from that surface's exact routing contract.
 
-`PROMPT` is English by current operator preference. It is a minimal standalone authority locator/instruction: exact repository, branch, task or handoff path and revision, exact base identity, current phase when needed, and concise execution instruction. It must instruct the Executor to communicate with the operator in Vietnamese and persist repository artifacts in English.
+`PROMPT` is English by current operator preference. Its canonical inputs are the exact repository, branch, task path, task revision, base HEAD, phase, and execution surface. It locates authority; it does not duplicate the full canonical task, generic protocol boilerplate, or an independently maintained model/effort rule. It instructs the Executor to communicate with the operator in Vietnamese and persist repository artifacts in English.
 
-Do not duplicate the full canonical task, generic protocol boilerplate, launch metadata, or terminal identity in `PROMPT`. `END` is presentation identity only and remains outside the prompt.
+`END` is presentation identity only and remains outside the prompt.
 
 ## 8. Language boundary
 

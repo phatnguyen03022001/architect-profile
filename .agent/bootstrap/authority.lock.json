@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "repositories": {
+    "agent-skills": {
+      "repository": "phatnguyen03022001/agent-skills",
+      "revision": "337c0be6618090e704b345b1bf93df488a4985af"
+    },
+    "agent-standards": {
+      "repository": "phatnguyen03022001/agent-standards",
+      "revision": "3f4950f280a3a35fee81471d4b83715fa72cf9ee"
+    },
+    "agent-documents": {
+      "repository": "phatnguyen03022001/agent-documents",
+      "revision": "6918f46282f4a92bbc61071444a5ff5dab30ddc9"
+    },
+    "agent-runtime": {
+      "repository": "phatnguyen03022001/agent-runtime",
+      "revision": "9d5320d5afbc9aff20834801bfd6695b27cf2a0e"
+    }
+  }
+}

@@ -37,17 +37,24 @@ If two sources appear to own the same rule, keep the rule with the narrowest can
 
 ## Selective bootstrap
 
-A fresh Architect should load only the context required for the current decision:
+The machine-readable entrypoint is [`.agent/bootstrap/bootstrap.json`](.agent/bootstrap/bootstrap.json). Start from one exact `architect-profile` commit `P`; that commit is the authority-set identity and is not self-pinned inside the authority lock.
+
+A fresh Architect should resolve only the context required for the current decision:
 
 ```text
-1. Read this README and ARCHITECT_PROFILE.md from current canonical GitHub main.
-2. Bind the exact target repository and refresh its canonical truth.
-3. Load only the canonical owner or pinned skill material required by the current task or judgment.
-4. Read ARCHITECT_CALIBRATION.md only when operator-specific learned judgment can materially change that judgment.
-5. Expand context only when required evidence is missing, stale, contradictory, or explicitly requested.
+1. Resolve the exact architect-profile commit P from accepted repository authority or an explicit handoff.
+2. Read .agent/bootstrap/bootstrap.json at P, then its exact authority lock.
+3. Bind the target from the canonical task or handoff and use an explicit repository contract/topology rather than current checkout state.
+4. Route only the capabilities required for the current decision to their one locked owner/path entrypoint.
+5. Load ARCHITECT_PROFILE.md and, only when materially relevant, ARCHITECT_CALIBRATION.md.
+6. Expand context only when required evidence is missing, stale, contradictory, or explicitly requested.
 ```
 
-Do not preload every `agent-*` repository, all calibration, raw chat history, historical tasks, or broad repository context by default. Selective loading reduces context without hiding authority that is required for the current decision.
+The bootstrap files are static locators and validation inputs, not a registry, daemon, cache, execution engine, or duplicated copy of support-repository semantics. Do not preload every `agent-*` repository, all calibration, raw chat history, historical tasks, or broad repository context by default.
+
+After an authority set is accepted and promoted, `main` is the stable activation ref. `dev` is the integration/evolution ref. `DEV_MAIN` is the default for newly bootstrapped repositories; an existing repository may explicitly remain `MAIN_ONLY` when its own authority says so. A future rollback is another forward activation commit, never a requirement to force-move `main` backward.
+
+`MANAGED_MIRROR` means GitHub wins for tracked repository state at idle and successful task boundaries. Local reset/reclone reconciliation is allowed only when it cannot discard operator-owned edits; the policy does not authorize a sync daemon, background service, or destructive workspace sweep.
 
 Successor continuity must remain reconstructible from canonical repositories without hidden chat history.
 
@@ -59,7 +66,7 @@ Successor continuity must remain reconstructible from canonical repositories wit
 - Keep generic governance with `agent-skills` and target-specific truth with the target repository.
 - Preserve historical `.agent` task, report, and review evidence.
 - Never store secrets, credentials, tokens, private environment values, or sensitive personal data.
-- GitHub `main` is the canonical truth for this repository.
+- GitHub is canonical repository truth. The explicit repository contract is `DEV_MAIN`: working/evolution ref `dev`, stable ref `main`, local policy `MANAGED_MIRROR`.
 
 ## License
 

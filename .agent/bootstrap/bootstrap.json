@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "authority_lock": ".agent/bootstrap/authority.lock.json",
+  "repository_contract": {
+    "repository": "phatnguyen03022001/architect-profile",
+    "topology": "DEV_MAIN",
+    "working_ref": "dev",
+    "stable_ref": "main",
+    "local_policy": "MANAGED_MIRROR"
+  },
+  "bootstrap_default_topology": "DEV_MAIN",
+  "capability_routes": [
+    {
+      "capability": "architect",
+      "owner": "agent-skills",
+      "path": "architect/SKILL.md"
+    },
+    {
+      "capability": "executor",
+      "owner": "agent-skills",
+      "path": "executor/SKILL.md"
+    },
+    {
+      "capability": "task_protocol",
+      "owner": "agent-skills",
+      "path": "protocols/TASK_PROTOCOL.md"
+    },
+    {
+      "capability": "simplicity",
+      "owner": "agent-skills",
+      "path": "simplicity/SKILL.md"
+    },
+    {
+      "capability": "github_workflow",
+      "owner": "agent-skills",
+      "path": "github-workflow/SKILL.md"
+    },
+    {
+      "capability": "verification",
+      "owner": "agent-skills",
+      "path": "verification/SKILL.md"
+    },
+    {
+      "capability": "engineering_assurance",
+      "owner": "agent-standards",
+      "path": "STANDARD_MODEL.md"
+    },
+    {
+      "capability": "documentation_closure",
+      "owner": "agent-documents",
+      "path": "DOCUMENT_MODEL.md"
+    },
+    {
+      "capability": "local_execution_transport",
+      "owner": "agent-runtime",
+      "path": "README.md"
+    }
+  ],
+  "execution_surfaces": [
+    {
+      "id": "CHATGPT_GITHUB",
+      "controller": "CHATGPT",
+      "location": "GITHUB",
+      "transport": "GITHUB",
+      "model": "GPT-5.6 Sol",
+      "effort": "HIGH"
+    },
+    {
+      "id": "CHATGPT_LOCAL",
+      "controller": "CHATGPT",
+      "location": "LOCAL",
+      "transport": "AGENT_RUNTIME",
+      "model": "GPT-5.6 Sol",
+      "effort": "HIGH"
+    },
+    {
+      "id": "CODEX_CLOUD",
+      "controller": "CODEX",
+      "location": "CLOUD",
+      "transport": "NATIVE",
+      "model": "LUNA",
+      "effort": "XHIGH"
+    },
+    {
+      "id": "CODEX_LOCAL",
+      "controller": "CODEX",
+      "location": "LOCAL",
+      "transport": "NATIVE",
+      "model": "LUNA",
+      "effort": "XHIGH"
+    }
+  ],
+  "task_launch": {
+    "line_template": "TASK LAUNCH — {continuation} · {surface} · {model} · effort: {effort}",
+    "continuations": [
+      "NEW",
+      "CONTINUE"
+    ],
+    "prompt_inputs": [
+      "repository",
+      "branch",
+      "task_path",
+      "task_revision",
+      "base_head",
+      "phase",
+      "surface"
+    ],
+    "fixtures": {
+      "CHATGPT_GITHUB": "TASK LAUNCH — NEW · CHATGPT_GITHUB · GPT-5.6 Sol · effort: HIGH",
+      "CHATGPT_LOCAL": "TASK LAUNCH — NEW · CHATGPT_LOCAL · GPT-5.6 Sol · effort: HIGH",
+      "CODEX_CLOUD": "TASK LAUNCH — NEW · CODEX_CLOUD · LUNA · effort: XHIGH",
+      "CODEX_LOCAL": "TASK LAUNCH — NEW · CODEX_LOCAL · LUNA · effort: XHIGH"
+    },
+    "prompt_template": "Target: {repository}\nBranch: {branch}\nTask: {task_path}\nTask revision: {task_revision}\nExact base HEAD: {base_head}\nPhase: {phase}\nExecution surface: {surface}\nResolve the canonical task at the exact base and obey it exactly. Communicate with the operator in Vietnamese. Persist repository artifacts in English."
+  },
+  "authority_set_identity": {
+    "source": "ARCHITECT_PROFILE_COMMIT",
+    "self_pin": false,
+    "evolution_ref": "dev",
+    "activation_ref": "main",
+    "rollback": "FORWARD_ACTIVATION_COMMIT"
+  },
+  "target_binding": {
+    "source": "CANONICAL_TASK_OR_HANDOFF",
+    "required_fields": [
+      "repository",
+      "branch",
+      "task_path",
+      "task_revision",
+      "base_head",
+      "phase"
+    ]
+  }
+}
