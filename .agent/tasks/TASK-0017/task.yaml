@@ -1,0 +1,199 @@
+protocol_version: 3
+
+task_id: TASK-0017
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: discovered_gap
+  task_id: TASK-0016
+  gap_id: "OPM-02"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: 337c0be6618090e704b345b1bf93df488a4985af
+
+architect_analysis_skills:
+  - architect
+  - simplicity
+  - github-workflow
+
+execution_skills:
+  required:
+    - executor
+    - simplicity
+    - github-workflow
+    - verification
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "operator-approved OPM-02 decisions in the current Architect conversation"
+    role: "current operator execution-routing and context-preservation authority"
+    precedence: 1
+  - source: "phatnguyen03022001/architect-profile@9ba53cbdc5d5fb3545dfc8990f28ca568c4b96dc"
+    role: "accepted OPM-01 bootstrap foundation and TASK-0016 review disposition"
+    precedence: 2
+  - source: "phatnguyen03022001/agent-skills@337c0be6618090e704b345b1bf93df488a4985af"
+    role: "accepted generic two-role, task-binding, Architect, Executor, and Git workflow authority"
+    precedence: 3
+
+structure_authority:
+  status: RESOLVED
+  source: "accepted OPM-01 bootstrap structure"
+  rationale: "Adapt the existing bootstrap/profile projections in place. OPM-02 must not add a role framework, routing engine, registry, service, schema family, or new lifecycle artifact."
+
+objective: "Materialize the operator-specific OPM-02 correction without duplicating generic governance: keep Architect as ChatGPT, keep all delegated agents/sessions as Executors under pinned agent-skills semantics, update Codex execution routing to LUNA/MEDIUM, preserve exact four-surface routing, and make target binding fail closed instead of relying on stale conversation or local checkout inference."
+
+scope:
+  required_changes:
+    - "Update the existing machine-readable operator execution routes so CHATGPT_GITHUB and CHATGPT_LOCAL remain GPT-5.6 Sol/HIGH while CODEX_CLOUD and CODEX_LOCAL become exactly LUNA/MEDIUM. Runtime unavailability may block a route but must not silently substitute another model, effort, controller, or surface."
+    - "Preserve exactly four execution surfaces: CHATGPT_GITHUB, CHATGPT_LOCAL, CODEX_CLOUD, and CODEX_LOCAL. CHATGPT_LOCAL continues to use AGENT_RUNTIME only as transport; CODEX_LOCAL remains native local execution; CODEX_CLOUD remains native cloud execution."
+    - "Keep generic organizational-role semantics owned by the exact pinned agent-skills authority instead of copying them into architect-profile. The operator-facing profile may state the durable consequence: Architect is always ChatGPT; delegated ChatGPT/Codex sessions are Executors; coder, verifier, red-team, researcher, review-advisory, ecosystem-evolution, and similar labels are Executor specializations, not additional organizational roles; final canonical acceptance remains Architect judgment."
+    - "Preserve Architect self-mutation as the existing pinned generic micro-maintenance exception rather than creating a new role, lane, or self-review lifecycle. Record only the operator preference that implementation likely to materially pollute vision/authority context should be dispatched to an Executor; do not broaden generic micro-maintenance authority in this repository."
+    - "Clarify repository binding behavior without adding a repo registry: repository-specific work requires an explicit current target identity from the operator/current canonical binding, followed by fresh GitHub resolution. If no target can be resolved from the explicit current request or an exact active binding, ask the operator rather than guessing from stale chat history, remembered projects, cwd, or a local directory name."
+    - "Update the existing TASK LAUNCH/prompt projections and deterministic fixtures to render the corrected execution routing from canonical inputs. Prompt remains a compact authority locator/view and must not duplicate full task or generic role/protocol semantics."
+    - "Update only the existing bounded validator/tests needed to prove the corrected routes, fail-closed behavior, role-owner boundary, and fresh-context bootstrap consequences. Reuse the existing OPM-01 validator/test surface; do not create a second validator framework."
+  allowed_existing_files_or_components:
+    - ".agent/bootstrap/authority.lock.json"
+    - ".agent/bootstrap/bootstrap.json"
+    - ".agent/bootstrap/validate.py"
+    - ".agent/bootstrap/test_bootstrap.py"
+    - "ARCHITECT_PROFILE.md"
+    - "README.md"
+    - "existing repository-native validation/test surfaces"
+
+invariants:
+  - "GitHub remains the only canonical repository truth; chat/model/session context is disposable convenience only."
+  - "Exactly two organizational roles remain canonical under pinned agent-skills: Architect and Executor. OPM-02 creates no Reviewer, RedTeam, Runtime, Codex, controller, or specialization role."
+  - "Architect remains ChatGPT. Codex never becomes Architect; when Codex is used it is an Executor."
+  - "Generic role/task/review/micro-maintenance semantics remain owned by agent-skills. architect-profile owns only operator-specific defaults, routing, bootstrap, and presentation consequences."
+  - "The exact four execution surfaces remain distinct by controller/location/transport; AGENT_RUNTIME remains transport only."
+  - "Operator routing is exact for OPM-02: CHATGPT_GITHUB -> GPT-5.6 Sol/HIGH; CHATGPT_LOCAL -> GPT-5.6 Sol/HIGH; CODEX_CLOUD -> LUNA/MEDIUM; CODEX_LOCAL -> LUNA/MEDIUM."
+  - "A repository target is never inferred merely from current local checkout, cwd, previous chat memory, or nearby repository history."
+  - "OPM-02 does not change branch lifecycle. Current physical remote topology remains {dev, main}; logical staging-disabled semantics belong to OPM-03."
+  - "OPM-02 does not define managed-mirror reconciliation, .env normalization, scratch/build/cache ownership, cleanup, or local resource policy; those belong to OPM-04."
+  - "OPM-01 remains accepted historical truth. This task is a forward correction and must not revise TASK-0016 task/report/review artifacts."
+
+forbidden_changes:
+  - "Do not mutate agent-skills, agent-standards, agent-documents, agent-runtime, or any target product repository."
+  - "Do not mutate or promote architect-profile/main."
+  - "Do not create, delete, or rename any remote branch. Do not create staging in this task."
+  - "Do not introduce a third organizational role or encode Executor specializations as roles."
+  - "Do not create a role engine, mode engine, planner, orchestrator, registry, daemon, database, queue, scheduler, persistent execution capsule, provider pool, or availability registry."
+  - "Do not duplicate the Task Protocol, Architect skill, Executor skill, review semantics, or micro-maintenance rules into bootstrap/profile artifacts. Route to their exact pinned canonical owner instead."
+  - "Do not broaden Architect micro-maintenance authority or invent a normal Architect self-execution lifecycle in this repository."
+  - "Do not implement OPM-03 branch-model/staging semantics or OPM-04 local/env/resource semantics."
+  - "Do not turn TASK LAUNCH into a parser, template language, renderer registry, CLI framework, or presentation subsystem."
+  - "Do not expand the capability index unless a concrete OPM-02 acceptance requirement cannot be satisfied by an existing route; any new route requires explicit evidence and must have exactly one canonical owner/path."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  REVIEW:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - remote_ref_read
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "The existing OPM bootstrap exposes exactly four execution surfaces with exact operator routes GPT-5.6 Sol/HIGH for both ChatGPT surfaces and LUNA/MEDIUM for both Codex surfaces; AGENT_RUNTIME is transport only and unauthorized model/effort substitutions fail closed."
+    evidence_required: "Exact machine-readable routing diff plus exhaustive positive/negative normalization and rendering tests."
+  - id: AC-2
+    requirement: "Fresh bootstrap preserves one canonical owner for generic role semantics: pinned agent-skills. architect-profile records only operator-specific consequences and does not create another role taxonomy, task protocol, review owner, or self-execution lifecycle."
+    evidence_required: "Changed-surface review plus validator/test or deterministic assertions proving canonical capability routes still point to the pinned agent-skills entrypoints and no duplicate role authority is introduced."
+  - id: AC-3
+    requirement: "Repository-specific work cannot silently bind from cwd, local directory naming, or stale conversation memory. Explicit target identity/current exact binding is required and fresh GitHub resolution remains mandatory; unresolved target selection fails closed to operator clarification rather than guessing."
+    evidence_required: "Profile/bootstrap contract evidence and a bounded fresh-context fixture or equivalent deterministic proof that target binding comes only from canonical locator inputs, not implicit local/chat state."
+  - id: AC-4
+    requirement: "TASK LAUNCH and PROMPT remain deterministic projections over canonical locator/surface inputs and render the corrected LUNA/MEDIUM Codex routes without duplicating task scope or generic governance."
+    evidence_required: "Representative deterministic fixtures for all four surfaces and exact prompt-input validation."
+  - id: AC-5
+    requirement: "OPM-02 remains a minimum routing correction: no branch-model/staging implementation, managed-mirror/env work, new subsystem, new role, new lifecycle, support-repository mutation, or unnecessary capability-taxonomy growth is introduced."
+    evidence_required: "Exact base-to-implementation changed paths, simplicity review, and negative assertions for forbidden scope."
+  - id: AC-6
+    requirement: "Implementation and report publication close on dev with independent GitHub SHA observation after each push and final canonical remote evidence sufficient for Architect review; main remains unchanged."
+    evidence_required: "Exact implementation SHA, independent remote dev observation, exact report-only child SHA, second remote observation, and final branch/topology proof."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Run the existing repository-native OPM bootstrap test suite and require all tests PASS."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Run the existing bootstrap validator with immutable remote resolution and require OPM_BOOTSTRAP = TRUE."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Run negative tests proving LUNA/XHIGH or any other unauthorized Codex model/effort route fails closed; AGENT_RUNTIME-as-mode and unknown/ambiguous surfaces must continue to fail closed."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Run a fresh-context reconstruction fixture using only exact profile/bootstrap identity, canonical target/task locator inputs, requested capability slices, and selected controller/location; no trusted conversation history or cwd inference may be required."
+      required: true
+    - id: CHECK-5
+      command_or_check: "python3 -m py_compile .agent/bootstrap/validate.py .agent/bootstrap/test_bootstrap.py && git diff --check"
+      required: true
+    - id: CHECK-6
+      command_or_check: "Fresh-resolve remote branches and require current physical topology exactly {dev, main} with main unchanged from the authorized planning base; verify exact changed paths are the smallest sufficient OPM-02 surface."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
