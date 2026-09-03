@@ -1,0 +1,215 @@
+protocol_version: 3
+
+task_id: TASK-0015
+task_revision: 1
+report_revision: 1
+state: REPORTED
+terminal_status: NEEDS_REVIEW
+
+task_source:
+  path: .agent/tasks/TASK-0015/task.yaml
+  commit: "ac322e96cb40634689019821059aba2d657a347c"
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical
+  authorized_base_head: "ac322e96cb40634689019821059aba2d657a347c"
+  pre_execution_head: "ac322e96cb40634689019821059aba2d657a347c"
+  final_execution_head: "d65bb06509d16fadea4f58bfee7de08e43d7a7a9"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "16217bb78a578160efb68afc84acdeff9c36ed38"
+  observed_revision: "16217bb78a578160efb68afc84acdeff9c36ed38"
+
+execution_skills_used:
+  required:
+    - executor
+    - verification
+    - simplicity
+  recommended: []
+  external:
+    - superpowers:using-superpowers
+    - superpowers:executing-plans
+    - superpowers:test-driven-development
+    - superpowers:verification-before-completion
+
+pre_execution_checks:
+  protocol_version_supported: true
+  handoff_type_confirmed: true
+  task_at_base_confirmed: true
+  task_identity_confirmed: true
+  architect_binding_confirmed: true
+  repository_confirmed: true
+  branch_confirmed: true
+  base_head_confirmed: true
+  skill_revision_confirmed: true
+  required_execution_skills_available: true
+  structure_authority_confirmed: true
+  working_tree_clean: true
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  available:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+    - exact_diff_inspection
+  missing: []
+  passed: true
+  evidence: >-
+    Fresh GitHub and local Git reads resolved the exact owner/repo remote identity,
+    main-only topology, authorized base, approved TASK-0015, and the pinned accepted
+    TASK-0024 review. The designated local working copy was clean and safely
+    fast-forwarded from a matching ancestor to the exact base before mutation.
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: NOT_REQUIRED
+  evidence: >-
+    TASK-0015 requires bounded Markdown content and exact Git evidence; it designates
+    no separate authoritative verifier, workflow, or release signal.
+
+local_hygiene:
+  result: PASS
+  run_root: ""
+  cleanup_performed: false
+  retained: []
+  evidence: >-
+    The designated /Users/tienphat/Developer/architect-profile working copy was an
+    actual clean Git repository bound to phatnguyen03022001/architect-profile. No
+    temporary checkout or scratch workspace was used and no local operator state was
+    reset, stashed, cleaned, moved, deleted, overwritten, or adopted as authority.
+
+changed_files:
+  - path: ARCHITECT_PROFILE.md
+    summary: "Adopt the compact GitHub-first phone/macOS operating model and current RESULT/EXPLAIN/TASK LAUNCH/PROMPT/END presentation convention."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+  - path: ARCHITECT_CALIBRATION.md
+    summary: "Add one compact GOV-E2 lesson that separates high diagnostic depth from Executor-local HOW discretion."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+
+commits_created:
+  - sha: "d65bb06509d16fadea4f58bfee7de08e43d7a7a9"
+    message: "profile: adopt GitHub-first operator execution"
+
+pushed: true
+promoted_to_main: true
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: PASS
+    evidence: >-
+      The active profile declares GitHub SSOT for both supported phone ChatGPT + GitHub
+      and macOS execution + GitHub contexts. It treats Codex, Agent Runtime, Terminal,
+      IDE, Docker/OrbStack, and similar local tools as subordinate execution or
+      inspection surfaces, and requires actual Git remote identity rather than path
+      naming before a Developer working copy is trusted.
+  - criterion_id: AC-2
+    status: PASS
+    evidence: >-
+      The active profile excludes /Users/tienphat/Developer/.agent-scratch from normal
+      target execution, preserves historical references as evidence, and restricts an
+      isolated temporary checkout to materially justified exceptional work. The exact
+      candidate diff does not touch historical .agent artifacts.
+  - criterion_id: AC-3
+    status: PASS
+    evidence: >-
+      The profile now specifies RESULT, brief Vietnamese EXPLAIN, compact TASK LAUNCH
+      using NEW/CONTINUE plus CODEX/CHATGPT and LUNA/SOL, standalone English PROMPT,
+      and END identity. PROMPT is restricted to an authority locator/instruction and
+      requires Vietnamese Executor communication and English repository artifacts
+      without duplicating the canonical task.
+  - criterion_id: AC-4
+    status: PASS
+    evidence: >-
+      One new calibration case is grounded in the complex and simple GOV-E2 pilots. It
+      keeps high diagnostic depth focused on material consequences, retains competent
+      Executor-local HOW discretion, and explicitly reverses on public contract, trust
+      or ownership, persisted meaning, source integrity, dependency topology, or other
+      material consequences.
+  - criterion_id: AC-5
+    status: PASS
+    evidence: >-
+      Candidate d65bb06509d16fadea4f58bfee7de08e43d7a7a9 is a direct child of the
+      exact authorized base and changes only ARCHITECT_PROFILE.md and
+      ARCHITECT_CALIBRATION.md. No new file, subsystem, workflow, dependency, external
+      repository mutation, branch, release, or historical artifact rewrite occurred.
+  - criterion_id: AC-6
+    status: PASS
+    evidence: >-
+      The actual local working copy binding was proven before mutation and preserved
+      throughout execution. After this report-only child is published, the Executor
+      refreshes canonical GitHub main and safely reconciles the same designated local
+      working copy to the final report ref before NEEDS_REVIEW.
+
+executor_checks:
+  - check_id: CHECK-1
+    result: PASS
+    evidence: >-
+      Fresh GitHub truth resolved main exactly to ac322e96cb40634689019821059aba2d657a347c,
+      topology exactly {main}, TASK-0015 revision 1 APPROVED/execution_ready, the
+      required capabilities, current profile/calibration owners, and agent-skills
+      revision 16217bb78a578160efb68afc84acdeff9c36ed38 containing the accepted
+      TASK-0024 review.
+  - check_id: CHECK-2
+    result: PASS
+    evidence: >-
+      The current active ARCHITECT_PROFILE.md and ARCHITECT_CALIBRATION.md were read in
+      full. Only stale operator-specific execution-surface and prompt wording was
+      replaced; exactly one compact calibration case was added. Historical .agent
+      task/report/review artifacts were read only and remain outside the candidate.
+  - check_id: CHECK-3
+    result: PASS
+    evidence: >-
+      Direct content checks confirmed the GitHub-first phone/macOS model, Developer
+      working-copy convention with remote verification, subordinate local surfaces,
+      scratch exclusion, RESULT/EXPLAIN/TASK LAUNCH/PROMPT/END convention, English
+      prompt, Vietnamese Executor communication, English artifacts, and locator-only
+      prompt boundary.
+  - check_id: CHECK-4
+    result: PASS
+    evidence: >-
+      ARCHITECT_CALIBRATION.md adds exactly one operator-specific, cross-target GOV-E2
+      case with a compact material-consequence reversal boundary. It is guidance only
+      and does not recreate generic role, lifecycle, or task governance.
+  - check_id: CHECK-5
+    result: PASS
+    evidence: >-
+      This repository has no executable validation suite. Existing repository
+      verification consists of exact Markdown content and Git integrity inspection:
+      git diff --check passed and the exact base-to-candidate path set is only
+      ARCHITECT_PROFILE.md and ARCHITECT_CALIBRATION.md.
+  - check_id: CHECK-6
+    result: PASS
+    evidence: >-
+      Candidate d65bb06509d16fadea4f58bfee7de08e43d7a7a9 was non-force pushed to main
+      after a fresh exact-base check. This report is the sole authorized report-only
+      child; after publication, GitHub main is refreshed and the designated local
+      working copy is reconciled with fast-forward/equivalent semantics and exact
+      final-ref proof before stopping at NEEDS_REVIEW.
+
+discovered_gaps: []
+structural_observations: []
+deviations_from_task: []
+blockers: []
+
+working_tree_after:
+  clean: true
+  summary: >-
+    The designated local working copy is clean at the implementation candidate while
+    the sole report-only child is prepared. No temporary or scratch workspace was used;
+    final canonical-main reconciliation remains required before terminal result.
+
+result: NEEDS_REVIEW
