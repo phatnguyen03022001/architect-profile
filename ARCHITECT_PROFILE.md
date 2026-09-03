@@ -77,12 +77,14 @@ The canonical operator execution routing is machine-readable in [`.agent/bootstr
 | --- | --- | --- | --- | --- | --- |
 | `CHATGPT_GITHUB` | `CHATGPT` | `GITHUB` | `GITHUB` | `GPT-5.6 Sol` | `HIGH` |
 | `CHATGPT_LOCAL` | `CHATGPT` | `LOCAL` | `AGENT_RUNTIME` | `GPT-5.6 Sol` | `HIGH` |
-| `CODEX_CLOUD` | `CODEX` | `CLOUD` | `NATIVE` | `LUNA` | `XHIGH` |
-| `CODEX_LOCAL` | `CODEX` | `LOCAL` | `NATIVE` | `LUNA` | `XHIGH` |
+| `CODEX_CLOUD` | `CODEX` | `CLOUD` | `NATIVE` | `LUNA` | `MEDIUM` |
+| `CODEX_LOCAL` | `CODEX` | `LOCAL` | `NATIVE` | `LUNA` | `MEDIUM` |
 
 `AGENT_RUNTIME` is transport only for `CHATGPT_LOCAL`. It is not an execution surface, mode, controller, organizational role, workflow authority, or peer of ChatGPT/Codex. `CODEX_LOCAL` executes natively in the local workspace; `CODEX_CLOUD` executes in its cloud workspace; `CHATGPT_GITHUB` operates through GitHub without the local Mac execution surface.
 
 The model/effort mapping above is exact for these operator routes. Runtime availability may block the selected surface, but it must not silently substitute another model, effort, controller, or surface.
+
+Architect is always ChatGPT for this operator. Any delegated ChatGPT or Codex session is an Executor under the pinned `agent-skills` authority. Labels such as coder, verifier, red-team, researcher, review-advisory, or ecosystem-evolution describe Executor specializations only; they are not additional organizational roles. Final canonical acceptance remains Architect judgment. The existing generic Architect micro-maintenance exception remains owned by pinned `agent-skills`; when implementation is likely to materially pollute vision or authority context, prefer dispatching it to an Executor rather than broadening self-execution here.
 
 GitHub remains repository SSOT for every surface. On macOS, normal repository working copies live under `/Users/tienphat/Developer/<repo-name>`; discover and verify the actual Git remote identity before treating any path as the target working copy. Local tools remain subordinate execution or inspection mechanisms serving GitHub-canonical state.
 
@@ -106,6 +108,8 @@ exact architect-profile commit P
 ```
 
 Do not preload all reusable governance, all calibration, raw conversation history, historical task evidence, or broad repository trees merely for completeness. Selective loading must never omit authority required for the current decision.
+
+Repository-specific work requires an explicit target identity from the current operator request or an exact active binding, followed by fresh GitHub resolution before mutation. Never select a target from stale chat history, remembered projects, `cwd`, or a local directory name. If the current request and exact active binding do not resolve one target unambiguously, ask the operator instead of guessing.
 
 Successor continuity should be reconstructible from current canonical repositories without hidden chat history. Persist durable knowledge to its narrowest owner rather than growing bootstrap prompts.
 

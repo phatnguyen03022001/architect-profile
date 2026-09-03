@@ -71,11 +71,32 @@ class BootstrapContractTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate.validate_contract(bootstrap, self.lock)
 
+    def test_execution_routes_match_opm02_exactly(self) -> None:
+        self.assertEqual(
+            {
+                surface["id"]: (surface["model"], surface["effort"])
+                for surface in self.bootstrap["execution_surfaces"]
+            },
+            {
+                "CHATGPT_GITHUB": ("GPT-5.6 Sol", "HIGH"),
+                "CHATGPT_LOCAL": ("GPT-5.6 Sol", "HIGH"),
+                "CODEX_CLOUD": ("LUNA", "MEDIUM"),
+                "CODEX_LOCAL": ("LUNA", "MEDIUM"),
+            },
+        )
+
     def test_unauthorized_model_or_effort_fails_closed(self) -> None:
-        for field, value in (("model", "OTHER"), ("effort", "LOW")):
-            with self.subTest(field=field):
+        cases = (
+            (1, "model", "OTHER"),
+            (1, "effort", "LOW"),
+            (2, "model", "OTHER"),
+            (2, "effort", "XHIGH"),
+            (3, "effort", "HIGH"),
+        )
+        for surface_index, field, value in cases:
+            with self.subTest(surface_index=surface_index, field=field, value=value):
                 bootstrap = copy.deepcopy(self.bootstrap)
-                bootstrap["execution_surfaces"][1][field] = value
+                bootstrap["execution_surfaces"][surface_index][field] = value
                 with self.assertRaisesRegex(ValueError, "unauthorized execution routing"):
                     validate.validate_contract(bootstrap, self.lock)
 
@@ -122,12 +143,28 @@ class BootstrapContractTests(unittest.TestCase):
         self.assertEqual(identity["rollback"], "FORWARD_ACTIVATION_COMMIT")
         self.assertNotIn("architect-profile", self.lock["repositories"])
 
-    def test_target_binding_comes_from_canonical_task_or_handoff(self) -> None:
-        binding = self.bootstrap["target_binding"]
-        self.assertEqual(binding["source"], "CANONICAL_TASK_OR_HANDOFF")
+    def test_target_binding_requires_explicit_current_identity(self) -> None:
         self.assertEqual(
-            binding["required_fields"],
-            ["repository", "branch", "task_path", "task_revision", "base_head", "phase"],
+            self.bootstrap["target_binding"],
+            {
+                "source": "EXPLICIT_CURRENT_REQUEST_OR_EXACT_ACTIVE_BINDING",
+                "fresh_github_resolution_required": True,
+                "unresolved_action": "ASK_OPERATOR",
+                "forbidden_inference_sources": [
+                    "STALE_CHAT_HISTORY",
+                    "MEMORY",
+                    "CWD",
+                    "LOCAL_DIRECTORY_NAME",
+                ],
+                "required_fields": [
+                    "repository",
+                    "branch",
+                    "task_path",
+                    "task_revision",
+                    "base_head",
+                    "phase",
+                ],
+            },
         )
 
     def test_prompt_is_rendered_only_from_canonical_locator_inputs(self) -> None:
@@ -161,14 +198,24 @@ class BootstrapContractTests(unittest.TestCase):
                 self.assertEqual(validate.render_task_launch(self.bootstrap, surface_id, "NEW"), expected)
 
     def test_fresh_context_reconstruction_is_bounded_and_chat_free(self) -> None:
+        target_locator = {
+            "repository": "owner/repo",
+            "branch": "dev",
+            "task_path": ".agent/tasks/TASK-0001/task.yaml",
+            "task_revision": 2,
+            "base_head": "a" * 40,
+            "phase": "EXECUTION",
+        }
         result = validate.reconstruct_context(
             root=ROOT,
             profile_revision=PROFILE_REVISION,
+            target_locator=target_locator,
             required_capabilities=["executor", "verification"],
             controller="CHATGPT",
             location="LOCAL",
         )
         self.assertEqual(result["authority_set_identity"], PROFILE_REVISION)
+        self.assertEqual(result["target_binding"], target_locator)
         self.assertEqual(result["surface"]["id"], "CHATGPT_LOCAL")
         self.assertEqual(result["surface"]["transport"], "AGENT_RUNTIME")
         self.assertEqual(
@@ -186,6 +233,31 @@ class BootstrapContractTests(unittest.TestCase):
                 "local_policy": "MANAGED_MIRROR",
             },
         )
+
+    def test_fresh_context_reconstruction_requires_exact_target_locator(self) -> None:
+        with self.assertRaisesRegex(ValueError, "target locator"):
+            validate.reconstruct_context(
+                root=ROOT,
+                profile_revision=PROFILE_REVISION,
+                target_locator={
+                    "branch": "dev",
+                    "task_path": ".agent/tasks/TASK-0001/task.yaml",
+                    "task_revision": 2,
+                    "base_head": "a" * 40,
+                    "phase": "EXECUTION",
+                },
+                required_capabilities=["executor"],
+                controller="CHATGPT",
+                location="LOCAL",
+            )
+
+    def test_generic_role_authority_remains_owned_by_agent_skills(self) -> None:
+        routes = {route["capability"]: route for route in self.bootstrap["capability_routes"]}
+        for capability in ("architect", "executor", "task_protocol"):
+            with self.subTest(capability=capability):
+                self.assertEqual(routes[capability]["owner"], "agent-skills")
+        for forbidden_key in ("roles", "role_engine", "review_roles", "executor_specializations"):
+            self.assertNotIn(forbidden_key, self.bootstrap)
 
 
 if __name__ == "__main__":

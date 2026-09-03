@@ -25,8 +25,8 @@ EXPECTED_REPOSITORIES = {
 EXPECTED_SURFACES = {
     "CHATGPT_GITHUB": ("CHATGPT", "GITHUB", "GITHUB", "GPT-5.6 Sol", "HIGH"),
     "CHATGPT_LOCAL": ("CHATGPT", "LOCAL", "AGENT_RUNTIME", "GPT-5.6 Sol", "HIGH"),
-    "CODEX_CLOUD": ("CODEX", "CLOUD", "NATIVE", "LUNA", "XHIGH"),
-    "CODEX_LOCAL": ("CODEX", "LOCAL", "NATIVE", "LUNA", "XHIGH"),
+    "CODEX_CLOUD": ("CODEX", "CLOUD", "NATIVE", "LUNA", "MEDIUM"),
+    "CODEX_LOCAL": ("CODEX", "LOCAL", "NATIVE", "LUNA", "MEDIUM"),
 }
 
 EXPECTED_REPOSITORY_CONTRACT = {
@@ -94,10 +94,18 @@ def validate_contract(bootstrap: dict[str, Any], lock: dict[str, Any]) -> None:
 
     target_binding = bootstrap.get("target_binding")
     if target_binding != {
-        "source": "CANONICAL_TASK_OR_HANDOFF",
+        "source": "EXPLICIT_CURRENT_REQUEST_OR_EXACT_ACTIVE_BINDING",
+        "fresh_github_resolution_required": True,
+        "unresolved_action": "ASK_OPERATOR",
+        "forbidden_inference_sources": [
+            "STALE_CHAT_HISTORY",
+            "MEMORY",
+            "CWD",
+            "LOCAL_DIRECTORY_NAME",
+        ],
         "required_fields": ["repository", "branch", "task_path", "task_revision", "base_head", "phase"],
     }:
-        raise ValueError("target binding must come from canonical task or handoff")
+        raise ValueError("target binding must require explicit current identity and fresh GitHub resolution")
 
     routes = bootstrap.get("capability_routes")
     if not isinstance(routes, list) or not routes:
@@ -320,6 +328,7 @@ def resolve_remote(lock: dict[str, Any]) -> dict[str, dict[str, Any]]:
 def reconstruct_context(
     root: Path,
     profile_revision: str,
+    target_locator: dict[str, Any],
     required_capabilities: list[str],
     controller: str,
     location: str,
@@ -328,10 +337,21 @@ def reconstruct_context(
         raise ValueError("authority-set identity must be an exact architect-profile commit")
     bootstrap, lock = load_contract(root)
     validate_contract(bootstrap, lock)
+    required_target_fields = bootstrap["target_binding"]["required_fields"]
+    if set(target_locator) != set(required_target_fields):
+        raise ValueError("target locator requires exactly the canonical binding fields")
+    for field in ("repository", "branch", "task_path", "base_head", "phase"):
+        if not isinstance(target_locator.get(field), str) or not target_locator[field]:
+            raise ValueError(f"target locator field must be a non-empty string: {field}")
+    if not isinstance(target_locator.get("task_revision"), int) or target_locator["task_revision"] < 1:
+        raise ValueError("target locator task_revision must be a positive integer")
+    if not SHA_RE.fullmatch(target_locator["base_head"]):
+        raise ValueError("target locator base_head must be an exact commit")
     return {
         "authority_set_identity": profile_revision,
         "authority_lock": lock,
         "repository_contract": bootstrap["repository_contract"],
+        "target_binding": dict(target_locator),
         "capability_routes": select_capability_routes(bootstrap, required_capabilities),
         "surface": normalize_surface(bootstrap, controller, location),
     }

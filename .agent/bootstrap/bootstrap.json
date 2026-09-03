@@ -79,7 +79,7 @@
       "location": "CLOUD",
       "transport": "NATIVE",
       "model": "LUNA",
-      "effort": "XHIGH"
+      "effort": "MEDIUM"
     },
     {
       "id": "CODEX_LOCAL",
@@ -87,7 +87,7 @@
       "location": "LOCAL",
       "transport": "NATIVE",
       "model": "LUNA",
-      "effort": "XHIGH"
+      "effort": "MEDIUM"
     }
   ],
   "task_launch": {
@@ -108,8 +108,8 @@
     "fixtures": {
       "CHATGPT_GITHUB": "TASK LAUNCH — NEW · CHATGPT_GITHUB · GPT-5.6 Sol · effort: HIGH",
       "CHATGPT_LOCAL": "TASK LAUNCH — NEW · CHATGPT_LOCAL · GPT-5.6 Sol · effort: HIGH",
-      "CODEX_CLOUD": "TASK LAUNCH — NEW · CODEX_CLOUD · LUNA · effort: XHIGH",
-      "CODEX_LOCAL": "TASK LAUNCH — NEW · CODEX_LOCAL · LUNA · effort: XHIGH"
+      "CODEX_CLOUD": "TASK LAUNCH — NEW · CODEX_CLOUD · LUNA · effort: MEDIUM",
+      "CODEX_LOCAL": "TASK LAUNCH — NEW · CODEX_LOCAL · LUNA · effort: MEDIUM"
     },
     "prompt_template": "Target: {repository}\nBranch: {branch}\nTask: {task_path}\nTask revision: {task_revision}\nExact base HEAD: {base_head}\nPhase: {phase}\nExecution surface: {surface}\nResolve the canonical task at the exact base and obey it exactly. Communicate with the operator in Vietnamese. Persist repository artifacts in English."
   },
@@ -121,7 +121,15 @@
     "rollback": "FORWARD_ACTIVATION_COMMIT"
   },
   "target_binding": {
-    "source": "CANONICAL_TASK_OR_HANDOFF",
+    "source": "EXPLICIT_CURRENT_REQUEST_OR_EXACT_ACTIVE_BINDING",
+    "fresh_github_resolution_required": true,
+    "unresolved_action": "ASK_OPERATOR",
+    "forbidden_inference_sources": [
+      "STALE_CHAT_HISTORY",
+      "MEMORY",
+      "CWD",
+      "LOCAL_DIRECTORY_NAME"
+    ],
     "required_fields": [
       "repository",
       "branch",
