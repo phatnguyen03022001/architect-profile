@@ -1,0 +1,259 @@
+protocol_version: 3
+
+task_id: TASK-0016
+task_revision: 4
+report_revision: 1
+state: REPORTED
+terminal_status: NEEDS_REVIEW
+
+task_source:
+  path: .agent/tasks/TASK-0016/task.yaml
+  commit: "707acfea1f749591621751785b87ae792355a0eb"
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+  authorized_base_head: "707acfea1f749591621751785b87ae792355a0eb"
+  pre_execution_head: "707acfea1f749591621751785b87ae792355a0eb"
+  final_execution_head: "5818ad0bc223b907481150ba8a0b0c167ce2ce1e"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "337c0be6618090e704b345b1bf93df488a4985af"
+  observed_revision: "337c0be6618090e704b345b1bf93df488a4985af"
+
+execution_skills_used:
+  required:
+    - executor
+    - simplicity
+    - github-workflow
+    - verification
+  recommended: []
+  external:
+    - superpowers:using-superpowers
+    - superpowers:executing-plans
+    - superpowers:test-driven-development
+    - superpowers:verification-before-completion
+
+pre_execution_checks:
+  protocol_version_supported: true
+  handoff_type_confirmed: true
+  task_at_base_confirmed: true
+  task_identity_confirmed: true
+  architect_binding_confirmed: true
+  repository_confirmed: true
+  branch_confirmed: true
+  base_head_confirmed: true
+  skill_revision_confirmed: true
+  required_execution_skills_available: true
+  structure_authority_confirmed: true
+  working_tree_clean: true
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  available:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  missing: []
+  passed: true
+  evidence: >-
+    Before implementation mutation, the designated local working copy resolved to
+    phatnguyen03022001/architect-profile on dev with local HEAD == origin/dev ==
+    707acfea1f749591621751785b87ae792355a0eb, clean index/tracked worktree, origin
+    fetch/push identity exact, topology exactly {dev, main}, and main ==
+    71921cde6228c21b4d2e3e6509e685d82981dc9c. Agent Runtime provided bounded local
+    command transport, repository write/commit capability was available, remote-ref
+    reads succeeded, and git push --dry-run to dev succeeded before mutation.
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: NOT_REQUIRED
+  evidence: >-
+    TASK-0016 revision 4 designates the repository-native validator/tests, immutable
+    GitHub resolution, exact Git evidence, and publication/reconciliation checks; no
+    separate authoritative verifier is required.
+
+local_hygiene:
+  result: PASS
+  run_root: ""
+  cleanup_performed: false
+  retained: []
+  evidence: >-
+    Execution used only the designated /Users/tienphat/Developer/architect-profile
+    working copy. No scratch checkout, temporary worktree, stash, reset, clean, or
+    operator-owned state rewrite was used. The bounded bootstrap cache path was checked
+    after verification and no __pycache__ artifact remained.
+
+changed_files:
+  - path: .agent/bootstrap/authority.lock.json
+    summary: "Pin the four exact P1 support-repository revisions without architect-profile self-pin."
+    new_file: true
+    in_scope: true
+    structure_authorized: true
+  - path: .agent/bootstrap/bootstrap.json
+    summary: "Define the compact authority-set identity, repository contract, capability routing, four execution surfaces, target binding, and TASK LAUNCH view grammar."
+    new_file: true
+    in_scope: true
+    structure_authorized: true
+  - path: .agent/bootstrap/validate.py
+    summary: "Provide a Python-standard-library fail-closed validator with optional immutable GitHub SHA/path resolution."
+    new_file: true
+    in_scope: true
+    structure_authorized: true
+  - path: .agent/bootstrap/test_bootstrap.py
+    summary: "Cover positive, negative, routing, rendering, lock, and fresh-context reconstruction behavior."
+    new_file: true
+    in_scope: true
+    structure_authorized: true
+  - path: README.md
+    summary: "Document exact-commit bootstrap, dev/main activation roles, DEV_MAIN default, MANAGED_MIRROR meaning, and forward rollback."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+  - path: ARCHITECT_PROFILE.md
+    summary: "Align operator routing and launch presentation with the exact four OPM-01 execution surfaces and machine bootstrap."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+
+commits_created:
+  - sha: "5818ad0bc223b907481150ba8a0b0c167ce2ce1e"
+    message: "profile: add OPM-01 bootstrap foundation"
+
+pushed: true
+promoted_to_main: false
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: PASS
+    evidence: >-
+      Fresh local ls-remote and independent GitHub branch reads showed exactly dev and
+      main, with __probe_should_not_create__ absent. bootstrap.json explicitly declares
+      repository phatnguyen03022001/architect-profile, topology DEV_MAIN, working_ref
+      dev, stable_ref main, and local_policy MANAGED_MIRROR; README defines the managed
+      mirror and bootstrap-default behavior without checkout inference.
+  - criterion_id: AC-2
+    status: PASS
+    evidence: >-
+      bootstrap.json is the compact entrypoint. reconstruct_context starts from an exact
+      architect-profile commit plus selected capability and controller/location inputs,
+      resolves the lock, explicit repository contract, only requested capability routes,
+      and one execution surface. The fresh-context test resolves executor+verification
+      without any chat_history input or whole-ecosystem preload.
+  - criterion_id: AC-3
+    status: PASS
+    evidence: >-
+      authority.lock.json contains exactly agent-skills@337c0be6618090e704b345b1bf93df488a4985af,
+      agent-standards@3f4950f280a3a35fee81471d4b83715fa72cf9ee,
+      agent-documents@6918f46282f4a92bbc61071444a5ff5dab30ddc9, and
+      agent-runtime@9d5320d5afbc9aff20834801bfd6695b27cf2a0e. The lock contains no
+      architect-profile entry. validate.py --remote resolved all four exact commits and
+      their routed trees; negative resolution tests fail closed.
+  - criterion_id: AC-4
+    status: PASS
+    evidence: >-
+      bootstrap.json contains one static capability_routes list. validate_contract rejects
+      duplicate capability names or unlocked owners, validate_resolution rejects missing
+      paths, and the remote validator proved every routed path exists at its exact locked
+      revision. No registry, cache, or mutable routing state was introduced.
+  - criterion_id: AC-5
+    status: PASS
+    evidence: >-
+      bootstrap.json contains exactly CHATGPT_GITHUB, CHATGPT_LOCAL, CODEX_CLOUD, and
+      CODEX_LOCAL. Tests exhaustively normalize all four controller/location pairs and
+      reject unknown/ambiguous pairs, AGENT_RUNTIME-as-mode, and unauthorized model or
+      effort. CHATGPT_LOCAL alone binds transport AGENT_RUNTIME; exact routing is
+      GPT-5.6 Sol/HIGH for both ChatGPT surfaces and LUNA/XHIGH for both Codex surfaces.
+      Four deterministic TASK LAUNCH fixtures render those exact mappings.
+  - criterion_id: AC-6
+    status: PASS
+    evidence: >-
+      bootstrap.json owns one TASK LAUNCH line_template and one prompt_template. PROMPT
+      accepts exactly repository, branch, task_path, task_revision, base_head, phase, and
+      surface locator inputs; rendering tests prove the view is generated from those
+      inputs and the selected canonical surface rather than copied task authority.
+  - criterion_id: AC-7
+    status: PASS
+    evidence: >-
+      The implementation changes exactly six bounded paths: four small .agent/bootstrap
+      artifacts plus README.md and ARCHITECT_PROFILE.md alignment. It introduces no
+      program.lock, persistent capsule, project registry, sync daemon, mode engine,
+      database, queue, scheduler, third role, shared mutable authority, support-repository
+      mutation, workflow, dependency, or whole-repository preload requirement.
+  - criterion_id: AC-8
+    status: PASS
+    evidence: >-
+      Implementation candidate 5818ad0bc223b907481150ba8a0b0c167ce2ce1e is a direct
+      child of the exact authorized base and was non-force pushed to dev. An independent
+      GitHub branch read then observed dev exactly at that SHA while main remained
+      71921cde6228c21b4d2e3e6509e685d82981dc9c. This file is the sole report-only child;
+      terminal NEEDS_REVIEW is returned only after a second independent GitHub dev read
+      observes that report child and the designated local copy is reconciled cleanly to it.
+
+executor_checks:
+  - check_id: CHECK-1
+    result: PASS
+    evidence: >-
+      python3 .agent/bootstrap/test_bootstrap.py passed 15 tests; python3
+      .agent/bootstrap/validate.py --remote returned OPM_BOOTSTRAP = TRUE; py_compile
+      succeeded for validator and tests.
+  - check_id: CHECK-2
+    result: PASS
+    evidence: >-
+      Negative tests proved fail-closed behavior for an unresolvable locked revision,
+      missing routed path, duplicate capability entrypoint, unknown and ambiguous
+      surfaces, AGENT_RUNTIME-as-mode, and unauthorized model/effort routing.
+  - check_id: CHECK-3
+    result: PASS
+    evidence: >-
+      Fresh-context reconstruction at implementation SHA
+      5818ad0bc223b907481150ba8a0b0c167ce2ce1e selected only executor and verification,
+      normalized CHATGPT/LOCAL to CHATGPT_LOCAL with AGENT_RUNTIME transport, and used no
+      conversational memory input.
+  - check_id: CHECK-4
+    result: PASS
+    evidence: >-
+      git diff --check passed before commit and again for exact
+      707acfea1f749591621751785b87ae792355a0eb..5818ad0bc223b907481150ba8a0b0c167ce2ce1e.
+  - check_id: CHECK-5
+    result: PASS
+    evidence: >-
+      Exact base-to-implementation path set is .agent/bootstrap/authority.lock.json,
+      .agent/bootstrap/bootstrap.json, .agent/bootstrap/test_bootstrap.py,
+      .agent/bootstrap/validate.py, ARCHITECT_PROFILE.md, and README.md. No historical
+      .agent task/review/report artifact or calibration document is in the implementation diff.
+  - check_id: CHECK-6
+    result: PASS
+    evidence: >-
+      Fresh pre-publication ls-remote and GitHub branch reads showed topology exactly
+      {dev, main}, __probe_should_not_create__ absent, dev at the exact expected base
+      before implementation publication and then at the exact implementation SHA after
+      publication, with main unchanged at 71921cde6228c21b4d2e3e6509e685d82981dc9c.
+
+discovered_gaps: []
+structural_observations: []
+deviations_from_task: []
+blockers: []
+
+working_tree_after:
+  clean: true
+  summary: >-
+    The designated local working copy is reconciled to the final canonical dev report
+    ref with clean index/worktree before terminal NEEDS_REVIEW. No temporary checkout or
+    unrelated operator-owned state is retained.
+
+result: NEEDS_REVIEW
