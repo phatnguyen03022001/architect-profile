@@ -1,0 +1,46 @@
+protocol_version: 3
+
+task_id: TASK-0017
+task_revision: 1
+review_revision: 1
+state: ACCEPTED
+
+reviewed_report:
+  repository: phatnguyen03022001/architect-profile
+  path: .agent/tasks/TASK-0017/report.yaml
+  commit: "96af40258f582fff849c89ebadf782c5844e8132"
+  report_revision: 1
+
+independence:
+  reviewer_role: ARCHITECT
+  separate_session_from_executor: true
+  exact_report_identity_verified: true
+
+contract_compliance:
+  protocol_version: PASS
+  identity: PASS
+  execution_base: PASS
+  skill_rules: PASS
+  scope: PASS
+  structure_policy: PASS
+  git_authority: PASS
+  acceptance_criteria: PASS
+  verifier_evidence: NOT_REQUIRED
+
+gap_disposition: []
+follow_up_tasks: []
+
+promotion_readiness:
+  eligible_for_candidate_capture: false
+  reason: >-
+    OPM-02 is accepted, but the operating-model candidate is intentionally incomplete.
+    OPM-03 branch-model/repository-lifecycle semantics and OPM-04 managed-local-state
+    semantics remain outstanding before candidate capture or activation.
+
+notes:
+  - "The implementation remains bounded to five existing OPM/profile paths and introduces no new subsystem, role, lifecycle, support-repository mutation, capability-taxonomy expansion, branch change, staging behavior, or local-state behavior."
+  - "The exact operator routing now resolves ChatGPT surfaces to GPT-5.6 Sol/HIGH and Codex cloud/local surfaces to LUNA/MEDIUM; AGENT_RUNTIME remains transport only for CHATGPT_LOCAL."
+  - "Generic two-role, task, review, and Architect micro-maintenance semantics remain owned by the pinned agent-skills authority; architect-profile contains only operator-specific consequences and preferences."
+  - "Repository binding now fails closed to explicit current request or exact active binding plus fresh GitHub resolution and forbids target inference from stale chat history, memory, cwd, or local directory name."
+  - "This Architect review independently re-resolved GitHub implementation/report lineage and final remote refs. Agent Runtime invocation from this review conversation was platform-forbidden, so local closure evidence is taken from the exact canonical Executor report; TASK-0017 requires no separate authoritative verifier."
+  - "Do not add further routing abstractions merely for elegance. Any future case/navigation map must be admitted only by real-pilot evidence of repeated material context or decision-routing waste and must remain a navigation projection over existing canonical owners rather than a new workflow authority."
