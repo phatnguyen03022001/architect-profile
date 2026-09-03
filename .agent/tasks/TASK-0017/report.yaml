@@ -1,0 +1,242 @@
+protocol_version: 3
+
+task_id: TASK-0017
+task_revision: 1
+report_revision: 1
+state: REPORTED
+terminal_status: NEEDS_REVIEW
+
+task_source:
+  path: .agent/tasks/TASK-0017/task.yaml
+  commit: "3a074b13420f87e5a7ed44dc7aaf18599dc3c509"
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+  authorized_base_head: "3a074b13420f87e5a7ed44dc7aaf18599dc3c509"
+  pre_execution_head: "3a074b13420f87e5a7ed44dc7aaf18599dc3c509"
+  final_execution_head: "fcc1659755342e8fe8a0a58c8e2b96c9769b0c89"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "337c0be6618090e704b345b1bf93df488a4985af"
+  observed_revision: "337c0be6618090e704b345b1bf93df488a4985af"
+
+execution_skills_used:
+  required:
+    - executor
+    - simplicity
+    - github-workflow
+    - verification
+  recommended: []
+  external:
+    - superpowers:using-superpowers
+    - superpowers:brainstorming
+    - superpowers:test-driven-development
+    - superpowers:verification-before-completion
+
+pre_execution_checks:
+  protocol_version_supported: true
+  handoff_type_confirmed: true
+  task_at_base_confirmed: true
+  task_identity_confirmed: true
+  architect_binding_confirmed: true
+  repository_confirmed: true
+  branch_confirmed: true
+  base_head_confirmed: true
+  skill_revision_confirmed: true
+  required_execution_skills_available: true
+  structure_authority_confirmed: true
+  working_tree_clean: true
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  available:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  missing: []
+  passed: true
+  evidence: >-
+    The designated working copy resolved to phatnguyen03022001/architect-profile on dev
+    with exact origin fetch/push identity. It was clean and only behind canonical dev:
+    local a86492fc2bd0fc87b86afcd40514f1d15ddbcd1e was proven an ancestor of the
+    authorized base. After git fetch origin --prune and git merge --ff-only origin/dev,
+    local HEAD == origin/dev == 3a074b13420f87e5a7ed44dc7aaf18599dc3c509
+    with no tracked or untracked changes. Fresh GitHub reads proved physical topology
+    exactly {dev, main} and main == 71921cde6228c21b4d2e3e6509e685d82981dc9c.
+    Agent Runtime supplied bounded local read/write/commit execution, git push --dry-run
+    to dev succeeded, and GitHub supplied independent immutable/ref observations.
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: NOT_REQUIRED
+  evidence: >-
+    TASK-0017 revision 1 requires repository-native tests, immutable remote bootstrap
+    validation, exact Git evidence, and publication closure; it designates no separate
+    authoritative verifier.
+
+local_hygiene:
+  result: PASS
+  run_root: ""
+  cleanup_performed: true
+  retained: []
+  evidence: >-
+    Execution used only the designated repository and created no scratch checkout,
+    temporary worktree, stash, reset, clean, or operator-state rewrite. The required
+    py_compile check created exactly .agent/bootstrap/__pycache__/validate.cpython-313.pyc;
+    that run-created bytecode file and its empty cache directory were removed after
+    verification. Subsequent exact-SHA tests used python3 -B and created no bytecode.
+
+changed_files:
+  - path: .agent/bootstrap/bootstrap.json
+    summary: "Correct the two Codex routes to LUNA/MEDIUM and make target binding explicit, fresh-GitHub-resolved, and fail closed."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+  - path: .agent/bootstrap/validate.py
+    summary: "Validate exact OPM-02 routes and require an exact canonical target locator for fresh-context reconstruction."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+  - path: .agent/bootstrap/test_bootstrap.py
+    summary: "Add deterministic positive and negative proofs for routing, target binding, role ownership, and fresh-context reconstruction."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+  - path: ARCHITECT_PROFILE.md
+    summary: "Project the exact LUNA/MEDIUM Codex preference, two-role consequence, dispatch preference, and fail-closed target selection."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+  - path: README.md
+    summary: "Clarify fresh bootstrap target selection without cwd, memory, stale-chat, or directory-name inference."
+    new_file: false
+    in_scope: true
+    structure_authorized: true
+
+commits_created:
+  - sha: "fcc1659755342e8fe8a0a58c8e2b96c9769b0c89"
+    message: "feat: align OPM-02 execution routing"
+
+pushed: true
+promoted_to_main: false
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: PASS
+    evidence: >-
+      bootstrap.json contains exactly four execution surfaces. Both ChatGPT surfaces are
+      GPT-5.6 Sol/HIGH; both Codex surfaces are LUNA/MEDIUM; CHATGPT_LOCAL alone uses
+      AGENT_RUNTIME as transport. The 18-test suite proves exact routes plus rejection of
+      unauthorized model/effort substitutions, including Codex LUNA/XHIGH, and rejects
+      AGENT_RUNTIME-as-mode and unknown/ambiguous normalization.
+  - criterion_id: AC-2
+    status: PASS
+    evidence: >-
+      Existing capability routes for architect, executor, and task_protocol remain owned
+      by the exact pinned agent-skills revision. bootstrap.json adds no role taxonomy or
+      role engine; deterministic tests reject accidental bootstrap-level role-owner
+      duplication by asserting those canonical owners and absence of role-framework keys.
+      ARCHITECT_PROFILE.md records only operator-specific consequences and explicitly
+      leaves generic role and micro-maintenance semantics with pinned agent-skills.
+  - criterion_id: AC-3
+    status: PASS
+    evidence: >-
+      target_binding now requires EXPLICIT_CURRENT_REQUEST_OR_EXACT_ACTIVE_BINDING,
+      fresh_github_resolution_required=true, unresolved_action=ASK_OPERATOR, and forbids
+      STALE_CHAT_HISTORY, MEMORY, CWD, and LOCAL_DIRECTORY_NAME inference. The fresh-context
+      reconstruction API requires the exact target locator fields and rejects an incomplete
+      locator; README.md and ARCHITECT_PROFILE.md project the same fail-closed consequence.
+  - criterion_id: AC-4
+    status: PASS
+    evidence: >-
+      TASK LAUNCH remains one deterministic line template over the canonical surface and
+      four fixtures; both Codex fixtures now render LUNA/MEDIUM. PROMPT still accepts
+      exactly repository, branch, task_path, task_revision, base_head, phase, and surface,
+      and the test suite proves deterministic rendering without copied task scope or
+      generic governance.
+  - criterion_id: AC-5
+    status: PASS
+    evidence: >-
+      Exact base-to-implementation changed paths are only .agent/bootstrap/bootstrap.json,
+      .agent/bootstrap/validate.py, .agent/bootstrap/test_bootstrap.py,
+      ARCHITECT_PROFILE.md, and README.md. authority.lock.json and the capability index
+      were not expanded. No support repository, main, branch topology, staging semantics,
+      OPM-03/OPM-04 behavior, new role, lifecycle, engine, registry, daemon, service,
+      planner, parser framework, renderer framework, or dependency was introduced.
+  - criterion_id: AC-6
+    status: PASS
+    evidence: >-
+      Implementation fcc1659755342e8fe8a0a58c8e2b96c9769b0c89 is a direct child of the
+      exact authorized base and was non-force pushed to dev. An independent GitHub branch
+      observation then resolved dev exactly to that implementation SHA. This report is the
+      sole report-only child publication; terminal NEEDS_REVIEW is emitted only after an
+      independent GitHub observation proves its published SHA, final topology remains
+      exactly {dev, main} with main unchanged, and the designated local copy is reconciled.
+
+executor_checks:
+  - check_id: CHECK-1
+    result: PASS
+    evidence: >-
+      python3 -B .agent/bootstrap/test_bootstrap.py passed all 18 tests at exact
+      implementation SHA fcc1659755342e8fe8a0a58c8e2b96c9769b0c89.
+  - check_id: CHECK-2
+    result: PASS
+    evidence: >-
+      python3 -B .agent/bootstrap/validate.py --remote returned OPM_BOOTSTRAP = TRUE at
+      the exact implementation SHA, resolving immutable support revisions and routed paths.
+  - check_id: CHECK-3
+    result: PASS
+    evidence: >-
+      Negative tests reject Codex LUNA/XHIGH and other unauthorized model/effort values,
+      AGENT_RUNTIME-as-mode, unknown controller/location pairs, and ambiguous surface
+      normalization.
+  - check_id: CHECK-4
+    result: PASS
+    evidence: >-
+      Fresh-context reconstruction requires an exact profile identity plus exact target
+      locator, requested capability slices, and controller/location. It returns the explicit
+      target binding and contains no trusted chat_history input; incomplete target locators
+      fail closed.
+  - check_id: CHECK-5
+    result: PASS
+    evidence: >-
+      python3 -m py_compile .agent/bootstrap/validate.py .agent/bootstrap/test_bootstrap.py
+      && git diff --check completed with exit 0 before implementation commit; exact
+      base-to-implementation git diff --check was repeated successfully after publication.
+  - check_id: CHECK-6
+    result: PASS
+    evidence: >-
+      Fresh GitHub observations before implementation mutation showed exactly {dev, main}
+      with dev at the authorized base and main at
+      71921cde6228c21b4d2e3e6509e685d82981dc9c. The exact implementation changed-path set
+      contains only the five bounded OPM-02 surfaces listed above; final publication
+      closure rechecks topology and unchanged main before terminal result.
+
+discovered_gaps: []
+structural_observations: []
+deviations_from_task: []
+blockers: []
+
+working_tree_after:
+  clean: true
+  summary: >-
+    The designated local working copy is reconciled to the final canonical dev report
+    ref with clean index/worktree before terminal NEEDS_REVIEW. No run-created temporary
+    state or unrelated operator-owned state remains.
+
+result: NEEDS_REVIEW
