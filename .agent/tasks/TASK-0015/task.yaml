@@ -1,0 +1,184 @@
+protocol_version: 3
+
+task_id: TASK-0015
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: continuation
+  task_id: TASK-0014
+  gap_id: GOV_F_OPERATOR_PROFILE_ADOPTION
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: main
+    role: canonical
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "16217bb78a578160efb68afc84acdeff9c36ed38"
+
+architect_analysis_skills:
+  - architect
+  - simplicity
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "ARCHITECT_PROFILE.md@379056c1fae0f7f57d2fd9518d5efaeac0bb931c"
+    role: "Current operator-specific durable configuration."
+    precedence: 1
+  - source: "ARCHITECT_CALIBRATION.md@379056c1fae0f7f57d2fd9518d5efaeac0bb931c"
+    role: "Current operator-specific learned judgment."
+    precedence: 2
+  - source: "phatnguyen03022001/agent-skills TASK-0024 accepted review@16217bb78a578160efb68afc84acdeff9c36ed38"
+    role: "Accepted generic GitHub-first designated-local execution semantics."
+    precedence: 3
+  - source: "phatnguyen03022001/ilets TASK-0045 accepted GOV-E2 pilot evidence"
+    role: "Complex pilot evidence for low-prescription Architect authority and Executor-local HOW discretion."
+    precedence: 4
+  - source: "phatnguyen03022001/SF TASK-0008 accepted GOV-E2 pilot evidence"
+    role: "Simple pilot evidence and discovery of operator canonical-local expectations."
+    precedence: 5
+
+structure_authority:
+  status: NOT_APPLICABLE
+  source: ""
+  rationale: "This is a bounded correction to the two existing canonical operator-profile owners and must not create a new profile layer, registry, runtime, or workflow subsystem."
+
+objective: >-
+  Adopt the minimum operator-specific GOV-F corrections proven by GOV-E2: GitHub is always repository SSOT; macOS Codex/Agent Runtime/Terminal/IDE are subordinate execution surfaces using the operator's normal Developer working copies; normal target execution must not default to .agent-scratch; Architect output should preserve high diagnostic depth with a small material decision surface; and operator-facing launch/prompt presentation should match the current compact convention without duplicating canonical task authority.
+
+scope:
+  required_changes:
+    - "Keep GitHub as the absolute canonical repository truth across phone-only and macOS execution. Local Git/filesystem state is a working copy, never alternate authority."
+    - "Record the operator macOS convention that normal repository working copies live under /Users/tienphat/Developer/<repo-name>, discovered and verified by actual Git remote identity rather than trusted from path naming alone."
+    - "State that Codex, Agent Runtime, Terminal, IDE, Docker/OrbStack and similar local tools are execution/inspection surfaces that serve GitHub-canonical repository state; they do not become repository or workflow authority."
+    - "Normal target execution must not route through /Users/tienphat/Developer/.agent-scratch. Historical scratch artifacts remain historical evidence and are not rewritten; an isolated temporary checkout is exceptional and must be materially justified rather than the default target workspace."
+    - "Keep phone-only ChatGPT + GitHub and macOS Developer/<repo> execution as supported operating contexts, with GitHub SSOT common to both."
+    - "Update operator-facing task presentation to the current compact convention: RESULT plus brief EXPLAIN; when next work exists, TASK LAUNCH as NEW/CONTINUE + CODEX/CHATGPT + LUNA/SOL + effort; standalone PROMPT; END identity. Prompt text is English by current operator preference while still instructing Executor to communicate with the operator in Vietnamese and persist repository artifacts in English."
+    - "Preserve PROMPT as a locator/instruction rather than duplicated authority; do not copy the full canonical task into operator-facing handoffs."
+    - "Record in calibration, only if evidence remains sufficient after inspection, the cross-target operator lesson that high diagnostic depth should produce a small material decision surface and that competent Executor-local HOW should not be revised merely because Architect would choose another implementation."
+    - "Keep the correction minimal: delete or replace stale conflicting profile wording rather than layering duplicate rules."
+
+invariants:
+  - "Generic role/lifecycle/task/review/reconciliation semantics remain owned by pinned agent-skills and are not duplicated into architect-profile."
+  - "agent-runtime remains optional local execution capability, not SSOT, registry, planner, scheduler, sync engine, or workflow authority."
+  - "The operator-specific Developer path convention does not leak into agent-skills, agent-runtime, standards, documents, or target repositories."
+  - "Historical task/report evidence is not rewritten to remove past .agent-scratch references."
+  - "Profile remains compact and successor-oriented rather than becoming a god context."
+  - "Calibration admits only operator-specific, cross-target, experience-derived judgment with an explicit reversal boundary."
+
+forbidden_changes:
+  - "Do not modify agent-skills, agent-runtime, agent-standards, agent-documents, target repositories, workflows, releases, branches, or repository metadata."
+  - "Do not introduce a repo registry, workspace registry, sync daemon, state database, path manifest, orchestration layer, new profile file, or new lifecycle."
+  - "Do not make Codex or Agent Runtime mandatory when phone/GitHub capability is sufficient."
+  - "Do not state that local state can override GitHub canonical truth."
+  - "Do not rewrite historical .agent task/report/review artifacts merely to update old workspace wording."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - exact_remote_ref_read
+    - repository_content_read
+    - repository_content_write
+  REVIEW:
+    - exact_commit_report_resolution
+    - repository_content_write
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "ARCHITECT_PROFILE.md expresses one coherent GitHub-first operating model for phone and macOS execution without duplicating generic agent-skills semantics."
+    evidence_required: "Focused diff showing GitHub SSOT, subordinate local surfaces, Developer working-copy convention, actual remote-identity verification, and no competing local authority."
+  - id: AC-2
+    requirement: "Normal macOS target execution no longer defaults to .agent-scratch and historical evidence remains untouched."
+    evidence_required: "Active profile wording excludes .agent-scratch from normal target execution while exact historical task/report artifacts outside the candidate remain unchanged."
+  - id: AC-3
+    requirement: "Operator-facing launch/prompt UX matches the current compact convention and language boundary."
+    evidence_required: "Profile diff shows RESULT/EXPLAIN, compact TASK LAUNCH, standalone English PROMPT locator, END identity, Vietnamese operator communication, English repository artifacts, and no full task duplication."
+  - id: AC-4
+    requirement: "Calibration captures the proven minimum-decision-surface lesson without becoming generic governance or task history."
+    evidence_required: "At most one compact calibration case grounded in both GOV-E2 pilots, with transferable lesson and explicit reversal/material-consequence boundary."
+  - id: AC-5
+    requirement: "The correction remains minimal and owner-correct."
+    evidence_required: "Candidate changes only ARCHITECT_PROFILE.md and, if AC-4 requires it, ARCHITECT_CALIBRATION.md; no new files/subsystems/external repository mutations; existing repository verification passes."
+  - id: AC-6
+    requirement: "When this task uses the designated macOS canonical working copy, final successful closure follows accepted TASK-0024 GitHub-first reconciliation semantics."
+    evidence_required: "Executor report proves exact owner/repo binding, preservation of operator-owned local state, final GitHub main refresh, and safe local reconciliation to the final canonical report ref before NEEDS_REVIEW."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Resolve TASK-0015 revision 1 at the exact handoff base, {main} topology, accepted TASK-0024 authority, current profile/calibration owners, and required capabilities before mutation."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Inspect current active profile/calibration and replace only stale/conflicting operator-specific wording; do not rewrite historical task artifacts."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Verify active profile contains one coherent GitHub-first phone/macOS model, Developer working-copy convention, .agent-scratch exclusion from normal target execution, and current compact launch/prompt language convention."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Verify any calibration addition is one operator-specific cross-target lesson grounded in GOV-E2 evidence and does not restate generic governance."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Run existing repository verification and exact diff checks; candidate must be confined to ARCHITECT_PROFILE.md and optional ARCHITECT_CALIBRATION.md."
+      required: true
+    - id: CHECK-6
+      command_or_check: "Publish canonical report on main, refresh GitHub main, safely reconcile the designated /Users/tienphat/Developer/architect-profile working copy when used, prove exact final-ref equality, and stop at NEEDS_REVIEW."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: true
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
