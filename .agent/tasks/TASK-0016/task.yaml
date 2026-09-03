@@ -1,7 +1,7 @@
 protocol_version: 3
 
 task_id: TASK-0016
-task_revision: 1
+task_revision: 2
 state: APPROVED
 
 origin:
@@ -65,7 +65,8 @@ objective: "Materialize OPM-01: make architect-profile/dev the explicit evolutio
 
 scope:
   required_changes:
-    - "Preserve the newly created dev branch as the integration/evolution branch while main remains the accepted stable branch."
+    - "Remove the exact accidental remote branch __probe_should_not_create__ created during Architect API verification, then require remote branch topology exactly {dev, main}; do not delete or create any other remote branch."
+    - "Use dev as the integration/evolution branch while main remains the accepted stable branch. If the designated canonical local working copy lacks a local dev branch, creating only a local tracking dev branch from exact origin/dev is permitted after proving repository identity, clean tracked/index state, and exact remote dev identity."
     - "Add a compact bootstrap entrypoint that resolves the current architect-profile commit, then the exact authority lock, then capability routing, target repository binding, topology, and execution mode without requiring chat memory or whole-repository preload."
     - "Add an authority lock that pins exact immutable accepted revisions for agent-skills, agent-standards, agent-documents, and agent-runtime. The lock must not self-pin architect-profile."
     - "Add a static capability routing index with exactly one canonical owner/path entrypoint per capability and no mutable registry/state/cache semantics."
@@ -83,6 +84,7 @@ scope:
 invariants:
   - "GitHub is canonical repository truth; chat context is non-authoritative convenience only."
   - "architect-profile/main remains stable during implementation; all OPM-01 implementation and report publication occur on dev."
+  - "After the one exact cleanup, remote branch topology is exactly {dev, main}."
   - "The exact architect-profile commit containing a validated lock is the authority-set identity; architect-profile must not self-pin inside the lock."
   - "A locked SHA or routed path that cannot be resolved fails closed; there is no fallback to main, dev, a nearby commit, or a closest available version."
   - "One capability has one canonical owner/path routing entrypoint. Cross-references may exist, but the routing index must never require the model to merge multiple semantic owners to resolve one capability."
@@ -98,7 +100,9 @@ invariants:
 forbidden_changes:
   - "Do not mutate agent-skills, agent-standards, agent-documents, agent-runtime, or any target repository in this task."
   - "Do not promote or mutate architect-profile/main in this execution."
-  - "Do not create staging or any branch other than the already created dev branch."
+  - "Do not create staging."
+  - "Do not create any remote branch. The only branch creation permitted is a local tracking dev branch in the designated canonical local working copy when required to bind exact origin/dev."
+  - "Do not delete any remote branch except exact __probe_should_not_create__."
   - "Do not create program.lock, a persistent Execution Capsule, project registry, sync daemon, mode service/engine, database, queue, scheduler, or shared mutable cross-repository authority."
   - "Do not add a third organizational role."
   - "Do not duplicate full support-repository semantics into BOOTSTRAP; bootstrap must remain a compact locator/resolver entrypoint."
@@ -141,8 +145,8 @@ capability_requirements:
 
 acceptance_criteria:
   - id: AC-1
-    requirement: "architect-profile has explicit DEV_MAIN repository authority with dev as working ref, main as stable ref, and MANAGED_MIRROR local policy; no runtime inference from current checkout is required."
-    evidence_required: "Machine-readable repository contract plus validator/test evidence and exact Git diff."
+    requirement: "architect-profile has exact remote topology {dev, main} and explicit DEV_MAIN repository authority with dev as working ref, main as stable ref, and MANAGED_MIRROR local policy; no runtime inference from current checkout is required."
+    evidence_required: "Fresh remote branch proof, machine-readable repository contract, validator/test evidence, and exact Git diff."
   - id: AC-2
     requirement: "A compact bootstrap entrypoint can start from the exact architect-profile revision and mechanically locate the authority lock, capability routing, repository/topology resolution, and execution-mode resolution without whole-ecosystem preload or trusted chat state."
     evidence_required: "Bootstrap artifact, bounded reconstruction test, and proof that chat history is not required input."
@@ -182,13 +186,16 @@ verification:
     - id: CHECK-5
       command_or_check: "Verify exact final changed paths are the smallest sufficient OPM-01 surface and contain no unrelated profile/governance expansion."
       required: true
+    - id: CHECK-6
+      command_or_check: "Fresh-resolve remote branches and require exact topology {dev, main}; prove __probe_should_not_create__ is absent."
+      required: true
   authoritative_verification:
     required: false
     mechanism: ""
     expected_signal: ""
 
 git_authority:
-  create_branch: false
+  create_branch: true
   commit: true
   push: true
   promote_to_main: false
