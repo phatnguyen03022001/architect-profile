@@ -1,15 +1,15 @@
 protocol_version: 3
 
 task_id: TASK-0022
-task_revision: 1
-review_revision: 1
-state: REVISION_REQUIRED
+task_revision: 2
+review_revision: 2
+state: ACCEPTED
 
 reviewed_report:
   repository: phatnguyen03022001/architect-profile
   path: .agent/tasks/TASK-0022/report.yaml
-  commit: "c15159ad75298310e56593e6f465227dacbbfec4"
-  report_revision: 1
+  commit: "81766b656d44cbe92bb6c40bd7fb2cd386f9f6ea"
+  report_revision: 2
 
 independence:
   reviewer_role: ARCHITECT
@@ -21,34 +21,28 @@ contract_compliance:
   execution_base: PASS
   skill_rules: PASS
   scope: PASS
-  structure_policy: FAIL
+  structure_authority: PASS
   git_authority: PASS
-  acceptance_criteria: NOT_REACHED
+  acceptance_criteria: PASS
   verifier_evidence: NOT_REQUIRED
 
-gap_disposition:
-  - gap_id: TASK-0022-MISSING-STRUCTURE-AUTHORITY
-    decision: revise_task
-    rationale: >-
-      TASK-0022 revision 1 is marked execution-ready but omits structure_authority. The exact pinned
-      agent-skills@db03b97b5c42c9c64ad8dce76bc694530e41a206 Task Protocol explicitly classifies
-      structure_authority as positive task authority that is not normalized/defaulted, and the canonical
-      task template carries it explicitly. Executor therefore correctly failed closed before mutation.
+accepted_candidate:
+  commit: "6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee"
+  role: "exact architect-profile authority-set activation candidate"
+
+acceptance_basis:
+  - "Fresh review-boundary GitHub observation proves dev=81766b656d44cbe92bb6c40bd7fb2cd386f9f6ea, main=116e624b4c17d4949562b4d3f16385bfcf582130, topology exactly {dev, main}."
+  - "Exact base-to-candidate diff changes only .agent/bootstrap/authority.lock.json plus exactly two matching agent-skills SHA expectation literals in .agent/bootstrap/test_bootstrap.py."
+  - "The candidate pins agent-skills exactly to ac2f213095e339dafa96825d89a6f6de164792bc while preserving agent-standards, agent-documents, agent-runtime, bootstrap.json, validate.py, Case Router semantics, model policy, and branch topology."
+  - "Repository-native candidate verification is green: local/remote bootstrap validator, bootstrap tests, py_compile, git diff --check, exact locked-route resolution, Case Router EXECUTE -> executor, and no-chat reconstruction all PASS."
+  - "Revision-1 blocker is closed by explicit RESOLVED structure_authority; no Executor-owned invention or scope expansion occurred."
+  - "AC-5/CHECK-4 are correctly not self-attested by the report; exact report publication and final remote/local closure are fresh review-boundary evidence."
 
 follow_up_tasks:
-  - task_id: TASK-0022
-    origin:
-      type: task_revision
-      prior_revision: 1
-      gap_id: TASK-0022-MISSING-STRUCTURE-AUTHORITY
-
-promotion_readiness:
-  eligible_for_candidate_capture: false
-  reason: >-
-    Revision 1 produced no implementation candidate. Revision 2 must add only explicit resolved
-    structure_authority while preserving the already-approved lock/test-literal scope and all other authority.
+  - task_id: TASK-0023
+    repository: phatnguyen03022001/architect-profile
+    purpose: "Activate the exact accepted TASK-0022 revision-2 candidate on architect-profile/main, then prove the active authority set resolves agent-skills@ac2f213095e339dafa96825d89a6f6de164792bc."
 
 notes:
-  - "Executor behavior is correct: no implementation source was mutated after the missing positive-authority field was detected."
-  - "The required correction is task-authoring only; do not change protocol, validator, runtime, bootstrap logic, scope, or implementation mechanism."
-  - "Operator-observed end-to-end latency for this blocked pre-mutation execution was approximately 6m39; this is non-authoritative performance evidence and does not affect the revision judgment."
+  - "Operator-observed TASK-0022 revision-2 end-to-end latency was approximately 9m28s; this is performance evidence only and does not affect correctness acceptance."
+  - "Do not redesign Agent Runtime from this result. Complete activation first, then attribute remaining end-to-end latency across controller/bootstrap/publication boundaries using natural tasks."
