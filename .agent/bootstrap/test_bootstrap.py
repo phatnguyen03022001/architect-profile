@@ -188,7 +188,7 @@ class BootstrapContractTests(unittest.TestCase):
             {
                 "agent-skills": {
                     "repository": "phatnguyen03022001/agent-skills",
-                    "revision": "db03b97b5c42c9c64ad8dce76bc694530e41a206",
+                    "revision": "ac2f213095e339dafa96825d89a6f6de164792bc",
                 },
                 "agent-standards": {
                     "repository": "phatnguyen03022001/agent-standards",
@@ -369,7 +369,7 @@ class BootstrapContractTests(unittest.TestCase):
                 {
                     "capability": "executor",
                     "repository": "phatnguyen03022001/agent-skills",
-                    "revision": "db03b97b5c42c9c64ad8dce76bc694530e41a206",
+                    "revision": "ac2f213095e339dafa96825d89a6f6de164792bc",
                     "path": "executor/SKILL.md",
                 }
             ],
