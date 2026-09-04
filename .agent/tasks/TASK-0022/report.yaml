@@ -1,0 +1,117 @@
+protocol_version: 3
+
+task_id: TASK-0022
+task_revision: 1
+report_revision: 1
+state: REPORTED
+terminal_status: BLOCKED
+
+task_source:
+  path: .agent/tasks/TASK-0022/task.yaml
+  commit: "99d4285dea97700a951b037835922f1e254c8c58"
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+  authorized_base_head: "99d4285dea97700a951b037835922f1e254c8c58"
+  final_execution_head: "99d4285dea97700a951b037835922f1e254c8c58"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "db03b97b5c42c9c64ad8dce76bc694530e41a206"
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  available:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  missing: []
+  passed: true
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: NOT_REQUIRED
+  evidence: >-
+    TASK-0022 designates no separate authoritative verifier. Execution stopped at the pinned
+    Executor pre-mutation authority gate before any implementation candidate existed.
+
+pushed: false
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: NOT_PROVEN
+    evidence: >-
+      Implementation mutation did not start. The pinned protocol requires explicit
+      structure_authority in an execution-ready task, but TASK-0022 revision 1 omits that field.
+  - criterion_id: AC-2
+    status: NOT_PROVEN
+    evidence: >-
+      authority.lock.json remains unchanged at the authorized base because the pre-mutation
+      authority gate failed before the requested support-pin replacement.
+  - criterion_id: AC-3
+    status: NOT_PROVEN
+    evidence: >-
+      No implementation candidate exists, so candidate validation, bootstrap tests, py_compile,
+      route resolution, Case Router identity, and no-chat reconstruction were not run as candidate proof.
+  - criterion_id: AC-4
+    status: PASS
+    evidence: >-
+      Fresh remote resolution returned agent-skills/main exactly at
+      ac2f213095e339dafa96825d89a6f6de164792bc; no mutable/latest fallback was used as authority.
+  - criterion_id: AC-5
+    status: NOT_PROVEN
+    evidence: >-
+      Fresh pre-mutation remote topology was exactly {dev, main} with
+      dev=99d4285dea97700a951b037835922f1e254c8c58 and
+      main=116e624b4c17d4949562b4d3f16385bfcf582130. No implementation candidate was published.
+      Publication of this report-only child is proven only after its commit is pushed.
+
+executor_checks:
+  - check_id: CHECK-1
+    result: FAIL
+    evidence: >-
+      Exact repository, dev base, topology, active main authority set, stable agent-skills main,
+      bootstrap surfaces, and pinned execution skills were freshly resolved. The same resolution
+      found a blocking task-authority defect: TASK-0022 revision 1 omits structure_authority, while
+      agent-skills@db03b97b5c42c9c64ad8dce76bc694530e41a206 Task Protocol says this positive
+      authority field is not defaulted and must fail closed when absent. The pinned task template
+      also requires structure_authority, and normalize_task_document does not synthesize it.
+  - check_id: CHECK-2
+    result: BLOCKED
+    evidence: >-
+      No lock or test literal was changed because persistent implementation mutation is forbidden
+      after the pre-mutation authority gate fails.
+  - check_id: CHECK-3
+    result: BLOCKED
+    evidence: >-
+      Candidate verification cannot run truthfully because no authorized implementation candidate exists.
+  - check_id: CHECK-4
+    result: BLOCKED
+    evidence: >-
+      Candidate publication cannot occur. Only this truthful BLOCKED report may be committed and
+      published under the task's explicit commit/push authority.
+
+blockers:
+  - >-
+    TASK-0022 revision 1 is execution_ready but omits structure_authority. Under the exact pinned
+    agent-skills revision db03b97b5c42c9c64ad8dce76bc694530e41a206, structure_authority is a
+    required positive authority field and absence fails closed. Executor cannot invent or revise
+    Architect-owned task authority.
+
+result: BLOCKED
