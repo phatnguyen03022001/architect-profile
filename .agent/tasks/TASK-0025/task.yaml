@@ -1,0 +1,177 @@
+protocol_version: 3
+
+task_id: TASK-0025
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: accepted_review
+  task_id: TASK-0024
+  gap_id: "ACTIVATE_RUNTIME_TIMING_AUTHORITY_SET"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ac2f213095e339dafa96825d89a6f6de164792bc"
+
+architect_analysis_skills: []
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - github-workflow
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "architect-profile/main@6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee"
+    role: "current active ecosystem authority set and activation predecessor"
+    precedence: 1
+  - source: "architect-profile/.agent/tasks/TASK-0024/review.yaml@b8e96b0094ad09e58b8d6bc782f89731c52a8f09"
+    role: "accepted immutable correctness judgment for the exact activation candidate"
+    precedence: 2
+  - source: "architect-profile/.agent/tasks/TASK-0024/report.yaml@9bfdc7e359a6f95244968bb52712642f799190a6"
+    role: "accepted candidate verification evidence"
+    precedence: 3
+  - source: "architect-profile@0f13d7a036d7c866baa66751067cc2aaf49dd849"
+    role: "exact accepted authority-set activation subject"
+    precedence: 4
+  - source: "agent-runtime/main@c49d777efa09db7f6c51bd8d8616db4623499fb8"
+    role: "stable promoted runtime revision pinned by the candidate"
+    precedence: 5
+
+structure_authority:
+  status: RESOLVED
+  source: "existing architect-profile dev/main activation topology and existing TASK-0024 lifecycle artifacts"
+  rationale: >-
+    This task performs only the already-reviewed activation consequence: strict non-force promotion of the exact
+    accepted architect-profile candidate to main plus a report artifact on dev. It introduces no source, module,
+    test, dependency, route, schema, service, or structural change.
+
+objective: >-
+  Strictly non-force activate the exact accepted architect-profile candidate
+  0f13d7a036d7c866baa66751067cc2aaf49dd849 on main so the ecosystem authority set pins
+  agent-runtime@c49d777efa09db7f6c51bd8d8616db4623499fb8, while reusing still-applicable accepted
+  TASK-0024 immutable correctness evidence and refreshing only activation-consequence predicates.
+
+scope:
+  required_changes:
+    - >-
+      Freshly re-resolve exact TASK-0024 review, report, candidate, current active authority set, agent-runtime/main,
+      current architect-profile dev/main refs, topology, candidate ancestry, and promotion capability before mutation.
+    - >-
+      Reuse accepted TASK-0024 immutable correctness evidence only after proving it covers the exact currently required
+      correctness predicates and the candidate plus relevant governing/predicate semantics remain applicable.
+    - >-
+      Do not rerun bootstrap validators, 27 bootstrap tests, py_compile, git diff --check, locked-route proof,
+      Case Router proof, or no-chat reconstruction solely for activation when the accepted immutable evidence remains applicable.
+    - >-
+      Execute one bounded activation consequence graph: fresh guard -> exact strict non-force main push to
+      0f13d7a036d7c866baa66751067cc2aaf49dd849 -> fresh post-promotion remote proof -> fresh active-lock proof that
+      main now pins agent-runtime@c49d777efa09db7f6c51bd8d8616db4623499fb8 -> compact attributable JOIN.
+    - >-
+      Publish a compact truthful TASK-0025 report-only child on dev, then freshly prove final dev/main/topology and
+      local hygiene outside the self-containing report artifact.
+  allowed_existing_files_or_components:
+    - ".agent/tasks/TASK-0025/report.yaml"
+    - "git refs dev/main"
+
+invariants:
+  - "Activation subject is exactly 0f13d7a036d7c866baa66751067cc2aaf49dd849; no reconstructed, amended, rebased, merged, or modified candidate is allowed."
+  - "Old main before mutation must freshly resolve to 6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee."
+  - "The promotion must be a strict fast-forward/non-force update and candidate ancestry from old main must be proven immediately before push."
+  - "The candidate lock must still resolve agent-skills@ac2f213095e339dafa96825d89a6f6de164792bc, agent-standards@3f4950f280a3a35fee81471d4b83715fa72cf9ee, agent-documents@6918f46282f4a92bbc61071444a5ff5dab30ddc9, and agent-runtime@c49d777efa09db7f6c51bd8d8616db4623499fb8."
+  - "No source, bootstrap semantics, tests, runtime code, support-repository content, model policy, Case Router, execution-surface contract, or launch grammar is modified."
+  - "Topology remains exactly {dev, main}."
+  - "Accepted immutable correctness evidence is reused only under exact current-predicate coverage and still-applicable semantics; identity drift, contradiction, new predicate, changed semantics, or stronger assurance requirement fails closed or requires new proof."
+
+forbidden_changes:
+  - "Do not rerun acceptance-equivalent TASK-0024 correctness producers merely because this is a fresh binding or later activation consequence."
+  - "Do not modify candidate bytes, authority.lock.json, bootstrap tests, bootstrap.json, validate.py, runtime source, agent-skills, agent-standards, agent-documents, tunnel-client, target repositories, branches other than the exact main promotion, tags, releases, repository settings, or operator-owned state."
+  - "Do not force-push, reset, rebase, cherry-pick, merge, create/delete/rename branches, or promote any SHA other than the exact accepted candidate."
+  - "Do not claim pure controller/model latency from activation itself; latency attribution begins only after a later natural CHATGPT_LOCAL execution using the activated runtime."
+
+gap_policy:
+  local_auto_fix: false
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: >-
+      Exact TASK-0024 review/report/candidate identities, current active authority set, and agent-runtime/main are freshly
+      re-resolved; accepted immutable correctness evidence is reused only for exact covered current predicates.
+    evidence_required: "Fresh identity/applicability proof and explicit evidence that acceptance-equivalent correctness producers were not rerun."
+  - id: AC-2
+    requirement: >-
+      Fresh pre-push guard proves main=6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee, topology={dev, main}, candidate is a strict
+      fast-forward descendant of old main, candidate lock still contains the exact accepted support pins, and exact non-force promotion capability is available.
+    evidence_required: "Fresh refs/topology/ancestry/lock/capability evidence immediately before mutation."
+  - id: AC-3
+    requirement: >-
+      One bounded consequence invocation performs guard -> exact non-force promotion -> fresh post-proof -> active-lock proof -> compact JOIN with no semantic controller boundary inserted between pre-authorized deterministic phases.
+    evidence_required: "Attributable bounded execution result with PASS/FAIL per phase."
+  - id: AC-4
+    requirement: >-
+      Fresh post-activation truth proves architect-profile/main exactly 0f13d7a036d7c866baa66751067cc2aaf49dd849,
+      topology exactly {dev, main}, and main's authority lock pins agent-runtime exactly c49d777efa09db7f6c51bd8d8616db4623499fb8.
+    evidence_required: "Fresh remote main/topology and exact active-lock resolution after push."
+  - id: AC-5
+    requirement: >-
+      A report-only commit is published on dev and final local tracked/index state is clean and reconciled to origin/dev;
+      report does not self-attest its own publication before post-push observation.
+    evidence_required: "Exact report commit, final remote refs/topology, and local closure evidence."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: >-
+        Freshly resolve exact task/base, active authority set, TASK-0024 review/report/candidate, agent-runtime/main,
+        current refs/topology, candidate ancestry, candidate lock bytes, and promotion capability. Confirm immutable evidence
+        applicability and explicitly record that acceptance-equivalent TASK-0024 correctness producers are not rerun.
+      required: true
+    - id: CHECK-2
+      command_or_check: >-
+        Execute the deterministic activation consequence as one bounded invocation: guard -> strict non-force main push to
+        the exact candidate -> fresh remote main/topology proof -> exact active-lock runtime-pin proof -> compact JOIN.
+        Any failed or ambiguous guard must stop before mutation.
+      required: true
+    - id: CHECK-3
+      command_or_check: >-
+        Publish only .agent/tasks/TASK-0025/report.yaml on dev, then freshly prove final dev/main/topology and local tracked/index hygiene outside the report artifact.
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: true
+
+blocking_decisions: []
+execution_ready: true
