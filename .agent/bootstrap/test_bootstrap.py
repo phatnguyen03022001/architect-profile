@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 import copy
+import base64
 import subprocess
 import sys
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / ".agent" / "bootstrap"))
@@ -42,6 +44,12 @@ class BootstrapContractTests(unittest.TestCase):
             resolved[route["owner"]]["paths"].add(route["path"])
         return resolved
 
+    def resolved_routes_with_router(self, router: str) -> dict:
+        resolved = self.resolved_routes()
+        resolved["agent-skills"]["paths"].add(".agent/case-router.yaml")
+        resolved["agent-skills"]["contents"] = {".agent/case-router.yaml": router}
+        return resolved
+
     def test_unresolvable_locked_revision_fails_closed(self) -> None:
         resolved = self.resolved_routes()
         del resolved["agent-runtime"]
@@ -53,6 +61,80 @@ class BootstrapContractTests(unittest.TestCase):
         resolved["agent-skills"]["paths"].remove("executor/SKILL.md")
         with self.assertRaisesRegex(ValueError, "missing routed path"):
             validate.validate_resolution(self.bootstrap, self.lock, resolved)
+
+    def test_missing_case_router_path_fails_closed(self) -> None:
+        with self.assertRaisesRegex(ValueError, "missing Case Router path"):
+            validate.validate_resolution(self.bootstrap, self.lock, self.resolved_routes())
+
+    def test_malformed_case_router_fails_closed(self) -> None:
+        with self.assertRaisesRegex(ValueError, "malformed Case Router"):
+            validate.validate_resolution(
+                self.bootstrap,
+                self.lock,
+                self.resolved_routes_with_router("cases:\n  - id: EXECUTE\n    capabilities: executor\n"),
+            )
+
+    def test_case_router_rejects_unadmitted_case(self) -> None:
+        with self.assertRaisesRegex(ValueError, "unauthorized Case Router semantics"):
+            validate.validate_resolution(
+                self.bootstrap,
+                self.lock,
+                self.resolved_routes_with_router(
+                    "cases:\n  - id: REVIEW\n    capabilities:\n      - executor\n"
+                ),
+            )
+
+    def test_case_router_rejects_lifecycle_or_dimension_fields(self) -> None:
+        with self.assertRaisesRegex(ValueError, "malformed Case Router"):
+            validate.validate_resolution(
+                self.bootstrap,
+                self.lock,
+                self.resolved_routes_with_router(
+                    "cases:\n  - id: EXECUTE\n    capabilities:\n      - executor\n    state: READY\n"
+                ),
+            )
+
+    def test_unknown_case_selection_fails_closed(self) -> None:
+        router = {"cases": [{"id": "EXECUTE", "capabilities": ["executor"]}]}
+        with self.assertRaisesRegex(ValueError, "unknown case"):
+            validate.select_case_capability_routes(self.bootstrap, router, "VERIFY")
+
+    def test_mutable_ref_in_lock_fails_closed(self) -> None:
+        lock = copy.deepcopy(self.lock)
+        lock["repositories"]["agent-skills"]["revision"] = "main"
+        with self.assertRaisesRegex(ValueError, "invalid immutable revision"):
+            validate.validate_contract(self.bootstrap, lock)
+
+    def test_remote_resolution_loads_router_bytes_from_the_locked_tree_blob(self) -> None:
+        router = "cases:\n  - id: EXECUTE\n    capabilities:\n      - executor\n"
+        router_blob = "c" * 40
+        routes_by_owner = {owner: [] for owner in self.lock["repositories"]}
+        for route in self.bootstrap["capability_routes"]:
+            routes_by_owner[route["owner"]].append(route["path"])
+
+        def fake_github_json(url: str) -> dict:
+            if "/git/commits/" in url:
+                revision = url.rsplit("/", 1)[1]
+                owner = next(
+                    owner
+                    for owner, entry in self.lock["repositories"].items()
+                    if entry["revision"] == revision
+                )
+                return {"sha": revision, "tree": {"sha": f"{owner}-tree"}}
+            if "/git/trees/" in url:
+                owner = next(owner for owner in routes_by_owner if f"/{owner}-tree?" in url)
+                paths = routes_by_owner[owner]
+                entries = [{"path": path, "sha": f"{owner}-{index}"} for index, path in enumerate(paths)]
+                if owner == "agent-skills":
+                    entries.append({"path": ".agent/case-router.yaml", "sha": router_blob})
+                return {"truncated": False, "tree": entries}
+            if url.endswith(f"/git/blobs/{router_blob}"):
+                return {"encoding": "base64", "content": base64.b64encode(router.encode()).decode()}
+            self.fail(f"unexpected GitHub request: {url}")
+
+        with patch.object(validate, "_github_json", side_effect=fake_github_json):
+            resolved = validate.resolve_remote(self.lock)
+        self.assertEqual(resolved["agent-skills"]["contents"][".agent/case-router.yaml"], router)
 
     def test_unknown_execution_surface_fails_closed(self) -> None:
         with self.assertRaisesRegex(ValueError, "unknown execution surface"):
@@ -80,8 +162,8 @@ class BootstrapContractTests(unittest.TestCase):
             {
                 "CHATGPT_GITHUB": ("GPT-5.6 Sol", "HIGH"),
                 "CHATGPT_LOCAL": ("GPT-5.6 Sol", "HIGH"),
-                "CODEX_CLOUD": ("LUNA", "MEDIUM"),
-                "CODEX_LOCAL": ("LUNA", "MEDIUM"),
+                "CODEX_CLOUD": ("LUNA", "XHIGH"),
+                "CODEX_LOCAL": ("LUNA", "XHIGH"),
             },
         )
 
@@ -90,7 +172,7 @@ class BootstrapContractTests(unittest.TestCase):
             (1, "model", "OTHER"),
             (1, "effort", "LOW"),
             (2, "model", "OTHER"),
-            (2, "effort", "XHIGH"),
+            (2, "effort", "MEDIUM"),
             (3, "effort", "HIGH"),
         )
         for surface_index, field, value in cases:
@@ -106,7 +188,7 @@ class BootstrapContractTests(unittest.TestCase):
             {
                 "agent-skills": {
                     "repository": "phatnguyen03022001/agent-skills",
-                    "revision": "337c0be6618090e704b345b1bf93df488a4985af",
+                    "revision": "4a063c41f429207577434600a3571dc17822cd78",
                 },
                 "agent-standards": {
                     "repository": "phatnguyen03022001/agent-standards",
@@ -233,6 +315,67 @@ class BootstrapContractTests(unittest.TestCase):
                 "local_policy": "MANAGED_MIRROR",
             },
         )
+
+    def test_fresh_context_reconstruction_exposes_the_pre_router_locator(self) -> None:
+        target_locator = {
+            "repository": "owner/repo",
+            "branch": "dev",
+            "task_path": ".agent/tasks/TASK-0001/task.yaml",
+            "task_revision": 2,
+            "base_head": "a" * 40,
+            "phase": "EXECUTION",
+        }
+        result = validate.reconstruct_context(
+            root=ROOT,
+            profile_revision=PROFILE_REVISION,
+            target_locator=target_locator,
+            required_capabilities=["executor"],
+            controller="CODEX",
+            location="LOCAL",
+        )
+        self.assertIn("case_router", result)
+
+    def test_execution_reconstruction_resolves_execute_without_support_preload(self) -> None:
+        reconstruct = getattr(validate, "reconstruct_execution_context", None)
+        self.assertTrue(callable(reconstruct))
+        if not callable(reconstruct):
+            return
+        target_locator = {
+            "repository": "phatnguyen03022001/architect-profile",
+            "branch": "dev",
+            "task_path": ".agent/tasks/TASK-0018/task.yaml",
+            "task_revision": 1,
+            "base_head": "a" * 40,
+            "phase": "EXECUTION",
+        }
+        router = "cases:\n  - id: EXECUTE\n    capabilities:\n      - executor\n"
+        resolved = {
+            "agent-skills": {
+                "revision": self.lock["repositories"]["agent-skills"]["revision"],
+                "paths": {".agent/case-router.yaml", "executor/SKILL.md"},
+                "contents": {".agent/case-router.yaml": router},
+            }
+        }
+        result = reconstruct(ROOT, "b" * 40, target_locator, "EXECUTE", resolved)
+        self.assertEqual(
+            result["bootstrap_trace"],
+            ["PROFILE_REVISION", "AUTHORITY_LOCK", "CASE_ROUTER", "CASE", "CAPABILITY_ROUTE", "CANONICAL_ARTIFACT"],
+        )
+        self.assertEqual(result["case"], "EXECUTE")
+        self.assertEqual(result["case_router"], {"cases": [{"id": "EXECUTE", "capabilities": ["executor"]}]})
+        self.assertEqual(
+            result["canonical_artifacts"],
+            [
+                {
+                    "capability": "executor",
+                    "repository": "phatnguyen03022001/agent-skills",
+                    "revision": "4a063c41f429207577434600a3571dc17822cd78",
+                    "path": "executor/SKILL.md",
+                }
+            ],
+        )
+        self.assertNotIn("chat_history", result)
+        self.assertNotIn("cwd", result)
 
     def test_fresh_context_reconstruction_requires_exact_target_locator(self) -> None:
         with self.assertRaisesRegex(ValueError, "target locator"):

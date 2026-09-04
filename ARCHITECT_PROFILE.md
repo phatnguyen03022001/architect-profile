@@ -77,12 +77,14 @@ The canonical operator execution routing is machine-readable in [`.agent/bootstr
 | --- | --- | --- | --- | --- | --- |
 | `CHATGPT_GITHUB` | `CHATGPT` | `GITHUB` | `GITHUB` | `GPT-5.6 Sol` | `HIGH` |
 | `CHATGPT_LOCAL` | `CHATGPT` | `LOCAL` | `AGENT_RUNTIME` | `GPT-5.6 Sol` | `HIGH` |
-| `CODEX_CLOUD` | `CODEX` | `CLOUD` | `NATIVE` | `LUNA` | `MEDIUM` |
-| `CODEX_LOCAL` | `CODEX` | `LOCAL` | `NATIVE` | `LUNA` | `MEDIUM` |
+| `CODEX_CLOUD` | `CODEX` | `CLOUD` | `NATIVE` | `LUNA` | `XHIGH` |
+| `CODEX_LOCAL` | `CODEX` | `LOCAL` | `NATIVE` | `LUNA` | `XHIGH` |
 
 `AGENT_RUNTIME` is transport only for `CHATGPT_LOCAL`. It is not an execution surface, mode, controller, organizational role, workflow authority, or peer of ChatGPT/Codex. `CODEX_LOCAL` executes natively in the local workspace; `CODEX_CLOUD` executes in its cloud workspace; `CHATGPT_GITHUB` operates through GitHub without the local Mac execution surface.
 
 The model/effort mapping above is exact for these operator routes. Runtime availability may block the selected surface, but it must not silently substitute another model, effort, controller, or surface.
+
+The bootstrap-known Case Router is static navigation only. `BOOTSTRAP` is a pre-router primitive; the only admitted reusable CASE is `EXECUTE → executor`. Router resolution uses the exact locked agent-skills SHA and fails closed for an unresolvable SHA, missing path, malformed artifact, or unknown case; it never falls back to a mutable ref.
 
 Architect is always ChatGPT for this operator. Any delegated ChatGPT or Codex session is an Executor under the pinned `agent-skills` authority. Labels such as coder, verifier, red-team, researcher, review-advisory, or ecosystem-evolution describe Executor specializations only; they are not additional organizational roles. Final canonical acceptance remains Architect judgment. The existing generic Architect micro-maintenance exception remains owned by pinned `agent-skills`; when implementation is likely to materially pollute vision or authority context, prefer dispatching it to an Executor rather than broadening self-execution here.
 
@@ -103,7 +105,8 @@ exact architect-profile commit P
 → .agent/bootstrap/bootstrap.json @ P
 → exact authority lock @ P
 → canonical task/handoff target binding + explicit repository contract
-→ only required capability owner/path at its locked revision
+→ exact Case Router @ locked agent-skills SHA (before capability selection)
+→ CASE → existing capability owner/path at its locked revision
 → ARCHITECT_PROFILE.md and optional material calibration
 ```
 

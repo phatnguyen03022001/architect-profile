@@ -4,6 +4,8 @@
 from __future__ import annotations
 
 import argparse
+import base64
+import binascii
 import json
 import re
 import sys
@@ -25,8 +27,8 @@ EXPECTED_REPOSITORIES = {
 EXPECTED_SURFACES = {
     "CHATGPT_GITHUB": ("CHATGPT", "GITHUB", "GITHUB", "GPT-5.6 Sol", "HIGH"),
     "CHATGPT_LOCAL": ("CHATGPT", "LOCAL", "AGENT_RUNTIME", "GPT-5.6 Sol", "HIGH"),
-    "CODEX_CLOUD": ("CODEX", "CLOUD", "NATIVE", "LUNA", "MEDIUM"),
-    "CODEX_LOCAL": ("CODEX", "LOCAL", "NATIVE", "LUNA", "MEDIUM"),
+    "CODEX_CLOUD": ("CODEX", "CLOUD", "NATIVE", "LUNA", "XHIGH"),
+    "CODEX_LOCAL": ("CODEX", "LOCAL", "NATIVE", "LUNA", "XHIGH"),
 }
 
 EXPECTED_REPOSITORY_CONTRACT = {
@@ -60,6 +62,114 @@ def load_contract(root: Path = ROOT) -> tuple[dict[str, Any], dict[str, Any]]:
     return bootstrap, lock
 
 
+def case_router_locator(bootstrap: dict[str, Any], lock: dict[str, Any]) -> dict[str, str]:
+    locator = bootstrap.get("case_router")
+    if not isinstance(locator, dict):
+        raise ValueError("case_router must be a bootstrap-known locator")
+    if set(locator) != {"owner", "path"}:
+        raise ValueError("case_router locator must contain exactly owner and path")
+    owner = locator.get("owner")
+    path = locator.get("path")
+    if owner != "agent-skills" or owner not in lock.get("repositories", {}):
+        raise ValueError("case_router must resolve from locked agent-skills")
+    if not isinstance(path, str) or path != ".agent/case-router.yaml":
+        raise ValueError("case_router path must be the canonical router path")
+    return {"owner": owner, "path": path}
+
+
+def parse_case_router(content: str) -> dict[str, Any]:
+    if not isinstance(content, str):
+        raise ValueError("malformed Case Router")
+    lines = content.splitlines()
+    if not lines or lines[0] != "cases:":
+        raise ValueError("malformed Case Router")
+    cases: list[dict[str, Any]] = []
+    index = 1
+    while index < len(lines):
+        line = lines[index]
+        if not line.startswith("  - id: ") or not line[8:]:
+            raise ValueError("malformed Case Router")
+        case_id = line[8:]
+        index += 1
+        if index >= len(lines) or lines[index] != "    capabilities:":
+            raise ValueError("malformed Case Router")
+        index += 1
+        capabilities: list[str] = []
+        while index < len(lines) and lines[index].startswith("      - "):
+            capability = lines[index][8:]
+            if not capability:
+                raise ValueError("malformed Case Router")
+            capabilities.append(capability)
+            index += 1
+        if not capabilities:
+            raise ValueError("malformed Case Router")
+        cases.append({"id": case_id, "capabilities": capabilities})
+    return {"cases": cases}
+
+
+def validate_case_router(router: dict[str, Any]) -> None:
+    if router != {"cases": [{"id": "EXECUTE", "capabilities": ["executor"]}]}:
+        raise ValueError("unauthorized Case Router semantics")
+
+
+def resolve_case_router(
+    bootstrap: dict[str, Any], lock: dict[str, Any], resolved: dict[str, dict[str, Any]]
+) -> dict[str, Any]:
+    locator = case_router_locator(bootstrap, lock)
+    entry = lock["repositories"][locator["owner"]]
+    observation = resolved.get(locator["owner"])
+    if observation is None or observation.get("revision") != entry["revision"]:
+        raise ValueError(f"unresolvable locked revision: {locator['owner']}@{entry['revision']}")
+    paths = observation.get("paths")
+    if not isinstance(paths, (set, frozenset)):
+        paths = set(paths or [])
+    if locator["path"] not in paths:
+        raise ValueError(f"missing Case Router path: {locator['owner']}@{entry['revision']}:{locator['path']}")
+    contents = observation.get("contents")
+    if not isinstance(contents, dict) or not isinstance(contents.get(locator["path"]), str):
+        raise ValueError(f"unresolvable Case Router bytes: {locator['owner']}@{entry['revision']}:{locator['path']}")
+    router = parse_case_router(contents[locator["path"]])
+    validate_case_router(router)
+    return router
+
+
+def select_case_capability_routes(
+    bootstrap: dict[str, Any], router: dict[str, Any], case_id: str
+) -> list[dict[str, Any]]:
+    if not isinstance(case_id, str):
+        raise ValueError("unknown case")
+    for case in router["cases"]:
+        if case["id"] == case_id:
+            return select_capability_routes(bootstrap, case["capabilities"])
+    raise ValueError(f"unknown case: {case_id}")
+
+
+def canonical_artifacts(
+    lock: dict[str, Any], routes: list[dict[str, Any]], resolved: dict[str, dict[str, Any]]
+) -> list[dict[str, str]]:
+    artifacts: list[dict[str, str]] = []
+    for route in routes:
+        owner = route["owner"]
+        entry = lock["repositories"][owner]
+        observation = resolved.get(owner)
+        if observation is None or observation.get("revision") != entry["revision"]:
+            raise ValueError(f"unresolvable locked revision: {owner}@{entry['revision']}")
+        paths = observation.get("paths")
+        if not isinstance(paths, (set, frozenset)):
+            paths = set(paths or [])
+        if route["path"] not in paths:
+            raise ValueError(f"missing routed path: {owner}@{entry['revision']}:{route['path']}")
+        artifacts.append(
+            {
+                "capability": route["capability"],
+                "repository": entry["repository"],
+                "revision": entry["revision"],
+                "path": route["path"],
+            }
+        )
+    return artifacts
+
+
 def validate_contract(bootstrap: dict[str, Any], lock: dict[str, Any]) -> None:
     repositories = lock.get("repositories")
     if not isinstance(repositories, dict):
@@ -76,6 +186,8 @@ def validate_contract(bootstrap: dict[str, Any], lock: dict[str, Any]) -> None:
             raise ValueError(f"incorrect support repository identity: {owner}")
         if not SHA_RE.fullmatch(str(entry.get("revision", ""))):
             raise ValueError(f"invalid immutable revision: {owner}")
+
+    case_router_locator(bootstrap, lock)
 
     if bootstrap.get("repository_contract") != EXPECTED_REPOSITORY_CONTRACT:
         raise ValueError("repository_contract must explicitly declare OPM-01 DEV_MAIN authority")
@@ -280,6 +392,7 @@ def validate_resolution(
         for route in bootstrap["capability_routes"]:
             if route["owner"] == owner and route["path"] not in paths:
                 raise ValueError(f"missing routed path: {owner}@{entry['revision']}:{route['path']}")
+    resolve_case_router(bootstrap, lock, resolved)
 
 
 def _github_json(url: str) -> dict[str, Any]:
@@ -295,6 +408,18 @@ def _github_json(url: str) -> dict[str, Any]:
     if not isinstance(value, dict):
         raise ValueError(f"remote resolution returned non-object: {url}")
     return value
+
+
+def _github_blob_text(repository: str, blob_sha: str) -> str:
+    if not SHA_RE.fullmatch(blob_sha):
+        raise ValueError(f"router blob is not immutable: {repository}@{blob_sha}")
+    blob = _github_json(f"https://api.github.com/repos/{repository}/git/blobs/{blob_sha}")
+    if blob.get("encoding") != "base64" or not isinstance(blob.get("content"), str):
+        raise ValueError(f"router blob is malformed: {repository}@{blob_sha}")
+    try:
+        return base64.b64decode("".join(blob["content"].split()), validate=True).decode("utf-8")
+    except (binascii.Error, UnicodeDecodeError) as exc:
+        raise ValueError(f"router blob is malformed: {repository}@{blob_sha}") from exc
 
 
 def resolve_remote(lock: dict[str, Any]) -> dict[str, dict[str, Any]]:
@@ -321,7 +446,23 @@ def resolve_remote(lock: dict[str, Any]) -> dict[str, dict[str, Any]]:
             for item in entries
             if isinstance(item, dict) and isinstance(item.get("path"), str)
         }
-        resolved[owner] = {"revision": revision, "paths": paths}
+        observation: dict[str, Any] = {"revision": revision, "paths": paths}
+        if owner == "agent-skills":
+            router_path = ".agent/case-router.yaml"
+            router_entry = next(
+                (
+                    item
+                    for item in entries
+                    if isinstance(item, dict) and item.get("path") == router_path
+                ),
+                None,
+            )
+            if not isinstance(router_entry, dict) or not isinstance(router_entry.get("sha"), str):
+                raise ValueError(f"missing Case Router path: {owner}@{revision}:{router_path}")
+            observation["contents"] = {
+                router_path: _github_blob_text(repository, router_entry["sha"])
+            }
+        resolved[owner] = observation
     return resolved
 
 
@@ -350,10 +491,54 @@ def reconstruct_context(
     return {
         "authority_set_identity": profile_revision,
         "authority_lock": lock,
+        "case_router": case_router_locator(bootstrap, lock),
         "repository_contract": bootstrap["repository_contract"],
         "target_binding": dict(target_locator),
         "capability_routes": select_capability_routes(bootstrap, required_capabilities),
         "surface": normalize_surface(bootstrap, controller, location),
+    }
+
+
+def reconstruct_execution_context(
+    root: Path,
+    profile_revision: str,
+    target_locator: dict[str, Any],
+    case_id: str,
+    resolved: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    if not SHA_RE.fullmatch(profile_revision):
+        raise ValueError("authority-set identity must be an exact architect-profile commit")
+    bootstrap, lock = load_contract(root)
+    validate_contract(bootstrap, lock)
+    required_target_fields = bootstrap["target_binding"]["required_fields"]
+    if set(target_locator) != set(required_target_fields):
+        raise ValueError("target locator requires exactly the canonical binding fields")
+    for field in ("repository", "branch", "task_path", "base_head", "phase"):
+        if not isinstance(target_locator.get(field), str) or not target_locator[field]:
+            raise ValueError(f"target locator field must be a non-empty string: {field}")
+    if not isinstance(target_locator.get("task_revision"), int) or target_locator["task_revision"] < 1:
+        raise ValueError("target locator task_revision must be a positive integer")
+    if not SHA_RE.fullmatch(target_locator["base_head"]):
+        raise ValueError("target locator base_head must be an exact commit")
+
+    router = resolve_case_router(bootstrap, lock, resolved)
+    routes = select_case_capability_routes(bootstrap, router, case_id)
+    return {
+        "bootstrap_trace": [
+            "PROFILE_REVISION",
+            "AUTHORITY_LOCK",
+            "CASE_ROUTER",
+            "CASE",
+            "CAPABILITY_ROUTE",
+            "CANONICAL_ARTIFACT",
+        ],
+        "authority_set_identity": profile_revision,
+        "authority_lock": lock,
+        "target_binding": dict(target_locator),
+        "case_router": router,
+        "case": case_id,
+        "capability_routes": routes,
+        "canonical_artifacts": canonical_artifacts(lock, routes, resolved),
     }
 
 

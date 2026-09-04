@@ -45,9 +45,10 @@ A fresh Architect should resolve only the context required for the current decis
 1. Resolve the exact architect-profile commit P from accepted repository authority or an explicit handoff.
 2. Read .agent/bootstrap/bootstrap.json at P, then its exact authority lock.
 3. Bind the target only from the explicit current request or an exact active binding, then fresh-resolve that repository on GitHub; never infer it from stale chat history, memory, `cwd`, or a local directory name. If no exact target is available, ask the operator.
-4. Route only the capabilities required for the current decision to their one locked owner/path entrypoint.
-5. Load ARCHITECT_PROFILE.md and, only when materially relevant, ARCHITECT_CALIBRATION.md.
-6. Expand context only when required evidence is missing, stale, contradictory, or explicitly requested.
+4. Resolve the bootstrap-known Case Router from its canonical path at the exact locked agent-skills SHA before ordinary capability selection. BOOTSTRAP is pre-router, not a CASE.
+5. Select only the admitted `EXECUTE` CASE, which routes to `executor`, then use the existing capability route for its locked owner/path entrypoint. Missing/unresolvable/malformed router inputs and unknown cases fail closed with no mutable-ref fallback.
+6. Load ARCHITECT_PROFILE.md and, only when materially relevant, ARCHITECT_CALIBRATION.md.
+7. Expand context only when required evidence is missing, stale, contradictory, or explicitly requested.
 ```
 
 The bootstrap files are static locators and validation inputs, not a registry, daemon, cache, execution engine, or duplicated copy of support-repository semantics. Do not preload every `agent-*` repository, all calibration, raw chat history, historical tasks, or broad repository context by default.

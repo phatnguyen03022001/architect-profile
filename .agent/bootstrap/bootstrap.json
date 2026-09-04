@@ -1,6 +1,10 @@
 {
   "version": 1,
   "authority_lock": ".agent/bootstrap/authority.lock.json",
+  "case_router": {
+    "owner": "agent-skills",
+    "path": ".agent/case-router.yaml"
+  },
   "repository_contract": {
     "repository": "phatnguyen03022001/architect-profile",
     "topology": "DEV_MAIN",
@@ -79,7 +83,7 @@
       "location": "CLOUD",
       "transport": "NATIVE",
       "model": "LUNA",
-      "effort": "MEDIUM"
+      "effort": "XHIGH"
     },
     {
       "id": "CODEX_LOCAL",
@@ -87,7 +91,7 @@
       "location": "LOCAL",
       "transport": "NATIVE",
       "model": "LUNA",
-      "effort": "MEDIUM"
+      "effort": "XHIGH"
     }
   ],
   "task_launch": {
@@ -108,8 +112,8 @@
     "fixtures": {
       "CHATGPT_GITHUB": "TASK LAUNCH — NEW · CHATGPT_GITHUB · GPT-5.6 Sol · effort: HIGH",
       "CHATGPT_LOCAL": "TASK LAUNCH — NEW · CHATGPT_LOCAL · GPT-5.6 Sol · effort: HIGH",
-      "CODEX_CLOUD": "TASK LAUNCH — NEW · CODEX_CLOUD · LUNA · effort: MEDIUM",
-      "CODEX_LOCAL": "TASK LAUNCH — NEW · CODEX_LOCAL · LUNA · effort: MEDIUM"
+      "CODEX_CLOUD": "TASK LAUNCH — NEW · CODEX_CLOUD · LUNA · effort: XHIGH",
+      "CODEX_LOCAL": "TASK LAUNCH — NEW · CODEX_LOCAL · LUNA · effort: XHIGH"
     },
     "prompt_template": "Target: {repository}\nBranch: {branch}\nTask: {task_path}\nTask revision: {task_revision}\nExact base HEAD: {base_head}\nPhase: {phase}\nExecution surface: {surface}\nResolve the canonical task at the exact base and obey it exactly. Communicate with the operator in Vietnamese. Persist repository artifacts in English."
   },
