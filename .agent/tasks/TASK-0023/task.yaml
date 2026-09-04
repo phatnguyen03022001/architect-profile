@@ -1,0 +1,163 @@
+protocol_version: 3
+
+task_id: TASK-0023
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: accepted_follow_up
+  source: ".agent/tasks/TASK-0022/review.yaml@47edf415d4c3389b57dd77b83eaed41ee5dc1f21"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "db03b97b5c42c9c64ad8dce76bc694530e41a206"
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+
+authority_sources:
+  - source: "architect-profile/main@116e624b4c17d4949562b4d3f16385bfcf582130"
+    role: "currently active ecosystem authority-set before this activation"
+    precedence: 1
+  - source: ".agent/tasks/TASK-0022/review.yaml@47edf415d4c3389b57dd77b83eaed41ee5dc1f21"
+    role: "accepted exact activation candidate and candidate verification evidence"
+    precedence: 2
+  - source: "agent-skills/main@ac2f213095e339dafa96825d89a6f6de164792bc"
+    role: "stable support revision bound by the accepted candidate"
+    precedence: 3
+
+structure_authority:
+  status: RESOLVED
+  source: "existing architect-profile branch/ref topology and existing TASK-0023 lifecycle location"
+  rationale: >-
+    This task changes no reusable source structure. It may only move the existing architect-profile/main ref
+    exactly to the already accepted candidate and publish the existing task-lifecycle report artifact on dev.
+    No new source file, module, component, top-level directory, ownership boundary, or structural reorganization
+    is authorized.
+
+objective: >-
+  Activate the exact accepted TASK-0022 revision-2 candidate 6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee
+  by moving architect-profile/main non-force and ancestry-safe from
+  116e624b4c17d4949562b4d3f16385bfcf582130 exactly to that candidate, then prove the active authority set
+  resolves agent-skills exactly at ac2f213095e339dafa96825d89a6f6de164792bc and publish compact TASK-0023
+  execution evidence on dev.
+
+scope:
+  required_changes:
+    - >-
+      Freshly resolve exact TASK-0022 revision-2 ACCEPTED review/report/candidate identity, current
+      architect-profile dev/main/topology, agent-skills stable main, current capabilities, and old-main ancestry.
+    - >-
+      Reverify the exact accepted candidate under the currently active pinned rules as one compact bounded
+      deterministic phase using the existing repository-native bootstrap checks required by TASK-0022. Keep noisy
+      command output bounded and return attributable PASS/FAIL metadata rather than transcript-style output.
+    - >-
+      After successful candidate verification, continue within the same pre-authorized bounded execution graph:
+      refresh exact promotion guards -> non-force push candidate to refs/heads/main -> fresh remote post-proof ->
+      prove active lock/router resolution -> compact JOIN. Any failed or ambiguous guard means zero promotion.
+    - >-
+      Publish only .agent/tasks/TASK-0023/report.yaml on dev after activation. Do not modify candidate bytes or
+      promote any TASK-0022 report/review or TASK-0023 planning/report descendant to main.
+
+invariants:
+  - "No reusable candidate bytes are modified by this task."
+  - "architect-profile/main moves only from 116e624b4c17d4949562b4d3f16385bfcf582130 to exact accepted candidate 6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee."
+  - "The activated authority lock pins agent-skills exactly to ac2f213095e339dafa96825d89a6f6de164792bc and preserves the other three support pins."
+  - "Case Router remains exactly EXECUTE -> executor."
+  - "CHATGPT_GITHUB/CHATGPT_LOCAL remain GPT-5.6 Sol HIGH; CODEX_CLOUD/CODEX_LOCAL remain LUNA XHIGH."
+  - "Agent Runtime remains transport only."
+  - "Topology remains exactly {dev, main}."
+  - "Rollback remains a future forward activation commit; never force-move main backward."
+
+forbidden_changes:
+  - "Do not modify authority.lock.json, bootstrap code/tests, bootstrap.json, documentation, protocol, Case Router, capability routing, roles, model policy, branch policy, support repositories, or candidate bytes."
+  - "Do not force-push, merge, cherry-pick, rebase, or substitute another candidate."
+  - "Do not create/delete/rename branches, tags, releases, dependencies, services, registries, caches, schedulers, queues, callbacks, or telemetry machinery."
+  - "Do not promote report/review/planning descendants to main."
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  REVIEW:
+    - repository_content_read
+    - repository_content_write
+    - exact_commit_report_resolution
+    - remote_ref_read
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "TASK-0022 revision-2 review is ACCEPTED and names exact candidate 6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee; report/candidate identities resolve exactly."
+    evidence_required: "Exact immutable review/report/candidate resolution."
+  - id: AC-2
+    requirement: "Exact candidate verification remains green under the currently active pinned rules before activation."
+    evidence_required: "Compact bounded verification JOIN covering local/remote bootstrap validator, bootstrap tests, py_compile, git diff --check, exact locked routes, Case Router identity, and no-chat reconstruction."
+  - id: AC-3
+    requirement: "Immediately before mutation, main is exactly 116e624b4c17d4949562b4d3f16385bfcf582130, topology is {dev, main}, old main is an ancestor of the exact candidate, candidate identity is unchanged, and promotion capability is current."
+    evidence_required: "Fresh refs/topology/ancestry/identity/capability guard."
+  - id: AC-4
+    requirement: "One pre-authorized bounded execution graph reaches guard PASS -> exact non-force promotion -> post-proof PASS; no model/controller wake-up is required between deterministic phases unless a guard produces an unpreauthorized semantic choice."
+    evidence_required: "Compact attributable phase results and exact post-promotion main identity."
+  - id: AC-5
+    requirement: "After activation, architect-profile/main equals 6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee and the active authority lock resolves agent-skills exactly to ac2f213095e339dafa96825d89a6f6de164792bc with Case Router EXECUTE -> executor."
+    evidence_required: "Fresh post-promotion main, exact active lock, locked-route/router resolution, and no mutable fallback."
+  - id: AC-6
+    requirement: "Only compact TASK-0023 report evidence is published on dev after activation; topology remains {dev, main} and final local tracked/index state is clean."
+    evidence_required: "Exact report commit, fresh final refs/topology, and local closure evidence."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Fresh-resolve exact task/base, TASK-0022 accepted review/report/candidate, active authority set, stable agent-skills main, repository refs/topology, explicit structure_authority, ancestry, and current capabilities."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Run one compact bounded candidate-verification phase covering the existing TASK-0022 repository-native checks with bounded attributable output."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Without controller synchronization between already-authorized deterministic phases, refresh promotion guards; if all pass, non-force push exact candidate to main; fresh-prove main equals candidate and active lock/router resolve exactly; return compact JOIN."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Publish compact TASK-0023 report on dev, then freshly prove final dev/main/topology and local hygiene."
+      required: true
+
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: true
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
