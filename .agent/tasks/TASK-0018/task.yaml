@@ -1,0 +1,224 @@
+protocol_version: 3
+
+task_id: TASK-0018
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: accepted_follow_up
+  task_id: TASK-0028
+  gap_id: "CASE_ROUTER_BOOTSTRAP_ACTIVATION_CANDIDATE"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "4a063c41f429207577434600a3571dc17822cd78"
+
+architect_analysis_skills:
+  - architect
+  - simplicity
+  - github-workflow
+  - verification
+
+execution_skills:
+  required:
+    - executor
+    - simplicity
+    - github-workflow
+    - verification
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "phatnguyen03022001/agent-skills TASK-0028 review@1db2bc0ac70ae4ea79db5d756d955cfc18aac22b"
+    role: "accepted stable Case Router promotion and bootstrap-integration follow-up authority"
+    precedence: 1
+  - source: "phatnguyen03022001/agent-skills@4a063c41f429207577434600a3571dc17822cd78"
+    role: "exact stable support revision containing the accepted Case Router"
+    precedence: 2
+  - source: "current operator authority in this Architect conversation"
+    role: "Codex execution-profile correction: CODEX_CLOUD and CODEX_LOCAL use LUNA/XHIGH"
+    precedence: 3
+  - source: "phatnguyen03022001/architect-profile@68350ff54749b2548a2bb5f4f7cc40f2c0d29cd8"
+    role: "current accepted dev bootstrap/profile baseline"
+    precedence: 4
+
+structure_authority:
+  status: RESOLVED
+  source: "accepted Operating Model + Case Router vision"
+  rationale: >-
+    Extend the existing bootstrap foundation in place. The router is a bootstrap-known static
+    navigation artifact resolved at the exact locked agent-skills SHA. Do not add a new service,
+    registry, lifecycle artifact, classifier, or second authority model.
+
+objective: >-
+  Produce the next architect-profile activation candidate on dev: update the exact support lock
+  to stable agent-skills 4a063c41f429207577434600a3571dc17822cd78, make the accepted static
+  Case Router mechanically bootstrap-resolvable before capability loading, preserve CASE as
+  navigation only, and correct both Codex execution surfaces to LUNA/XHIGH. Do not activate
+  architect-profile/main in this task.
+
+scope:
+  required_changes:
+    - "Update authority.lock so agent-skills pins exactly 4a063c41f429207577434600a3571dc17822cd78. Preserve all other support repository pins unless fresh immutable-resolution evidence proves an exact correction is required by this task."
+    - "Make the Case Router a bootstrap-known canonical locator resolved only after the profile revision and authority lock are known and before ordinary capability selection. The locator must resolve .agent/case-router.yaml from the exact locked agent-skills revision."
+    - "Bootstrap must not use the Case Router to discover the Case Router. BOOTSTRAP remains a pre-router primitive."
+    - "Case Router resolution must fail closed when the locked agent-skills SHA is unresolvable, the router path is missing, the router artifact is malformed, or a declared case/capability cannot be validated. No fallback to main/dev/latest/nearby revisions."
+    - "Preserve the accepted router semantics exactly: the only admitted reusable CASE is EXECUTE and it routes only to capability key executor. Do not copy owner/path/SHA data into the Case Router or create a second capability registry."
+    - "Preserve separation CASE != BINDING != SPECIALIZATION != MODE != TASK != STATE. Unknown or ambiguous case selection must never be silently guessed or fuzzy-routed by bootstrap."
+    - "Correct operator execution routing so CHATGPT_GITHUB and CHATGPT_LOCAL remain GPT-5.6 Sol/HIGH, while CODEX_CLOUD and CODEX_LOCAL are exactly LUNA/XHIGH. AGENT_RUNTIME remains transport only for CHATGPT_LOCAL."
+    - "Update the existing bootstrap validator/tests minimally to prove exact lock resolution, router-path resolution at the locked SHA, pre-router bootstrap ordering, accepted EXECUTE navigation, fail-closed negative cases, and exact four-surface model/effort routing. Reuse existing validation/test surfaces."
+    - "Run a fresh-context reconstruction fixture proving that with target identity and exact GitHub state but no trusted chat history, bootstrap resolves profile revision -> authority lock -> exact Case Router -> EXECUTE -> executor capability -> exact canonical executor artifact."
+    - "Publish the exact implementation candidate and report on architect-profile/dev only. main must remain exactly 71921cde6228c21b4d2e3e6509e685d82981dc9c throughout this task."
+
+  allowed_existing_files_or_components:
+    - ".agent/bootstrap/authority.lock.json"
+    - ".agent/bootstrap/bootstrap.json"
+    - ".agent/bootstrap/validate.py"
+    - ".agent/bootstrap/test_bootstrap.py"
+    - "ARCHITECT_PROFILE.md"
+    - "README.md"
+    - ".agent/tasks/TASK-0018/task.yaml"
+    - ".agent/tasks/TASK-0018/report.yaml"
+    - "existing repository-native bootstrap validation/test surfaces"
+
+invariants:
+  - "GitHub is canonical repository truth; chat/model/session state has zero authority."
+  - "architect-profile/main is the ecosystem activation pointer and is not mutated in this task."
+  - "authority.lock never self-pins architect-profile."
+  - "Locked SHA/path resolution is exact and fail-closed with no mutable-ref fallback."
+  - "BOOTSTRAP is pre-router; BOOTSTRAP is not a CASE."
+  - "Case Router is navigation only and grants no task, mutation, review, release, promotion, or lifecycle authority."
+  - "Case Router contains capability keys only; exact owner/path resolution remains in the existing capability routing layer."
+  - "The only admitted reusable CASE remains EXECUTE -> executor."
+  - "Embedding remains NOT_ADMITTED and is not implemented."
+  - "Exact operator routing is CHATGPT_GITHUB -> GPT-5.6 Sol/HIGH; CHATGPT_LOCAL -> GPT-5.6 Sol/HIGH; CODEX_CLOUD -> LUNA/XHIGH; CODEX_LOCAL -> LUNA/XHIGH."
+  - "Physical branch topology remains exactly {dev, main}; no staging or third branch."
+
+forbidden_changes:
+  - "Do not mutate agent-skills, agent-standards, agent-documents, agent-runtime, or any target product repository."
+  - "Do not mutate or promote architect-profile/main."
+  - "Do not add any CASE beyond EXECUTE."
+  - "Do not model BOOTSTRAP, REVIEW, VERIFY, DESIGN, PROGRAM, EVOLVE, PROMOTE, RELEASE, RED_TEAM, PASS, FAIL, BLOCKED, NEW, CONTINUE, or execution surfaces as CASE values."
+  - "Do not add next/retry/success/failure/terminal/transition semantics to the Case Router."
+  - "Do not create classifier, fuzzy intent routing, workflow/state engine, planner, orchestrator, registry, daemon, service, database, queue, scheduler, cache, persistent execution capsule, second capability registry, embeddings, vectors, semantic indexes, similarity search, or retrieval stores."
+  - "Do not create, rename, or delete branches."
+  - "Do not include .DS_Store/.codex local cleanup in this task; local-hygiene normalization remains a separate bounded concern."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+    - native_repository_execution
+  REVIEW:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - remote_ref_read
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "The profile lock pins exact stable agent-skills 4a063c41f429207577434600a3571dc17822cd78 with no self-pin or mutable-ref fallback."
+    evidence_required: "Exact lock diff plus immutable-resolution positive/negative tests."
+  - id: AC-2
+    requirement: "Fresh bootstrap resolves profile -> lock -> exact Case Router path at locked agent-skills SHA before ordinary case-driven capability loading, with BOOTSTRAP remaining a pre-router primitive."
+    evidence_required: "Machine-readable bootstrap contract and fresh-context reconstruction fixture."
+  - id: AC-3
+    requirement: "The accepted router semantics remain exactly EXECUTE -> executor and CASE remains separate from binding, specialization, mode, task, and state."
+    evidence_required: "Exact remote router-byte resolution at locked SHA plus positive/negative validator tests."
+  - id: AC-4
+    requirement: "Missing/unresolvable lock SHA, missing/malformed router path, unknown case, and unauthorized lifecycle/dimension fields fail closed without fallback or fuzzy inference."
+    evidence_required: "Deterministic negative tests using the existing bootstrap validation surface."
+  - id: AC-5
+    requirement: "Execution-surface routing matches current operator authority: ChatGPT surfaces GPT-5.6 Sol/HIGH and Codex surfaces LUNA/XHIGH; AGENT_RUNTIME is transport only."
+    evidence_required: "Exact bootstrap/profile diff and exhaustive four-surface render/normalization tests."
+  - id: AC-6
+    requirement: "A no-chat fresh-context fixture mechanically resolves EXECUTE to the exact canonical executor artifact using only target/bootstrap locator plus GitHub truth and locked authority."
+    evidence_required: "Fixture/test output proving no trusted chat, cwd, or remembered-project inference is required."
+  - id: AC-7
+    requirement: "No new subsystem, speculative taxonomy, embedding, second authority registry, or external repository mutation is introduced."
+    evidence_required: "Exact changed-path review, full existing bootstrap tests/validator, git diff --check, and simplicity review."
+  - id: AC-8
+    requirement: "Implementation/report publication closes on dev with exact remote SHA confirmation; main remains 71921cde6228c21b4d2e3e6509e685d82981dc9c and topology remains exactly {dev, main}."
+    evidence_required: "Exact implementation SHA, report SHA, independent GitHub refs, unchanged main, final topology proof, and local==remote proof when executing locally."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Fresh-resolve TASK-0018 revision 1 at exact planning base, architect-profile dev/main refs, accepted agent-skills TASK-0028 review, stable agent-skills main 4a063c41f429207577434600a3571dc17822cd78, and all required local/publication capabilities before mutation."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Run focused positive/negative bootstrap tests for exact lock resolution, router locator/path resolution, pre-router ordering, EXECUTE -> executor, fail-closed malformed/unknown inputs, and exact four-surface model/effort routing."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Run the complete existing bootstrap test suite, bootstrap validator with immutable remote resolution, python3 -m py_compile for modified Python files, and git diff --check."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Run the no-chat fresh-context reconstruction fixture from target/bootstrap locator through exact router/capability resolution and prove no whole-support-repository preload is required beyond bootstrap/lock/router."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Verify exact changed paths are the smallest sufficient in-place bootstrap/profile correction and no external repository or main ref was mutated."
+      required: true
+    - id: CHECK-6
+      command_or_check: "Push exact implementation candidate to dev, independently prove remote dev == candidate, publish report-only child, independently prove remote dev == report, require main unchanged/topology {dev, main}, reconcile local dev to final remote dev if local, and stop at NEEDS_REVIEW."
+      required: true
+
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
