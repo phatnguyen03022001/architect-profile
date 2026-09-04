@@ -1,0 +1,130 @@
+protocol_version: 3
+
+task_id: TASK-0025
+task_revision: 1
+report_revision: 1
+state: REPORTED
+
+task_source:
+  path: .agent/tasks/TASK-0025/task.yaml
+  commit: "2c227308f4a28a8f50bc9e772734c17099c3a239"
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+  authorized_base_head: "2c227308f4a28a8f50bc9e772734c17099c3a239"
+  final_execution_head: "2c227308f4a28a8f50bc9e772734c17099c3a239"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "ac2f213095e339dafa96825d89a6f6de164792bc"
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  available:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  missing: []
+  passed: true
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: NOT_REQUIRED
+  evidence: >-
+    TASK-0025 designates no separate authoritative verifier; the exact bounded activation
+    consequence graph and fresh remote identity proof are the required execution evidence.
+
+local_hygiene:
+  result: PASS
+  evidence: >-
+    The activation bundle created no repository artifacts or temporary files. No stash, reset,
+    clean, branch creation, or operator-owned state mutation was performed; the designated target
+    checkout was tracked-clean before report authorship.
+
+pushed: true
+promoted_to_main: true
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: PASS
+    evidence: >-
+      Fresh resolution proved TASK-0024 review
+      b8e96b0094ad09e58b8d6bc782f89731c52a8f09 is ACCEPTED and binds report
+      9bfdc7e359a6f95244968bb52712642f799190a6 to exact candidate
+      0f13d7a036d7c866baa66751067cc2aaf49dd849. The current active architect-profile/main was
+      6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee; agent-runtime/main resolved to
+      c49d777efa09db7f6c51bd8d8616db4623499fb8 and agent-skills/main to
+      ac2f213095e339dafa96825d89a6f6de164792bc. Accepted immutable TASK-0024 correctness evidence
+      was reused because exact candidate identity, support pins, and governing predicate semantics
+      remained applicable. Bootstrap validators, 27 bootstrap tests, py_compile, git diff --check,
+      locked-route proof, Case Router proof, and no-chat reconstruction were explicitly not rerun.
+  - criterion_id: AC-2
+    status: PASS
+    evidence: >-
+      The fresh pre-push guard proved local HEAD and remote dev equal
+      2c227308f4a28a8f50bc9e772734c17099c3a239, remote main equals
+      6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee, topology is exactly {dev, main}, and the old main
+      is an ancestor of the exact candidate 0f13d7a036d7c866baa66751067cc2aaf49dd849. Candidate
+      lock bytes matched the exact accepted agent-skills, agent-standards, agent-documents, and
+      agent-runtime revisions. A non-mutating push dry-run proved current non-force promotion
+      capability immediately before mutation.
+  - criterion_id: AC-3
+    status: PASS
+    evidence: >-
+      One bounded activation invocation returned an attributable PASS JOIN for fresh guard,
+      non-force promotion capability, exact main promotion, fresh post-promotion proof, and active
+      lock proof, with no semantic controller boundary between the authorized deterministic phases.
+  - criterion_id: AC-4
+    status: PASS
+    evidence: >-
+      Fresh post-promotion remote resolution proved architect-profile/main exactly equals
+      0f13d7a036d7c866baa66751067cc2aaf49dd849, dev remains
+      2c227308f4a28a8f50bc9e772734c17099c3a239, and topology remains exactly {dev, main}. The
+      active lock at that exact main commit pins agent-runtime exactly to
+      c49d777efa09db7f6c51bd8d8616db4623499fb8 and preserves the three accepted support pins.
+  - criterion_id: AC-5
+    status: NOT_PROVEN
+    evidence: >-
+      Activation and pre-report remote truth passed, and this report is the sole authorized
+      TASK-0025 child artifact on dev. The exact report publication identity, final remote refresh,
+      and final local closure are resolved only after this self-containing report commit is pushed;
+      they are intentionally not self-attested here.
+
+executor_checks:
+  - check_id: CHECK-1
+    result: PASS
+    evidence: >-
+      Fresh task/base binding, exact TASK-0024 review/report/candidate identities, active old-main
+      authority set, agent-runtime/main, agent-skills/main, candidate ancestry, topology, lock pins,
+      structure authority, and current execution/promotion capabilities were resolved before
+      mutation. Accepted immutable correctness producers were not rerun.
+  - check_id: CHECK-2
+    result: PASS
+    evidence: >-
+      The single bounded consequence graph passed guard -> exact strict non-force main push -> fresh
+      remote post-proof -> active-lock runtime-pin proof -> compact JOIN. No candidate bytes or
+      support repositories were modified.
+  - check_id: CHECK-3
+    result: NOT_PROVEN
+    evidence: >-
+      Report-child publication, final remote dev/main/topology refresh, and final local tracked/index
+      closure are intentionally resolved after the report commit is pushed and are not predicted by
+      this report artifact.
+
+result: NEEDS_REVIEW
