@@ -1,20 +1,15 @@
 protocol_version: 3
 
 task_id: TASK-0020
-task_revision: 1
-review_revision: 1
-state: REVISION_REQUIRED
+task_revision: 2
+review_revision: 2
+state: ACCEPTED
 
 reviewed_report:
   repository: phatnguyen03022001/architect-profile
   path: .agent/tasks/TASK-0020/report.yaml
-  commit: "78a4f23bcfc6a644dde5af49caed36ae53093db0"
-  report_revision: 1
-
-independence:
-  reviewer_role: ARCHITECT
-  separate_session_from_executor: true
-  exact_report_identity_verified: true
+  commit: "ebde1ac147683250221f8a150058d1ae716514a9"
+  report_revision: 2
 
 contract_compliance:
   protocol_version: PASS
@@ -24,32 +19,32 @@ contract_compliance:
   scope: PASS
   structure_policy: PASS
   git_authority: PASS
-  acceptance_criteria: FAIL
+  acceptance_criteria: PASS
   verifier_evidence: NOT_REQUIRED
 
-gap_disposition:
-  - gap_id: TASK-0020-STALE-SHA-EXPECTATIONS
-    decision: revise_task
-    rationale: >-
-      TASK-0020 revision 1 correctly limited implementation to authority.lock, but two existing
-      bootstrap regressions hard-code the previous agent-skills SHA. The lock-only change therefore
-      cannot satisfy the same task's mandatory green-suite criterion without a narrowly authorized
-      expectation update.
+accepted_candidate:
+  commit: "116e624b4c17d4949562b4d3f16385bfcf582130"
+  role: "exact architect-profile activation candidate binding agent-skills stable main"
+
+acceptance_basis:
+  - "Exact TASK-0020 revision 2 at base 9c4aea33675f172d6bc5092c9c59d374e7dfb055 authorizes exactly one authority.lock SHA replacement and exactly two stale expected-SHA replacements in test_bootstrap.py."
+  - "Candidate 116e624b4c17d4949562b4d3f16385bfcf582130 changes only .agent/bootstrap/authority.lock.json and .agent/bootstrap/test_bootstrap.py, with the exact 1+2 replacements and no other text or logic changes."
+  - "Fresh GitHub proof resolves agent-skills/main exactly to db03b97b5c42c9c64ad8dce76bc694530e41a206; the candidate lock binds that exact immutable revision while all other support pins remain unchanged."
+  - "Repository-native verification is green: bootstrap validator PASS, full bootstrap suite 27/27 PASS, remote validator PASS, py_compile PASS, git diff --check PASS, Case Router exactly EXECUTE -> executor, and no-chat reconstruction PASS."
+  - "Report commit ebde1ac147683250221f8a150058d1ae716514a9 is the direct child of the candidate and only updates .agent/tasks/TASK-0020/report.yaml."
+  - "Fresh review-boundary GitHub state proves dev=ebde1ac147683250221f8a150058d1ae716514a9, main=89dacd43b7a200a7b9cd36d9545f23c930eb4f44, and topology exactly {dev, main}."
+
+activation_readiness:
+  eligible_for_candidate_capture: true
+  exact_candidate: "116e624b4c17d4949562b4d3f16385bfcf582130"
+  current_active_main: "89dacd43b7a200a7b9cd36d9545f23c930eb4f44"
+  resulting_agent_skills_pin: "db03b97b5c42c9c64ad8dce76bc694530e41a206"
+  requirement: "Activate only by non-force ancestry-safe movement of architect-profile/main to the exact accepted candidate; do not promote TASK-0020 report/review or later planning descendants."
 
 follow_up_tasks:
-  - task_id: TASK-0020
-    origin:
-      type: task_revision
-      task_id: TASK-0020
-      gap_id: TASK-0020-STALE-SHA-EXPECTATIONS
-
-promotion_readiness:
-  eligible_for_candidate_capture: false
-  reason: >-
-    No activation candidate exists for revision 1. Revise the same task to authorize only the
-    corresponding two stale SHA expectation replacements in test_bootstrap.py alongside the lock pin.
+  - task_id: TASK-0021
+    purpose: "Activate the accepted authority-set candidate by moving architect-profile/main exactly to 116e624b4c17d4949562b4d3f16385bfcf582130."
 
 notes:
-  - "Executor behavior is correct: it probed, observed 25/27 with exactly two stale-SHA failures, restored the probe, and failed closed without unauthorized test mutation."
-  - "Do not create a separate parametrization/refactor task here; that would add ceremony and change test design unnecessarily."
-  - "Revision 2 should preserve bootstrap runtime semantics and test logic, changing only the lock pin plus the two stale expected SHA literals from 4a063c41... to db03b97b...."
+  - "The two test edits are stale expectation updates only; bootstrap runtime code and bootstrap.json remain unchanged."
+  - "Support-main movement alone did not activate these semantics; architect-profile/main remains the ecosystem activation pointer."
