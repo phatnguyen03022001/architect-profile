@@ -1,12 +1,14 @@
 protocol_version: 3
 
 task_id: TASK-0022
-task_revision: 1
+task_revision: 2
 state: APPROVED
 
 origin:
-  type: accepted_follow_up
-  source: "phatnguyen03022001/agent-skills/.agent/tasks/TASK-0035/review.yaml@a53b7275ee9c9c88342ed96cd3baf2bf89882185"
+  type: task_revision
+  prior_revision: 1
+  blocker_report: "c15159ad75298310e56593e6f465227dacbbfec4"
+  review: "8eaa05d8cf130a9e0bbbdc8b092192c49eb1fbe0"
 
 architect_binding:
   target_repository: phatnguyen03022001/architect-profile
@@ -43,6 +45,18 @@ authority_sources:
   - source: "agent-skills/.agent/tasks/TASK-0035/review.yaml@a53b7275ee9c9c88342ed96cd3baf2bf89882185"
     role: "accepted stable-promotion evidence"
     precedence: 3
+  - source: ".agent/tasks/TASK-0022/review.yaml@8eaa05d8cf130a9e0bbbdc8b092192c49eb1fbe0"
+    role: "revision-1 blocker disposition and task-authority correction"
+    precedence: 4
+
+structure_authority:
+  status: RESOLVED
+  source: "existing architect-profile bootstrap structure and repository-local ownership at architect-profile/main@116e624b4c17d4949562b4d3f16385bfcf582130"
+  rationale: >-
+    This task changes only an existing support-pin value in .agent/bootstrap/authority.lock.json and the
+    minimum matching SHA expectation literals in the existing .agent/bootstrap/test_bootstrap.py. No new
+    source file, top-level directory, shared module, component boundary, structural reorganization, or
+    ownership move is authorized; the TASK-0022 report remains the existing task-lifecycle artifact.
 
 objective: >-
   Produce the smallest architect-profile activation candidate that changes the agent-skills authority lock
@@ -65,8 +79,9 @@ scope:
       exactly the admitted EXECUTE -> executor projection, all routed paths resolve from the exact locked tree,
       and no-chat bootstrap reconstruction remains valid.
     - >-
-      Publish the exact implementation candidate and compact TASK-0022 report on dev. Do not promote main in
-      this execution; architect-profile/main remains the activation pointer and moves only after Architect review.
+      Publish the exact implementation candidate and compact TASK-0022 revision-2 report on dev. Do not promote
+      main in this execution; architect-profile/main remains the activation pointer and moves only after
+      Architect review.
 
 allowed_existing_files_or_components:
   - .agent/bootstrap/authority.lock.json
@@ -115,13 +130,13 @@ acceptance_criteria:
     requirement: "agent-skills/main freshly resolves exactly to ac2f213095e339dafa96825d89a6f6de164792bc and no mutable/latest fallback is used."
     evidence_required: "Fresh remote exact-SHA proof."
   - id: AC-5
-    requirement: "Candidate and report-only child are published on architect-profile/dev while main remains 116e624b4c17d4949562b4d3f16385bfcf582130 and topology remains {dev, main}."
+    requirement: "Candidate and revision-2 report-only child are published on architect-profile/dev while main remains 116e624b4c17d4949562b4d3f16385bfcf582130 and topology remains {dev, main}."
     evidence_required: "Fresh remote refs/topology and final local hygiene proof."
 
 verification:
   executor_checks:
     - id: CHECK-1
-      command_or_check: "Fresh-resolve exact task/base, target repository/refs/topology, active authority set, stable agent-skills main, and current bootstrap/test ownership surfaces."
+      command_or_check: "Fresh-resolve TASK-0022 revision 2 at exact base, revision-1 blocker review, target repository/refs/topology, active authority set, stable agent-skills main, explicit resolved structure_authority, and current bootstrap/test ownership surfaces."
       required: true
     - id: CHECK-2
       command_or_check: "Apply only the exact lock SHA replacement and minimum matching live test expectation SHA replacements; prove exact diff and preserved support pins."
@@ -130,7 +145,7 @@ verification:
       command_or_check: "Run one bounded deterministic verification bundle covering local validator, bootstrap tests, remote validator, py_compile, git diff --check, exact locked-route resolution, Case Router identity, and no-chat reconstruction."
       required: true
     - id: CHECK-4
-      command_or_check: "Publish exact candidate then compact TASK-0022 report child on dev; fresh-prove main unchanged, topology {dev, main}, report identity, and final local hygiene."
+      command_or_check: "Publish exact candidate then replace TASK-0022/report.yaml with a compact revision-2 report child on dev; fresh-prove main unchanged, topology {dev, main}, report identity, and final local hygiene."
       required: true
 
   authoritative_verification:
