@@ -1,0 +1,179 @@
+protocol_version: 3
+
+task_id: TASK-0027
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: accepted_review
+  task_id: TASK-0026
+  gap_id: "ACTIVATE_DETERMINISTIC_BUNDLING_AUTHORITY_SET"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ac2f213095e339dafa96825d89a6f6de164792bc"
+
+architect_analysis_skills: []
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - github-workflow
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "architect-profile/main@0f13d7a036d7c866baa66751067cc2aaf49dd849"
+    role: "current active ecosystem authority set and activation predecessor"
+    precedence: 1
+  - source: "architect-profile/.agent/tasks/TASK-0026/review.yaml@25117be4320851639bb02aa87b5e2b382740309a"
+    role: "accepted immutable correctness judgment for the exact activation candidate"
+    precedence: 2
+  - source: "architect-profile/.agent/tasks/TASK-0026/report.yaml@4e2a97ad5c6e8424778ea32600a1d960a506856b"
+    role: "accepted candidate verification evidence"
+    precedence: 3
+  - source: "architect-profile@b7753ba37abe193c8801ac26302ecff7bbb35604"
+    role: "exact accepted authority-set activation subject"
+    precedence: 4
+  - source: "agent-skills/main@11a5720adf96555bfe4187067d8dd51627ec8676"
+    role: "stable promoted deterministic-bundling semantics pinned by the candidate"
+    precedence: 5
+
+structure_authority:
+  status: RESOLVED
+  source: "existing architect-profile dev/main activation topology and accepted TASK-0026 lifecycle artifacts"
+  rationale: >-
+    This task performs only the already-reviewed activation consequence: strict non-force promotion of the exact
+    accepted architect-profile candidate to main plus one report artifact on dev. It introduces no source, module,
+    test, dependency, route, schema, service, runtime capability, scheduler, or structural change.
+
+objective: >-
+  Strictly non-force activate the exact accepted architect-profile candidate
+  b7753ba37abe193c8801ac26302ecff7bbb35604 on main so the ecosystem authority set pins
+  agent-skills@11a5720adf96555bfe4187067d8dd51627ec8676 and therefore activates the accepted deterministic-bundling
+  semantics, while reusing still-applicable TASK-0026 immutable correctness evidence and refreshing only
+  activation-consequence predicates.
+
+scope:
+  required_changes:
+    - >-
+      Freshly re-resolve exact TASK-0026 review, report, candidate, current active authority set, agent-skills/main,
+      current architect-profile dev/main refs, topology, candidate ancestry, candidate lock bytes, and promotion
+      capability before mutation. Do not trust chat/session cache.
+    - >-
+      Reuse accepted TASK-0026 immutable correctness evidence only after proving it covers the exact currently required
+      correctness predicates and the candidate plus relevant governing/predicate semantics remain applicable.
+    - >-
+      Do not rerun bootstrap validator, 27 bootstrap tests, py_compile, git diff --check, locked-route proof,
+      Case Router proof, or no-chat reconstruction solely for activation when the accepted immutable evidence remains applicable.
+    - >-
+      Execute one bounded deterministic activation consequence: fresh guard -> exact strict non-force main push to
+      b7753ba37abe193c8801ac26302ecff7bbb35604 -> fresh post-promotion remote proof -> fresh active-lock proof that
+      architect-profile/main now pins agent-skills@11a5720adf96555bfe4187067d8dd51627ec8676 -> compact attributable JOIN.
+    - >-
+      Publish only .agent/tasks/TASK-0027/report.yaml on dev after activation, then freshly prove final dev/main/topology
+      and required local managed-mirror closure outside the self-containing report artifact.
+  allowed_existing_files_or_components:
+    - ".agent/tasks/TASK-0027/report.yaml"
+    - "git refs dev/main"
+
+invariants:
+  - "Activation subject is exactly b7753ba37abe193c8801ac26302ecff7bbb35604; no reconstructed, amended, rebased, merged, cherry-picked, or modified substitute is permitted."
+  - "Old main before mutation must freshly resolve to 0f13d7a036d7c866baa66751067cc2aaf49dd849."
+  - "Promotion must be a strict fast-forward/non-force update and ancestry from old main to the exact candidate must be proven immediately before push."
+  - "The candidate lock must still resolve agent-skills@11a5720adf96555bfe4187067d8dd51627ec8676, agent-standards@3f4950f280a3a35fee81471d4b83715fa72cf9ee, agent-documents@6918f46282f4a92bbc61071444a5ff5dab30ddc9, and agent-runtime@c49d777efa09db7f6c51bd8d8616db4623499fb8."
+  - "No candidate bytes, bootstrap semantics, tests, runtime code, support-repository content, model policy, Case Router, execution-surface contract, or launch grammar are modified."
+  - "Topology remains exactly {dev, main}."
+  - "Accepted immutable correctness evidence is reused only under exact current-predicate coverage and still-applicable semantics; identity drift, contradiction, new predicate, changed semantics, or stronger assurance requirement fails closed or requires only the newly required proof."
+
+forbidden_changes:
+  - "Do not rerun acceptance-equivalent TASK-0026 correctness producers merely because this is a fresh binding or later activation consequence."
+  - "Do not modify candidate bytes, authority.lock.json, bootstrap tests, bootstrap.json, validate.py, agent-skills, agent-standards, agent-documents, agent-runtime, tunnel-client, target repositories, branches other than the exact main promotion, tags, releases, repository settings, or operator-owned state."
+  - "Do not force-push, reset, rebase, cherry-pick, merge, create/delete/rename branches, or promote any SHA other than the exact accepted candidate."
+  - "Do not add a runtime bundle API, DAG scheduler, worktree transaction framework, queue, daemon, cache, registry, database, or orchestration service."
+
+gap_policy:
+  local_auto_fix: false
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: >-
+      Exact TASK-0026 review/report/candidate identities, current active authority set, and agent-skills/main are freshly
+      re-resolved; accepted immutable correctness evidence is reused only for exact covered current predicates.
+    evidence_required: "Fresh identity/applicability proof and explicit evidence that acceptance-equivalent correctness producers were not rerun."
+  - id: AC-2
+    requirement: >-
+      Fresh pre-push guard proves main=0f13d7a036d7c866baa66751067cc2aaf49dd849, topology={dev, main}, candidate is a strict
+      fast-forward descendant of old main, candidate lock still contains the exact accepted support pins, and exact non-force promotion capability is available.
+    evidence_required: "Fresh refs/topology/ancestry/lock/capability evidence immediately before mutation."
+  - id: AC-3
+    requirement: >-
+      One bounded consequence invocation performs guard -> exact non-force promotion -> fresh post-proof -> active-lock proof -> compact JOIN, with no unnecessary model/controller synchronization between pre-authorized deterministic phases.
+    evidence_required: "Attributable bounded execution result with PASS/FAIL per phase."
+  - id: AC-4
+    requirement: >-
+      Fresh post-activation truth proves architect-profile/main exactly b7753ba37abe193c8801ac26302ecff7bbb35604,
+      topology exactly {dev, main}, and main's authority lock pins agent-skills exactly 11a5720adf96555bfe4187067d8dd51627ec8676.
+    evidence_required: "Fresh remote main/topology and exact active-lock resolution after push."
+  - id: AC-5
+    requirement: >-
+      A report-only commit is published on dev and final local tracked/index state is clean and reconciled to origin/dev;
+      report does not self-attest its own publication before post-push observation.
+    evidence_required: "Exact report commit, final remote refs/topology, and local closure evidence."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: >-
+        Freshly resolve exact task/base, active authority set, TASK-0026 review/report/candidate, agent-skills/main,
+        current refs/topology, candidate ancestry, candidate lock bytes, promotion capability, and prior-evidence applicability.
+        Explicitly record that acceptance-equivalent TASK-0026 correctness producers are not rerun.
+      required: true
+    - id: CHECK-2
+      command_or_check: >-
+        Execute the deterministic activation consequence as one bounded invocation: guard -> strict non-force main push to
+        the exact candidate -> fresh remote main/topology proof -> exact active-lock agent-skills-pin proof -> compact JOIN.
+        Any failed or ambiguous guard must stop before mutation.
+      required: true
+    - id: CHECK-3
+      command_or_check: >-
+        Publish only .agent/tasks/TASK-0027/report.yaml on dev, then freshly prove final dev/main/topology and local tracked/index hygiene outside the report artifact.
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: true
+
+blocking_decisions: []
+execution_ready: true
