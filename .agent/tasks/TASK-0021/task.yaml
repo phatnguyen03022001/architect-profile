@@ -1,0 +1,139 @@
+protocol_version: 3
+
+task_id: TASK-0021
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: accepted_follow_up
+  source: ".agent/tasks/TASK-0020/review.yaml@7c98c815585d5b4484f45dc18eb5180513235f14"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "4a063c41f429207577434600a3571dc17822cd78"
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+
+authority_sources:
+  - source: "architect-profile/main@89dacd43b7a200a7b9cd36d9545f23c930eb4f44"
+    role: "currently active ecosystem authority-set before this activation"
+    precedence: 1
+  - source: ".agent/tasks/TASK-0020/review.yaml@7c98c815585d5b4484f45dc18eb5180513235f14"
+    role: "accepted exact activation candidate"
+    precedence: 2
+  - source: "agent-skills/main@db03b97b5c42c9c64ad8dce76bc694530e41a206"
+    role: "accepted stable support revision bound by the candidate"
+    precedence: 3
+
+objective: >-
+  Activate the accepted authority-set candidate by moving architect-profile/main non-force and
+  ancestry-safe from 89dacd43b7a200a7b9cd36d9545f23c930eb4f44 exactly to
+  116e624b4c17d4949562b4d3f16385bfcf582130, then publish only TASK-0021 execution evidence on dev.
+
+scope:
+  required_changes:
+    - "Reverify exact accepted candidate 116e624b4c17d4949562b4d3f16385bfcf582130 before promotion."
+    - "Freshly prove current architect-profile/main is still 89dacd43b7a200a7b9cd36d9545f23c930eb4f44 and is an ancestor of the candidate."
+    - "Promote architect-profile/main non-force exactly to 116e624b4c17d4949562b4d3f16385bfcf582130, never to report/review/planning descendants."
+    - "After promotion, freshly prove the active authority-set identity is architect-profile/main@116e624b4c17d4949562b4d3f16385bfcf582130 and its lock pins agent-skills exactly db03b97b5c42c9c64ad8dce76bc694530e41a206."
+    - "Publish only .agent/tasks/TASK-0021/report.yaml on dev after activation."
+
+invariants:
+  - "No reusable candidate bytes are modified by this task."
+  - "The accepted candidate preserves all support pins other than the intended agent-skills update already accepted in TASK-0020."
+  - "Case Router remains exactly EXECUTE -> executor."
+  - "CHATGPT surfaces remain GPT-5.6 Sol/HIGH and CODEX surfaces remain LUNA/XHIGH."
+  - "Agent Runtime remains transport only for CHATGPT_LOCAL."
+  - "Topology remains exactly {dev, main}."
+  - "Rollback remains a future forward activation commit; never force-move main backward."
+
+forbidden_changes:
+  - "Do not modify authority.lock, bootstrap code, tests, bootstrap.json, documentation, capability routing, roles, protocol, Case Router, execution surfaces, model policy, or support repositories."
+  - "Do not force-push."
+  - "Do not create/delete/rename branches, tags, releases, services, registries, caches, schedulers, or dependencies."
+  - "Do not promote TASK-0020 report/review or TASK-0021 planning/report descendants to main."
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  REVIEW:
+    - repository_content_read
+    - repository_content_write
+    - exact_commit_report_resolution
+    - remote_ref_read
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "TASK-0020 revision 2 review is ACCEPTED and names exact activation candidate 116e624b4c17d4949562b4d3f16385bfcf582130."
+    evidence_required: "Exact immutable review/candidate resolution."
+  - id: AC-2
+    requirement: "Immediately before activation, main is exactly 89dacd43b7a200a7b9cd36d9545f23c930eb4f44, candidate identity is unchanged, and old main is an ancestor of candidate."
+    evidence_required: "Fresh remote refs/topology plus ancestry proof."
+  - id: AC-3
+    requirement: "Exact candidate verification remains green without mutation."
+    evidence_required: "Existing bootstrap validator, full 27-test bootstrap suite, remote validation, py_compile, git diff --check, Case Router identity, lock parse, and no-chat reconstruction."
+  - id: AC-4
+    requirement: "architect-profile/main moves non-force exactly to 116e624b4c17d4949562b4d3f16385bfcf582130 and resulting active lock pins agent-skills exactly db03b97b5c42c9c64ad8dce76bc694530e41a206."
+    evidence_required: "Fresh post-promotion remote main plus exact active lock/bootstrap reconstruction proof."
+  - id: AC-5
+    requirement: "Only compact TASK-0021 report evidence is published on dev after activation; topology remains {dev, main} and final local tracked/index state is clean."
+    evidence_required: "Exact report commit, fresh refs/topology, and local closure evidence."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Fresh-resolve exact task/base, accepted TASK-0020 review/candidate, current active main, agent-skills stable main, repository identity, topology, capabilities, and ancestry."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Reverify the exact candidate with existing repository-native bootstrap checks and no-chat reconstruction; do not mutate candidate bytes."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Immediately before activation refresh remote main/dev/topology, then push exact candidate to main non-force and freshly prove main equals candidate."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Prove active authority-set architect-profile/main@candidate resolves agent-skills@db03b97b5c42c9c64ad8dce76bc694530e41a206 and EXECUTE -> executor, then publish only TASK-0021/report.yaml on dev and close local hygiene."
+      required: true
+
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: true
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
