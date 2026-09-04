@@ -1,0 +1,55 @@
+protocol_version: 3
+
+task_id: TASK-0020
+task_revision: 1
+review_revision: 1
+state: REVISION_REQUIRED
+
+reviewed_report:
+  repository: phatnguyen03022001/architect-profile
+  path: .agent/tasks/TASK-0020/report.yaml
+  commit: "78a4f23bcfc6a644dde5af49caed36ae53093db0"
+  report_revision: 1
+
+independence:
+  reviewer_role: ARCHITECT
+  separate_session_from_executor: true
+  exact_report_identity_verified: true
+
+contract_compliance:
+  protocol_version: PASS
+  identity: PASS
+  execution_base: PASS
+  skill_rules: PASS
+  scope: PASS
+  structure_policy: PASS
+  git_authority: PASS
+  acceptance_criteria: FAIL
+  verifier_evidence: NOT_REQUIRED
+
+gap_disposition:
+  - gap_id: TASK-0020-STALE-SHA-EXPECTATIONS
+    decision: revise_task
+    rationale: >-
+      TASK-0020 revision 1 correctly limited implementation to authority.lock, but two existing
+      bootstrap regressions hard-code the previous agent-skills SHA. The lock-only change therefore
+      cannot satisfy the same task's mandatory green-suite criterion without a narrowly authorized
+      expectation update.
+
+follow_up_tasks:
+  - task_id: TASK-0020
+    origin:
+      type: task_revision
+      task_id: TASK-0020
+      gap_id: TASK-0020-STALE-SHA-EXPECTATIONS
+
+promotion_readiness:
+  eligible_for_candidate_capture: false
+  reason: >-
+    No activation candidate exists for revision 1. Revise the same task to authorize only the
+    corresponding two stale SHA expectation replacements in test_bootstrap.py alongside the lock pin.
+
+notes:
+  - "Executor behavior is correct: it probed, observed 25/27 with exactly two stale-SHA failures, restored the probe, and failed closed without unauthorized test mutation."
+  - "Do not create a separate parametrization/refactor task here; that would add ceremony and change test design unnecessarily."
+  - "Revision 2 should preserve bootstrap runtime semantics and test logic, changing only the lock pin plus the two stale expected SHA literals from 4a063c41... to db03b97b...."
