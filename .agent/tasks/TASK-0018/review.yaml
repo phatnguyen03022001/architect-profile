@@ -1,0 +1,55 @@
+protocol_version: 3
+
+task_id: TASK-0018
+task_revision: 1
+review_revision: 1
+state: ACCEPTED
+
+reviewed_report:
+  repository: phatnguyen03022001/architect-profile
+  path: .agent/tasks/TASK-0018/report.yaml
+  commit: "2fd511c0c36b8080ac51ce98b9f16b918d70c5bd"
+  report_revision: 1
+
+independence:
+  reviewer_role: ARCHITECT
+  separate_session_from_executor: true
+  exact_report_identity_verified: true
+
+contract_compliance:
+  protocol_version: PASS
+  identity: PASS
+  execution_base: PASS
+  skill_rules: PASS
+  scope: PASS
+  structure_policy: PASS
+  git_authority: PASS
+  acceptance_criteria: PASS
+  verifier_evidence: NOT_REQUIRED
+
+accepted_candidate:
+  commit: "89dacd43b7a200a7b9cd36d9545f23c930eb4f44"
+  role: "exact architect-profile activation candidate"
+
+acceptance_basis:
+  - "Exact implementation commit changes only the six authorized bootstrap/profile surfaces and pins agent-skills exactly to 4a063c41f429207577434600a3571dc17822cd78."
+  - "Bootstrap resolves PROFILE_REVISION -> AUTHORITY_LOCK -> CASE_ROUTER -> EXECUTE -> CAPABILITY_ROUTE -> CANONICAL_ARTIFACT, preserving BOOTSTRAP as a pre-router primitive and EXECUTE -> executor as the only admitted CASE."
+  - "Current operator routing is encoded exactly: ChatGPT surfaces GPT-5.6 Sol/HIGH; Codex surfaces LUNA/XHIGH; AGENT_RUNTIME remains transport only."
+  - "Focused 10/10, full 27/27, immutable remote validation OPM_BOOTSTRAP = TRUE, py_compile, and git diff --check are all reported PASS with no discovered gap or deviation."
+  - "Report commit 2fd511c0c36b8080ac51ce98b9f16b918d70c5bd is the direct report-only child of candidate 89dacd43b7a200a7b9cd36d9545f23c930eb4f44."
+  - "Fresh GitHub proof shows dev=2fd511c0c36b8080ac51ce98b9f16b918d70c5bd, main=71921cde6228c21b4d2e3e6509e685d82981dc9c, topology exactly {dev, main}, and stable main is the merge-base ancestor of the accepted candidate."
+
+promotion_readiness:
+  eligible_for_activation: true
+  exact_candidate: "89dacd43b7a200a7b9cd36d9545f23c930eb4f44"
+  current_activation_pointer: "71921cde6228c21b4d2e3e6509e685d82981dc9c"
+  requirement: "Activate only by non-force ancestry-safe promotion of architect-profile/main to the exact accepted candidate. Do not promote report/review/task-authority descendants."
+
+follow_up_tasks:
+  - task_id: "TASK-0019"
+    purpose: "Exact architect-profile authority-set activation"
+
+notes:
+  - "No additional CASE taxonomy is admitted by this review."
+  - "Embedding remains NOT_ADMITTED."
+  - "Local .DS_Store/.codex cleanup remains separate from activation and must not be bundled into promotion."
