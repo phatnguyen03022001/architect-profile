@@ -1,0 +1,129 @@
+protocol_version: 3
+
+task_id: TASK-0023
+task_revision: 1
+report_revision: 1
+state: REPORTED
+terminal_status: NEEDS_REVIEW
+
+task_source:
+  path: .agent/tasks/TASK-0023/task.yaml
+  commit: "2d977569ecc2523cf0d3c986ed39282e2895f505"
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+  authorized_base_head: "2d977569ecc2523cf0d3c986ed39282e2895f505"
+  final_execution_head: "2d977569ecc2523cf0d3c986ed39282e2895f505"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "db03b97b5c42c9c64ad8dce76bc694530e41a206"
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  available:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  missing: []
+  passed: true
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: NOT_REQUIRED
+  evidence: >-
+    TASK-0023 designates no separate authoritative verifier; exact-candidate repository-native
+    verification and fresh immutable/remote Git evidence are the required execution proof.
+
+local_hygiene:
+  result: PASS
+  evidence: >-
+    Exact-candidate verification and post-promotion locked-route proof used Python TemporaryDirectory
+    exports only; they were removed on invocation exit. No stash, reset, clean, branch creation, or
+    operator-owned untracked-state mutation was performed. The designated checkout was tracked-clean
+    before report authorship.
+
+pushed: true
+promoted_to_main: true
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: PASS
+    evidence: >-
+      TASK-0022 revision-2 review at 47edf415d4c3389b57dd77b83eaed41ee5dc1f21 is ACCEPTED,
+      resolves report 81766b656d44cbe92bb6c40bd7fb2cd386f9f6ea, and names exact candidate
+      6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee; the report names the same final_execution_head.
+  - criterion_id: AC-2
+    status: PASS
+    evidence: >-
+      One bounded exact-candidate verification bundle passed local validate.py, all 27 bootstrap tests,
+      validate.py --remote, py_compile, git diff --check, immutable lock/pin checks, locked remote route
+      and Case Router resolution, and explicit no-chat EXECUTE -> executor reconstruction.
+  - criterion_id: AC-3
+    status: PASS
+    evidence: >-
+      Immediately before promotion, fresh remote topology was exactly {dev, main} with
+      dev=2d977569ecc2523cf0d3c986ed39282e2895f505 and
+      main=116e624b4c17d4949562b4d3f16385bfcf582130; old main ancestry to the exact candidate passed,
+      candidate identity was unchanged, and a non-mutating git push --dry-run proved current promotion capability.
+  - criterion_id: AC-4
+    status: PASS
+    evidence: >-
+      One bounded promotion invocation refreshed all guards, passed the dry-run capability guard,
+      non-force pushed only 6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee to refs/heads/main, and then
+      freshly proved main at that exact commit with dev unchanged and topology still exactly {dev, main}.
+  - criterion_id: AC-5
+    status: PASS
+    evidence: >-
+      Fresh post-promotion proof binds architect-profile/main exactly to
+      6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee. Its active lock pins agent-skills exactly to
+      ac2f213095e339dafa96825d89a6f6de164792bc while preserving the other three support pins;
+      fresh agent-skills/main resolved to that SHA and validate.py --remote returned OPM_BOOTSTRAP = TRUE,
+      including exact locked routes and Case Router EXECUTE -> executor.
+  - criterion_id: AC-6
+    status: NOT_PROVEN
+    evidence: >-
+      Before this report commit, no TASK-0023 repository artifact other than this report is modified.
+      Exact report publication identity, final remote refs/topology, and final local tracked/index hygiene
+      require the post-report-push refresh and are intentionally not self-attested by this artifact.
+
+executor_checks:
+  - check_id: CHECK-1
+    result: PASS
+    evidence: >-
+      Fresh task/base, accepted TASK-0022 review/report/candidate lineage, active old-main authority set,
+      stable agent-skills main, exact topology, ancestry, structure authority, pinned skills, and current
+      execution capabilities were resolved before mutation.
+  - check_id: CHECK-2
+    result: PASS
+    evidence: >-
+      The compact exact-candidate verification JOIN passed every TASK-0023-required repository-native check
+      with independently attributable results and without modifying candidate bytes.
+  - check_id: CHECK-3
+    result: PASS
+    evidence: >-
+      A single bounded promotion graph performed fresh guards -> non-force exact-candidate promotion ->
+      fresh post-proof -> active lock/router resolution, with no semantic decision required between phases.
+  - check_id: CHECK-4
+    result: NOT_PROVEN
+    evidence: >-
+      This report is the sole authorized TASK-0023 dev artifact. Its own publication identity and final
+      dev/main/topology/local closure are resolved only after the report commit is pushed.
+
+result: NEEDS_REVIEW
