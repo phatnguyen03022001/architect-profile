@@ -1,0 +1,218 @@
+protocol_version: 3
+
+task_id: TASK-0020
+task_revision: 1
+report_revision: 1
+state: REPORTED
+terminal_status: BLOCKED
+
+task_source:
+  path: .agent/tasks/TASK-0020/task.yaml
+  commit: "9c892355df24297622d183779c24039656f991bd"
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+  authorized_base_head: "9c892355df24297622d183779c24039656f991bd"
+  pre_execution_head: "9c892355df24297622d183779c24039656f991bd"
+  final_execution_head: "9c892355df24297622d183779c24039656f991bd"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "4a063c41f429207577434600a3571dc17822cd78"
+  observed_revision: "4a063c41f429207577434600a3571dc17822cd78"
+
+execution_skills_used:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+  recommended: []
+  external:
+    - superpowers:using-superpowers
+    - superpowers:executing-plans
+    - superpowers:using-git-worktrees
+
+pre_execution_checks:
+  protocol_version_supported: true
+  handoff_type_confirmed: true
+  task_at_base_confirmed: true
+  task_identity_confirmed: true
+  architect_binding_confirmed: true
+  repository_confirmed: true
+  branch_confirmed: true
+  base_head_confirmed: true
+  skill_revision_confirmed: true
+  required_execution_skills_available: true
+  structure_authority_confirmed: true
+  working_tree_clean: true
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  available:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  missing: []
+  passed: true
+  evidence: >-
+    Agent Runtime resolved the designated local repository as
+    phatnguyen03022001/architect-profile on dev, with origin fetch/push identity matching the
+    target repository. The local checkout was tracked-clean, untracked-clean, and strictly
+    behind the exact canonical base; it was reconciled by a bounded ff-only update to
+    9c892355df24297622d183779c24039656f991bd before task resolution. Native Python/Git
+    execution, commit, push, and remote-ref read capabilities were available.
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: NOT_REQUIRED
+  evidence: >-
+    TASK-0020 designates repository-native bootstrap/validator checks, immutable remote proof,
+    no-chat reconstruction, exact Git evidence, and report publication; it does not designate a
+    separate authoritative verifier.
+
+local_hygiene:
+  result: PASS
+  run_root: ""
+  cleanup_performed: true
+  retained: []
+  evidence: >-
+    The only implementation probe changed .agent/bootstrap/authority.lock.json in the
+    designated checkout and was restored before report production. No scratch checkout,
+    support-repository mutation, reset, stash, clean, destructive cleanup, branch, tag, release,
+    service, registry, cache, scheduler, or dependency was created. No operator-owned untracked
+    state was present or modified.
+
+candidate_probe:
+  attempted_change: >-
+    Replace exactly one occurrence of the agent-skills revision in
+    .agent/bootstrap/authority.lock.json from 4a063c41f429207577434600a3571dc17822cd78 to
+    db03b97b5c42c9c64ad8dce76bc694530e41a206.
+  exact_diff_summary: >-
+    The probe diff changed only the one agent-skills revision line in authority.lock.json.
+  positive_evidence:
+    - "python3 .agent/bootstrap/validate.py returned OPM_BOOTSTRAP = TRUE."
+    - "git ls-remote for phatnguyen03022001/agent-skills resolved main to db03b97b5c42c9c64ad8dce76bc694530e41a206."
+    - "python3 .agent/bootstrap/validate.py --remote returned OPM_BOOTSTRAP = TRUE."
+    - "No-chat reconstruction resolved PROFILE_REVISION -> AUTHORITY_LOCK -> CASE_ROUTER -> EXECUTE -> CAPABILITY_ROUTE -> CANONICAL_ARTIFACT."
+    - "The reconstructed Case Router was exactly EXECUTE -> executor."
+    - "The reconstructed executor artifact was agent-skills@db03b97b5c42c9c64ad8dce76bc694530e41a206:executor/SKILL.md."
+  failing_evidence:
+    command: "python3 .agent/bootstrap/test_bootstrap.py -v"
+    result: FAIL
+    total_tests: 27
+    failures: 2
+    failed_tests:
+      - name: "test_execution_reconstruction_resolves_execute_without_support_preload"
+        reason: >-
+          The regression expected canonical_artifacts to contain the old literal
+          agent-skills revision 4a063c41f429207577434600a3571dc17822cd78 after the lock was
+          updated to db03b97b5c42c9c64ad8dce76bc694530e41a206.
+      - name: "test_p1_lock_matches_task_authority_exactly"
+        reason: >-
+          The regression expected authority.lock repositories to match the old literal
+          agent-skills revision 4a063c41f429207577434600a3571dc17822cd78.
+
+changed_files: []
+commits_created: []
+
+pushed: true
+promoted_to_main: false
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: BLOCKED
+    evidence: >-
+      The exact one-line authority.lock probe is feasible and validator-positive, but it was not
+      committed because AC-3 and CHECK-3 require existing tests to remain green.
+  - criterion_id: AC-2
+    status: PASS
+    evidence: >-
+      Fresh remote proof resolved agent-skills/main exactly to
+      db03b97b5c42c9c64ad8dce76bc694530e41a206. Remote validation and no-chat reconstruction
+      resolved the pinned Case Router as exactly EXECUTE -> executor.
+  - criterion_id: AC-3
+    status: FAIL
+    evidence: >-
+      With only the task-authorized one-line lock change, python3 .agent/bootstrap/test_bootstrap.py -v
+      failed 25/27 PASS, 2/27 FAIL because existing tests hard-code the old agent-skills SHA.
+  - criterion_id: AC-4
+    status: BLOCKED
+    evidence: >-
+      Preserving the task boundary prevents changing test_bootstrap.py or other bootstrap code to
+      update the stale hard-coded expected SHA. Changing those files would exceed the required
+      change "Update only .agent/bootstrap/authority.lock.json" and the forbidden bootstrap-code
+      mutation boundary.
+  - criterion_id: AC-5
+    status: BLOCKED
+    evidence: >-
+      No implementation candidate was published because the mandatory deterministic test bundle
+      fails under the only allowed implementation diff. This report-only child records the blocker
+      for review.
+
+executor_checks:
+  - check_id: CHECK-1
+    result: PASS
+    evidence: >-
+      Fresh task/base, active architect-profile/main authority-set 89dacd43b7a200a7b9cd36d9545f23c930eb4f44,
+      accepted agent-skills stable main db03b97b5c42c9c64ad8dce76bc694530e41a206, repository identity,
+      dev/main topology, local clean state, and current capabilities were resolved before the probe.
+  - check_id: CHECK-2
+    result: PASS
+    evidence: >-
+      The probe changed only the one agent-skills revision in authority.lock.json and produced the
+      exact expected diff.
+  - check_id: CHECK-3
+    result: FAIL
+    evidence: >-
+      The deterministic verification bundle cannot pass without either leaving the old pin in place
+      or modifying test_bootstrap.py expectations. The latter is outside TASK-0020's stated
+      lock-only scope and forbidden bootstrap-code boundary.
+  - check_id: CHECK-4
+    result: BLOCKED
+    evidence: >-
+      Implementation candidate publication was blocked before commit/push. This bounded report-only
+      child is published on dev instead; main remains unchanged and topology remains exactly {dev, main}.
+
+discovered_gaps:
+  - classification: BLOCKING
+    summary: >-
+      Bootstrap regression tests encode the old agent-skills SHA as a literal expected value, making
+      a lock-only pin update fail mandatory tests.
+    required_resolution: >-
+      Architect must revise TASK-0020 to authorize the smallest corresponding test expectation update,
+      or first land a separate regression parametrization task so lock-only support-pin updates do not
+      require bootstrap-code mutation.
+
+structural_observations: []
+deviations_from_task: []
+blockers:
+  - >-
+    TASK-0020 simultaneously requires a lock-only implementation diff and green existing tests, but
+    the existing test suite hard-codes the previous lock revision and fails when the lock-only diff is
+    applied.
+
+working_tree_after:
+  clean: true
+  summary: >-
+    After report publication and final ff-only local reconciliation, the designated local checkout is
+    expected to equal origin/dev at the report-only child with clean tracked/index state. The reusable
+    authority.lock implementation bytes remain unchanged from the authorized base.
+
+result: BLOCKED
