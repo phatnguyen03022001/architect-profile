@@ -1,0 +1,54 @@
+protocol_version: 3
+
+task_id: TASK-0021
+task_revision: 1
+review_revision: 1
+state: ACCEPTED
+
+reviewed_report:
+  repository: phatnguyen03022001/architect-profile
+  path: .agent/tasks/TASK-0021/report.yaml
+  commit: "00fe4f97b545e6195537fa22c566fc6e0a24f37c"
+  report_revision: 1
+
+independence:
+  reviewer_role: ARCHITECT
+  separate_session_from_executor: true
+  exact_report_identity_verified: true
+
+contract_compliance:
+  protocol_version: PASS
+  identity: PASS
+  execution_base: PASS
+  skill_rules: PASS
+  scope: PASS
+  structure_policy: PASS
+  git_authority: PASS
+  acceptance_criteria: PASS
+  verifier_evidence: NOT_REQUIRED
+
+accepted_activation:
+  authority_set_identity: "architect-profile/main@116e624b4c17d4949562b4d3f16385bfcf582130"
+  architect_profile_commit: "116e624b4c17d4949562b4d3f16385bfcf582130"
+  agent_skills_commit: "db03b97b5c42c9c64ad8dce76bc694530e41a206"
+
+acceptance_basis:
+  - "Fresh GitHub proof resolves architect-profile main exactly to 116e624b4c17d4949562b4d3f16385bfcf582130 and dev exactly to report commit 00fe4f97b545e6195537fa22c566fc6e0a24f37c with topology {dev, main}."
+  - "The report commit is report-only and the exact activation candidate remains the reusable main identity."
+  - "The report records exact candidate verification green: validator, full 27-test bootstrap suite, remote validation, py_compile, git diff --check, locked Case Router identity, and no-chat reconstruction."
+  - "Fresh independent GitHub resolution confirms agent-skills/main remains db03b97b5c42c9c64ad8dce76bc694530e41a206 and its immutable Case Router is exactly EXECUTE -> executor."
+  - "Activation was non-force and exact-candidate; no report/review/planning descendant was promoted to main."
+
+activation_status:
+  active: true
+  canonical_pointer: "architect-profile/main@116e624b4c17d4949562b4d3f16385bfcf582130"
+  rollback_policy: "Forward activation commit only; do not force-move main backward."
+
+follow_up_direction:
+  - "Measure post-activation control-plane latency before adding runtime machinery."
+  - "Prefer immutable evidence reuse and bounded consequence bundles over repeated deterministic re-verification."
+  - "Keep Agent Runtime transport-only unless measurements prove a runtime bottleneck."
+
+notes:
+  - "Current advisory audits indicate controller/model orchestration dominates promotion/activation wall-clock more than local deterministic execution."
+  - "Model routing remains unproven by matched A/B evidence; continue natural matched observations before changing defaults."
