@@ -1,0 +1,153 @@
+protocol_version: 3
+
+task_id: TASK-0022
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: accepted_follow_up
+  source: "phatnguyen03022001/agent-skills/.agent/tasks/TASK-0035/review.yaml@a53b7275ee9c9c88342ed96cd3baf2bf89882185"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "db03b97b5c42c9c64ad8dce76bc694530e41a206"
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+
+authority_sources:
+  - source: "architect-profile/main@116e624b4c17d4949562b4d3f16385bfcf582130"
+    role: "currently active ecosystem authority-set"
+    precedence: 1
+  - source: "agent-skills/main@ac2f213095e339dafa96825d89a6f6de164792bc"
+    role: "accepted stable support revision to bind"
+    precedence: 2
+  - source: "agent-skills/.agent/tasks/TASK-0035/review.yaml@a53b7275ee9c9c88342ed96cd3baf2bf89882185"
+    role: "accepted stable-promotion evidence"
+    precedence: 3
+
+objective: >-
+  Produce the smallest architect-profile activation candidate that changes the agent-skills authority lock
+  from db03b97b5c42c9c64ad8dce76bc694530e41a206 to the exact accepted stable revision
+  ac2f213095e339dafa96825d89a6f6de164792bc, while keeping all other support pins, bootstrap semantics,
+  Case Router semantics, execution-surface/model policy, and fail-closed behavior unchanged.
+
+scope:
+  required_changes:
+    - >-
+      In .agent/bootstrap/authority.lock.json replace only the agent-skills revision
+      db03b97b5c42c9c64ad8dce76bc694530e41a206 with
+      ac2f213095e339dafa96825d89a6f6de164792bc.
+    - >-
+      In .agent/bootstrap/test_bootstrap.py replace only live bootstrap-test expectation literals that still
+      encode the old agent-skills revision and must match the changed lock. Do not refactor test logic,
+      parameterize unrelated assertions, or alter historical task/report/review evidence.
+    - >-
+      Freshly prove the new locked agent-skills revision resolves remotely, the locked Case Router remains
+      exactly the admitted EXECUTE -> executor projection, all routed paths resolve from the exact locked tree,
+      and no-chat bootstrap reconstruction remains valid.
+    - >-
+      Publish the exact implementation candidate and compact TASK-0022 report on dev. Do not promote main in
+      this execution; architect-profile/main remains the activation pointer and moves only after Architect review.
+
+allowed_existing_files_or_components:
+  - .agent/bootstrap/authority.lock.json
+  - .agent/bootstrap/test_bootstrap.py
+  - .agent/tasks/TASK-0022/report.yaml
+
+invariants:
+  - "Only the agent-skills support pin changes; agent-standards, agent-documents, and agent-runtime pins remain byte-identical."
+  - "bootstrap.json and validate.py remain unchanged."
+  - "Case Router semantics remain exactly EXECUTE -> executor."
+  - "Execution surfaces/model policy remain CHATGPT_GITHUB/CHATGPT_LOCAL = GPT-5.6 Sol HIGH and CODEX_CLOUD/CODEX_LOCAL = LUNA XHIGH."
+  - "No new CASE, capability, topology, role, lifecycle, service, registry, cache, scheduler, callback, telemetry framework, or runtime intelligence is introduced."
+  - "Topology remains exactly {dev, main}; main is unchanged in this execution."
+
+forbidden_changes:
+  - "Do not modify bootstrap.json, validate.py, README/profile prose, support repositories, Agent Runtime, Case Router, model policy, branch policy, or historical task/report/review artifacts."
+  - "Do not alter test logic beyond exact old-to-new agent-skills SHA expectation literals required by the lock change."
+  - "Do not promote architect-profile/main in this task."
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  REVIEW:
+    - repository_content_read
+    - repository_content_write
+    - exact_commit_report_resolution
+    - remote_ref_read
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Candidate changes only authority.lock.json plus the minimum matching stale SHA expectation literals in test_bootstrap.py; no other live or historical file changes."
+    evidence_required: "Exact base-to-candidate diff and path/content guard."
+  - id: AC-2
+    requirement: "authority.lock.json pins agent-skills exactly to ac2f213095e339dafa96825d89a6f6de164792bc and preserves the other three support pins exactly."
+    evidence_required: "Exact lock content and preserved-pin proof."
+  - id: AC-3
+    requirement: "Local and remote bootstrap validation, bootstrap unit tests, py_compile, git diff --check, exact locked-path resolution, Case Router identity, and no-chat reconstruction are green for the candidate."
+    evidence_required: "One bounded deterministic verification bundle with attributable results."
+  - id: AC-4
+    requirement: "agent-skills/main freshly resolves exactly to ac2f213095e339dafa96825d89a6f6de164792bc and no mutable/latest fallback is used."
+    evidence_required: "Fresh remote exact-SHA proof."
+  - id: AC-5
+    requirement: "Candidate and report-only child are published on architect-profile/dev while main remains 116e624b4c17d4949562b4d3f16385bfcf582130 and topology remains {dev, main}."
+    evidence_required: "Fresh remote refs/topology and final local hygiene proof."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Fresh-resolve exact task/base, target repository/refs/topology, active authority set, stable agent-skills main, and current bootstrap/test ownership surfaces."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Apply only the exact lock SHA replacement and minimum matching live test expectation SHA replacements; prove exact diff and preserved support pins."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Run one bounded deterministic verification bundle covering local validator, bootstrap tests, remote validator, py_compile, git diff --check, exact locked-route resolution, Case Router identity, and no-chat reconstruction."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Publish exact candidate then compact TASK-0022 report child on dev; fresh-prove main unchanged, topology {dev, main}, report identity, and final local hygiene."
+      required: true
+
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
