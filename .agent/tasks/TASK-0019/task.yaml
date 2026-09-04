@@ -1,0 +1,225 @@
+protocol_version: 3
+
+task_id: TASK-0019
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: accepted_follow_up
+  task_id: TASK-0018
+  gap_id: "CASE_ROUTER_AUTHORITY_SET_ACTIVATION"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "4a063c41f429207577434600a3571dc17822cd78"
+
+architect_analysis_skills:
+  - architect
+  - github-workflow
+  - simplicity
+  - verification
+
+execution_skills:
+  required:
+    - executor
+    - github-workflow
+    - simplicity
+    - verification
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: ".agent/tasks/TASK-0018/review.yaml@56f2ae8163b0802b69ab87caa21dfdb95648b2c3"
+    role: "Architect acceptance and exact activation authority"
+    precedence: 1
+  - source: "architect-profile candidate@89dacd43b7a200a7b9cd36d9545f23c930eb4f44"
+    role: "exact accepted authority-set candidate P"
+    precedence: 2
+  - source: "architect-profile stable main@71921cde6228c21b4d2e3e6509e685d82981dc9c"
+    role: "current activation pointer that must remain unchanged until all gates pass"
+    precedence: 3
+  - source: "agent-skills stable@4a063c41f429207577434600a3571dc17822cd78"
+    role: "exact locked support authority containing accepted Case Router"
+    precedence: 4
+
+structure_authority:
+  status: RESOLVED
+  source: "TASK-0018 accepted review"
+  rationale: >-
+    Promotion-only activation. No reusable implementation change is authorized. The only
+    authority-set state change is a non-force ancestry-safe move of architect-profile/main to
+    the exact accepted candidate 89dacd43b7a200a7b9cd36d9545f23c930eb4f44.
+
+objective: >-
+  Activate the accepted Case Router authority set by promoting architect-profile/main exactly to
+  89dacd43b7a200a7b9cd36d9545f23c930eb4f44 after fresh independent verification. Treat that exact
+  main commit as authority-set identity P. Keep dev as task/report evidence lineage and stop at
+  NEEDS_REVIEW without semantic expansion.
+
+scope:
+  required_changes:
+    - "Fresh-resolve repository identity and require physical topology exactly {dev, main}."
+    - "Require dev equals this task's exact handoff snapshot and main remains exactly 71921cde6228c21b4d2e3e6509e685d82981dc9c before activation."
+    - "Resolve TASK-0018 ACCEPTED review at 56f2ae8163b0802b69ab87caa21dfdb95648b2c3, report 2fd511c0c36b8080ac51ce98b9f16b918d70c5bd, and accepted candidate 89dacd43b7a200a7b9cd36d9545f23c930eb4f44."
+    - "Independently prove current main is the merge-base ancestor of the exact candidate and promotion is a forward non-force fast-forward."
+    - "Reverify exact candidate bytes with the existing bootstrap test suite, immutable remote validator, py_compile, git diff --check, and fresh no-chat reconstruction resolving P -> lock -> Case Router -> EXECUTE -> executor artifact."
+    - "Require candidate lock pins agent-skills exactly 4a063c41f429207577434600a3571dc17822cd78 and other support pins remain exact; BOOTSTRAP remains pre-router and only EXECUTE -> executor is admitted."
+    - "Require execution routes in candidate remain ChatGPT GPT-5.6 Sol/HIGH and Codex LUNA/XHIGH; AGENT_RUNTIME remains CHATGPT_LOCAL transport only."
+    - "Only after every gate passes, non-force fast-forward architect-profile/main to exactly 89dacd43b7a200a7b9cd36d9545f23c930eb4f44."
+    - "Fresh-resolve GitHub and require main exactly equals 89dacd43b7a200a7b9cd36d9545f23c930eb4f44; this exact commit is the new authority-set identity P."
+    - "Prove bootstrap from exact main/P resolves the exact locked support revisions and .agent/case-router.yaml at locked agent-skills SHA with no fallback, whole-repository preload, cwd inference, or trusted chat history."
+    - "Publish only the normal TASK-0019 report on dev after activation; independently confirm final dev/report SHA, main=P, topology {dev, main}, and local dev==remote dev when executing locally."
+
+  allowed_existing_files_or_components:
+    - ".agent/tasks/TASK-0019/task.yaml"
+    - ".agent/tasks/TASK-0019/report.yaml"
+    - ".agent/tasks/TASK-0018/task.yaml"
+    - ".agent/tasks/TASK-0018/report.yaml"
+    - ".agent/tasks/TASK-0018/review.yaml"
+    - ".agent/bootstrap/authority.lock.json"
+    - ".agent/bootstrap/bootstrap.json"
+    - ".agent/bootstrap/validate.py"
+    - ".agent/bootstrap/test_bootstrap.py"
+    - "ARCHITECT_PROFILE.md"
+    - "README.md"
+    - "temporary detached verification material outside repository authority"
+
+invariants:
+  - "Exact activation candidate and authority-set identity P is 89dacd43b7a200a7b9cd36d9545f23c930eb4f44."
+  - "main must not point to TASK-0018 report/review, TASK-0019 task/report, or any later dev-only evidence commit."
+  - "authority.lock contains no architect-profile self-pin; P is the exact architect-profile main commit containing the validated lock."
+  - "BOOTSTRAP remains pre-router and the only admitted CASE remains EXECUTE -> executor."
+  - "CASE remains distinct from BINDING, SPECIALIZATION, MODE, TASK, and STATE."
+  - "Embedding remains NOT_ADMITTED."
+  - "No mutable-ref fallback is allowed for locked authority or router resolution."
+  - "Physical topology remains exactly {dev, main}."
+  - "GitHub remains repository SSOT."
+
+forbidden_changes:
+  - "Do not modify any reusable bootstrap/profile/skill/support/target file in this task."
+  - "Do not add, remove, or alter CASE values or capability loads."
+  - "Do not mutate agent-skills, agent-standards, agent-documents, agent-runtime, or target product repositories."
+  - "Do not create, rename, or delete branches; do not create staging."
+  - "Do not create a new implementation commit."
+  - "Do not force-push, rebase main, reset main backward, or promote report/review/task-authority commits."
+  - "Do not add classifier, fuzzy routing, workflow engine, embedding, semantic retrieval, registry, daemon, database, queue, scheduler, cache, or orchestration machinery."
+  - "Do not bundle .DS_Store/.codex cleanup into activation."
+
+gap_policy:
+  local_auto_fix: false
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+    - native_repository_execution
+  REVIEW:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - remote_ref_read
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "TASK-0018 acceptance, exact candidate identity, and pre-activation refs are independently reconstructed from canonical GitHub evidence."
+    evidence_required: "Exact task/report/review/candidate identities, fresh refs, and topology proof."
+  - id: AC-2
+    requirement: "The exact candidate is reverified without semantic mutation and reconstructs the accepted selective-authority path."
+    evidence_required: "Bootstrap tests, immutable remote validator, py_compile, git diff --check, and no-chat reconstruction on exact candidate bytes."
+  - id: AC-3
+    requirement: "Activation is ancestry-safe, non-force, and exact."
+    evidence_required: "Merge-base/ancestor proof plus post-promotion main == 89dacd43b7a200a7b9cd36d9545f23c930eb4f44."
+  - id: AC-4
+    requirement: "The new authority-set identity is exactly P=architect-profile/main@89dacd43b7a200a7b9cd36d9545f23c930eb4f44 and its lock/router resolution fails closed."
+    evidence_required: "Fresh main/P bootstrap resolution through exact support lock and Case Router path."
+  - id: AC-5
+    requirement: "No evidence/task descendant becomes main and no semantic expansion occurs during activation."
+    evidence_required: "Exact final main SHA, changed-path/ref proof, and no reusable-file mutation."
+  - id: AC-6
+    requirement: "Execution routing remains exact and orthogonal to CASE: ChatGPT Sol/HIGH; Codex LUNA/XHIGH; Agent Runtime transport only."
+    evidence_required: "Exact candidate tests/contract reconstruction."
+  - id: AC-7
+    requirement: "Final topology remains exactly {dev, main}, with dev carrying TASK-0019 report evidence and main=P."
+    evidence_required: "Fresh final branch refs and topology proof."
+  - id: AC-8
+    requirement: "Local CHATGPT_LOCAL execution closes against GitHub SSOT with no durable unpublished tracked truth."
+    evidence_required: "Final remote dev report SHA plus local dev==remote dev and tracked/index clean."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Fresh-resolve TASK-0019 revision 1 at exact handoff base, current dev/main refs, TASK-0018 accepted review/report/candidate, support lock identities, and all local/publication capabilities before ref mutation."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Reverify exact candidate with python3 -B .agent/bootstrap/test_bootstrap.py, python3 -B .agent/bootstrap/validate.py --remote, python3 -m py_compile .agent/bootstrap/validate.py .agent/bootstrap/test_bootstrap.py, git diff --check, and no-chat EXECUTE reconstruction."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Prove current main is merge-base ancestor of candidate and candidate is a safe forward target."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Non-force fast-forward main to exactly 89dacd43b7a200a7b9cd36d9545f23c930eb4f44 and independently fresh-resolve GitHub main equality."
+      required: true
+    - id: CHECK-5
+      command_or_check: "From exact activated main/P, rerun bounded bootstrap reconstruction and prove exact lock/router/capability resolution with no mutable fallback or trusted chat/cwd state."
+      required: true
+    - id: CHECK-6
+      command_or_check: "Publish report-only child on dev, independently confirm final dev/report SHA, require main=P and topology {dev, main}, reconcile local dev to remote dev, and stop at NEEDS_REVIEW."
+      required: true
+
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: true
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
