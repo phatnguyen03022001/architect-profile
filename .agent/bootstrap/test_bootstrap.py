@@ -200,7 +200,7 @@ class BootstrapContractTests(unittest.TestCase):
                 },
                 "agent-runtime": {
                     "repository": "phatnguyen03022001/agent-runtime",
-                    "revision": "9d5320d5afbc9aff20834801bfd6695b27cf2a0e",
+                    "revision": "c49d777efa09db7f6c51bd8d8616db4623499fb8",
                 },
             },
         )
