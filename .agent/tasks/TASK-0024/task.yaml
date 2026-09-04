@@ -1,0 +1,175 @@
+protocol_version: 3
+
+task_id: TASK-0024
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: accepted_review
+  task_id: TASK-0018
+  gap_id: "ACTIVATE_RUNTIME_LATENCY_INSTRUMENTATION"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ac2f213095e339dafa96825d89a6f6de164792bc"
+
+architect_analysis_skills: []
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "architect-profile/main@6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee"
+    role: "current active ecosystem authority set and activation predecessor"
+    precedence: 1
+  - source: "agent-runtime/.agent/tasks/TASK-0018/review.yaml@8f56cb2f270136da357ddb17badfbe01a36291b5"
+    role: "accepted runtime promotion judgment"
+    precedence: 2
+  - source: "agent-runtime/main@c49d777efa09db7f6c51bd8d8616db4623499fb8"
+    role: "exact promoted runtime revision to pin"
+    precedence: 3
+  - source: "architect-profile/.agent/bootstrap/authority.lock.json@828775fb10d972923de39a93ff7bef6765f29a62"
+    role: "current profile dev lock bytes"
+    precedence: 4
+
+structure_authority:
+  status: RESOLVED
+  source: "existing architect-profile bootstrap lock and bootstrap regression tests"
+  rationale: >-
+    This task changes one existing agent-runtime revision value in .agent/bootstrap/authority.lock.json
+    and only the exact matching existing SHA expectation(s) in .agent/bootstrap/test_bootstrap.py.
+    It creates no new file, module, component, route, schema, service, or structural reorganization.
+
+objective: >-
+  Update the architect-profile candidate authority set to pin the exact accepted and promoted Agent Runtime
+  timing instrumentation revision c49d777efa09db7f6c51bd8d8616db4623499fb8 while preserving every other active authority,
+  bootstrap behavior, Case Router behavior, execution-surface contract, target binding, and activation semantics.
+
+scope:
+  required_changes:
+    - >-
+      Change only the agent-runtime revision in .agent/bootstrap/authority.lock.json from
+      9d5320d5afbc9aff20834801bfd6695b27cf2a0e to c49d777efa09db7f6c51bd8d8616db4623499fb8.
+    - >-
+      Change only exact existing bootstrap-test SHA expectation(s) that intentionally mirror the agent-runtime lock value;
+      do not alter test semantics or unrelated fixtures.
+    - >-
+      Verify that the new exact lock resolves remotely, all existing routed paths and Case Router semantics remain valid,
+      and fresh no-chat reconstruction still selects CHATGPT_LOCAL transport=AGENT_RUNTIME without changing any public behavior.
+    - >-
+      Publish the exact candidate and a compact truthful report-only child on dev. Do not mutate main in this task.
+  allowed_existing_files_or_components:
+    - ".agent/bootstrap/authority.lock.json"
+    - ".agent/bootstrap/test_bootstrap.py"
+    - ".agent/tasks/TASK-0024/report.yaml"
+
+invariants:
+  - "agent-skills remains exactly ac2f213095e339dafa96825d89a6f6de164792bc."
+  - "agent-standards remains exactly 3f4950f280a3a35fee81471d4b83715fa72cf9ee."
+  - "agent-documents remains exactly 6918f46282f4a92bbc61071444a5ff5dab30ddc9."
+  - "agent-runtime becomes exactly c49d777efa09db7f6c51bd8d8616db4623499fb8."
+  - "architect-profile remains without a self-pin; the profile commit itself remains the authority-set identity."
+  - "Case Router semantics, capability routes, target-binding semantics, launch grammar, model/effort policy, and topology remain unchanged."
+  - "Topology remains exactly {dev, main}; main remains exactly 6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee during this task."
+  - "Updating the dev lock candidate does not itself activate the runtime; ecosystem activation occurs only after an accepted exact candidate is later promoted to architect-profile/main."
+
+forbidden_changes:
+  - "Do not modify bootstrap.json, validate.py, Case Router artifacts, runtime source, agent-skills, agent-standards, agent-documents, target repositories, model policy, execution surfaces, launch grammar, or historical task/report/review artifacts."
+  - "Do not add dependencies, services, telemetry systems, logs, schemas, callbacks, schedulers, queues, registries, caches, databases, branches, tags, or releases."
+  - "Do not promote architect-profile/main in this task."
+  - "Do not rewrite unrelated SHA literals or historical evidence merely because they reference the previous runtime revision."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: >-
+      Exact base-to-candidate diff changes only .agent/bootstrap/authority.lock.json and exact current bootstrap-test
+      expectation(s) that mirror the runtime lock SHA, with no unrelated source or semantic changes.
+    evidence_required: "Exact diff and changed-path proof."
+  - id: AC-2
+    requirement: >-
+      Candidate lock contains exactly the existing agent-skills/standards/documents pins and agent-runtime@c49d777efa09db7f6c51bd8d8616db4623499fb8,
+      with no architect-profile self-pin and no fallback semantics.
+    evidence_required: "Local lock validation plus fresh remote exact-revision resolution."
+  - id: AC-3
+    requirement: >-
+      Bootstrap validator/tests, py_compile, git diff --check, locked-route resolution, Case Router EXECUTE->executor,
+      and fresh no-chat reconstruction remain green under the new lock.
+    evidence_required: "One bounded deterministic verification bundle with compact attributable JOIN."
+  - id: AC-4
+    requirement: >-
+      agent-runtime/main is freshly observed at c49d777efa09db7f6c51bd8d8616db4623499fb8 and the accepted TASK-0018 review identity
+      is re-resolved before publication; no ecosystem-active claim is made yet.
+    evidence_required: "Fresh remote identity proof."
+  - id: AC-5
+    requirement: >-
+      Exact candidate and report-only child are published on architect-profile/dev; architect-profile/main remains
+      6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee, topology remains {dev, main}, and final local tracked/index state is clean.
+    evidence_required: "Candidate/report commits, fresh refs/topology, and local closure evidence."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: >-
+        Fresh-resolve exact task/base, active authority set, accepted agent-runtime TASK-0018 review, agent-runtime/main,
+        current profile refs/topology, current lock bytes, structure authority, and required local capabilities before mutation.
+      required: true
+    - id: CHECK-2
+      command_or_check: >-
+        Make the smallest literal lock/test-expectation SHA replacement only; prove exact changed paths and unchanged bootstrap semantics.
+      required: true
+    - id: CHECK-3
+      command_or_check: >-
+        Run local and remote bootstrap validation as applicable, bootstrap tests, py_compile, git diff --check, locked-route proof,
+        Case Router EXECUTE->executor proof, and no-chat reconstruction in one bounded deterministic verification bundle.
+      required: true
+    - id: CHECK-4
+      command_or_check: >-
+        Publish exact candidate and report-only child on dev, then freshly prove dev/main/topology and local hygiene;
+        the report must not self-attest its own publication commit before post-push observation.
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+blocking_decisions: []
+execution_ready: true
