@@ -1,0 +1,62 @@
+protocol_version: 3
+
+task_id: TASK-0024
+task_revision: 1
+review_revision: 1
+state: ACCEPTED
+
+reviewed_report:
+  repository: phatnguyen03022001/architect-profile
+  path: .agent/tasks/TASK-0024/report.yaml
+  commit: "9bfdc7e359a6f95244968bb52712642f799190a6"
+  report_revision: 1
+
+independence:
+  reviewer_role: ARCHITECT
+  exact_report_identity_verified: true
+
+contract_compliance:
+  protocol_version: PASS
+  identity: PASS
+  execution_base: PASS
+  skill_rules: PASS
+  scope: PASS
+  structure_policy: PASS
+  git_authority: PASS
+  acceptance_criteria: PASS
+  verifier_evidence: NOT_REQUIRED
+
+accepted_candidate:
+  commit: "0f13d7a036d7c866baa66751067cc2aaf49dd849"
+  role: "candidate architect-profile authority set pinning the accepted runtime timing instrumentation"
+
+acceptance_basis:
+  - "Fresh review-boundary GitHub observation proves dev=9bfdc7e359a6f95244968bb52712642f799190a6, main=6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee, topology exactly {dev, main}."
+  - "The exact base-to-candidate comparison proves candidate 0f13d7a036d7c866baa66751067cc2aaf49dd849 is one direct child of exact base 7991f567622b9a610f0307a9ec2de141cac04b18 and changes only .agent/bootstrap/authority.lock.json plus .agent/bootstrap/test_bootstrap.py, with one runtime SHA replacement in each."
+  - "The exact candidate-to-report comparison proves report commit 9bfdc7e359a6f95244968bb52712642f799190a6 is one direct child of the candidate and adds only .agent/tasks/TASK-0024/report.yaml."
+  - "TASK-0024 report records green local and remote bootstrap validation, 27/27 bootstrap tests, py_compile, git diff --check, exact locked-route resolution, immutable Case Router EXECUTE -> executor resolution, and fresh no-chat reconstruction under the candidate lock."
+  - "The candidate lock preserves agent-skills@ac2f213095e339dafa96825d89a6f6de164792bc, agent-standards@3f4950f280a3a35fee81471d4b83715fa72cf9ee, and agent-documents@6918f46282f4a92bbc61071444a5ff5dab30ddc9 while changing only agent-runtime to c49d777efa09db7f6c51bd8d8616db4623499fb8."
+  - "Fresh runtime-side authority was resolved before publication: agent-runtime/main=c49d777efa09db7f6c51bd8d8616db4623499fb8 and TASK-0018 review@8f56cb2f270136da357ddb17badfbe01a36291b5 is ACCEPTED for the same runtime candidate."
+  - "AC-5/CHECK-4 are correctly NOT_PROVEN inside the self-containing report; exact report publication and final remote closure are independently proven at review boundary rather than self-attested."
+
+promotion_readiness:
+  eligible_for_candidate_capture: true
+  exact_candidate: "0f13d7a036d7c866baa66751067cc2aaf49dd849"
+  stable_predecessor: "6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee"
+  reason: >-
+    Candidate correctness and exact runtime-pin semantics are accepted. A separate bounded activation task may
+    strictly non-force promote only this exact candidate to architect-profile/main after fresh ancestry, ref,
+    topology, and promotion-capability proof.
+
+activation_status:
+  active: false
+  current_authority_set_identity: "architect-profile/main@6fc6b6fddc3ee481ab154d1358ec8c4e12daf3ee"
+  candidate_authority_set_identity: "architect-profile@0f13d7a036d7c866baa66751067cc2aaf49dd849"
+  candidate_agent_runtime_revision: "c49d777efa09db7f6c51bd8d8616db4623499fb8"
+
+follow_up_tasks:
+  - "Strictly non-force activate the exact accepted candidate 0f13d7a036d7c866baa66751067cc2aaf49dd849 on architect-profile/main, reusing still-applicable immutable TASK-0024 correctness evidence and refreshing only activation-consequence predicates."
+
+notes:
+  - "Updating architect-profile/dev did not activate the new runtime pin; ecosystem activation remains controlled exclusively by architect-profile/main."
+  - "After activation, use one natural CHATGPT_LOCAL execution to collect the new Agent Runtime timing diagnostics and compare them with tunnel dispatch timestamps. Do not redesign runtime or workflow before that observation."
