@@ -1,12 +1,14 @@
 protocol_version: 3
 
 task_id: TASK-0020
-task_revision: 1
+task_revision: 2
 state: APPROVED
 
 origin:
-  type: accepted_follow_up
-  source: "agent-skills/TASK-0031 review@a9fc6c47b7c878d525d9d3ebfde54af03547d887"
+  type: task_revision
+  prior_revision: 1
+  blocker_report: "78a4f23bcfc6a644dde5af49caed36ae53093db0"
+  review: "11cf1b5427846739d388d9bb5da849b885141f97"
 
 architect_binding:
   target_repository: phatnguyen03022001/architect-profile
@@ -40,36 +42,43 @@ authority_sources:
   - source: "agent-skills/main@db03b97b5c42c9c64ad8dce76bc694530e41a206"
     role: "accepted stable support revision to bind"
     precedence: 2
-  - source: "agent-skills/TASK-0031/review.yaml@a9fc6c47b7c878d525d9d3ebfde54af03547d887"
-    role: "durable acceptance of exact stable promotion"
+  - source: ".agent/tasks/TASK-0020/review.yaml@11cf1b5427846739d388d9bb5da849b885141f97"
+    role: "revision-1 blocker disposition and exact scope correction"
     precedence: 3
 
 objective: >-
-  Produce the smallest architect-profile activation candidate that changes only the agent-skills
-  pin in authority.lock from 4a063c41f429207577434600a3571dc17822cd78 to
-  db03b97b5c42c9c64ad8dce76bc694530e41a206, while preserving all other support pins and all
-  bootstrap, Case Router, execution-surface, role, model, and fail-closed semantics byte-for-byte.
+  Produce the smallest architect-profile activation candidate that binds agent-skills exactly to
+  db03b97b5c42c9c64ad8dce76bc694530e41a206 while preserving bootstrap runtime semantics,
+  all other support pins, Case Router semantics, execution-surface/model policy, and fail-closed behavior.
 
 scope:
   required_changes:
-    - "Update only .agent/bootstrap/authority.lock.json so agent-skills resolves exactly db03b97b5c42c9c64ad8dce76bc694530e41a206."
+    - "Update .agent/bootstrap/authority.lock.json so only the agent-skills revision changes from 4a063c41f429207577434600a3571dc17822cd78 to db03b97b5c42c9c64ad8dce76bc694530e41a206."
+    - "Update only the two stale agent-skills SHA expectation literals in .agent/bootstrap/test_bootstrap.py that caused revision-1 failures: test_p1_lock_matches_task_authority_exactly and test_execution_reconstruction_resolves_execute_without_support_preload. Replace only the old SHA literal with the new SHA; do not refactor, parametrize, weaken, delete, or otherwise change test logic."
     - "Preserve exact agent-standards, agent-documents, and agent-runtime pins."
-    - "Freshly prove the locked agent-skills revision exists, equals stable main, contains the canonical Case Router, and reconstructs the expected selective-context bootstrap without chat state."
-    - "Run the existing architect-profile bootstrap/validator regression against the candidate lock; do not add semantics or another validation framework."
+    - "Freshly prove the locked agent-skills revision exists, equals stable main, contains Case Router exactly EXECUTE -> executor, and reconstructs the expected selective-context bootstrap without chat state."
+    - "Run the existing architect-profile bootstrap/validator regression against the candidate."
+
+allowed_existing_files_or_components:
+  - ".agent/bootstrap/authority.lock.json"
+  - ".agent/bootstrap/test_bootstrap.py only for the two exact stale SHA expectation replacements"
+  - ".agent/tasks/TASK-0020/report.yaml"
 
 invariants:
-  - "architect-profile/main remains unchanged in this task; this candidate is not active until a later explicit activation task promotes the accepted candidate."
+  - "architect-profile/main remains unchanged; this candidate is not active until a later explicit activation task."
   - "authority-set identity remains architect-profile/main@P; architect-profile does not self-pin."
+  - "Bootstrap runtime code and bootstrap.json remain byte-identical."
   - "Case Router remains exactly EXECUTE -> executor."
   - "CHATGPT surfaces remain GPT-5.6 Sol/HIGH and CODEX surfaces remain LUNA/XHIGH."
   - "Agent Runtime remains transport only for CHATGPT_LOCAL."
   - "Topology remains exactly {dev, main}."
 
 forbidden_changes:
-  - "Do not modify bootstrap.json, bootstrap code, documentation, capability routing, Case Router, roles, protocol, task model, execution surfaces, model policy, or support repositories."
+  - "Do not modify .agent/bootstrap/validate.py, bootstrap.json, documentation, capability routing, Case Router, roles, protocol, task model, execution surfaces, model policy, or support repositories."
+  - "Do not change test structure/logic beyond the two exact stale SHA literal replacements."
   - "Do not change any support pin other than agent-skills."
   - "Do not mutate architect-profile/main."
-  - "Do not create/delete/rename branches, tags, releases, services, registries, caches, schedulers, or new dependencies."
+  - "Do not create/delete/rename branches, tags, releases, services, registries, caches, schedulers, or dependencies."
 
 capability_requirements:
   EXECUTION:
@@ -88,34 +97,34 @@ capability_requirements:
 
 acceptance_criteria:
   - id: AC-1
-    requirement: "Candidate changes only the agent-skills authority.lock revision to db03b97b5c42c9c64ad8dce76bc694530e41a206 and preserves all other lock bytes semantically unchanged."
-    evidence_required: "Exact base-to-candidate diff and lock parse."
+    requirement: "Candidate diff contains exactly one authority.lock SHA replacement plus exactly two stale expected-SHA replacements in test_bootstrap.py, with no other semantic or textual changes."
+    evidence_required: "Exact base-to-candidate diff and changed-path proof."
   - id: AC-2
     requirement: "The new pin resolves immutably, equals agent-skills/main at verification time, and its Case Router remains exactly EXECUTE -> executor."
     evidence_required: "Fresh remote ref plus exact locked-object/router proof."
   - id: AC-3
-    requirement: "Existing bootstrap reconstruction and validator/tests remain green with no chat history and no new semantics."
-    evidence_required: "One bounded deterministic verification bundle using existing repo-native checks plus no-chat reconstruction."
+    requirement: "Existing bootstrap reconstruction and full bootstrap validator/tests are green with no chat history and unchanged runtime semantics."
+    evidence_required: "One bounded deterministic verification bundle including validate.py, test_bootstrap.py, remote validation, no-chat reconstruction, py_compile where applicable, and git diff --check."
   - id: AC-4
-    requirement: "No support pin other than agent-skills, reusable semantics, branch topology, or architect-profile/main is changed."
-    evidence_required: "Exact diff/ref/topology proof and simplicity review."
+    requirement: "All other support pins, bootstrap runtime bytes, topology, and architect-profile/main remain unchanged."
+    evidence_required: "Exact diff/ref/topology/simplicity proof."
   - id: AC-5
-    requirement: "Exact implementation candidate and compact report child are published on dev with fresh remote proof and final local hygiene."
+    requirement: "Exact implementation candidate and compact revision-2 report child are published on dev with fresh remote proof and final local hygiene."
     evidence_required: "Candidate/report SHAs, remote dev/main/topology, and local closure evidence."
 
 verification:
   executor_checks:
     - id: CHECK-1
-      command_or_check: "Fresh-resolve exact task/base, current active architect-profile/main authority-set, accepted agent-skills stable revision/review, repository identity, dev/main/topology, local ownership, and capabilities."
+      command_or_check: "Fresh-resolve revision 2 at exact base, revision-1 blocker review, active authority-set, accepted agent-skills stable main, repository identity, dev/main/topology, local ownership, and capabilities."
       required: true
     - id: CHECK-2
-      command_or_check: "Change only the one agent-skills revision in authority.lock and prove exact candidate diff."
+      command_or_check: "Apply only the one lock SHA replacement and the two explicitly authorized stale test SHA replacements; mechanically prove no other diff."
       required: true
     - id: CHECK-3
-      command_or_check: "Run one bounded deterministic bundle covering existing bootstrap/validator tests, lock resolution, exact Case Router, no-chat reconstruction, py_compile where applicable, and git diff --check."
+      command_or_check: "Run one bounded deterministic verification bundle covering bootstrap validator, full 27-test bootstrap suite, remote lock resolution, Case Router identity, no-chat reconstruction, py_compile where applicable, and git diff --check."
       required: true
     - id: CHECK-4
-      command_or_check: "Publish candidate then compact report child on dev; fresh-prove main unchanged/topology {dev, main} and final local hygiene."
+      command_or_check: "Publish candidate then replace TASK-0020/report.yaml with a compact revision-2 report child on dev; fresh-prove main unchanged/topology {dev, main} and final local hygiene."
       required: true
 
   authoritative_verification:
