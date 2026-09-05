@@ -6,12 +6,12 @@
   "synthesis": {
     "target": {
       "repository": "phatnguyen03022001/architect-profile",
-      "source_revision": "9d91624c9fe4b9af5426a4b1109138eb6fd75e00"
+      "source_revision": "cad8309b09802ef72dc6057994452c63055526ee"
     },
     "external_authorities": [
       {
         "source": "phatnguyen03022001/agent-skills",
-        "revision": "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+        "revision": "084d4657d1602a19cf91c68b07716221f34b6aca"
       },
       {
         "source": "phatnguyen03022001/agent-runtime",
@@ -27,23 +27,24 @@
       }
     ],
     "synthesis_policy": {
-      "id": "TASK-0032-closure-projection",
-      "revision": "9d91624c9fe4b9af5426a4b1109138eb6fd75e00"
+      "id": "TASK-0034-dev-authority-selection",
+      "revision": "cad8309b09802ef72dc6057994452c63055526ee"
     }
   },
   "coverage": {
     "required_refs": [
-      "agent-skills@861805d15c48202b9007168eb47bb6fd6911a56b:.agent/tasks/TASK-0041/review.yaml",
-      "agent-skills@0dda1827140b94fbfef16a6482dacf8d17236cce:.agent/tasks/TASK-0042/review.yaml",
-      "agent-skills@0dda1827140b94fbfef16a6482dacf8d17236cce:.agent/tasks/TASK-0043/review.yaml",
-      "agent-skills@7d7bc2d34810d60e3065682372741114486bc4c7:.agent/tasks/TASK-0044/task.yaml",
-      "architect-profile@00f8cbe789ddfc66e1d3778792d52958fa02fc55:.agent/tasks/TASK-0031/review.yaml",
+      "agent-skills@084d4657d1602a19cf91c68b07716221f34b6aca:.agent/tasks/TASK-0041/review.yaml",
+      "agent-skills@084d4657d1602a19cf91c68b07716221f34b6aca:.agent/tasks/TASK-0042/review.yaml",
+      "agent-skills@084d4657d1602a19cf91c68b07716221f34b6aca:.agent/tasks/TASK-0043/review.yaml",
+      "agent-skills@084d4657d1602a19cf91c68b07716221f34b6aca:.agent/tasks/TASK-0044/review.yaml",
+      "architect-profile@df3f0814eac1524526983bbee86e6d2ab051b7e0:.agent/tasks/TASK-0031/review.yaml",
+      "architect-profile@df3f0814eac1524526983bbee86e6d2ab051b7e0:.agent/tasks/TASK-0033/review.yaml",
       "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0020/review.yaml",
       "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0021/review.yaml",
       "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0022/review.yaml",
       "agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb:.agent/tasks/TASK-0013/review.yaml",
       "agent-documents@c4eb75c33b6cfdb02b5b88eb6eb78d7fa48d4360:.agent/tasks/TASK-0007/review.yaml",
-      "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+      "architect-profile@cad8309b09802ef72dc6057994452c63055526ee:.agent/tasks/TASK-0034/task.yaml"
     ],
     "exclusions": []
   },
@@ -51,9 +52,11 @@
     {
       "id": "CLOSURE-EVIDENCE",
       "traceability": [
-        "agent-skills@861805d15c48202b9007168eb47bb6fd6911a56b:.agent/tasks/TASK-0041/review.yaml",
-        "agent-skills@0dda1827140b94fbfef16a6482dacf8d17236cce:.agent/tasks/TASK-0042/review.yaml",
-        "architect-profile@00f8cbe789ddfc66e1d3778792d52958fa02fc55:.agent/tasks/TASK-0031/review.yaml",
+        "agent-skills@084d4657d1602a19cf91c68b07716221f34b6aca:.agent/tasks/TASK-0041/review.yaml",
+        "agent-skills@084d4657d1602a19cf91c68b07716221f34b6aca:.agent/tasks/TASK-0042/review.yaml",
+        "architect-profile@df3f0814eac1524526983bbee86e6d2ab051b7e0:.agent/tasks/TASK-0031/review.yaml",
+        "agent-skills@084d4657d1602a19cf91c68b07716221f34b6aca:.agent/tasks/TASK-0044/review.yaml",
+        "architect-profile@df3f0814eac1524526983bbee86e6d2ab051b7e0:.agent/tasks/TASK-0033/review.yaml",
         "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0020/review.yaml",
         "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0021/review.yaml",
         "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0022/review.yaml",
@@ -75,8 +78,8 @@
     {
       "id": "ACTUAL-ARTIFACT-VALIDATION",
       "traceability": [
-        "agent-skills@0dda1827140b94fbfef16a6482dacf8d17236cce:.agent/tasks/TASK-0043/review.yaml",
-        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+        "agent-skills@084d4657d1602a19cf91c68b07716221f34b6aca:.agent/tasks/TASK-0043/review.yaml",
+        "architect-profile@cad8309b09802ef72dc6057994452c63055526ee:.agent/tasks/TASK-0034/task.yaml"
       ],
       "depends_on": [
         "CLOSURE-EVIDENCE"
@@ -95,8 +98,8 @@
     {
       "id": "ENVIRONMENT-RECONCILIATION",
       "traceability": [
-        "agent-skills@7d7bc2d34810d60e3065682372741114486bc4c7:.agent/tasks/TASK-0044/task.yaml",
-        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+        "agent-skills@084d4657d1602a19cf91c68b07716221f34b6aca:.agent/tasks/TASK-0044/review.yaml",
+        "architect-profile@cad8309b09802ef72dc6057994452c63055526ee:.agent/tasks/TASK-0034/task.yaml"
       ],
       "depends_on": [
         "CLOSURE-EVIDENCE"
@@ -115,7 +118,7 @@
     {
       "id": "NATURAL-ILETS-PILOT",
       "traceability": [
-        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+        "architect-profile@cad8309b09802ef72dc6057994452c63055526ee:.agent/tasks/TASK-0034/task.yaml"
       ],
       "depends_on": [
         "CLOSURE-EVIDENCE"
@@ -134,7 +137,8 @@
     {
       "id": "COLD-SUCCESSOR-CONVERGENCE",
       "traceability": [
-        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+        "architect-profile@df3f0814eac1524526983bbee86e6d2ab051b7e0:.agent/tasks/TASK-0033/review.yaml",
+        "architect-profile@cad8309b09802ef72dc6057994452c63055526ee:.agent/tasks/TASK-0034/task.yaml"
       ],
       "depends_on": [
         "CLOSURE-EVIDENCE"
@@ -153,7 +157,8 @@
     {
       "id": "SCALE-STAGE-ADMISSION-CONVERGENCE",
       "traceability": [
-        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+        "architect-profile@df3f0814eac1524526983bbee86e6d2ab051b7e0:.agent/tasks/TASK-0033/review.yaml",
+        "architect-profile@cad8309b09802ef72dc6057994452c63055526ee:.agent/tasks/TASK-0034/task.yaml"
       ],
       "depends_on": [
         "COLD-SUCCESSOR-CONVERGENCE"
@@ -172,7 +177,7 @@
     {
       "id": "FINAL-FIVE-REPOSITORY-SWEEP",
       "traceability": [
-        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+        "architect-profile@cad8309b09802ef72dc6057994452c63055526ee:.agent/tasks/TASK-0034/task.yaml"
       ],
       "depends_on": [
         "SCALE-STAGE-ADMISSION-CONVERGENCE"
@@ -191,7 +196,7 @@
     {
       "id": "INTENTIONAL-DEV-AUTHORITY-SELECTION",
       "traceability": [
-        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+        "architect-profile@cad8309b09802ef72dc6057994452c63055526ee:.agent/tasks/TASK-0034/task.yaml"
       ],
       "depends_on": [
         "FINAL-FIVE-REPOSITORY-SWEEP"

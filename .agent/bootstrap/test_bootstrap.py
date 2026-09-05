@@ -182,25 +182,25 @@ class BootstrapContractTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, "unauthorized execution routing"):
                     validate.validate_contract(bootstrap, self.lock)
 
-    def test_p1_lock_matches_task_authority_exactly(self) -> None:
+    def test_admitted_dev_lock_matches_task_authority_exactly(self) -> None:
         self.assertEqual(
             self.lock["repositories"],
             {
                 "agent-skills": {
                     "repository": "phatnguyen03022001/agent-skills",
-                    "revision": "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6",
+                    "revision": "084d4657d1602a19cf91c68b07716221f34b6aca",
                 },
                 "agent-standards": {
                     "repository": "phatnguyen03022001/agent-standards",
-                    "revision": "3f4950f280a3a35fee81471d4b83715fa72cf9ee",
+                    "revision": "1141b9dbfce0110d6623f5a877c2d04843caa6eb",
                 },
                 "agent-documents": {
                     "repository": "phatnguyen03022001/agent-documents",
-                    "revision": "6918f46282f4a92bbc61071444a5ff5dab30ddc9",
+                    "revision": "c4eb75c33b6cfdb02b5b88eb6eb78d7fa48d4360",
                 },
                 "agent-runtime": {
                     "repository": "phatnguyen03022001/agent-runtime",
-                    "revision": "c49d777efa09db7f6c51bd8d8616db4623499fb8",
+                    "revision": "69c4760ab07e9cb04263eae36d95f39887f31c23",
                 },
             },
         )
@@ -369,7 +369,7 @@ class BootstrapContractTests(unittest.TestCase):
                 {
                     "capability": "executor",
                     "repository": "phatnguyen03022001/agent-skills",
-                    "revision": "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6",
+                    "revision": self.lock["repositories"]["agent-skills"]["revision"],
                     "path": "executor/SKILL.md",
                 }
             ],
