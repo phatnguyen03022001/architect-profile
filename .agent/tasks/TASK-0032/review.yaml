@@ -1,13 +1,13 @@
 protocol_version: 3
 task_id: TASK-0032
 task_revision: 1
-review_revision: 1
+review_revision: 2
 state: REVISION_REQUIRED
 reviewed_report:
   repository: phatnguyen03022001/architect-profile
   path: .agent/tasks/TASK-0032/report.yaml
-  commit: "ed2dbe94fa91cfafb193f3f27774e096d7fcd35d"
-  report_revision: 1
+  commit: "bacd79c528b0419d6d9e74d9eb3f21195bdabb7e"
+  report_revision: 2
 contract_compliance:
   protocol_version: PASS
   identity: PASS
@@ -19,11 +19,11 @@ contract_compliance:
   acceptance_criteria: FAIL
   verifier_evidence: NOT_REQUIRED
 acceptance_basis:
-  - "The optional README pointer and existing authority-NONE schema are appropriate; no bootstrap or lock change occurred."
-  - "Coverage uses invented YAML fragments such as task.yaml#natural-ilets-target that are not defined in the immutable source. Replace them with exact resolvable owner paths; a shared exact task intent ref may be reused by multiple distinct items."
-  - "Grouped acceptance text weakens the natural pilot predicate to having task authority rather than an ACCEPTED end-to-end task. Separate each remaining obligation into a small item with its own precise closure predicate: actual artifact validation, environment reconciliation, natural pilot, cold convergence, scale convergence, final sweep and intentional dev authority selection. No status fields or additional artifacts."
+  - "Revision 2 fixes exact source paths and separates the seven remaining obligations. Scope, optional navigation and authority NONE remain correct."
+  - "Two predicates still weaken closure: diagnosing an ambiguity alone does not close cold-successor convergence; identifying obligations alone does not close the final sweep. Require materially convergent fresh samples after any necessary narrow correction, and an ACCEPTED final sweep with no unresolved admitted MUST_CLOSE finding respectively."
+  - "Regenerate this same snapshot to cite corrected TASK-0042 review at agent-skills@0dda1827140b94fbfef16a6482dacf8d17236cce and accepted TASK-0043 review at that exact commit. Resolve the new canonical TASK-0044 intent at agent-skills@7d7bc2d34810d60e3065682372741114486bc4c7. These are evidence inputs, not a change to the active authority lock."
 promotion_readiness:
   eligible_for_candidate_capture: false
-  reason: "Correct traceability and preserve all material closure predicates before acceptance."
+  reason: "Two precise closure sentences and fresh source evidence require correction."
 notes:
-  - "Continue TASK-0032 rev 1 from this published review, same allowed files and original base. Publish correction candidate and report revision 2 as a report-only child. Main activation/freeze/handoff remain outside current scope."
+  - "Continue TASK-0032 rev 1 from this published review; change only .agent/program.generated.json and report revision 3. Reuse unchanged profile/bootstrap test evidence; validate projection and exact referenced paths. No new tool or doctrine."
