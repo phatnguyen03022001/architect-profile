@@ -41,11 +41,7 @@
       "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0022/review.yaml",
       "agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb:.agent/tasks/TASK-0013/review.yaml",
       "agent-documents@c4eb75c33b6cfdb02b5b88eb6eb78d7fa48d4360:.agent/tasks/TASK-0007/review.yaml",
-      "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#actual-artifact-validation",
-      "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#environment-reconciliation",
-      "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#natural-ilets-target",
-      "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#cold-successor-and-scale-convergence",
-      "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#final-dev-authority-selection"
+      "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
     ],
     "exclusions": []
   },
@@ -75,59 +71,133 @@
       ]
     },
     {
-      "id": "ARTIFACT-AND-ENVIRONMENT",
+      "id": "ACTUAL-ARTIFACT-VALIDATION",
       "traceability": [
-        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#actual-artifact-validation",
-        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#environment-reconciliation"
+        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
       ],
       "depends_on": [
         "CLOSURE-EVIDENCE"
       ],
       "obligations": [],
       "acceptance_refs": [
-        "TASK-0043 owner evidence validates actual artifacts; a separately scoped repo-local command preserves opaque env values while aligning example keys."
+        "TASK-0043 owner evidence validates actual task, report, and review artifacts through the existing schema checks."
       ],
       "required_evidence": [
-        "Exact task authority and a no-value-exposure proof for any environment utility."
+        "Exact TASK-0043 owner evidence and an actual-artifact validation result."
       ],
       "required_capabilities": [
         "repository_content_read"
       ]
     },
     {
-      "id": "NATURAL-TARGET-AND-CONVERGENCE",
+      "id": "ENVIRONMENT-RECONCILIATION",
       "traceability": [
-        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#natural-ilets-target",
-        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#cold-successor-and-scale-convergence"
+        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
       ],
       "depends_on": [
-        "ARTIFACT-AND-ENVIRONMENT"
+        "CLOSURE-EVIDENCE"
       ],
       "obligations": [],
       "acceptance_refs": [
-        "A new phatnguyen03022001/ilets product task has exact target authority; independent cold samples compare material decisions, and NO_CHANGE_REQUIRED remains valid."
+        "A separately scoped repo-local command aligns an operator env file to example order and keys while retaining opaque values, inserting quoted <thiếu key> for missing keys, grouping extras, and exposing no values."
       ],
       "required_evidence": [
-        "Current target authority and independent evidence rather than historical acceptance or resumed-review wording."
+        "Exact task authority and a no-value-exposure proof."
       ],
       "required_capabilities": [
         "repository_content_read"
       ]
     },
     {
-      "id": "FINAL-DEV-SELECTION",
+      "id": "NATURAL-ILETS-PILOT",
       "traceability": [
-        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#final-dev-authority-selection"
+        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
       ],
       "depends_on": [
-        "NATURAL-TARGET-AND-CONVERGENCE"
+        "CLOSURE-EVIDENCE"
       ],
       "obligations": [],
       "acceptance_refs": [
-        "A separately scoped final sweep selects an exact dev support authority set without implying main activation, freeze, or successor handoff."
+        "A new phatnguyen03022001/ilets product task reaches ACCEPTED end-to-end under the intended authority set; historical TASK-0045 alone is not that proof."
       ],
       "required_evidence": [
-        "Fresh five-repository live-governance/debt evidence and separately granted selection authority."
+        "Exact ilets target authority, accepted review identity, and fresh end-to-end evidence."
+      ],
+      "required_capabilities": [
+        "repository_content_read"
+      ]
+    },
+    {
+      "id": "COLD-SUCCESSOR-CONVERGENCE",
+      "traceability": [
+        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+      ],
+      "depends_on": [
+        "CLOSURE-EVIDENCE"
+      ],
+      "obligations": [],
+      "acceptance_refs": [
+        "Independent cold samples converge on material decisions, or a reproduced ambiguity identifies its canonical owner; NO_CHANGE_REQUIRED is valid."
+      ],
+      "required_evidence": [
+        "Independent cold samples compared by material decisions rather than wording."
+      ],
+      "required_capabilities": [
+        "repository_content_read"
+      ]
+    },
+    {
+      "id": "SCALE-STAGE-ADMISSION-CONVERGENCE",
+      "traceability": [
+        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+      ],
+      "depends_on": [
+        "COLD-SUCCESSOR-CONVERGENCE"
+      ],
+      "obligations": [],
+      "acceptance_refs": [
+        "Scale-stage admission converges on material evidence and patches an owner only for reproduced ambiguity."
+      ],
+      "required_evidence": [
+        "Independent scale-stage evidence and a bounded owner diagnosis for any ambiguity."
+      ],
+      "required_capabilities": [
+        "repository_content_read"
+      ]
+    },
+    {
+      "id": "FINAL-FIVE-REPOSITORY-SWEEP",
+      "traceability": [
+        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+      ],
+      "depends_on": [
+        "SCALE-STAGE-ADMISSION-CONVERGENCE"
+      ],
+      "obligations": [],
+      "acceptance_refs": [
+        "A final five-repository live-governance and debt sweep identifies only observed remaining obligations."
+      ],
+      "required_evidence": [
+        "Fresh bounded owner evidence across the five support repositories."
+      ],
+      "required_capabilities": [
+        "repository_content_read"
+      ]
+    },
+    {
+      "id": "INTENTIONAL-DEV-AUTHORITY-SELECTION",
+      "traceability": [
+        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+      ],
+      "depends_on": [
+        "FINAL-FIVE-REPOSITORY-SWEEP"
+      ],
+      "obligations": [],
+      "acceptance_refs": [
+        "Separately scoped work selects an exact dev support authority set without implying main activation, freeze, or successor handoff."
+      ],
+      "required_evidence": [
+        "Fresh sweep evidence and separately granted selection authority."
       ],
       "required_capabilities": [
         "repository_content_read"
