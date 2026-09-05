@@ -1,0 +1,137 @@
+{
+  "protocol_version": 3,
+  "artifact_type": "GENERATED_PROGRAM",
+  "authority": "NONE",
+  "invalidation": "FULL_REGENERATION_ON_MATERIAL_INPUT_CHANGE",
+  "synthesis": {
+    "target": {
+      "repository": "phatnguyen03022001/architect-profile",
+      "source_revision": "9d91624c9fe4b9af5426a4b1109138eb6fd75e00"
+    },
+    "external_authorities": [
+      {
+        "source": "phatnguyen03022001/agent-skills",
+        "revision": "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+      },
+      {
+        "source": "phatnguyen03022001/agent-runtime",
+        "revision": "69c4760ab07e9cb04263eae36d95f39887f31c23"
+      },
+      {
+        "source": "phatnguyen03022001/agent-standards",
+        "revision": "1141b9dbfce0110d6623f5a877c2d04843caa6eb"
+      },
+      {
+        "source": "phatnguyen03022001/agent-documents",
+        "revision": "c4eb75c33b6cfdb02b5b88eb6eb78d7fa48d4360"
+      }
+    ],
+    "synthesis_policy": {
+      "id": "TASK-0032-closure-projection",
+      "revision": "9d91624c9fe4b9af5426a4b1109138eb6fd75e00"
+    }
+  },
+  "coverage": {
+    "required_refs": [
+      "agent-skills@861805d15c48202b9007168eb47bb6fd6911a56b:.agent/tasks/TASK-0041/review.yaml",
+      "agent-skills@3873eda91b50d342672c72db8bcd5c780ac97168:.agent/tasks/TASK-0042/review.yaml",
+      "architect-profile@00f8cbe789ddfc66e1d3778792d52958fa02fc55:.agent/tasks/TASK-0031/review.yaml",
+      "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0020/review.yaml",
+      "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0021/review.yaml",
+      "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0022/review.yaml",
+      "agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb:.agent/tasks/TASK-0013/review.yaml",
+      "agent-documents@c4eb75c33b6cfdb02b5b88eb6eb78d7fa48d4360:.agent/tasks/TASK-0007/review.yaml",
+      "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#actual-artifact-validation",
+      "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#environment-reconciliation",
+      "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#natural-ilets-target",
+      "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#cold-successor-and-scale-convergence",
+      "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#final-dev-authority-selection"
+    ],
+    "exclusions": []
+  },
+  "items": [
+    {
+      "id": "CLOSURE-EVIDENCE",
+      "traceability": [
+        "agent-skills@861805d15c48202b9007168eb47bb6fd6911a56b:.agent/tasks/TASK-0041/review.yaml",
+        "agent-skills@3873eda91b50d342672c72db8bcd5c780ac97168:.agent/tasks/TASK-0042/review.yaml",
+        "architect-profile@00f8cbe789ddfc66e1d3778792d52958fa02fc55:.agent/tasks/TASK-0031/review.yaml",
+        "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0020/review.yaml",
+        "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0021/review.yaml",
+        "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0022/review.yaml",
+        "agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb:.agent/tasks/TASK-0013/review.yaml",
+        "agent-documents@c4eb75c33b6cfdb02b5b88eb6eb78d7fa48d4360:.agent/tasks/TASK-0007/review.yaml"
+      ],
+      "depends_on": [],
+      "obligations": [],
+      "acceptance_refs": [
+        "Each closure remains decided only by its named canonical owner evidence."
+      ],
+      "required_evidence": [
+        "Use the named immutable task/report/review lineage when a closure predicate is materially relevant."
+      ],
+      "required_capabilities": [
+        "repository_content_read"
+      ]
+    },
+    {
+      "id": "ARTIFACT-AND-ENVIRONMENT",
+      "traceability": [
+        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#actual-artifact-validation",
+        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#environment-reconciliation"
+      ],
+      "depends_on": [
+        "CLOSURE-EVIDENCE"
+      ],
+      "obligations": [],
+      "acceptance_refs": [
+        "TASK-0043 owner evidence validates actual artifacts; a separately scoped repo-local command preserves opaque env values while aligning example keys."
+      ],
+      "required_evidence": [
+        "Exact task authority and a no-value-exposure proof for any environment utility."
+      ],
+      "required_capabilities": [
+        "repository_content_read"
+      ]
+    },
+    {
+      "id": "NATURAL-TARGET-AND-CONVERGENCE",
+      "traceability": [
+        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#natural-ilets-target",
+        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#cold-successor-and-scale-convergence"
+      ],
+      "depends_on": [
+        "ARTIFACT-AND-ENVIRONMENT"
+      ],
+      "obligations": [],
+      "acceptance_refs": [
+        "A new phatnguyen03022001/ilets product task has exact target authority; independent cold samples compare material decisions, and NO_CHANGE_REQUIRED remains valid."
+      ],
+      "required_evidence": [
+        "Current target authority and independent evidence rather than historical acceptance or resumed-review wording."
+      ],
+      "required_capabilities": [
+        "repository_content_read"
+      ]
+    },
+    {
+      "id": "FINAL-DEV-SELECTION",
+      "traceability": [
+        "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml#final-dev-authority-selection"
+      ],
+      "depends_on": [
+        "NATURAL-TARGET-AND-CONVERGENCE"
+      ],
+      "obligations": [],
+      "acceptance_refs": [
+        "A separately scoped final sweep selects an exact dev support authority set without implying main activation, freeze, or successor handoff."
+      ],
+      "required_evidence": [
+        "Fresh five-repository live-governance/debt evidence and separately granted selection authority."
+      ],
+      "required_capabilities": [
+        "repository_content_read"
+      ]
+    }
+  ]
+}

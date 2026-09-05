@@ -59,6 +59,8 @@ After an authority set is accepted and promoted, `main` is the stable activation
 
 Successor continuity must remain reconstructible from canonical repositories without hidden chat history.
 
+The optional [closure PROGRAM](.agent/program.generated.json) is navigation only; canonical owner task and review artifacts decide each predicate.
+
 ## Maintenance
 
 - Keep this repository small and operator-specific.
