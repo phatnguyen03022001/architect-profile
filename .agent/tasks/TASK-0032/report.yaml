@@ -1,0 +1,75 @@
+protocol_version: 3
+
+task_id: TASK-0032
+task_revision: 1
+report_revision: 1
+state: REPORTED
+
+task_source:
+  path: .agent/tasks/TASK-0032/task.yaml
+  commit: "9d91624c9fe4b9af5426a4b1109138eb6fd75e00"
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+  authorized_base_head: "9d91624c9fe4b9af5426a4b1109138eb6fd75e00"
+  final_execution_head: "a1ec23a9c0776fa1167933d631e3a588942aa1c8"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  available:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  missing: []
+  passed: true
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: NOT_REQUIRED
+  evidence: "TASK-0032 designates no separate authoritative verifier."
+
+pushed: true
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: PASS
+    evidence: "Candidate a1ec23a9c0776fa1167933d631e3a588942aa1c8 adds one authority-NONE, full-regeneration PROGRAM projection. It covers the named accepted closures with immutable owner review references and represents evolving obligations only through TASK-0032's explicit intent/predicates, without mutable status fields or new authority. Existing generated-program validation passed."
+  - criterion_id: AC-2
+    status: NOT_PROVEN
+    evidence: "README links once to the optional projection and states that canonical owner task/review artifacts decide predicates. The required bounded independent navigation/omission review is intentionally left to the governing Architect; resumed Executor evidence is not labeled as cold proof."
+  - criterion_id: AC-3
+    status: NOT_PROVEN
+    evidence: "Candidate a1ec23a9c0776fa1167933d631e3a588942aa1c8 is published non-force to dev. This sole report-only child and final remote/local closure occur after report authorship."
+
+executor_checks:
+  - check_id: CHECK-1
+    result: PASS
+    evidence: "Exact TASK-0032/base binding and the named latest owner task/report/review refs were resolved. The PROGRAM shape validated with the existing agent-skills generated-program validator."
+  - check_id: CHECK-2
+    result: PASS
+    evidence: "Profile validator and all 27 bootstrap tests passed. Staged scope was exactly .agent/program.generated.json and README.md, and whitespace checks passed."
+  - check_id: CHECK-3
+    result: NOT_PROVEN
+    evidence: "Candidate publication passed through a fresh dev guard, dry run, non-force push, and post-push exact ref proof. Actual report validation and report-child final ref proof follow this report commit."
+
+result: NEEDS_REVIEW
