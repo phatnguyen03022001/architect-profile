@@ -2,7 +2,7 @@ protocol_version: 3
 
 task_id: TASK-0032
 task_revision: 1
-report_revision: 2
+report_revision: 3
 state: REPORTED
 
 task_source:
@@ -15,7 +15,7 @@ execution:
     name: dev
     role: integration
   authorized_base_head: "9d91624c9fe4b9af5426a4b1109138eb6fd75e00"
-  final_execution_head: "39c31ade1c93718cffef6fe48c00173896e66934"
+  final_execution_head: "628aa55acd8b0fc169d58668b617d855d2b73362"
 
 skill_library:
   repository: phatnguyen03022001/agent-skills
@@ -53,23 +53,23 @@ pushed: true
 acceptance_evidence:
   - criterion_id: AC-1
     status: PASS
-    evidence: "Candidate 39c31ade1c93718cffef6fe48c00173896e66934 retains the eight named immutable closure references and uses the one exact TASK-0032 path for seven distinct open-obligation items. It requires an ACCEPTED end-to-end natural ilets pilot, independent cold and scale convergence, final sweep, and intentional dev selection without mutable status fields, invented anchors, or new authority. Existing generated-program validation passed."
+    evidence: "Candidate 628aa55acd8b0fc169d58668b617d855d2b73362 corrects TASK-0042 to agent-skills@0dda1827140b94fbfef16a6482dacf8d17236cce, adds the accepted TASK-0043 review and canonical TASK-0044 intent as exact immutable inputs, and retains the named closure references and one exact TASK-0032 path for the seven distinct open-obligation items. Cold convergence now requires materially convergent fresh samples after any necessary narrow correction; the final sweep now requires ACCEPTED status and no unresolved admitted MUST_CLOSE finding. Existing generated-program validation passed."
   - criterion_id: AC-2
     status: NOT_PROVEN
     evidence: "README links once to the optional projection and states that canonical owner task/review artifacts decide predicates. The required bounded independent navigation/omission review is intentionally left to the governing Architect; resumed Executor evidence is not labeled as cold proof."
   - criterion_id: AC-3
     status: NOT_PROVEN
-    evidence: "Candidate 39c31ade1c93718cffef6fe48c00173896e66934 is published non-force to dev. This report revision and final remote/local closure occur after authorship."
+    evidence: "Candidate 628aa55acd8b0fc169d58668b617d855d2b73362 is published non-force to dev and changes only .agent/program.generated.json. This report revision and final remote/local closure occur after authorship."
 
 executor_checks:
   - check_id: CHECK-1
     result: PASS
-    evidence: "The published TASK-0032 review revision 1 authorized this JSON-only correction from 063c2c012bf4f20b0e80e04e3300b0107ed910a7. The PROGRAM shape validated with the existing agent-skills generated-program validator."
+    evidence: "Published TASK-0032 review revision 2 authorized this JSON-only correction from continuation base cf08b6e817f84fab6569b54db56edec6db60e560. The named immutable agent-skills owner refs were resolved directly, and the PROGRAM shape validated with the existing agent-skills generated-program validator."
   - check_id: CHECK-2
     result: PASS
-    evidence: "The correction changes only .agent/program.generated.json; README and profile/bootstrap bytes are unchanged, so the prior 27-test profile result remains applicable. Schema, JSON item/predicate checks, and whitespace checks passed."
+    evidence: "The correction candidate changes only .agent/program.generated.json; README and profile/bootstrap bytes are unchanged, so the prior 27-test profile result remains applicable. Schema, JSON item/predicate checks, and whitespace checks passed."
   - check_id: CHECK-3
     result: NOT_PROVEN
-    evidence: "Correction-candidate publication passed through a fresh review-base guard, dry run, non-force push, and post-push exact ref proof. Actual report validation and report-child final ref proof follow this report commit."
+    evidence: "Correction candidate 628aa55acd8b0fc169d58668b617d855d2b73362 was published non-force to dev. Actual report validation and report-child final ref proof follow this report commit."
 
 result: NEEDS_REVIEW
