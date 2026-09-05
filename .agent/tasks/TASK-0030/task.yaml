@@ -1,0 +1,196 @@
+protocol_version: 3
+
+task_id: TASK-0030
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: accepted_program_sequence
+  source: "post-activation vision-debt closure sequence"
+  gap_id: "ARCHITECT_PROFILE_HYGIENE_CONFIRMATORY_LATENCY_PILOT"
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+
+authority_sources:
+  - source: "architect-profile/main@d47114404c97fcfd74b0f37f646586ec46de6987"
+    role: "ecosystem-active authority generation"
+    precedence: 1
+  - source: "agent-skills/main@ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+    role: "active Task Protocol, evidence reuse, and one-logical-bundle-to-one-terminal_exec semantics"
+    precedence: 2
+  - source: "architect-profile/dev@7aaf922e9281b7ea6ef0a340a57e3dd170961ea7"
+    role: "exact current dev state with accepted TASK-0029 activation review and no repository-root .gitignore"
+    precedence: 3
+  - source: ".agent/tasks/TASK-0028/review.yaml@5576ce7f0b5f03019161b856145ffc0a4742294e"
+    role: "accepted bootstrap correctness and verification lineage whose semantics remain unchanged"
+    precedence: 4
+  - source: ".agent/tasks/TASK-0029/review.yaml@7aaf922e9281b7ea6ef0a340a57e3dd170961ea7"
+    role: "accepted activation judgment establishing the active one-call bundle realization"
+    precedence: 5
+  - source: "agent-documents/.agent/tasks/TASK-0007/review.yaml@c4eb75c33b6cfdb02b5b88eb6eb78d7fa48d4360"
+    role: "post-activation pilot #1: execution-shape success with noisy latency due Executor-authored guard failure"
+    precedence: 6
+
+structure_authority:
+  status: RESOLVED
+  source: "repository-root hygiene plus existing bootstrap verification and TASK lifecycle layout"
+  rationale: >-
+    architect-profile contains Python bootstrap validator/tests and no root .gitignore. Reuse the already-proven support-repo
+    Python hygiene policy exactly; no profile, calibration, bootstrap, authority-lock, routing, dependency, or release semantic
+    change is needed.
+
+objective: >-
+  Add the exact proven 14-line repository-root .gitignore hygiene policy to architect-profile and use this real bounded
+  change as confirmatory post-activation CHATGPT_LOCAL pilot #2. Produce a clean execution-shape and timing sample when
+  possible, without weakening correctness or converting execution noise into a performance claim.
+
+scope:
+  required_changes:
+    - >-
+      Add repository-root .gitignore with exactly: .DS_Store; __pycache__/; *.py[cod]; .venv/; venv/; .pytest_cache/;
+      .mypy_cache/; .ruff_cache/; .coverage; coverage/; .env; .env.*; !.env.example; !.env.*.example.
+    - >-
+      Prove no tracked path becomes ignored; prove positive synthetic cases for every ignore family and negative cases for
+      .env.example, a representative .env.test.example, and canonical repository paths.
+    - >-
+      Verify the exact candidate with local bootstrap validation, all existing bootstrap tests, py_compile using run-owned
+      temporary bytecode output/cleanup, git diff --check, exact base-to-candidate scope/content checks, and final hygiene.
+      Reuse accepted remote locked-route/Case-Router/no-chat correctness evidence because this candidate changes only .gitignore;
+      do not rerun those acceptance producers without a named invalidation.
+    - >-
+      Once exact binding and capabilities are resolved, execute each maximal contiguous mechanically derivable suffix as one
+      logical EXECUTION BUNDLE and realize each bundle with exactly one Agent Runtime terminal_exec.
+    - >-
+      For a clean pilot, the intended material controller boundaries are: (1) implementation + candidate verification +
+      candidate publication + fresh post-proof, then (2) report authorship + report publication + final post-proof. Extra
+      terminal_exec calls are permitted only after a valid material return reason; any Executor-authored shell/predicate error,
+      retry, diagnostic recovery, ambiguous postcondition, or transport contradiction makes the latency sample NOISY even if
+      the functional task later passes.
+    - >-
+      Record post-binding terminal_exec count, bundle mapping, controller-return reasons, directly observed RFC3339 UTC
+      started_at_utc immediately before the first post-binding capability/evidence preflight, and terminal_decision_at_utc
+      immediately before the terminal Executor decision. Do not reconstruct timing from Git metadata.
+    - >-
+      Compare descriptively with prior observations only: TASK-0036 592s/62 terminal_exec; TASK-0013 581s/22 terminal_exec;
+      TASK-0007 rev2 execution-shape success but noisy latency. Do not attribute residual latency to GPT/model, controller,
+      platform, transport, network, Agent Runtime, or Git without paired evidence.
+    - >-
+      Publish the exact .gitignore candidate on dev, then one report-only child. Main remains unchanged.
+  allowed_existing_files_or_components:
+    - ".gitignore"
+    - ".agent/tasks/TASK-0030/report.yaml"
+
+invariants:
+  - "The .gitignore bytes are exactly the proven 14-line support-repository policy; no additional ignore rule is introduced."
+  - "No tracked path becomes ignored."
+  - "ARCHITECT_PROFILE.md, ARCHITECT_CALIBRATION.md, README.md, LICENSE, .agent/bootstrap/**, authority lock, prior task evidence, Case Router semantics, and support-repository pins remain unchanged."
+  - "One logical deterministic EXECUTION BUNDLE equals exactly one terminal_exec; synchronization reduction never removes an assurance predicate."
+  - "Hostname, ComputerName, LocalHostName, Bonjour labels, and machine labels are diagnostic only, never authority/routing/evidence predicates."
+  - "Contradictory observations for the same immutable Git identity fail closed and make the latency sample NOISY; do not select truth by hostname."
+  - "Topology remains exactly {dev, main}; main remains d47114404c97fcfd74b0f37f646586ec46de6987."
+
+forbidden_changes:
+  - "Do not modify profile/calibration/bootstrap/lock/test/source semantics, support repositories, dependencies, workflows, repository settings, tags, releases, or main."
+  - "Do not add telemetry frameworks, benchmark services, logs, persistent timing stores, schedulers, queues, daemons, caches, registries, databases, bundle APIs, or Agent Runtime orchestration machinery."
+  - "Do not add broader ignores such as .cache/, build/, dist/, node_modules/, .next/, .agent/, candidate/, or support-repository paths."
+  - "Do not create/delete/rename branches, force-push, reset, rebase, merge history, cherry-pick, or promote to main."
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Exact base-to-candidate diff adds only root .gitignore with the exact authorized 14-line policy."
+    evidence_required: "Exact candidate diff, blob/content identity, line-set/count, and no unrelated mutation."
+  - id: AC-2
+    requirement: "No tracked path is ignored and required positive/negative synthetic ignore cases pass on the exact candidate."
+    evidence_required: "git ls-files -ci --exclude-standard plus candidate-bound check-ignore evidence."
+  - id: AC-3
+    requirement: >-
+      Bootstrap validator, all bootstrap tests, py_compile with run-owned temporary bytecode handling, git diff --check,
+      exact scope/content checks, and repository hygiene pass on the same exact candidate; unchanged remote/bootstrap
+      semantics reuse existing accepted evidence rather than ceremonial reruns.
+    evidence_required: "One attributable exact-candidate verification JOIN plus explicit evidence-reuse applicability."
+  - id: AC-4
+    requirement: >-
+      Every post-binding logical deterministic bundle maps to exactly one terminal_exec and every controller return has an
+      active-protocol material reason. A clean latency sample additionally has no Executor-authored execution-script/predicate
+      failure, retry, diagnostic recovery, ambiguous postcondition, or contradictory immutable observation.
+    evidence_required: "Invocation count, bundle mapping, JOIN results, return classifications, and clean/noisy classification."
+  - id: AC-5
+    requirement: >-
+      Direct operational timing is recorded and compared descriptively with prior samples without unsupported causal attribution.
+    evidence_required: "Direct UTC boundaries, elapsed time, execution-shape context, and bounded interpretation."
+  - id: AC-6
+    requirement: >-
+      Exact candidate and report-only child are published on dev; main remains d47114404c97fcfd74b0f37f646586ec46de6987;
+      topology remains exactly {dev, main}; final tracked/index state is clean and operator-owned untracked state is preserved.
+    evidence_required: "Exact candidate/report lineage, fresh refs/topology, and local closure evidence."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: >-
+        Fresh-resolve exact task/base, active authority generation, target refs/topology, .gitignore absence, accepted
+        TASK-0028/0029 evidence applicability, local state, and required EXECUTION capabilities. Host labels are diagnostics only.
+      required: true
+    - id: CHECK-2
+      command_or_check: >-
+        In the first maximal deterministic bundle, create only the exact .gitignore; use git status / ls-files --others for
+        pre-stage untracked scope proof rather than expecting git diff to enumerate an untracked file; stage it; prove
+        base-to-index scope; run ignore guards, bootstrap validator/tests, py_compile with temporary output, diff/content/scope
+        and hygiene checks; commit/push the exact candidate; refresh refs and prove publication.
+      required: true
+    - id: CHECK-3
+      command_or_check: >-
+        Record exact execution shape, direct timing, clean/noisy classification, evidence reused vs refreshed, and bounded
+        comparison. Do not retry or add diagnostics unless a valid material return boundary is reached.
+      required: true
+    - id: CHECK-4
+      command_or_check: >-
+        In the report bundle, publish only .agent/tasks/TASK-0030/report.yaml as the report-only child, then freshly prove
+        report diff, final dev/main/topology, unchanged main, and local hygiene outside the self-containing report.
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+blocking_decisions: []
+execution_ready: true
