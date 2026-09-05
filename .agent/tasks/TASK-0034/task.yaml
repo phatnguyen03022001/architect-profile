@@ -1,0 +1,112 @@
+protocol_version: 3
+task_id: TASK-0034
+task_revision: 1
+state: APPROVED
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: DEV_AUTHORITY_SELECTION
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+architect_analysis_skills: []
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+execution_skills:
+  recommended: []
+  required: [executor, verification, simplicity, github-workflow]
+authority_sources:
+  - source: current operator instruction
+    role: "Continue admitted five-repository debt closure on dev. Remaining Executors use Luna/MAX by explicit current-session override; durable profile model/effort defaults remain unchanged."
+    precedence: 1
+  - source: "phatnguyen03022001/agent-skills@084d4657d1602a19cf91c68b07716221f34b6aca"
+    role: "Exact admitted agent-skills dev lock revision; resolve its current accepted owner evidence. No mutable-ref substitution."
+    precedence: 2
+  - source: "phatnguyen03022001/agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb"
+    role: "Exact admitted agent-standards dev lock revision; resolve its current accepted owner evidence. No mutable-ref substitution."
+    precedence: 3
+  - source: "phatnguyen03022001/agent-documents@c4eb75c33b6cfdb02b5b88eb6eb78d7fa48d4360"
+    role: "Exact admitted agent-documents dev lock revision; resolve its current accepted owner evidence. No mutable-ref substitution."
+    precedence: 4
+  - source: "phatnguyen03022001/agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23"
+    role: "Exact admitted agent-runtime dev lock revision; resolve its current accepted owner evidence. No mutable-ref substitution."
+    precedence: 5
+  - source: "architect-profile@df3f0814eac1524526983bbee86e6d2ab051b7e0:.agent/tasks/TASK-0033/review.yaml"
+    role: "Accepted bounded sampled convergence evidence, preserving actual-surface and natural-pilot limitations."
+    precedence: 6
+structure_authority:
+  status: RESOLVED
+  source: "Existing authority.lock.json, bootstrap tests and optional generated PROGRAM."
+  rationale: "Select accepted immutable dev support revisions and regenerate existing navigation; no new authority mechanism or stable-main activation."
+objective: "Make the intended dev authority set explicit and preserve an accurate bounded five-repository closure view, including remaining product proof and activation limits."
+scope:
+  required_changes:
+    - "Update only the four revision values in .agent/bootstrap/authority.lock.json to the exact accepted support refs specified by this task. The executing task itself remains bound to its original skill_library revision; the new lock is candidate dev configuration until reviewed."
+    - "Update the existing current-lock expected-revision test to this admitted exact set; rename its historical P1-specific title to reflect the current admitted set. Reuse loaded lock identity in unrelated router-reconstruction fixture expectations rather than retaining a stale duplicated literal. Preserve mutable/unresolvable/missing-path fail-closed checks."
+    - "Fully regenerate .agent/program.generated.json using this exact task planning source and current immutable owner evidence. Reuse the existing authority-NONE schema, one README pointer and no mutable status fields. Include exact accepted TASK-0044 and TASK-0033 review evidence; do not retain stale prior closure inputs."
+    - "Perform a bounded live-owner sweep across the five named repositories, using the previously accepted immutable tests and owner/task evidence where applicable. Check current ownership, default surfaces, Task Protocol/role duplication touched by this campaign, routing/provenance, runtime verify/hygiene, optional context loading and current closure predicates. Record concrete findings and NO_CHANGE_REQUIRED dispositions in the report; do not turn this task into broad code refactoring."
+    - "Distinguish sampled cold/scale convergence from actual end-to-end surface certification. Natural phatnguyen03022001/ilets pilot remains open until a specific product task is chosen and ACCEPTED end-to-end under its own authority. Historical TASK-0045 is not new evidence."
+    - "Final sweep cannot declare global closure while an admitted MUST_CLOSE predicate remains unresolved. Select this dev set intentionally but keep stable main, activation, freeze and successor handoff outside this task. Program items for remaining proof must retain full closure predicates; diagnosing an ambiguity alone is not closure."
+  allowed_existing_files_or_components:
+    - .agent/bootstrap/authority.lock.json
+    - .agent/bootstrap/test_bootstrap.py
+    - .agent/program.generated.json
+invariants:
+  - "Exactly four support lock entries and existing bootstrap identity mechanism; no self-pin, new schema, mandatory context preload, generic synthesis tool or independent debt registry."
+  - "Runtime remains native transport; TASK-0019 confinement remains withdrawn. Latency remains CLOSED_FOR_CURRENT_VISION."
+  - "This task grants no sibling-repository implementation change or main/staging write. No cleanup of operator state or raw env access."
+forbidden_changes:
+  - "No protocol/profile/calibration/routing changes, new model runs, speculative audit patch, new role, framework, registry, branch creation, force push, main promotion or release."
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Dev lock selects exactly the admitted immutable owner set and resolves every routed path at its exact revision."
+    evidence_required: "Exact lock diff, current source review refs, existing bootstrap contract and resolution validation, full bootstrap tests and stale-identity rejection preserved."
+  - id: AC-2
+    requirement: "Regenerated optional projection and bounded sweep faithfully show closure evidence and unresolved obligations."
+    evidence_required: "Existing PROGRAM validation, exact owner path resolution, bounded report findings and explicit sampled-proof/remaining-pilot/activation limits."
+  - id: AC-3
+    requirement: "Only three authorized configuration/test/projection files plus report lineage are published on dev."
+    evidence_required: "Scope/whitespace, actual task/report schemas, full required capability evidence, candidate/report-only publication and fresh dev/local equality; main unchanged."
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Bind exact task/base, prove all currently required read/write/native-validation/Git commit/push/ref capabilities, and resolve named accepted support refs."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Run existing bootstrap validator, exact route resolution, all bootstrap tests and PROGRAM validation; perform only bounded relevant live-owner inspection."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Validate actual report with truthful preflight and publication limits, publish candidate/report child nonforce dev, prove final refs."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+blocking_decisions: []
+execution_ready: true
