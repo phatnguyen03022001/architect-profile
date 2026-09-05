@@ -1,0 +1,103 @@
+protocol_version: 3
+task_id: TASK-0033
+task_revision: 1
+state: APPROVED
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: BOUNDED_CONVERGENCE_EVIDENCE
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+architect_analysis_skills: []
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+execution_skills:
+  recommended: []
+  required: [executor, verification, simplicity, github-workflow]
+authority_sources:
+  - source: current operator instruction
+    role: "Close admitted five-support-repository dev debt with this governing root and Terra/high Executors; reuse bounded evidence and avoid quota waste."
+    precedence: 1
+  - source: "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
+    role: "Current L1 closure intent and limits, including natural ilets pilot, convergence proof and final activation exclusion."
+    precedence: 2
+structure_authority:
+  status: RESOLVED
+  source: "Existing task-local evidence/report/review artifacts."
+  rationale: "Publish already produced read-only finite-sample evidence and its limitations, not another bootstrap owner or testing framework."
+objective: "Preserve a reviewable bounded comparison of independent cold governance simulations and scale decisions without overstating production stability."
+scope:
+  required_changes:
+    - "Reuse the already-generated pre-task read-only Terra/high simulation evidence in /private/tmp/debt-cold-packet.txt, debt-cold-packet-v2.txt and debt-cold-a.md through debt-cold-d.md. Do not claim these runs were launched by this task or repeat model calls. Record input hashes and independence/limits truthfully."
+    - "Persist exact packet and output bytes under this task directory as packet-v1.txt, packet-v2.txt and sample-a.md through sample-d.md. These are historical evidence, excluded from hot context. They contain synthetic scenarios and public repository authority, no operator env contents."
+    - "Report material comparisons for active vs dev authority, temporary model/role override, exact task vs report revision, next legal target action, local divergence/WIP, immutable evidence reuse, selective loading/provenance and still-open obligations. A stale or incomplete supplied packet is not fresh GitHub proof."
+    - "Record that initial samples A/B confused report/task revision and target/skill-lock relationships. V1 omitted clear target binding and some required canonical owner evidence; it cannot establish an owner defect by itself. V2 adds the explicit skills TASK-0044 binding, full task and relevant pinned owner excerpts. Never erase first-run failures or relabel resumed sessions as cold."
+    - "Compare five scale scenarios on material decisions and reversal triggers. NO_CHANGE_REQUIRED is appropriate only for the sampled unchanged semantics when decisions converge; a finite Terra simulation does not certify every ChatGPT Architect or execution surface."
+    - "If corrected samples still diverge or make material errors, retain that finding as unresolved; do not patch doctrine, weaken predicates, invent a PASS or add more model runs under this task. Root reviews whether evidence warrants narrow follow-up."
+    - "Record that natural ilets pilot, final closure sweep, intentional final dev lock selection and stable activation are separate obligations. Source changes or missing user product input cannot be hidden by this evidence publication."
+  allowed_existing_files_or_components:
+    - .agent/tasks/TASK-0033/packet-v1.txt
+    - .agent/tasks/TASK-0033/packet-v2.txt
+    - .agent/tasks/TASK-0033/sample-a.md
+    - .agent/tasks/TASK-0033/sample-b.md
+    - .agent/tasks/TASK-0033/sample-c.md
+    - .agent/tasks/TASK-0033/sample-d.md
+invariants:
+  - "No behavioral doctrine, profile, bootstrap, authority lock, schema, runtime or target implementation changes. Evidence publication is not global closure or stable activation."
+  - "All four samples are independent ephemeral Terra/high CLI sessions with no conversation fork; output is advisory Executor simulation, not delegated Architect authority."
+forbidden_changes:
+  - "No new model calls, agent team, tools/framework, report beautification that changes raw evidence, live context preload, main/staging, branch creation, force push or release."
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Raw finite-sample inputs/outputs are immutable, hash-addressed and faithfully classified."
+    evidence_required: "Exact file hashes and truthful pre-task provenance with no implied remote freshness or actual ChatGPT certification."
+  - id: AC-2
+    requirement: "Comparison separates demonstrated convergence, observed failures and evidence limits."
+    evidence_required: "Material decision table in the report and no unsupported all-clear or owner patch."
+  - id: AC-3
+    requirement: "Only task-local evidence and report lineage are published on dev."
+    evidence_required: "Byte hashes, scope/whitespace, actual task/report schema and linear evidence candidate/report child with fresh refs."
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Check exact input/output hashes and cold-run provenance from bounded CLI metadata; no raw full logs copied."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Compare material decisions and output a candid evidence-limits disposition; no source code tests for unchanged source."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Validate actual report, publish evidence-only candidate then report-only child and prove dev/local equality."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+blocking_decisions: []
+execution_ready: true
