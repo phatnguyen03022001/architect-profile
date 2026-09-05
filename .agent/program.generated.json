@@ -34,7 +34,9 @@
   "coverage": {
     "required_refs": [
       "agent-skills@861805d15c48202b9007168eb47bb6fd6911a56b:.agent/tasks/TASK-0041/review.yaml",
-      "agent-skills@3873eda91b50d342672c72db8bcd5c780ac97168:.agent/tasks/TASK-0042/review.yaml",
+      "agent-skills@0dda1827140b94fbfef16a6482dacf8d17236cce:.agent/tasks/TASK-0042/review.yaml",
+      "agent-skills@0dda1827140b94fbfef16a6482dacf8d17236cce:.agent/tasks/TASK-0043/review.yaml",
+      "agent-skills@7d7bc2d34810d60e3065682372741114486bc4c7:.agent/tasks/TASK-0044/task.yaml",
       "architect-profile@00f8cbe789ddfc66e1d3778792d52958fa02fc55:.agent/tasks/TASK-0031/review.yaml",
       "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0020/review.yaml",
       "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0021/review.yaml",
@@ -50,7 +52,7 @@
       "id": "CLOSURE-EVIDENCE",
       "traceability": [
         "agent-skills@861805d15c48202b9007168eb47bb6fd6911a56b:.agent/tasks/TASK-0041/review.yaml",
-        "agent-skills@3873eda91b50d342672c72db8bcd5c780ac97168:.agent/tasks/TASK-0042/review.yaml",
+        "agent-skills@0dda1827140b94fbfef16a6482dacf8d17236cce:.agent/tasks/TASK-0042/review.yaml",
         "architect-profile@00f8cbe789ddfc66e1d3778792d52958fa02fc55:.agent/tasks/TASK-0031/review.yaml",
         "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0020/review.yaml",
         "agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0021/review.yaml",
@@ -73,6 +75,7 @@
     {
       "id": "ACTUAL-ARTIFACT-VALIDATION",
       "traceability": [
+        "agent-skills@0dda1827140b94fbfef16a6482dacf8d17236cce:.agent/tasks/TASK-0043/review.yaml",
         "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
       ],
       "depends_on": [
@@ -92,6 +95,7 @@
     {
       "id": "ENVIRONMENT-RECONCILIATION",
       "traceability": [
+        "agent-skills@7d7bc2d34810d60e3065682372741114486bc4c7:.agent/tasks/TASK-0044/task.yaml",
         "architect-profile@9d91624c9fe4b9af5426a4b1109138eb6fd75e00:.agent/tasks/TASK-0032/task.yaml"
       ],
       "depends_on": [
@@ -137,7 +141,7 @@
       ],
       "obligations": [],
       "acceptance_refs": [
-        "Independent cold samples converge on material decisions, or a reproduced ambiguity identifies its canonical owner; NO_CHANGE_REQUIRED is valid."
+        "Independent cold samples converge on material decisions; any reproduced ambiguity identifies its canonical owner and, after any necessary narrow correction, materially convergent fresh samples are required; NO_CHANGE_REQUIRED is valid."
       ],
       "required_evidence": [
         "Independent cold samples compared by material decisions rather than wording."
@@ -175,7 +179,7 @@
       ],
       "obligations": [],
       "acceptance_refs": [
-        "A final five-repository live-governance and debt sweep identifies only observed remaining obligations."
+        "An ACCEPTED final five-repository live-governance and debt sweep identifies only observed remaining obligations and has no unresolved admitted MUST_CLOSE finding."
       ],
       "required_evidence": [
         "Fresh bounded owner evidence across the five support repositories."
