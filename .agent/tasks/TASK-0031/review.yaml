@@ -1,29 +1,31 @@
 protocol_version: 3
 task_id: TASK-0031
 task_revision: 1
-review_revision: 1
-state: REVISION_REQUIRED
+review_revision: 2
+state: ACCEPTED
 reviewed_report:
   repository: phatnguyen03022001/architect-profile
   path: .agent/tasks/TASK-0031/report.yaml
-  commit: "e6faa2a5448267cd3d910d002fd6c87b1a112299"
-  report_revision: 1
+  commit: "7d32392304790a4a8f28cf3f8799e1c79233bc92"
+  report_revision: 2
 contract_compliance:
-  protocol_version: FAIL
+  protocol_version: PASS
   identity: PASS
   execution_base: PASS
-  skill_rules: FAIL
+  skill_rules: PASS
   scope: PASS
   structure_policy: PASS
   git_authority: PASS
   acceptance_criteria: PASS
   verifier_evidence: NOT_REQUIRED
-findings:
-  - "The optional local_hygiene block is incomplete: existing v3 schema requires run_root, cleanup_performed and retained when present. Omit this redundant optional block or supply the complete truthful existing shape."
-revision_scope:
-  - "Publish report-only revision 2 from this review commit, retaining candidate 66d5a52d3a4a70b13395afac6b438cb987e5c8f0 and unchanged 27-test evidence. Validate the actual report against existing report schema before publication; no implementation change or repeated correctness verification is required."
+resolved_findings:
+  - "Report revision 2 omits the incomplete optional local_hygiene block; existing evidence still records relevant hygiene. Actual report schema validation passes. No implementation change invalidates the exact 27-test evidence."
 acceptance_basis:
   - "Independent diff review confirms exactly the four authorized files, compact L0/L1/L2 restoration, consistent Codex LUNA/MEDIUM routing and old-XHIGH rejection. Bootstrap validator and all 27 tests pass."
   - "Candidate 66d5a52d3a4a70b13395afac6b438cb987e5c8f0 is the direct child of planning a9f0c45c8c21b921ad63d4b3f59414ed54fd56dd and report e6faa2a5448267cd3d910d002fd6c87b1a112299 is its report-only child. Designated checkout is clean; main is unchanged."
+  - "Authorized report revision 2 at 7d32392304790a4a8f28cf3f8799e1c79233bc92 is the direct report-only child of review e60324df3e6ba68e70beb7f932325d22482e1319. Fresh remote/local identity and clean state close publication predicates externally. Main remains d47114404c97fcfd74b0f37f646586ec46de6987."
+promotion_readiness:
+  eligible_for_candidate_capture: false
+  reason: "Closes profile routing/provenance on dev. Stable main and authority-lock activation are outside this dev-only publication authority."
 notes:
-  - "The operator-designated governing Architect requests evidence serialization repair only; historical revision 1 remains immutable in Git."
+  - "The operator-designated governing Architect accepts this dev lineage. Default ChatGPT Architect and per-session explicit overrides remain distinct; this session does not permanently change the organizational role policy."
