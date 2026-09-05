@@ -1,0 +1,20 @@
+This is a cold, immutable-packet simulation. No current remote state was refreshed; every “stable ref” below is a supplied snapshot observation only.
+
+| ID | Decision |
+|---|---|
+| G1 | The packet’s pinned generation is `architect-profile@cf08…` with `agent-skills@ed8d…`; `TASK-0044@7d7b…` is a dev candidate/task artifact, not a replacement authority lock. Because supplied profile main is `d471…`, not `cf08…`, current active-generation identity is not proven. |
+| G2 | Durable defaults remain: Architect = ChatGPT; Codex routes = Luna/Medium. The operator’s Codex-governing-Architect and Terra/High Executor appointment applies only to this simulated session as an explicit temporary override. It must not silently become profile/bootstrap policy; before future reliance it needs narrow canonical L1 capture. |
+| G3 | No mutation is legal from this cold packet alone: first resolve locked Case Router at `agent-skills@ed8d…`, `EXECUTE → executor`, then freshly verify target, dev, task contract, branch policy, and write capability. Sequence one Executor only: the narrow outstanding `TASK-0032` revision-3 projection/report correction first; do not overlap it with `TASK-0044`. Afterwards, freshly resolve `agent-skills` dev and `TASK-0044` before dispatch. |
+| G4 | Runtime `TASK-0022` is closed on dev for WIP backup/reconciliation only. `TASK-0019` remains withdrawn; no confinement source was adopted or published. The private backup remains recoverable, non-authoritative evidence. |
+| G5 | A dirty or ahead local copy is divergence/unknown work: do not push, reset, delete, or adopt it. Preserve `.env`, venv, and other operator state; do not read real env values. Fresh remote resolution gates any publication. |
+| G6 | Reuse immutable evidence: quoted accepted reviews, commit identities, lock contents, and task/review findings. Refresh mutable facts immediately before consequential work: remote target/dev HEAD, topology, policy, write authority, and post-publication identity. Supplied refs are not fresh GitHub proof. |
+| G7 | Load only: exact profile commit, bootstrap/lock, explicit target binding and contract, locked Case Router, selected capability, then relevant task/review evidence. Do not preload PROGRAM, broad trees, history, or L0 raw prompt material. Current operator intent is L1 for this simulation; calibration supplies reusable L2 scale judgment. |
+| G8 | Still unproven: a genuinely independent cold-successor convergence sample; a natural IELTS task run under intended dev authority (historical `TASK-0045` is insufficient); scale-stage convergence; an accepted final five-repository live debt sweep; final dev authority-set selection; and any stable/main activation, freeze, or handoff. PROGRAM is optional navigation with no independent lifecycle/status authority; canonical task/review owners decide closure. |
+
+| Scenario | Decision now | Concrete reversal trigger |
+|---|---|---|
+| S1: 100 requests/day, no bottleneck | Do not add Redis. | Measured bottleneck or authoritative current requirement proves the existing approach materially insufficient. |
+| S2: async email; guarantees unspecified | Do not choose a queue yet; specify required delivery/durability/retry semantics first. | An authoritative guarantee requires durable asynchronous delivery/retry that the simpler implementation cannot meet. |
+| S3: one service, no platform constraint | Do not add Kubernetes. | A concrete platform constraint or measured operational requirement proves the simple deployment insufficient. |
+| S4: best-effort cache; authority elsewhere | No persistent cache infrastructure required. | Cache becomes authoritative, or a concrete durability/recovery requirement is adopted. |
+| S5: forecast 1M users, low current load | Do not prebuild topology; retain capacity envelope, observability, and triggers. | Measured approaching capacity boundary or a concrete near-term authoritative requirement proves simpler topology insufficient. |

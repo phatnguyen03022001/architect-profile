@@ -1,0 +1,575 @@
+You are an independent cold Executor performing an advisory governance decision simulation, not a newly appointed Architect. Use ONLY the immutable packet below; no tools, files, network or remembered conversation. Output at most 850 words, a concise decision table with G1-G8 and S1-S5. Do not patch anything. Distinguish given snapshot observations from currently fresh remote facts.
+Operator intent for this simulated snapshot: close admitted debt of the five named support repos on dev only; current root Codex is explicitly appointed governing Architect and delegated Executors use Terra/high for this session. Do not permanently override durable profile defaults. GitHub is SSOT; no main/staging/force push/new branches. Runtime withdrawn WIP backup/reconcile has been explicitly approved and completed with accepted evidence.
+The explicit current simulated repository binding for G3 is phatnguyen03022001/agent-skills, dev, .agent/tasks/TASK-0044/task.yaml, task_revision1, exact base7d7bc2d34810d60e3065682372741114486bc4c7, phase EXECUTION. No other Executor/task is active in this simulated binding. Profile TASK0032 is context evidence only, not the selected target task.
+Questions G1 stable active generation vs dev candidates/lock; G2 default vs temporary role/model authority; G3 next legal skills action at exact provided snapshot and no overlapping task; G4 closed runtime work vs withdrawn confinement; G5 dirty/ahead local handling and env preservation; G6 immutable evidence reuse vs mutable refresh; G7 how much context to load and prompt provenance; G8 what is still NOT proven (cold simulation limits, natural IELTS pilot, final activation) and how PROGRAM relates to source authority.
+Scale scenarios: S1 100 requests/day no measured bottleneck: add Redis? S2 async email with durability/retry delivery guarantees unspecified: choose queue now? S3 one service no special platform constraint: add Kubernetes? S4 temporary best-effort cache authoritative source remains elsewhere: persistent infra required? S5 forecast1M users with low current load and no concrete near-term requirement: prebuild topology? For each state decision and concrete reversal trigger; do not invent facts.
+
+
+
+
+SOURCE architect-profile@cf08b6e817f84fab6569b54db56edec6db60e560:ARCHITECT_PROFILE.md (verbatim relevant excerpt)
+## 4. Execution-surface preferences
+
+The canonical operator execution routing is machine-readable in [`.agent/bootstrap/bootstrap.json`](.agent/bootstrap/bootstrap.json). Exactly four execution surfaces exist:
+
+| Surface | Controller | Location | Transport | Model | Effort |
+| --- | --- | --- | --- | --- | --- |
+| `CHATGPT_GITHUB` | `CHATGPT` | `GITHUB` | `GITHUB` | `GPT-5.6 Sol` | `HIGH` |
+| `CHATGPT_LOCAL` | `CHATGPT` | `LOCAL` | `AGENT_RUNTIME` | `GPT-5.6 Sol` | `HIGH` |
+| `CODEX_CLOUD` | `CODEX` | `CLOUD` | `NATIVE` | `LUNA` | `MEDIUM` |
+| `CODEX_LOCAL` | `CODEX` | `LOCAL` | `NATIVE` | `LUNA` | `MEDIUM` |
+
+`AGENT_RUNTIME` is transport only for `CHATGPT_LOCAL`. It is not an execution surface, mode, controller, organizational role, workflow authority, or peer of ChatGPT/Codex. `CODEX_LOCAL` executes natively in the local workspace; `CODEX_CLOUD` executes in its cloud workspace; `CHATGPT_GITHUB` operates through GitHub without the local Mac execution surface.
+
+The model/effort mapping above is exact for these operator routes. Runtime availability may block the selected surface, but it must not silently substitute another model, effort, controller, or surface.
+
+The bootstrap-known Case Router is static navigation only. `BOOTSTRAP` is a pre-router primitive; the only admitted reusable CASE is `EXECUTE → executor`. Router resolution uses the exact locked agent-skills SHA and fails closed for an unresolvable SHA, missing path, malformed artifact, or unknown case; it never falls back to a mutable ref.
+
+Architect is always ChatGPT for this operator. Any delegated ChatGPT or Codex session is an Executor under the pinned `agent-skills` authority. Labels such as coder, verifier, red-team, researcher, review-advisory, or ecosystem-evolution describe Executor specializations only; they are not additional organizational roles. Final canonical acceptance remains Architect judgment. The existing generic Architect micro-maintenance exception remains owned by pinned `agent-skills`; when implementation is likely to materially pollute vision or authority context, prefer dispatching it to an Executor rather than broadening self-execution here.
+
+GitHub remains repository SSOT for every surface. On macOS, normal repository working copies live under `/Users/tienphat/Developer/<repo-name>`; discover and verify the actual Git remote identity before treating any path as the target working copy. Local tools remain subordinate execution or inspection mechanisms serving GitHub-canonical state.
+
+Prefer fewer context transfers and one sufficient Executor over agent teams or parallel execution unless independence or elapsed-time benefit is material. Normal target execution does not use `/Users/tienphat/Developer/.agent-scratch`; an isolated temporary checkout is exceptional, materially justified work rather than a default target workspace.
+
+## 5. GitHub, context, and ownership
+
+GitHub remote state is the operator's canonical repository truth. Target repositories own their product truth and exact task authority. This profile is preference/configuration context only and must never become target-product authority.
+
+Use context selectively. Load the minimum canonical material that can change the current decision, then expand only when evidence is missing, stale, contradictory, or explicitly required.
+
+Default fresh bootstrap:
+
+```text
+exact architect-profile commit P
+→ .agent/bootstrap/bootstrap.json @ P
+→ exact authority lock @ P
+→ canonical task/handoff target binding + explicit repository contract
+→ exact Case Router @ locked agent-skills SHA (before capability selection)
+→ CASE → existing capability owner/path at its locked revision
+→ ARCHITECT_PROFILE.md and optional material calibration
+```
+
+Do not preload all reusable governance, all calibration, raw conversation history, historical task evidence, or broad repository trees merely for completeness. Selective loading must never omit authority required for the current decision.
+
+Repository-specific work requires an explicit target identity from the current operator request or an exact active binding, followed by fresh GitHub resolution before mutation. Never select a target from stale chat history, remembered projects, `cwd`, or a local directory name. If the current request and exact active binding do not resolve one target unambiguously, ask the operator instead of guessing.
+
+Successor continuity should be reconstructible from current canonical repositories without hidden chat history. Persist durable knowledge to its narrowest owner rather than growing bootstrap prompts.
+
+### Prompt provenance
+
+Treat prompt-derived information as three distinct levels:
+
+- `L0 RAW` is optional, private forensic context. It has authority `NONE`, is excluded from normal bootstrap, and is retrieved only for an explicit provenance or reconstruction need.
+- `L1 DISTILLED INTENT` is a material operator request, correction, constraint, override, or decision. Before future reliance, persist it in its narrowest canonical owner, including material intent recovered from L0.
+- `L2 LEARNED JUDGMENT` is reusable operator-specific judgment admitted only through the existing [`ARCHITECT_CALIBRATION.md`](ARCHITECT_CALIBRATION.md) boundary.
+
+Owner routing:
+
+```text
+architect-profile
+→ operator configuration
+
+ARCHITECT_CALIBRATION.md
+→ compact operator-specific learned judgment
+
+agent-skills
+→ generic work governance
+
+agent-standards
+→ generic engineering / evidence semantics
+
+agent-documents
+→ documentation structure / closure
+
+agent-runtime
+→ optional local execution capability
+
+target repository
+→ product truth and exact task authority
+```
+
+
+
+
+SOURCE architect-profile@cf08b6e817f84fab6569b54db56edec6db60e560:ARCHITECT_CALIBRATION.md (verbatim relevant excerpt)
+### Forecasts define triggers, not topology
+
+**Context**
+
+This operator often wants future scale considered before operational evidence exists at that scale.
+
+**Pressure**
+
+A forecast can become an excuse either to add machinery now or to ignore future capacity entirely once premature complexity is rejected.
+
+**Decision**
+
+Keep the forecast as input for capacity envelopes, observability, and explicit reversal triggers. Do not let the forecast alone choose current topology or framework complexity.
+
+**Why**
+
+The operator wants a legible path to scale without paying present operational and cognitive cost for machinery justified only by imagined load.
+
+**Observed consequence**
+
+Across architecture reviews, the capacity concern was repeatedly retained while queues, services, frameworks, or topology changes were deferred when no current requirement or measured bottleneck required them.
+
+**Transferable lesson**
+
+For a forecast, identify the boundary to watch, the signal that the boundary is approaching, and the evidence that would justify changing topology.
+
+**Boundary / reversal trigger**
+
+Add complexity when measured evidence or a concrete current requirement proves the simpler topology materially insufficient.
+
+### Same-state successor divergence is ambiguity evidence
+
+**Context**
+
+This operator expects fresh competent Architect sessions to continue from canonical repositories without hidden chat history.
+
+**Pressure**
+
+Different wording is harmless, but materially different decisions from materially equivalent canonical inputs create unpredictable operation. The tempting fix is to add more prompt text or another governance layer.
+
+**Decision**
+
+Judge convergence on material decisions, not wording. If materially equivalent profile, target state, objective, authority, and relevant current evidence produce different lifecycle/authority/scope/routing conclusions, treat the divergence as ambiguity evidence in the narrowest canonical owner.
+
+**Why**
+
+The operator wants interchangeable fresh Architect contexts without a god prompt, hidden history, or growing layers of coordination machinery.
+
+**Observed consequence**
+
+Fresh sessions have previously diverged on review priority, audit depth, and execution routing despite equivalent state. Adding more duplicated instructions increased context while clarifying the narrow owner improved convergence.
+
+**Transferable lesson**
+
+Use same-state disagreement diagnostically: clarify, merge, or delete the smallest conflicting source instead of growing prompts or parallel rules.
+
+**Boundary / reversal trigger**
+
+Different outcomes are legitimate when a material input actually differs, including target state, exact authority, explicit operator objective, or relevant current capability evidence.
+
+
+
+
+SOURCE architect-profile@cf08b6e817f84fab6569b54db56edec6db60e560:.agent/bootstrap/authority.lock.json (verbatim relevant excerpt)
+{
+  "version": 1,
+  "repositories": {
+    "agent-skills": {
+      "repository": "phatnguyen03022001/agent-skills",
+      "revision": "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+    },
+    "agent-standards": {
+      "repository": "phatnguyen03022001/agent-standards",
+      "revision": "3f4950f280a3a35fee81471d4b83715fa72cf9ee"
+    },
+    "agent-documents": {
+      "repository": "phatnguyen03022001/agent-documents",
+      "revision": "6918f46282f4a92bbc61071444a5ff5dab30ddc9"
+    },
+    "agent-runtime": {
+      "repository": "phatnguyen03022001/agent-runtime",
+      "revision": "c49d777efa09db7f6c51bd8d8616db4623499fb8"
+    }
+  }
+}
+
+
+
+
+SOURCE architect-profile@cf08b6e817f84fab6569b54db56edec6db60e560:.agent/tasks/TASK-0032/task.yaml (verbatim relevant excerpt)
+task_id: TASK-0032
+task_revision: 1
+state: APPROVED
+  task_id: ""
+objective: "Make the admitted five-repository closure obligations discoverable through the existing optional PROGRAM projection with exact owner evidence and no new authority."
+    - "Remaining admitted obligations are actual-artifact validation TASK-0043; a bounded opaque-value .env reconciliation utility; a natural IELTS target task accepted end-to-end under the intended authority set; cold-successor same-state convergence; scale-stage admission convergence; final five-repository live-governance/debt sweep; intentional final dev support authority-set selection."
+    - "Cold and scale proof must distinguish independent cold samples from resumed advisory review, compare material decisions rather than wording, and patch an owner only on reproduced ambiguity. NO_CHANGE_REQUIRED is valid."
+    - "The natural target is phatnguyen03022001/ilets (verified actual spelling). Its already accepted TASK-0045 is historical evidence, not proof of a new run under later dev authority. A natural next product task requires its own exact target authority; do not invent a benchmark or mark this obligation closed."
+    - "Stable main activation, freeze and successor handoff are intentionally outside current dev-only publication authority. Prepare an exact proposed set only through separately scoped work; do not imply that accepted dev changes are active main."
+    - "Keep latency CLOSED_FOR_CURRENT_VISION and confinement TASK-0019 withdrawn; no new design. Conditional truncation, deprecation, over-invalidation, vector routing or branch-protection concerns are not admitted work absent observed triggers."
+  - "Projection is optional navigation, has no independent lifecycle or mutable debt status and is not preloaded into default bootstrap. Canonical owner task/review evidence decides closure."
+
+
+SOURCE agent-skills@7d7bc2d34810d60e3065682372741114486bc4c7:simplicity/SKILL.md (verbatim relevant excerpt)
+---
+name: simplicity
+description: Use when a proposed change introduces new abstractions, services, layers, state, configuration, dependencies, automation, or generality beyond the immediate proven requirements.
+---
+
+# Simplicity
+
+Choose the least complex solution that satisfies current requirements and preserves known constraints.
+
+## Solution ladder
+
+Challenge proposals in this order:
+
+`existing solution → small change → small abstraction → larger abstraction → new subsystem`
+
+Move right only when the simpler option fails a concrete requirement, invariant, quality attribute, or expected near-term change that is already authoritative.
+
+Ask of every new layer, service, state store, queue, configuration axis, dependency, generator, workflow, or framework:
+
+- What present requirement makes this necessary?
+- What failure or change does it handle that the simpler design cannot?
+- What new states, interfaces, ownership, and operations does it create?
+- Can the same result be obtained by deleting or adapting something?
+- Is the abstraction based on repeated evidence or a speculative future?
+
+## Keep complexity where it pays
+
+Simplicity is not “fewest lines.” A small explicit state machine can be simpler than scattered conditionals; a maintained library can be simpler than custom code; an interface can be justified when it isolates a real volatile boundary.
+
+Protect decisions that are expensive to retrofit, such as data integrity, security boundaries, compatibility contracts, and irreversible migrations. YAGNI does not authorize ignoring known constraints.
+
+Prefer reversible, local changes. Keep abstractions narrow until repeated use demonstrates a stable concept. Remove duplicate representations and unnecessary indirection. Avoid configuration when a single project-wide choice is sufficient.
+
+## Stable maintenance and change admission
+
+For mature governance, NO CHANGE REQUIRED is a valid and preferred outcome when no material reproduced problem exists. Admit change for an evidence-backed defect, stale rule/external reality, recurring missing capability, security issue, compatibility failure, material cost/usability/maintainability regression, or explicit durable maintainer objective change. Preference, novelty, elegance, architectural fashion, and hypothetical future scale are insufficient authority. Corrective maintenance remains valid and should take the smallest safe correction.
+
+For this library, the 15-skill taxonomy is closed by default. A new skill requires repeated real evidence of a materially distinct recurring responsibility that cannot fit an existing owner cleanly, or exceptional correctness/security justification. Do not encode an arbitrary numeric threshold as a universal rule; the evidence must establish a distinct owner boundary.
+
+## Source structure defaults
+
+Prefer the shallowest source structure that preserves real ownership and keeps navigation obvious. These are preferred review defaults, not absolute maximums. Apply them primarily to new directories, new modules, proposed structural expansion, and review of newly introduced nesting.
+
+Source depth is the number of directory segments from the language or project source root to the directory containing the file. The file itself does not count. Do not count repository wrappers above the actual source root merely because they exist. Source roots may include `internal/`, `pkg/`, `src/`, or `app/`, according to target-repository authority.
+
+- **Go:** prefer source directory depth `<= 2`; depth `>= 3` requires a concrete structural justification.
+- **Python:** prefer source directory depth `<= 3`; depth `>= 4` requires a concrete structural justification.
+- **TypeScript:** prefer source directory depth `<= 3`; depth `>= 4` requires a concrete structural justification.
+
+For example, `internal/runtime/verify/worker.go` is depth 2 from `internal/`, and `src/features/auth/oauth/client.ts` is depth 3 from `src/`.
+
+Deeper structure is valid when it represents a real boundary, such as distinct domain ownership, an independently understandable component, a stable subdomain, a meaningful implementation boundary, or multiple cohesive files that benefit from isolation.
+
+A deeper directory is not justified merely because it groups one file, mirrors class or type names, adds technical ceremony, follows a generic “clean architecture” convention, or may theoretically scale later. When no concrete boundary exists, prefer flattening.
+
+Do not apply the depth preference mechanically to infrastructure or generated trees such as generated code, vendored dependencies, build or distribution output, migrations, fixtures, or testdata.
+
+Prefer ownership-, domain-, or feature-oriented organization over generic technical-layer hierarchies when those layers merely scatter one feature across unrelated directories. For example, prefer focused areas such as `src/billing/`, `src/identity/`, and `src/notifications/` over default global `controllers/`, `services/`, `repositories/`, `managers/`, or `helpers/` buckets. Technical-layer directories remain valid when the target architecture uses them as meaningful boundaries.
+
+Treat names such as `common`, `shared`, `utils`, `helpers`, `misc`, `base`, and `core` skeptically unless ownership and purpose are concrete; do not prohibit them mechanically. Before extracting to `shared`, prefer evidence of at least two real independent consumers.
+
+Keep language naming guidance minimal:
+- **Go:** package and directory names should be lowercase, short, and idiomatic; avoid unnecessary nesting and redundant package names.
+- **Python:** package and module names should use `snake_case`.
+- **TypeScript:** follow the target repository's established source file and directory convention; if none exists, prefer `kebab-case`.
+
+Existing repository naming conventions take precedence; do not introduce naming-lint enforcement from this guidance.
+
+Apply precedence in this order:
+1. target repository authoritative specification, design, and conventions;
+2. existing coherent target-repository structure;
+3. these reusable simplicity defaults.
+
+Existing deeper structure is not itself a reason for unrelated refactoring. Do not reorganize an existing codebase merely because current depth exceeds the preferred default.
+
+Do not optimize for minimum directory count at the cost of giant files, unrelated code in one package, or broken domain boundaries. Do not optimize for architecture aesthetics at the cost of needless nesting, indirection, generic layer directories, or speculative abstractions.
+
+## Review output
+
+Identify complexity with its claimed benefit. Classify it as:
+
+- **required now**;
+- **justified boundary**;
+- **premature/speculative**;
+- **duplicate/indirect**.
+
+Recommend deletion or simplification only when behavior and invariants remain provable.
+
+Common rationalizations to challenge include “we may need multiple implementations later,” “a service is cleaner than a module,” “configuration makes it flexible,” and “automation is always better.” Future possibilities count only when project authority or repeated evidence makes them credible. Prefer direct data/control flow that a new maintainer can trace without reconstructing hidden conventions.
+
+Use `reuse-first` when the simplification question is build-versus-adopt. Use `design-review` when trade-offs concern system boundaries or quality attributes rather than accidental complexity alone.
+
+
+
+
+SOURCE agent-skills@7d7bc2d34810d60e3065682372741114486bc4c7:github-workflow/SKILL.md (verbatim relevant excerpt)
+Refresh exact repository, target branch, remote HEAD, expected base, repository-specific branch policy, write authority, workflow triggers, and the semantic capabilities required for the current phase when that mutable evidence is required by the pending consequence. Treat authorized remote Git state as canonical repository truth; local state is an execution copy. A fetch is an observation mutation that may update `LOCAL_MUTABLE` remote-tracking refs; a local commit is an authorized target-ref mutation when task authority permits it; an authorized push/promotion/report-or-review publication is a canonical publication mutation. Immediately before canonical publication, freshly resolve the `REMOTE_MUTABLE` refs/topology that gate the write, and after publication freshly prove the resulting remote identity. If the remote branch moved, that remote drift invalidates stale authority and fails closed. If a current-phase capability is unavailable, block before mutation. Do not require a later-phase capability to finish an earlier authorized phase.
+
+A local clean/behind copy may be synchronized when authorized; local ahead or local dirty state is divergence or unknown work and must not be auto-pushed, reset, deleted, or silently adopted as authority.
+
+
+SOURCE agent-skills@7d7bc2d34810d60e3065682372741114486bc4c7:.agent/tasks/TASK-0043/review.yaml (verbatim relevant excerpt)
+protocol_version: 3
+task_id: TASK-0043
+task_revision: 1
+review_revision: 2
+state: ACCEPTED
+reviewed_report:
+  repository: phatnguyen03022001/agent-skills
+  path: .agent/tasks/TASK-0043/report.yaml
+  commit: "251d64ac220dda305b5cfdbed074c70ce1f3a06e"
+  report_revision: 2
+contract_compliance:
+  protocol_version: PASS
+  identity: PASS
+  execution_base: PASS
+  skill_rules: PASS
+  scope: PASS
+  structure_policy: PASS
+  git_authority: PASS
+  acceptance_criteria: PASS
+  verifier_evidence: NOT_REQUIRED
+independence:
+  reviewer_role: ARCHITECT
+  separate_session_from_executor: true
+  exact_report_identity_verified: true
+acceptance_basis:
+  - "Independent reproduction confirms quoted structural characters remain scalar data and unquoted colon-space flow mappings fail closed. Correction adds the observed retained mapping path-versus-identity regression."
+  - "The correction candidate 99f359faca313d883699699277fbe4ed52a14e86 changes only the two authorized validator/test files, preserving the original bounded CLI and README implementation. Focused CLI tests, default validator, all 120 tests, compilation and whitespace pass; actual report revision 2 validates."
+  - "Original candidate/report and REVISION_REQUIRED history remain immutable. The correction is a direct child of review 24c79fe59453946aef9c44fcfb4f8cb5247762a2; report revision 2 at 251d64ac220dda305b5cfdbed074c70ce1f3a06e is its report-only child. Fresh GitHub/local equality closes publication evidence; main is unchanged."
+promotion_readiness:
+  eligible_for_candidate_capture: false
+  reason: "Closes bounded actual-artifact validation on dev; no stable activation."
+notes:
+  - "Schema checks do not prove semantic correctness. The original sparse planning task omits required artifact fields, which the new CLI correctly rejects; this acceptance does not claim historical task-schema compliance or authorize automatic migration. New planning must validate the actual task before publication."
+
+
+
+
+SOURCE agent-skills@7d7bc2d34810d60e3065682372741114486bc4c7:.agent/tasks/TASK-0044/task.yaml (verbatim relevant excerpt)
+protocol_version: 3
+task_id: TASK-0044
+task_revision: 1
+state: APPROVED
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: OPAQUE_ENV_RECONCILIATION
+architect_binding:
+  target_repository: phatnguyen03022001/agent-skills
+target:
+  repository: phatnguyen03022001/agent-skills
+  branch:
+    name: dev
+    role: integration
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+architect_analysis_skills: []
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+execution_skills:
+  recommended: []
+  required: [executor, verification, simplicity, github-workflow]
+authority_sources:
+  - source: current operator instruction
+    role: "On local target startup align env format with env example, retain existing values, insert <thiếu key> for missing keys, group extras below and never expose values to the model. Close five-repo dev debt with Terra/high Executors."
+    precedence: 1
+structure_authority:
+  status: RESOLVED
+  source: "Existing agent-skills scripts and Executor local execution procedure."
+  rationale: "One explicit stateless file transformation supplies the requested missing behavior. Existing Git/native transport is reused; no environment manager, new skill or Runtime primitive."
+objective: "Provide a bounded local env reconciliation command that preserves opaque operator values and blocks startup on unresolved configuration."
+scope:
+  required_changes:
+    - "Add scripts/reconcile_env.py using only Python stdlib, with explicit --example PATH and --env PATH arguments, read-only default/check and explicit --write. Operate only on those files, never discover other env files, source/execute assignments, fetch secrets or print file contents."
+    - "For the documented supported single-line dotenv subset, preserve template comments/blanks and key order, preserve each existing assignment value verbatim including quote/escape text, insert a quoted literal <thiếu key> for every missing example key instead of adopting template values, and group existing extra keys below. Preserve operator-only comments deterministically; idempotent output is required."
+    - "Support ordinary identifier keys, optional export prefix, comments/blanks and single-line unquoted/single-quoted/double-quoted assignments. Fail before writing on duplicate keys, malformed or unsupported multiline/ambiguous syntax, symlinks/non-regular inputs or identical source/destination; no attempt at a full dotenv grammar. Error messages must not contain values or source lines."
+    - "Write atomically through a private same-directory temporary file with cleanup on failure. New env files are private; existing permissions are preserved or tightened, never widened. Preserve the existing file on parse/validation failure; no persistent backup, daemon, new dependency or background watcher."
+    - "Return nonzero when reconciliation is needed in check mode, any placeholder remains after write, or malformed input occurs; document the distinction. Print only a compact non-secret result/count. This command cannot certify provider credentials."
+    - "Add one compact README command and a bounded pointer in Executor local startup procedure: when authorized local target startup uses an env example, reconcile via the repo-native equivalent or this command before starting; unresolved placeholders stop startup for missing operator configuration. No secret values are returned to the model."
+  allowed_existing_files_or_components:
+    - scripts/reconcile_env.py
+    - scripts/test_reconcile_env.py
+    - README.md
+    - executor/SKILL.md
+invariants:
+  - "No real operator env values are read into agent context/logs/tests/reports. Only synthetic fixture values are inspected during this task; do not touch any real .env file."
+  - "Exactly 15 skills and existing Task Protocol, runtime four-tool surface and Git divergence rules stay unchanged. The helper has no Git synchronization or execution authority."
+  - "No automatic universal startup hook: the existing Executor procedure supplies the invocation when applicable; a target may separately adopt a repo-native startup command."
+forbidden_changes:
+  - "No source application work, real env mutation, secret output, dependency/install, schema, framework, config manager, service, new role/skill, main/staging, new branch, force push or release."
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Opaque values survive reconciliation, template order/missing markers/extra grouping are correct and a second run is byte-identical."
+    evidence_required: "Synthetic command-level tests cover check/write, missing env file, reordered keys, extra keys/comments, export/quoting and unresolved-marker exit behavior."
+  - id: AC-2
+    requirement: "Invalid inputs cannot corrupt operator state or expose values."
+    evidence_required: "Synthetic tests cover duplicate/malformed/multiline input, symlink/non-regular/same-path rejection, file unchanged on failure, temporary cleanup, permissions and stdout/stderr secret absence."
+  - id: AC-3
+    requirement: "Small scoped utility and applicable startup navigation preserve existing governance and are published with truthful lineage."
+    evidence_required: "Focused/full existing tests, validator, whitespace/scope, actual report schema, candidate/report-only commits and fresh dev/local equality."
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Bind exact task and identify narrow supported format; create synthetic failure cases without any operator env contents."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Run command-level synthetic tests and existing library validation/test suite once after the bounded helper is complete."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Validate actual task/report artifacts, publish candidate/report child non-force to dev and prove fresh refs."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+blocking_decisions: []
+execution_ready: true
+
+
+SOURCE agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23:.agent/tasks/TASK-0022/review.yaml (verbatim relevant excerpt)
+protocol_version: 3
+task_id: TASK-0022
+task_revision: 1
+review_revision: 2
+state: ACCEPTED
+reviewed_report:
+  repository: phatnguyen03022001/agent-runtime
+  path: .agent/tasks/TASK-0022/report.yaml
+  commit: "6f238de81e587efb65f7ac6d554dda3073ed4e35"
+  report_revision: 1
+contract_compliance:
+  protocol_version: PASS
+  identity: PASS
+  execution_base: PASS
+  skill_rules: PASS
+  scope: PASS
+  structure_policy: PASS
+  git_authority: PASS
+  acceptance_criteria: PASS
+  verifier_evidence: NOT_REQUIRED
+acceptance_basis:
+  - "Independent hash verification matches the approved pre-mutation WIP patch 15f0df353bbb90e97816b27e627f4637126696594cf95d9a6777ed38a0e71b96 and confinement file da41ca3238a3249799e63136b822598f138a246cc27c4d45b4a99b6a06502843. The retained private backup manifest identifies original HEAD a769c24d7d21ca3af794b9866133a8cf65962031."
+  - "Executor evidence proves bounded restore/removal and preservation of env/venv and other operator state; original-checkout bare verification passed all 47 tests. No confinement source was adopted or published."
+  - "Independent diff and parent inspection prove the report is the sole changed path and a direct child of exact planning HEAD 0dd6bc4b04ed3f037836b5d2d71ec5508d53e037. Original checkout is clean; fresh GitHub dev equals local report HEAD 6f238de81e587efb65f7ac6d554dda3073ed4e35. Main remains c49d777efa09db7f6c51bd8d8616db4623499fb8. Actual report and review schema validation pass."
+promotion_readiness:
+  eligible_for_candidate_capture: false
+  reason: "Closes local mirror disposition on dev; no source candidate or stable activation."
+notes:
+  - "Retain /private/tmp/agent-runtime-task0022-backup for recovery. Backup is non-authoritative evidence, and TASK-0019 remains withdrawn."
+
+independence:
+  reviewer_role: ARCHITECT
+  separate_session_from_executor: true
+  exact_report_identity_verified: true
+metadata_correction: "This revision records the already-performed independent exact-report check explicitly. Prior claims of complete review-schema validity were incorrect because this required declaration was omitted; candidate correctness evidence is unchanged."
+
+
+Given immutable observed stable refs: profile main d47114404c97fcfd74b0f37f646586ec46de6987; skills main ed8d9fb35bb8b052530ca879e68a227d77e4a8a6; runtime main c49d777efa09db7f6c51bd8d8616db4623499fb8. Standards dev1141b9dbfce0110d6623f5a877c2d04843caa6eb TASK0013r2 ACCEPTED; documents devc4eb75c33b6cfdb02b5b88eb6eb78d7fa48d4360 TASK0007r2 ACCEPTED. These are supplied snapshot facts, not a claim you refreshed GitHub. TASK0044 planning only at supplied skills snapshot; no report.
+
+
+SOURCE agent-skills@ed8d9fb35bb8b052530ca879e68a227d77e4a8a6:protocols/TASK_PROTOCOL.md (verbatim relevant excerpt)
+This protocol defines reusable Architect-to-Executor governance across repositories. `agent-skills` owns how work is governed; each target repository owns what its product is and stores its live tasks.
+
+## Core bindings
+
+A single Executor chat may also be reused sequentially. While work is active, the active task/repository binding remains immutable: one approved task revision, one repository, one branch, and one exact execution authorization. Rebinding requires the prior execution to reach an explicit terminal handoff/result, previous evidence finalized, no outstanding mutation authority carried forward, an explicit next repository, a fresh repository-local task, a fresh exact handoff, a fresh exact base HEAD and branch identity, refreshed canonical GitHub truth, and a newly verified binding before mutation.
+
+The approved exact task plus handoff is prior authorization for bounded Executor actions inside the active binding; a role must not invent extra user approvals for phases already authorized by those artifacts.
+
+Within one active context and exact binding, an already-resolved immutable commit, blob, task revision, report revision, or authority revision may be reused when its identity is unchanged instead of rereading it for ceremony. Context-local resolution reuse ends at rebinding: a fresh binding must re-resolve the exact canonical artifact identity instead of carrying forward chat/session memory, cached resolution, or stale assumptions. Rebinding does not by itself erase the evidentiary applicability of that immutable artifact. After its exact identity is freshly re-established, prior immutable evidence may satisfy a current predicate only when it actually covers that exact predicate and the governing/predicate semantics and dependencies relevant to that proof remain applicable. This creates no persistent cache, cross-session authority, hidden registry, or permission to reuse mutable refs/state without the fresh checks required at consequential mutation, review, promotion, or release boundaries.
+
+## Organizational roles and acceptance ownership
+
+There are two organizational roles: Architect and Executor. Architect is ChatGPT. Reviewer, verifier, red-team, debugger, researcher, coder, and similar execution modes are Executor specializations, not additional organizational roles. Other execution agents/sessions, including Codex, operate as Executors when used. Role specialization never changes artifact ownership or authority boundaries.
+
+Exactly one current governing Architect owns final ACCEPT/REJECT/REVISE judgment for the active repository binding. Independent reviewer/red-team/verifier sessions are an Executor specialization and produce advisory evidence unless the target explicitly designates verifier-owned authoritative PASS/FAIL. They never become a second Architect or independently own product/governance acceptance. Existing v3 `review.yaml` values remain `ACCEPTED`, `REVISION_REQUIRED`, and `BLOCKED` for backward compatibility.
+
+## Repository-local authority across sequential bindings
+
+The authority for repository A never grants authority for repository B. Every task-bound binding independently preserves repository identity, branch identity, task ID/revision, base HEAD, Git authority, capability requirements, verification, report evidence, review evidence, and promotion/release authority. The report/review/verifier/promotion/release lineage remains repository-local.
+
+Task authority remains just in time. When a generated item is selected for implementation, the governing Architect may use it to create or revise canonical `task.yaml`; the generated item itself never authorizes execution, mutation, review, verification, promotion, or release. Multiple canonical task artifacts may coexist, while one active Executor binding still means exactly one task revision, repository, branch, and base at a time. Program progress never substitutes for exact task/handoff identity.
+
+For canonical tasks governed by the durable-review semantics introduced by TASK-0010, final `ACCEPTED`, `REVISION_REQUIRED`, or `BLOCKED` Architect judgment becomes durable repository-reconstructible lifecycle evidence only after `.agent/tasks/<TASK-ID>/review.yaml` is published in the target repository and binds the exact `reviewed_report.commit` plus report revision being judged. The active Architect may reason to a tentative/final judgment before persistence, but later continuation, promotion, release, successor reconstruction, or other cross-session reliance must resolve the published review artifact rather than hidden chat history.
+
+A task-bound Architect or Executor terminal response includes a concise identity line that truthfully identifies the organizational role (`Architect` or `Executor`), active target repository as `owner/repo`, canonical task ID, and canonical task revision. When Architect has an active target repository but no canonical task is bound, the terminal identity must explicitly state that no task is bound instead of inventing a task ID or revision.
+
+[templates/continuation.yaml](../templates/continuation.yaml) carries exact identity for a later post-review phase: protocol/task identity, phase, `reviewed_report.commit`, report revision, `promotion_candidate_head`, exact expected refs, prior result/lifecycle state, and one next authorized action. Canonical new continuations serialize `expected_refs` as zero or more `{ref, commit}` records using target-authoritative ref identities; they do not infer branch names, roles, topology, or a stable branch name from generic governance. Existing expanded v3 continuations using `expected_refs.dev/main` remain accepted compatibility input and are not reinterpreted as the canonical shape.
+
+For canonical tasks governed by the durable-review semantics introduced by TASK-0010, the governing Architect publishes the existing `.agent/tasks/<TASK-ID>/review.yaml` bound to that exact report commit and report revision before treating the final outcome as durable canonical lifecycle evidence. If the required REVIEW repository-write capability is unavailable, return `CURRENT_PHASE_CAPABILITY_UNAVAILABLE`; do not claim durable `ACCEPTED`, `REVISION_REQUIRED`, or `BLOCKED` from chat/session state alone. Legacy missing review artifacts remain ambiguous historical evidence and require no backfill.
+
+SOURCE agent-skills@ed8d9fb35bb8b052530ca879e68a227d77e4a8a6:executor/SKILL.md (verbatim relevant excerpt)
+---
+name: executor
+description: Use when one approved task revision must be executed against one exact repository and authorized base without changing project authority, architecture, or scope.
+---
+
+# Executor
+
+Executor executes exactly one approved task revision against one exact repository/base. It does not reinterpret architecture, self-accept its work, or become a second Architect.
+
+Reusable cross-role binding, artifact/authority/capability separation, lifecycle, continuation, promotion-lineage, and release semantics are owned by the [Task Protocol](../protocols/TASK_PROTOCOL.md). This skill owns Executor-specific pre-mutation gates, restrictive execution, divergence handling, hard mutation boundaries, local hygiene, and report production.
+
+## Binding and sequential rebinding
+
+While execution is active, the active task/repository binding remains immutable. Rebinding is permitted only after an explicit terminal handoff/result and the Executor has proven, in order: previous evidence finalized; no outstanding mutation authority carried forward; an explicit next repository; a fresh repository-local task; a fresh exact handoff; a fresh exact base HEAD plus branch identity; refreshed canonical remote truth; and a newly verified binding before mutation.
+
+The authority for repository A never grants authority for repository B, and report/review/verifier/promotion/release lineage remains repository-local. The Task Protocol owns the lifecycle meaning of terminal results; these requirements remain here because they are Executor-local preconditions for rebinding.
+
+## Terminal response identity
+
+At the terminal result of an active task-bound execution, render truthful identity context using the resolved canonical binding: `Executor`, the exact active `owner/repo`, canonical task ID, and canonical task revision. Do not infer or invent task identity from chat history or nearby repository artifacts; if the canonical task identity cannot be resolved truthfully, use the applicable existing fail-closed result instead of fabricating it.
+
+Keep terminal identity outside copied handoff/prompt content, including `PROMPT TO COPY`. Treat punctuation, separators, abbreviated repository rendering, and other visual styling as presentation concerns rather than reusable Executor semantics.
+
+## Handoff and pre-mutation gate
+
+Receive [templates/handoff.yaml](../templates/handoff.yaml). Before mutation verify supported protocol/type, exact repository/branch, live HEAD equals the handoff base, exact task identity at that commit, task binding, `execution_ready`, pinned required skills, structure authority, and every intended Git mutation against task authority.
+
+The approved exact task plus handoff is sufficient prior user authorization for bounded Executor actions inside that scope. Do not demand redundant approval and do not infer authority beyond it.
+
+After binding is proven, inspect existing repository patterns before choosing implementation HOW. Inside positive authorized material/component scope, implementation judgment belongs to Executor by default; uncertainty alone does not escalate. Use the Task Protocol's single protocol-v3 normalization/default table for omitted implementation-prescription controls, while preserving explicit expanded-v3 restrictions.
+
+For each current execution gate, gather only the minimum authoritative evidence needed to prove its material predicates and stop once they are proven. Apply the Task Protocol validity classes: reuse `IMMUTABLE` evidence inside the unchanged binding; refresh affected `LOCAL_MUTABLE`, `REMOTE_MUTABLE`, or `RUNTIME` evidence only when invalidated or when the next consequence boundary depends on current truth. This never permits stale mutable-ref reuse, and observation mutation is not confused with authorized target-ref mutation or canonical publication mutation.
+
+Operational timing is omitted from the default Executor hot path. Include `operational_timing` only when an operator, task, or performance audit explicitly requests it. When requested, capture `started_at_utc` after exact binding and immediately before capability preflight; approval-to-start or queue latency remains separate lifecycle evidence. If trustworthy timing is unavailable at either required boundary, omit the entire block rather than inventing, approximating, reconstructing, or deriving timestamps from Git commit times. No timing-enabled or telemetry-mode field is added.
+
+Preflight the current phase's materially required semantic capabilities before its first mutation. When the task already identifies mandatory native verification or another current-execution capability needed for completion, prove that capability is currently available before mutation. An established generic local execution surface can satisfy ordinary engineering subcommands without separate command-by-command capability declarations or preflight unless the exact task or target requires one independently. Missing required current-phase capability blocks before mutation.
+
+For surface selection, start from the required semantic capability and evidence, resolve currently available candidates, reject candidates without current authority or sufficient evidence, then choose the lowest sufficient expected cost/resource burden. Cheaper/free never justifies weaker correctness, safety, exact identity, acceptance evidence, or required native/remote verification. Availability/quota is runtime evidence; after a material environment/quota change, do not rely on installation, provider identity, historical availability, or an earlier preflight as current proof.
+
+Lowest-sufficient-cost routing does not grant spend authority. New material paid consumption requires existing bounded target/task/operator authority; existing bounded authority is reused without redundant approval. When no sufficient authorized zero/covered-cost path exists and paid authority is missing, fail closed with `AUTHORITY_REQUIRED` or the applicable blocking result rather than spending speculatively. Included/free quota remains runtime capacity, not billing authority.
+
+The prior `least-powerful` and `bounded escalation` wording remains a safety constraint inside this routing order: among otherwise sufficient choices, do not broaden consequence or escalate capability without material need. It is not a provider-first rule and never overrides required evidence or the lowest-sufficient-cost selection.
+
+If the selected surface becomes unavailable or quota-limited, fall back only to another currently available, already-authorized candidate that still satisfies the required capability/evidence. Use degraded mode only when current task/target acceptance explicitly permits it; otherwise fail closed with `CURRENT_PHASE_CAPABILITY_UNAVAILABLE` or the applicable blocking result. Do not create provider/account rotation, quota-evasion, credential-broker, or persistent availability machinery to keep execution moving.
+
+Any identity or authority mismatch is `BLOCKED`. Never refresh stale authority or silently substitute newer rules.
+
+`create_branch: false` is a hard tool boundary: do not invoke branch creation for testing, probing, staging, temporary work, backup, recovery, cleanup, or convenience. Commit, push, promotion, and release authorities remain independent as defined by the Task Protocol and exact task.
+
+## Remote truth and local divergence
+
+Authorized remote Git state is canonical repository truth; local state is subordinate execution state. A designated canonical local working copy exists only when current target/operator authority explicitly designates one; never infer that a repository name or a path is a working copy or grants authority. Phone-only or remote-only execution remains valid when current authority designates no local copy.
+
+Before local mutation, refresh canonical GitHub truth and classify the designated local state. Discover an actual Git repository and prove its exact owner/repo remote identity, required branch, and authorized base/ref rather than assuming local location or naming. A local copy that is absent or safely empty may be created from canonical truth only when the current authority and execution surface permit it. A matching clean/behind copy may be synchronized only when authorized. Dirty/ahead/unknown state, identity mismatch, or stale remote state is never local authority: preserve it and do not auto-push, reset, stash, clean, delete, move, overwrite, or adopt it. A specifically proven non-destructive operation may proceed only when it preserves that state; otherwise use the applicable existing fail closed result.
+
+After GitHub publication or another task-authorized canonical-ref mutation, refresh canonical GitHub truth again. When a designated canonical local working copy is required, safely reconcile it to the final canonical ref with fast-forward/equivalent semantics and prove that the resolved local repository still has the exact owner/repo remote identity and resolves that final ref before successful closure. If reconciliation cannot safely complete because of dirty/ahead/unknown state, identity mismatch, stale remote state, missing capability, permission failure, or a conflict, preserve local state and return the applicable existing fail closed result rather than claiming completion.
+
+Temporary/reference/disposable checkouts remain non-authoritative and cannot substitute for a separately designated canonical local working copy. Their cleanup remains subject to the Local Hygiene Contract.
+
+SOURCE agent-skills@ed8d9fb35bb8b052530ca879e68a227d77e4a8a6:.agent/case-router.yaml (verbatim relevant excerpt)
+cases:
+  - id: EXECUTE
+    capabilities:
+      - executor
