@@ -1,0 +1,98 @@
+protocol_version: 3
+task_id: TASK-0032
+task_revision: 1
+state: APPROVED
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: PROGRAM_RECONSTRUCTION
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+architect_analysis_skills: []
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+execution_skills:
+  recommended: []
+  required: [executor, verification, simplicity, github-workflow]
+authority_sources:
+  - source: current operator instruction
+    role: "Close admitted debt across the five support repositories on dev; current Codex root is the governing Architect and Terra/high workers are Executors for this session. Durable default roles and model routing remain unchanged. No main/staging activation."
+    precedence: 1
+structure_authority:
+  status: RESOLVED
+  source: "Existing agent-skills templates/program.generated.json and Task Protocol generated-program semantics."
+  rationale: "A bounded resumed-session probe found recent task records alone did not expose remaining cross-repository obligations. Reuse the optional non-authoritative generated projection, not a registry or bootstrap requirement."
+objective: "Make the admitted five-repository closure obligations discoverable through the existing optional PROGRAM projection with exact owner evidence and no new authority."
+scope:
+  required_changes:
+    - "Generate .agent/program.generated.json using the existing GENERATED_PROGRAM shape, authority NONE and full-regeneration invalidation. This exact task is the L1 source for current closure intent. Link it once from the existing README navigation."
+    - "Include owner-evidence references and closure predicates for the obligations below, not independently mutable OPEN/CLOSED fields. Inspect only the latest named task/report/review and live owner needed; full historical archaeology is forbidden."
+    - "Record accepted dev closures: agent-skills TASK-0041 and TASK-0042; architect-profile TASK-0031; agent-runtime TASK-0020, TASK-0021 and TASK-0022; agent-standards TASK-0013 rev2; agent-documents TASK-0007 rev2. Use exact immutable references and retain report-schema correction lineage where material."
+    - "Remaining admitted obligations are actual-artifact validation TASK-0043; a bounded opaque-value .env reconciliation utility; a natural IELTS target task accepted end-to-end under the intended authority set; cold-successor same-state convergence; scale-stage admission convergence; final five-repository live-governance/debt sweep; intentional final dev support authority-set selection."
+    - "Environment closure means an explicit repo-local command aligns an operator env file to its example order/keys, retains existing opaque values, inserts quoted <thiếu key> for missing keys, groups extras below and exposes no values to model/logs. This projection grants no implementation authority."
+    - "Cold and scale proof must distinguish independent cold samples from resumed advisory review, compare material decisions rather than wording, and patch an owner only on reproduced ambiguity. NO_CHANGE_REQUIRED is valid."
+    - "The natural target is phatnguyen03022001/ilets (verified actual spelling). Its already accepted TASK-0045 is historical evidence, not proof of a new run under later dev authority. A natural next product task requires its own exact target authority; do not invent a benchmark or mark this obligation closed."
+    - "Stable main activation, freeze and successor handoff are intentionally outside current dev-only publication authority. Prepare an exact proposed set only through separately scoped work; do not imply that accepted dev changes are active main."
+    - "Keep latency CLOSED_FOR_CURRENT_VISION and confinement TASK-0019 withdrawn; no new design. Conditional truncation, deprecation, over-invalidation, vector routing or branch-protection concerns are not admitted work absent observed triggers."
+  allowed_existing_files_or_components:
+    - .agent/program.generated.json
+    - README.md
+invariants:
+  - "Projection is optional navigation, has no independent lifecycle or mutable debt status and is not preloaded into default bootstrap. Canonical owner task/review evidence decides closure."
+  - "Profile bootstrap, lock, calibration, runtime surface and Protocol semantics remain unchanged."
+forbidden_changes:
+  - "No sixth repo, registry, new schema, role, lifecycle, service, generalized generator, source implementation, historical evidence rewrite, main/staging, branch creation or force push."
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: revised_contract_required
+  public_contract_change: revised_contract_required
+  blocking_gap_behavior: BLOCKED
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Every admitted obligation and accepted closure has traceable immutable owner evidence or this task's explicit unresolved intent, with a clear closure predicate."
+    evidence_required: "Exact source references, coverage audit and existing generated-program validation."
+  - id: AC-2
+    requirement: "A reader can locate current work without inheriting raw chat; projection creates no authority or mandatory hot context."
+    evidence_required: "Bounded independent review of navigation, material omissions, intent/evidence distinction and optional loading. Do not label resumed review a cold proof."
+  - id: AC-3
+    requirement: "Only authorized navigation/projection changes are published with truthful report lineage."
+    evidence_required: "Existing profile checks, scope/whitespace, actual report schema, candidate and report-only child, fresh remote/local dev identity."
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Bind exact task and owner refs; generate and validate the existing PROGRAM shape and coverage."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Check bounded navigation/coverage and existing profile validation/tests; no new framework or mirrored doctrine."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Validate actual report, publish candidate then report-only child, and prove fresh dev/local equality."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+blocking_decisions: []
+execution_ready: true
