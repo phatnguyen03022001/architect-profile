@@ -2,7 +2,7 @@ protocol_version: 3
 
 task_id: TASK-0031
 task_revision: 1
-report_revision: 1
+report_revision: 2
 state: REPORTED
 
 task_source:
@@ -47,10 +47,6 @@ authoritative_verification:
   performed: false
   result: NOT_REQUIRED
   evidence: "TASK-0031 designates no separate authoritative verifier."
-
-local_hygiene:
-  result: PASS
-  evidence: "The repository-native validator and tests ran with bytecode writes disabled. No stash, reset, clean, branch creation, temporary repository artifact, or unrelated working-tree mutation was used; the tracked checkout was clean before report authorship."
 
 pushed: true
 
