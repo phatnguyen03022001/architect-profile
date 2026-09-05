@@ -1,0 +1,29 @@
+protocol_version: 3
+task_id: TASK-0032
+task_revision: 1
+review_revision: 1
+state: REVISION_REQUIRED
+reviewed_report:
+  repository: phatnguyen03022001/architect-profile
+  path: .agent/tasks/TASK-0032/report.yaml
+  commit: "ed2dbe94fa91cfafb193f3f27774e096d7fcd35d"
+  report_revision: 1
+contract_compliance:
+  protocol_version: PASS
+  identity: PASS
+  execution_base: PASS
+  skill_rules: PASS
+  scope: PASS
+  structure_policy: PASS
+  git_authority: PASS
+  acceptance_criteria: FAIL
+  verifier_evidence: NOT_REQUIRED
+acceptance_basis:
+  - "The optional README pointer and existing authority-NONE schema are appropriate; no bootstrap or lock change occurred."
+  - "Coverage uses invented YAML fragments such as task.yaml#natural-ilets-target that are not defined in the immutable source. Replace them with exact resolvable owner paths; a shared exact task intent ref may be reused by multiple distinct items."
+  - "Grouped acceptance text weakens the natural pilot predicate to having task authority rather than an ACCEPTED end-to-end task. Separate each remaining obligation into a small item with its own precise closure predicate: actual artifact validation, environment reconciliation, natural pilot, cold convergence, scale convergence, final sweep and intentional dev authority selection. No status fields or additional artifacts."
+promotion_readiness:
+  eligible_for_candidate_capture: false
+  reason: "Correct traceability and preserve all material closure predicates before acceptance."
+notes:
+  - "Continue TASK-0032 rev 1 from this published review, same allowed files and original base. Publish correction candidate and report revision 2 as a report-only child. Main activation/freeze/handoff remain outside current scope."
