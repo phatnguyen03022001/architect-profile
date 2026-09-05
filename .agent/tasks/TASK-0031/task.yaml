@@ -1,0 +1,84 @@
+protocol_version: 3
+task_id: TASK-0031
+task_revision: 1
+state: APPROVED
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: ROUTING_AND_PROMPT_PROVENANCE
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+execution_skills:
+  required: [executor, verification, simplicity, github-workflow]
+authority_sources:
+  - source: current operator instruction
+    role: "Dev-only debt closure, LUNA/MEDIUM defaults and L0/L1/L2 restoration. This session's governing Architect and Terra/high Executor overrides are temporary."
+    precedence: 1
+  - source: "architect-profile/dev@56c43fd7faaacf8706ae37e84d3046405cb333e3"
+    role: "Current profile/bootstrap and accepted historical TASK-0005 provenance semantics."
+    precedence: 2
+structure_authority:
+  status: RESOLVED
+  source: "Existing profile and bootstrap contract."
+  rationale: "Correct existing configuration and restore one compact boundary, without adding authority owners."
+objective: "Restore live prompt provenance and align both Codex execution routes with the operator's LUNA/MEDIUM defaults."
+scope:
+  required_changes:
+    - "Restore L0 RAW optional/private forensic context with authority NONE, excluded normal bootstrap; L1 material requests/corrections/constraints/overrides/decisions persisted to narrow owners before future reliance; L2 existing calibration admission."
+    - "Set CODEX_LOCAL and CODEX_CLOUD to LUNA/MEDIUM consistently in profile, bootstrap, launch fixtures, validator and tests. Preserve ChatGPT routes."
+    - "Adopt the current four-file uncommitted candidate only after exact diff review and verification; it is known task-owned preparation, not unknown operator WIP."
+  allowed_existing_files_or_components:
+    - ARCHITECT_PROFILE.md
+    - .agent/bootstrap/bootstrap.json
+    - .agent/bootstrap/validate.py
+    - .agent/bootstrap/test_bootstrap.py
+invariants:
+  - "ChatGPT remains durable default Architect; the current session-specific operator designation does not permanently replace that role or default route."
+  - "Authority lock, calibration, four surfaces, target binding, router, taxonomy, protocol and historical evidence remain unchanged."
+forbidden_changes:
+  - "No transcript store, archive service, framework, new schema, lifecycle, role or bootstrap preload."
+  - "No main/staging, branch creation, force push or release."
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Profile restores all three provenance levels with narrow ownership and no raw authority."
+    evidence_required: "Exact bounded profile diff and semantic review against TASK-0005 accepted boundary."
+  - id: AC-2
+    requirement: "Both Codex routes and rendered launches use LUNA/MEDIUM; unauthorized routes still fail closed."
+    evidence_required: "Bootstrap validator and full tests, including rejection of old XHIGH configuration."
+  - id: AC-3
+    requirement: "Only authorized four-file implementation plus report lineage is published to dev."
+    evidence_required: "Scope, whitespace, candidate/report direct-child lineage and fresh dev/main refs."
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Verify exact canonical task/base, known prepared diff and Git identity."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Run bootstrap validator and full bootstrap tests; inspect provenance semantics, exact scope and whitespace."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Publish candidate and report-only child, then prove final refs and clean designated checkout externally."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+blocking_decisions: []
+execution_ready: true
