@@ -162,8 +162,8 @@ class BootstrapContractTests(unittest.TestCase):
             {
                 "CHATGPT_GITHUB": ("GPT-5.6 Sol", "HIGH"),
                 "CHATGPT_LOCAL": ("GPT-5.6 Sol", "HIGH"),
-                "CODEX_CLOUD": ("LUNA", "XHIGH"),
-                "CODEX_LOCAL": ("LUNA", "XHIGH"),
+                "CODEX_CLOUD": ("LUNA", "MEDIUM"),
+                "CODEX_LOCAL": ("LUNA", "MEDIUM"),
             },
         )
 
@@ -172,7 +172,7 @@ class BootstrapContractTests(unittest.TestCase):
             (1, "model", "OTHER"),
             (1, "effort", "LOW"),
             (2, "model", "OTHER"),
-            (2, "effort", "MEDIUM"),
+            (2, "effort", "XHIGH"),
             (3, "effort", "HIGH"),
         )
         for surface_index, field, value in cases:

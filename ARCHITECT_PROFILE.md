@@ -77,8 +77,8 @@ The canonical operator execution routing is machine-readable in [`.agent/bootstr
 | --- | --- | --- | --- | --- | --- |
 | `CHATGPT_GITHUB` | `CHATGPT` | `GITHUB` | `GITHUB` | `GPT-5.6 Sol` | `HIGH` |
 | `CHATGPT_LOCAL` | `CHATGPT` | `LOCAL` | `AGENT_RUNTIME` | `GPT-5.6 Sol` | `HIGH` |
-| `CODEX_CLOUD` | `CODEX` | `CLOUD` | `NATIVE` | `LUNA` | `XHIGH` |
-| `CODEX_LOCAL` | `CODEX` | `LOCAL` | `NATIVE` | `LUNA` | `XHIGH` |
+| `CODEX_CLOUD` | `CODEX` | `CLOUD` | `NATIVE` | `LUNA` | `MEDIUM` |
+| `CODEX_LOCAL` | `CODEX` | `LOCAL` | `NATIVE` | `LUNA` | `MEDIUM` |
 
 `AGENT_RUNTIME` is transport only for `CHATGPT_LOCAL`. It is not an execution surface, mode, controller, organizational role, workflow authority, or peer of ChatGPT/Codex. `CODEX_LOCAL` executes natively in the local workspace; `CODEX_CLOUD` executes in its cloud workspace; `CHATGPT_GITHUB` operates through GitHub without the local Mac execution surface.
 
@@ -115,6 +115,14 @@ Do not preload all reusable governance, all calibration, raw conversation histor
 Repository-specific work requires an explicit target identity from the current operator request or an exact active binding, followed by fresh GitHub resolution before mutation. Never select a target from stale chat history, remembered projects, `cwd`, or a local directory name. If the current request and exact active binding do not resolve one target unambiguously, ask the operator instead of guessing.
 
 Successor continuity should be reconstructible from current canonical repositories without hidden chat history. Persist durable knowledge to its narrowest owner rather than growing bootstrap prompts.
+
+### Prompt provenance
+
+Treat prompt-derived information as three distinct levels:
+
+- `L0 RAW` is optional, private forensic context. It has authority `NONE`, is excluded from normal bootstrap, and is retrieved only for an explicit provenance or reconstruction need.
+- `L1 DISTILLED INTENT` is a material operator request, correction, constraint, override, or decision. Before future reliance, persist it in its narrowest canonical owner, including material intent recovered from L0.
+- `L2 LEARNED JUDGMENT` is reusable operator-specific judgment admitted only through the existing [`ARCHITECT_CALIBRATION.md`](ARCHITECT_CALIBRATION.md) boundary.
 
 Owner routing:
 
