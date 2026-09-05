@@ -1,0 +1,29 @@
+protocol_version: 3
+task_id: TASK-0031
+task_revision: 1
+review_revision: 1
+state: REVISION_REQUIRED
+reviewed_report:
+  repository: phatnguyen03022001/architect-profile
+  path: .agent/tasks/TASK-0031/report.yaml
+  commit: "e6faa2a5448267cd3d910d002fd6c87b1a112299"
+  report_revision: 1
+contract_compliance:
+  protocol_version: FAIL
+  identity: PASS
+  execution_base: PASS
+  skill_rules: FAIL
+  scope: PASS
+  structure_policy: PASS
+  git_authority: PASS
+  acceptance_criteria: PASS
+  verifier_evidence: NOT_REQUIRED
+findings:
+  - "The optional local_hygiene block is incomplete: existing v3 schema requires run_root, cleanup_performed and retained when present. Omit this redundant optional block or supply the complete truthful existing shape."
+revision_scope:
+  - "Publish report-only revision 2 from this review commit, retaining candidate 66d5a52d3a4a70b13395afac6b438cb987e5c8f0 and unchanged 27-test evidence. Validate the actual report against existing report schema before publication; no implementation change or repeated correctness verification is required."
+acceptance_basis:
+  - "Independent diff review confirms exactly the four authorized files, compact L0/L1/L2 restoration, consistent Codex LUNA/MEDIUM routing and old-XHIGH rejection. Bootstrap validator and all 27 tests pass."
+  - "Candidate 66d5a52d3a4a70b13395afac6b438cb987e5c8f0 is the direct child of planning a9f0c45c8c21b921ad63d4b3f59414ed54fd56dd and report e6faa2a5448267cd3d910d002fd6c87b1a112299 is its report-only child. Designated checkout is clean; main is unchanged."
+notes:
+  - "The operator-designated governing Architect requests evidence serialization repair only; historical revision 1 remains immutable in Git."
