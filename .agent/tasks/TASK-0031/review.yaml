@@ -1,7 +1,7 @@
 protocol_version: 3
 task_id: TASK-0031
 task_revision: 1
-review_revision: 2
+review_revision: 3
 state: ACCEPTED
 reviewed_report:
   repository: phatnguyen03022001/architect-profile
@@ -29,3 +29,9 @@ promotion_readiness:
   reason: "Closes profile routing/provenance on dev. Stable main and authority-lock activation are outside this dev-only publication authority."
 notes:
   - "The operator-designated governing Architect accepts this dev lineage. Default ChatGPT Architect and per-session explicit overrides remain distinct; this session does not permanently change the organizational role policy."
+
+independence:
+  reviewer_role: ARCHITECT
+  separate_session_from_executor: true
+  exact_report_identity_verified: true
+metadata_correction: "This revision records the already-performed independent exact-report check explicitly. Prior claims of complete review-schema validity were incorrect because this required declaration was omitted; candidate correctness evidence is unchanged."
