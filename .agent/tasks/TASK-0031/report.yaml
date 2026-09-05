@@ -1,0 +1,79 @@
+protocol_version: 3
+
+task_id: TASK-0031
+task_revision: 1
+report_revision: 1
+state: REPORTED
+
+task_source:
+  path: .agent/tasks/TASK-0031/task.yaml
+  commit: "a9f0c45c8c21b921ad63d4b3f59414ed54fd56dd"
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+  authorized_base_head: "a9f0c45c8c21b921ad63d4b3f59414ed54fd56dd"
+  final_execution_head: "66d5a52d3a4a70b13395afac6b438cb987e5c8f0"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  available:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  missing: []
+  passed: true
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: NOT_REQUIRED
+  evidence: "TASK-0031 designates no separate authoritative verifier."
+
+local_hygiene:
+  result: PASS
+  evidence: "The repository-native validator and tests ran with bytecode writes disabled. No stash, reset, clean, branch creation, temporary repository artifact, or unrelated working-tree mutation was used; the tracked checkout was clean before report authorship."
+
+pushed: true
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: PASS
+    evidence: "Exact base-to-candidate diff adds the compact Prompt provenance subsection only in ARCHITECT_PROFILE.md. It restores L0 RAW as optional private forensic context with authority NONE and exclusion from normal bootstrap, L1 material requests/corrections/constraints/overrides/decisions persisted to the narrowest canonical owner before future reliance, and L2 learned judgment admitted only through existing ARCHITECT_CALIBRATION.md. This matches the accepted TASK-0005 boundary without adding archive machinery or authority."
+  - criterion_id: AC-2
+    status: PASS
+    evidence: "Candidate 66d5a52d3a4a70b13395afac6b438cb987e5c8f0 sets both CODEX_CLOUD and CODEX_LOCAL to LUNA/MEDIUM in profile, bootstrap surface contract, launch fixtures, validator, and expected tests while preserving ChatGPT routes. .agent/bootstrap/validate.py passed, all 27 bootstrap tests passed, and the test suite includes rejection of XHIGH as the old unauthorized Codex effort."
+  - criterion_id: AC-3
+    status: NOT_PROVEN
+    evidence: "Candidate 66d5a52d3a4a70b13395afac6b438cb987e5c8f0 is already published non-force to dev and changes only ARCHITECT_PROFILE.md, .agent/bootstrap/bootstrap.json, .agent/bootstrap/validate.py, and .agent/bootstrap/test_bootstrap.py; git diff --check passed. This report is the sole authorized report-only child. Its own publication and final remote/local closure are resolved after authorship and are not self-attested here."
+
+executor_checks:
+  - check_id: CHECK-1
+    result: PASS
+    evidence: "Resolved TASK-0031 revision 1 at exact dev base a9f0c45c8c21b921ad63d4b3f59414ed54fd56dd in phatnguyen03022001/architect-profile. The prepared candidate was exactly the four task-authorized files; the remote pre-publication guard observed dev at base and main at d47114404c97fcfd74b0f37f646586ec46de6987. The pinned skill revision ed8d9fb35bb8b052530ca879e68a227d77e4a8a6 and the accepted TASK-0005 provenance boundary were re-resolved."
+  - check_id: CHECK-2
+    result: PASS
+    evidence: "One successful verification bundle passed .agent/bootstrap/validate.py, all 27 bootstrap tests, direct JSON checks for both Codex LUNA/MEDIUM routes and rendered fixtures, exact L0/L1/L2 profile semantics, four-file scope, and whitespace checks."
+  - check_id: CHECK-3
+    result: NOT_PROVEN
+    evidence: "The candidate was published through a fresh dev/main guard, non-force dry run, non-force push, and fresh post-push proof while main remained unchanged. The report-only child, final remote dev/main proof, direct-parent lineage, and final clean checkout state are resolved after this report commit is pushed."
+
+result: NEEDS_REVIEW
