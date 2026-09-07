@@ -1,0 +1,186 @@
+protocol_version: 3
+
+task_id: TASK-0037
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: MECHANICAL_REF_INTEGRITY_ARCHITECT_PROFILE
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+
+architect_analysis_skills:
+  - architect
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "Current operator instruction"
+    role: "Explicitly authorizes final mechanical freeze and later stable activation, subject to fresh consequence-boundary verification. This task uses only the architect-profile repository-local mechanical ref-integrity portion; stable activation and sibling-repository metadata mutation remain outside this binding."
+    precedence: 1
+  - source: "phatnguyen03022001/architect-profile@b0a1e5f54f0704c0c1332835bedd9b2524be851f:.agent/tasks/TASK-0036/review.yaml"
+    role: "Accepted governing closure: TECHNICAL_CLOSURE PASS, FINAL_SWEEP PASS, AUTHORITY_SELECTION SELECTED, ACTIVATION_READINESS READY, STABLE_ACTIVATION NOT_ACTIVATED."
+    precedence: 2
+  - source: "phatnguyen03022001/architect-profile@b0a1e5f54f0704c0c1332835bedd9b2524be851f:.agent/bootstrap/authority.lock.json"
+    role: "Exact selected four-support immutable authority set. This task must not change the lock or any source-bearing repository content."
+    precedence: 3
+  - source: "phatnguyen03022001/agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26:.agent/case-router.yaml"
+    role: "Exact locked Case Router, one EXECUTE case routing only to executor."
+    precedence: 4
+  - source: "Fresh GitHub repository metadata at planning boundary"
+    role: "architect-profile topology is exactly dev/main; both branches are currently unprotected; repository rulesets are empty; repository is public and current connected identity has admin permission. Mutable metadata must be refreshed again by Executor immediately before and after mutation."
+    precedence: 5
+
+structure_authority:
+  status: RESOLVED
+  source: "Current operator mechanical-freeze requirement plus current GitHub repository-ruleset semantics."
+  rationale: "The smallest sufficient mechanism for this repository is one active repository-level branch ruleset targeting exactly refs/heads/dev and refs/heads/main, with no bypass actors and exactly two rules: deletion and non_fast_forward. This preserves ordinary fast-forward evolution while blocking branch deletion and force-push without adding PR, reviewer, status-check, signing, queue, deployment or release machinery. If the current GitHub account/API cannot truthfully enforce this exact configuration, fail closed instead of weakening or simulating it."
+
+objective: "Mechanically protect architect-profile dev/main ref integrity against deletion and non-fast-forward rewrite, with no ordinary-operation bypass and no source, authority, main-ref, tag or release mutation."
+
+scope:
+  required_changes:
+    - "Before metadata mutation, fresh-bind this exact task/base and re-run the current consequence-boundary preflight: exact five selected dev identities, TASK-0036 ACCEPTED, current authority.lock equality, exact locked Case Router, all nine capability routes, architect-profile main ancestor of dev, topology exactly dev/main, no open issue/PR affecting activation, and current metadata/ruleset state."
+    - "Before metadata mutation, run on the exact task base: python3 -B .agent/bootstrap/validate.py ; python3 -B .agent/bootstrap/validate.py --remote ; python3 -B -m unittest discover -s .agent/bootstrap -p 'test_*.py' ; python3 -B -m py_compile .agent/bootstrap/validate.py .agent/bootstrap/test_bootstrap.py. All must PASS."
+    - "Fresh-preflight current GitHub repository-administration capability sufficient to create and read repository rulesets. If unavailable, stop before metadata mutation with CURRENT_PHASE_CAPABILITY_UNAVAILABLE or MECHANICAL_FREEZE_BLOCKED as applicable."
+    - "Create exactly one active repository-level branch ruleset for phatnguyen03022001/architect-profile targeting exactly refs/heads/dev and refs/heads/main, with an empty bypass list and exactly the deletion and non_fast_forward rules. Do not add any other rule or target."
+    - "After metadata mutation, fresh-read GitHub canonical metadata and prove the effective ruleset is active, targets exactly dev/main, has no bypass actors, blocks deletion and non-fast-forward updates, and adds no unrelated rule. The post-ruleset report publication fast-forward to dev must remain permitted."
+    - "Publish only .agent/tasks/TASK-0037/report.yaml as the repository-content mutation after the planning commit. Validate the actual report, run git diff --check, push the report-only direct child non-force to dev, fresh-prove dev/main/topology plus effective ruleset, then stop at NEEDS_REVIEW."
+  allowed_existing_files_or_components: []
+  expected_files_are_restrictive: true
+
+invariants:
+  - "No source, bootstrap, profile, authority.lock, PROGRAM, prior task, workflow, dependency or generated content changes."
+  - "No mutation to agent-skills, agent-documents, agent-standards, agent-runtime or ilets in this repository binding. Their selected authority SHAs remain unchanged."
+  - "architect-profile main remains exactly d47114404c97fcfd74b0f37f646586ec46de6987 throughout TASK-0037; this task does not perform stable activation."
+  - "Topology remains exactly dev/main. No branch creation, deletion or rename."
+  - "The ruleset grants no bypass actor. Repository administrators are not placed on a bypass list."
+  - "The ruleset contains only deletion and non_fast_forward. Normal fast-forward writes to dev remain possible."
+  - "No required pull requests, mandatory reviewers, CODEOWNERS, merge queue, status checks, deployments, signed commits, release workflow, dependency automation, registry, scheduler, queue, controller or new governance mechanism."
+  - "System-level MECHANICAL_FREEZE is not PASS merely because architect-profile is protected; the four support repositories require their own repository-local mechanical ref-integrity closure before stable activation."
+
+forbidden_changes:
+  - "Do not mutate architect-profile/main, promote, merge, rebase, force-push or rewrite history."
+  - "Do not create/delete/rename branches or tags, publish/mutate releases, or mutate repository settings unrelated to this one ruleset."
+  - "Do not modify support repository source, refs or metadata from this task binding."
+  - "Do not add overlapping branch protection in addition to the single ruleset when the ruleset succeeds."
+  - "Do not use a freeze tag alternative unless GitHub rejects the exact required ruleset capability and the Governing Architect has separately authorized that alternative after reviewing the truthful blocker."
+
+gap_policy:
+  local_auto_fix: false
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: forbidden
+  blocking_gap_behavior: BLOCKED
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+    - repository_metadata_read
+    - repository_metadata_write
+  REVIEW:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+    - repository_metadata_read
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "The pre-mutation technical/governing consequence boundary remains valid."
+    evidence_required: "Fresh exact selected dev identities, TASK-0036 ACCEPTED, exact lock/router/9-route resolution, main->dev ancestry, no activation-affecting open issue/PR, and all four current bootstrap commands PASS before metadata mutation."
+  - id: AC-2
+    requirement: "architect-profile has one minimal effective ref-integrity policy for dev/main."
+    evidence_required: "Fresh post-write ruleset response independently re-read from GitHub proves enforcement active, target branch, includes exactly refs/heads/dev and refs/heads/main, excludes none, bypass_actors empty, and rules exactly deletion plus non_fast_forward."
+  - id: AC-3
+    requirement: "The policy blocks destructive ref mutation without imposing unrelated development process."
+    evidence_required: "Effective rule inspection proves deletion and force-push/non-fast-forward are prohibited, no PR/reviewer/status/signing/deployment/queue rule exists, and the report-only normal fast-forward publication to dev succeeds non-force."
+  - id: AC-4
+    requirement: "TASK-0037 is metadata-only plus canonical evidence publication."
+    evidence_required: "No source-bearing file changes; report commit is the sole direct child of the exact planning base and adds only .agent/tasks/TASK-0037/report.yaml; main remains d47114404c97fcfd74b0f37f646586ec46de6987; topology remains exactly dev/main; no tag/release or sibling-repository mutation occurs."
+  - id: AC-5
+    requirement: "No system-level activation/freeze claim is made early."
+    evidence_required: "Report distinguishes this repository's ref-integrity PASS from system MECHANICAL_FREEZE, which remains NOT_CONFIGURED until all five repository-local protections are accepted; STABLE_ACTIVATION remains NOT_ACTIVATED."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Fresh-bind TASK-0037 revision 1 at exact handoff base; require local dev = origin/dev = remote dev = base, clean tree, main=d47114404c97fcfd74b0f37f646586ec46de6987, topology dev/main, no report yet, selected support/ilets heads unchanged, and all required EXECUTION capabilities available before metadata mutation."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Run the four exact bootstrap commands required by scope and refresh current rulesets/protection/open-work evidence. Stop on any failure, drift or material contradiction."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Create only the exact active dev/main repository ruleset with empty bypass list and deletion + non_fast_forward; fresh-read the effective configuration and reject any extra/default rule or bypass."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Author and validate report_revision 1, git diff --check, commit/push report-only direct child non-force to dev, then fresh-prove ruleset effectiveness, final refs/topology, main unchanged and no sibling/tag/release mutation; stop NEEDS_REVIEW."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: true
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
