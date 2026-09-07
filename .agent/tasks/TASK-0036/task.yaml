@@ -1,0 +1,194 @@
+protocol_version: 3
+
+task_id: TASK-0036
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: FINAL_GOVERNING_CLOSURE
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+
+architect_analysis_skills:
+  - architect
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "Current operator instruction"
+    role: "Close FINAL-FIVE-REPOSITORY-SWEEP and INTENTIONAL-DEV-AUTHORITY-SELECTION after the accepted natural IELTS pilot. Reuse valid immutable evidence, refresh mutable evidence only where the current consequence boundary requires it, and do not activate main without separate explicit activation authority."
+    precedence: 1
+  - source: "phatnguyen03022001/architect-profile@593062e63c7bab4d353fcd2843dfddd9e61a21f2:.agent/bootstrap/authority.lock.json and .agent/tasks/TASK-0035/review.yaml"
+    role: "Accepted current dev authority snapshot and bootstrap proof. The exact selected set is agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26, agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb, agent-documents@6a087c7559235b47cfa365bd78c351b3a52b1e82 and agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23."
+    precedence: 2
+  - source: "phatnguyen03022001/agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26"
+    role: "Exact current agent-skills dev head. TASK-0046, TASK-0047, TASK-0048 and TASK-0049 reviews at this immutable revision are ACCEPTED; the exact Case Router is one EXECUTE case routing only to executor."
+    precedence: 3
+  - source: "phatnguyen03022001/agent-documents@6a087c7559235b47cfa365bd78c351b3a52b1e82:.agent/tasks/TASK-0008/review.yaml"
+    role: "Exact accepted TASK-0008 revision-2 documentation closure and current agent-documents dev head."
+    precedence: 4
+  - source: "phatnguyen03022001/agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb"
+    role: "Exact current agent-standards dev head with accepted TASK-0013 revision-2 owner evidence; no later support drift is admitted."
+    precedence: 5
+  - source: "phatnguyen03022001/agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23"
+    role: "Exact current agent-runtime dev head; runtime remains optional local transport and not workflow authority."
+    precedence: 6
+  - source: "phatnguyen03022001/ilets@831f90424251e2ff2e9ccb0d619ec1f14859f4e2:.agent/tasks/TASK-0046/review.yaml"
+    role: "Accepted natural IELTS TASK-0046 revision-4 review. The immutable product candidate is 9aa6be322f71a9c978534d2536aabc8788fe2cb9. This closes NATURAL-ILETS-PILOT only and grants no stable activation."
+    precedence: 7
+  - source: "phatnguyen03022001/architect-profile@593062e63c7bab4d353fcd2843dfddd9e61a21f2:.agent/program.generated.json"
+    role: "Authority-NONE generated navigation whose remaining governing obligations are FINAL-FIVE-REPOSITORY-SWEEP followed by INTENTIONAL-DEV-AUTHORITY-SELECTION. PROGRAM state is not authority and must not be mutated merely to serialize progress."
+    precedence: 8
+  - source: "Independent five-repository red-team advisory supplied by the current operator"
+    role: "Advisory Executor evidence reporting no CRITICAL, IMPORTANT or MAINTENANCE findings. It is not canonical acceptance and must not substitute for fresh mutable-ref checks or Governing Architect review."
+    precedence: 9
+
+structure_authority:
+  status: RESOLVED
+  source: "Existing canonical task/report/review lifecycle only."
+  rationale: "No material defect has been reproduced. The smallest durable mechanism is a closure-only Executor report under this task followed by independent Governing Architect review. No implementation candidate, authority-lock change, PROGRAM mutation, support-repository mutation or activation mutation is justified."
+
+objective: "Canonically close the final five-repository sweep and intentionally select the exact current immutable dev support authority set, then classify stable activation readiness without mutating main."
+
+scope:
+  required_changes:
+    - "Perform no implementation change. Fresh-resolve all five support dev heads, architect-profile dev/main, current authority.lock, exact locked Case Router, accepted agent-skills TASK-0046 through TASK-0049 reviews, accepted agent-documents TASK-0008 revision-2 review, accepted architect-profile TASK-0035 review, and accepted ilets TASK-0046 revision-4 review plus candidate 9aa6be322f71a9c978534d2536aabc8788fe2cb9."
+    - "Reuse immutable accepted evidence when identity and predicate applicability remain unchanged. Refresh remote mutable refs and route/path resolution required by this closure boundary. Do not duplicate the independent red-team audit for ceremony."
+    - "Confirm no support dev head has drifted beyond the selected accepted set. If any fresh material contradiction, unsupported owner drift or admitted MUST_CLOSE defect is reproduced, stop without publication beyond truthful BLOCKED evidence and require the smallest owner-local correction path."
+    - "Confirm the intentional dev authority selection is exactly agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26, agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb, agent-documents@6a087c7559235b47cfa365bd78c351b3a52b1e82 and agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23, identical to the accepted architect-profile dev lock. Do not rewrite the lock when it already matches."
+    - "Confirm cold-successor/bootstrap semantics from the exact selected set: all nine capability routes resolve, the locked Case Router remains exactly EXECUTE -> executor, bootstrap default validation passes, bootstrap --remote validation passes, the full bootstrap unittest suite passes, and py_compile passes. Reuse TASK-0035 immutable evidence only where still applicable, but run current native checks because this task is the final activation-readiness boundary."
+    - "Publish only .agent/tasks/TASK-0036/report.yaml as the report-only direct child of this task planning commit. The report must clearly distinguish TECHNICAL_CLOSURE, FINAL_SWEEP, AUTHORITY_SELECTION, ACTIVATION_READINESS and STABLE_ACTIVATION. If all closure predicates pass, ACTIVATION_READINESS may be READY while STABLE_ACTIVATION remains NOT_ACTIVATED and AUTHORITY_REQUIRED."
+  allowed_existing_files_or_components: []
+  expected_files_are_restrictive: true
+
+invariants:
+  - "There is no implementation candidate for TASK-0036. The only Executor-authored canonical repository mutation is .agent/tasks/TASK-0036/report.yaml."
+  - "The selected dev authority set remains exactly four immutable support commits and equals the current accepted authority.lock. No fifth entry, self-pin or mutable ref is introduced."
+  - "All support repositories and ilets remain read-only throughout this task. Their dev heads must not be changed by this execution."
+  - ".agent/bootstrap/authority.lock.json, .agent/bootstrap/bootstrap.json, .agent/bootstrap/validate.py, .agent/bootstrap/test_bootstrap.py and .agent/program.generated.json remain byte-identical. PROGRAM remains authority NONE and carries no mutable completion state."
+  - "architect-profile main remains d47114404c97fcfd74b0f37f646586ec46de6987 throughout TASK-0036. DEV_MAIN topology remains exactly dev/main."
+  - "Stable activation is a separate consequential action. TASK-0036 grants no main promotion, tag, release, freeze, successor handoff or repository-metadata authority."
+  - "No registry, scheduler, queue, activation service, orchestration layer, lifecycle state, debt registry or additional red-team mechanism is introduced."
+
+forbidden_changes:
+  - "Do not modify any existing file in architect-profile except the new canonical TASK-0036 report artifact created by Executor publication."
+  - "Do not modify any prior task, report or review artifact."
+  - "Do not modify agent-skills, agent-documents, agent-standards, agent-runtime or ilets."
+  - "Do not regenerate PROGRAM or rewrite authority.lock merely to record that the evidence was reviewed."
+  - "Do not create/delete/rename branches, force-push, mutate main, promote, tag, publish a release, freeze authority, perform successor handoff or mutate repository settings/metadata."
+
+gap_policy:
+  local_auto_fix: false
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: forbidden
+  blocking_gap_behavior: BLOCKED
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  REVIEW:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "The final five-repository sweep has no unresolved admitted material defect or MUST_CLOSE finding at the exact selected support heads."
+    evidence_required: "Fresh canonical dev-head resolution equals the exact four selected support refs plus architect-profile current dev evidence; accepted owner reviews remain applicable; the advisory red-team is used only as corroboration; no fresh material contradiction is reproduced."
+  - id: AC-2
+    requirement: "The intended dev authority set is selected intentionally and is exactly the already accepted current architect-profile dev lock."
+    evidence_required: "Exact four-entry equality proof, immutable review identities, locked Case Router resolution and all nine bootstrap capability routes resolving at the selected revisions. No authority.lock mutation occurs."
+  - id: AC-3
+    requirement: "Natural target proof and cold-successor/bootstrap compatibility are proven at the current closure boundary."
+    evidence_required: "Accepted ilets TASK-0046 revision-4 review resolves exact candidate 9aa6be322f71a9c978534d2536aabc8788fe2cb9; current default bootstrap validator PASS, --remote validator PASS, full bootstrap unittest PASS and py_compile PASS on architect-profile dev."
+  - id: AC-4
+    requirement: "Activation readiness is classified without conflating readiness with activation."
+    evidence_required: "Report separately records TECHNICAL_CLOSURE, FINAL_SWEEP, AUTHORITY_SELECTION, ACTIVATION_READINESS and STABLE_ACTIVATION. When closure predicates pass but no separate explicit activation authority exists, ACTIVATION_READINESS is READY and STABLE_ACTIVATION is NOT_ACTIVATED with AUTHORITY_REQUIRED."
+  - id: AC-5
+    requirement: "TASK-0036 publication is evidence-only and preserves repository boundaries."
+    evidence_required: "Report commit is the sole direct child of this exact task planning commit and changes only .agent/tasks/TASK-0036/report.yaml; fresh post-publication proof shows dev equality, main unchanged at d47114404c97fcfd74b0f37f646586ec46de6987, topology exactly dev/main and no support/ilets/tag/release mutation."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Fresh-bind TASK-0036 revision 1 at the exact handoff base. Require local branch dev, local HEAD = origin/dev = exact base, clean working tree, main = d47114404c97fcfd74b0f37f646586ec46de6987, topology exactly dev/main and all required EXECUTION capabilities freshly available before report authorship."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Fresh-resolve agent-skills/dev, agent-documents/dev, agent-standards/dev, agent-runtime/dev, architect-profile/dev and ilets/dev; verify exact accepted review identities, exact authority.lock equality, locked Case Router and all nine routed paths. Reuse unchanged immutable evidence and expand only on contradiction."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Run: python3 -B .agent/bootstrap/validate.py ; python3 -B .agent/bootstrap/validate.py --remote ; python3 -B -m unittest discover -s .agent/bootstrap -p 'test_*.py' ; python3 -B -m py_compile .agent/bootstrap/validate.py .agent/bootstrap/test_bootstrap.py. All must PASS on the exact task base with no repository-content mutation."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Author .agent/tasks/TASK-0036/report.yaml only, with task_revision 1 and report_revision 1. Validate the actual report with the exact current artifact validator, run git diff --check, commit and push non-force as the sole direct child of the task planning commit, then fresh-prove final refs and stop at NEEDS_REVIEW."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
