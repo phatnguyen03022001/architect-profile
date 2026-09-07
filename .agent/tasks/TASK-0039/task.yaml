@@ -1,0 +1,191 @@
+protocol_version: 3
+
+task_id: TASK-0039
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: accepted_review
+  task_id: TASK-0024
+  gap_id: POST_FREEZE_REMEDIATION_AUTHORITY_SELECTION
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "de060ab9c61627eeec02937519eddfffd8bc1e26"
+
+architect_analysis_skills:
+  - architect
+  - verification
+  - simplicity
+  - github-workflow
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "Current operator post-freeze remediation instruction"
+    role: "Authorizes selection of exactly the accepted source-bearing agent-runtime and agent-skills remediation candidates, followed only later by separately authorized stable activation."
+    precedence: 1
+  - source: "architect-profile/main@b0a1e5f54f0704c0c1332835bedd9b2524be851f:.agent/bootstrap/authority.lock.json"
+    role: "Current active four-support authority set and activation predecessor."
+    precedence: 2
+  - source: "agent-runtime@7c696932590dca0276774947826a82d4c76d53c0:.agent/tasks/TASK-0024/review.yaml"
+    role: "Accepted runtime remediation review bound to candidate a9e79a1bb1e6d442d17bbfea2f8083116fc49359."
+    precedence: 3
+  - source: "agent-skills@7aafc70aabe6c75e2bdad535f84a901a390f65e1:.agent/tasks/TASK-0051/review.yaml"
+    role: "Accepted agent-skills remediation review bound to candidate 3c4a31598da4c4e12cb0925bee1b471f160d3b4e."
+    precedence: 4
+  - source: "phatnguyen03022001/agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26:protocols/TASK_PROTOCOL.md"
+    role: "Defines exact task, independent review, authority selection, and activation separation."
+    precedence: 5
+
+structure_authority:
+  status: RESOLVED
+  source: "Existing architect-profile bootstrap lock and exact lock expectation test"
+  rationale: "Change only the two selected support revision values and their existing matching test expectations. Preserve every other bootstrap, route, topology, role, and execution-surface byte."
+
+objective: "Create one exact architect-profile dev authority-set candidate that selects accepted agent-runtime@a9e79a1bb1e6d442d17bbfea2f8083116fc49359 and agent-skills@3c4a31598da4c4e12cb0925bee1b471f160d3b4e for future stable activation."
+
+scope:
+  required_changes:
+    - "Fresh-bind TASK-0039 revision 1 at its exact handoff base; fresh-resolve current architect-profile dev/main, active main lock, accepted remediation review/candidate identities, all four support refs, and current capability before mutation."
+    - "Change only agent-skills revision in .agent/bootstrap/authority.lock.json from de060ab9c61627eeec02937519eddfffd8bc1e26 to 3c4a31598da4c4e12cb0925bee1b471f160d3b4e and agent-runtime revision from 69c4760ab07e9cb04263eae36d95f39887f31c23 to a9e79a1bb1e6d442d17bbfea2f8083116fc49359."
+    - "Change only matching current SHA expectations in .agent/bootstrap/test_bootstrap.py."
+    - "Freshly prove the selected candidate revisions exist, contain the accepted source-bearing remediation bytes, preserve locked Case Router and all nine capability route paths, and bootstrap validates locally and remotely."
+    - "Run bootstrap tests, compilation, exact route and Case Router resolution, git diff check, task/report validation, and publish candidate plus report-only direct child non-force to dev. Stop at NEEDS_REVIEW."
+  allowed_existing_files_or_components:
+    - ".agent/bootstrap/authority.lock.json"
+    - ".agent/bootstrap/test_bootstrap.py"
+    - ".agent/tasks/TASK-0039/report.yaml"
+  expected_files_are_restrictive: true
+
+invariants:
+  - "agent-documents remains exactly 6a087c7559235b47cfa365bd78c351b3a52b1e82 and agent-standards remains exactly 1141b9dbfce0110d6623f5a877c2d04843caa6eb."
+  - "architect-profile is not self-pinned; the architect-profile commit remains authority-set identity."
+  - "bootstrap.json, capability routes, Case Router semantics, execution surfaces, permanent role semantics, launch grammar, target binding, topology, and freeze contract remain unchanged."
+  - "The temporary Terra Architect exception is not written into ARCHITECT_PROFILE.md, bootstrap.json, or any permanent artifact."
+  - "architect-profile main remains exactly b0a1e5f54f0704c0c1332835bedd9b2524be851f during this authority-selection task."
+  - "No support main/ref/metadata, tag, release, branch, workflow, dependency, historical artifact, or sibling repository is mutated."
+  - "Selection on dev is not activation and does not itself re-establish SYSTEM_FREEZE."
+
+forbidden_changes:
+  - "Do not modify bootstrap.json, validate.py, ARCHITECT_PROFILE.md, Case Router artifacts, source code outside the two named bootstrap files, or prior task/report/review artifacts."
+  - "Do not substitute the accepted candidates with current dev review descendants, evidence-only commits, main refs, reconstructed SHAs, or mutable refs."
+  - "Do not force-push, rewrite history, create a branch, promote main, create tags/releases, mutate repository metadata, or add CI/governance machinery."
+
+gap_policy:
+  local_auto_fix: false
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: forbidden
+  blocking_gap_behavior: BLOCKED
+
+structure_policy:
+  expected_new_files:
+    - ".agent/tasks/TASK-0039/report.yaml"
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: "No unlisted files are authorized."
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "The candidate authority lock selects exactly the two accepted source-bearing remediation SHAs and preserves the two unchanged support pins."
+    evidence_required: "Exact candidate lock equality, accepted review/candidate identity proof, and current remote object resolution."
+  - id: AC-2
+    requirement: "The authority selection changes only lock values and matching existing test expectations."
+    evidence_required: "Exact base-to-candidate changed-path/diff proof and git diff check."
+  - id: AC-3
+    requirement: "The candidate bootstrap reconstructs the selected immutable authority set correctly."
+    evidence_required: "Bootstrap default and remote validation, 27 bootstrap tests, compilation, exact Case Router EXECUTE to executor proof, and all nine locked route paths resolved."
+  - id: AC-4
+    requirement: "Selection does not alter permanent role semantics or activate main."
+    evidence_required: "Exact unchanged-byte proof for bootstrap.json and ARCHITECT_PROFILE.md, current main equality, and no temporary exception text in candidate source."
+  - id: AC-5
+    requirement: "Candidate and report evidence are bounded and reconstructible."
+    evidence_required: "Task/report validation, candidate/report-only direct-child lineage, fresh non-force dev publication, and dev/main topology proof."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Freshly prove exact task/base/remote identity, active lock, selected remediation review/candidate identities, unchanged support pins, clean local target state, and current execution capability before mutation."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Make only the two literal lock/test SHA replacements, prove exact diff scope, then run bootstrap local/remote validation, bootstrap tests, compilation, route/Case Router proof, and diff checks."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Validate the actual report, publish only authorized commits non-force to dev, then refresh dev/main and candidate/report lineage proof before NEEDS_REVIEW."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - non_force_git_push
+    - remote_ref_read
+  REVIEW:
+    - repository_content_read
+    - native_repository_execution
+    - git_history_read
+    - remote_ref_read
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
