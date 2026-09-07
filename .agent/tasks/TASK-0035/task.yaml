@@ -1,0 +1,175 @@
+protocol_version: 3
+
+task_id: TASK-0035
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: POST_CLOSURE_DEV_AUTHORITY_REFRESH
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+  recommended: []
+
+authority_sources:
+  - source: "Current operator instruction and five-repository closure program."
+    role: "After accepted support-repository closure, refresh architect-profile dev to the exact immutable post-closure support authority set before the natural product pilot; do not activate main."
+    precedence: 1
+  - source: "phatnguyen03022001/agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26"
+    role: "Exact accepted post-closure agent-skills dev revision. It includes accepted TASK-0046 through TASK-0049 closure evidence; TASK-0049 adds the Architect-local Executor-fit gate without changing task schema or lifecycle."
+    precedence: 2
+  - source: "phatnguyen03022001/agent-documents@6a087c7559235b47cfa365bd78c351b3a52b1e82"
+    role: "Exact accepted agent-documents TASK-0008 revision-2 closure revision, correcting the V1 release-state contradiction without documentation-model redesign."
+    precedence: 3
+  - source: "phatnguyen03022001/agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb"
+    role: "Exact current agent-standards dev revision. Fresh bounded closure audit found no material repository-local defect, so the admitted immutable revision remains unchanged."
+    precedence: 4
+  - source: "phatnguyen03022001/agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23"
+    role: "Exact current agent-runtime dev revision. Fresh bounded closure audit found no material repository-local defect; runtime remains optional transport with exactly four public terminal primitives and no orchestration authority."
+    precedence: 5
+  - source: "architect-profile@abbddf8d9c0341628e966e95b649b5380dbbf90f:.agent/tasks/TASK-0034/review.yaml"
+    role: "Accepted predecessor authority-selection review. It preserves dev-only selection, natural ilets pilot and final activation/freeze as separate later predicates."
+    precedence: 6
+  - source: ".agent/bootstrap/authority.lock.json and .agent/program.generated.json at architect-profile@abbddf8d9c0341628e966e95b649b5380dbbf90f"
+    role: "Current bootstrap/projection state. The lock is stale only for agent-skills and agent-documents after accepted closure; PROGRAM declares full regeneration on material synthesis-input change."
+    precedence: 7
+
+structure_authority:
+  status: RESOLVED
+  source: "Existing authority.lock.json, bootstrap contract/tests and authority-NONE generated PROGRAM."
+  rationale: "The coherent outcome is one immutable dev authority snapshot. Update the two changed support identities, keep the two unchanged identities, adjust only the existing exact-lock regression expectation, and fully regenerate the existing non-authoritative PROGRAM projection. No new authority mechanism, profile doctrine or stable activation is justified."
+
+objective: "Refresh architect-profile dev to the exact accepted post-closure support authority set and regenerate its existing non-authoritative PROGRAM projection while preserving all bootstrap/profile semantics and leaving the natural ilets pilot plus stable activation/freeze unresolved."
+
+scope:
+  required_changes:
+    - "Update .agent/bootstrap/authority.lock.json so its four entries are exactly: agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26, agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb, agent-documents@6a087c7559235b47cfa365bd78c351b3a52b1e82, and agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23. Only the agent-skills and agent-documents revision values are expected to change from the exact base."
+    - "Update only the existing admitted-dev-lock expectation in .agent/bootstrap/test_bootstrap.py to the same four exact revisions. Preserve all other bootstrap test semantics, fixtures, model/effort expectations, routing behavior and fail-closed tests."
+    - "Fully regenerate .agent/program.generated.json because material synthesis inputs changed. Preserve artifact_type GENERATED_PROGRAM, authority NONE, FULL_REGENERATION_ON_MATERIAL_INPUT_CHANGE, the existing item IDs/dependency model, no mutable status fields and no default bootstrap preload. Bind synthesis target/policy to this TASK-0035 exact planning/base commit and replace stale support identities/review references with current immutable accepted evidence."
+    - "The regenerated PROGRAM must retain NATURAL-ILETS-PILOT as an unresolved future proof: no historical task is relabeled as the required new end-to-end product evidence. Final five-repository sweep, stable main activation, freeze and successor handoff remain separate later predicates. Do not mark future PROGRAM items complete or add mutable completion state."
+    - "Fresh-resolve every routed capability path and the Case Router against the four candidate lock revisions. The Case Router must remain exactly the existing EXECUTE -> executor routing semantics; no support-repository bytes are modified by this task."
+    - "Run the repository-native bootstrap validator locally and with --remote, the complete bootstrap unittest suite, py_compile, deterministic PROGRAM JSON/invariant/coverage checks and git diff --check on the exact candidate. Publish the exact candidate non-force to dev, then publish a report-only direct child at .agent/tasks/TASK-0035/report.yaml and stop for Governing Architect review."
+  allowed_existing_files_or_components:
+    - .agent/bootstrap/authority.lock.json
+    - .agent/bootstrap/test_bootstrap.py
+    - .agent/program.generated.json
+  expected_files_are_restrictive: true
+
+invariants:
+  - "The authority lock remains version 1 with exactly four support entries, exact immutable commit SHAs, no architect-profile self-pin and no new authority source mechanism."
+  - ".agent/bootstrap/bootstrap.json remains byte-identical. DEV_MAIN topology, dev working ref, main stable ref, capability routes, target-binding semantics, TASK LAUNCH rendering and execution surfaces/model-effort defaults remain unchanged."
+  - "ARCHITECT_PROFILE.md, ARCHITECT_CALIBRATION.md and README.md remain byte-identical. This task changes configuration/projection identity only, not durable profile doctrine."
+  - "agent-skills remains the owner of Architect, Executor, Task Protocol, simplicity, GitHub workflow, verification and Case Router semantics; agent-standards owns engineering assurance; agent-documents owns documentation closure; agent-runtime remains optional local execution transport only."
+  - "The Case Router remains one EXECUTE case routing only to executor. No new case, lifecycle state, role, scheduler, planner, queue, registry, workflow engine or orchestration authority is introduced."
+  - "PROGRAM remains derived navigation with authority NONE and full-snapshot invalidation. It never authorizes execution, review, promotion, release or cross-repository mutation."
+  - "Natural phatnguyen03022001/ilets end-to-end proof remains open after this task. Stable main activation, freeze, tag/release mutation and successor handoff remain unauthorized."
+  - "Repository topology remains exactly dev/main; main remains d47114404c97fcfd74b0f37f646586ec46de6987 throughout this task."
+
+forbidden_changes:
+  - "Do not modify .agent/bootstrap/bootstrap.json, .agent/bootstrap/validate.py, any profile/calibration/README content, or any prior task directory."
+  - "Do not modify agent-skills, agent-standards, agent-documents, agent-runtime or ilets. This task only selects immutable evidence already accepted in those repositories."
+  - "Do not add a fifth support lock entry, self-pin, mutable ref, new bootstrap field, task queue, debt registry, scheduler, planner, daemon, approval broker, verifier state engine, model router or orchestration layer."
+  - "Do not reinterpret the recent Agent Runtime Resource-not-found incident as runtime architecture debt; current runtime availability is execution-surface evidence, not authority-model semantics."
+  - "Do not claim the natural ilets pilot, final sweep, global closure, stable activation, freeze or successor handoff is complete."
+  - "Do not create/delete/rename branches, force-push, mutate main, promote, tag, publish a release or mutate repository settings/metadata."
+
+gap_policy:
+  local_auto_fix: true
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: forbidden
+  blocking_gap_behavior: BLOCKED
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "The dev authority lock selects exactly the four accepted post-closure immutable support revisions and every routed path resolves at those exact commits."
+    evidence_required: "Exact candidate diff plus local and --remote bootstrap validator PASS prove only the two stale lock revisions changed, the four-entry lock equals the task-authorized set, all nine capability routes resolve, and the agent-skills Case Router resolves with exactly EXECUTE -> executor semantics."
+  - id: AC-2
+    requirement: "Bootstrap regression coverage reflects the refreshed authority set without changing bootstrap/profile behavior."
+    evidence_required: "Exact diff proves only the two corresponding revision literals in the admitted-dev-lock expectation changed in test_bootstrap.py; complete bootstrap tests and py_compile PASS; bootstrap.json, validator, profile, calibration and README bytes are unchanged."
+  - id: AC-3
+    requirement: "The optional PROGRAM is fully regenerated from the refreshed immutable inputs while preserving authority-NONE semantics and all still-open proof boundaries."
+    evidence_required: "Deterministic JSON/invariant/coverage proof shows exact external authorities equal the four task-authorized commits; synthesis source/policy bind the exact TASK-0035 planning/base commit; current accepted support review refs replace stale inputs; artifact authority remains NONE; no mutable status fields are introduced; existing item IDs/dependency structure remains valid; NATURAL-ILETS-PILOT and later finalization/activation predicates remain unresolved."
+  - id: AC-4
+    requirement: "TASK-0035 publication is bounded to dev with exact candidate/report lineage and no stable activation."
+    evidence_required: "Candidate has exact TASK-0035 planning/base commit as sole parent and changes only authority.lock.json, test_bootstrap.py and program.generated.json; report is its report-only direct child adding only .agent/tasks/TASK-0035/report.yaml; fresh local/remote proof shows dev closure, clean tree, main unchanged at d47114404c97fcfd74b0f37f646586ec46de6987 and topology exactly dev/main."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Fresh-bind TASK-0035 revision 1 at the exact handoff base; require local branch dev, local HEAD = origin/dev = exact base, clean working tree, main = d47114404c97fcfd74b0f37f646586ec46de6987, topology exactly dev/main, and every required EXECUTION capability freshly available before mutation. Fresh-resolve all four task-authorized support commits and their materially relevant accepted review evidence."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Apply only the authorized lock/test/projection refresh. Prove exact candidate scope, exact four-entry lock, two expected test-literal changes only, fully regenerated authority-NONE PROGRAM with current immutable inputs and retained open predicates, and no byte change to bootstrap.json/profile/calibration/README or any other repository content."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Run: python3 -B .agent/bootstrap/validate.py ; python3 -B .agent/bootstrap/validate.py --remote ; python3 -B -m unittest discover -s .agent/bootstrap -p 'test_*.py' ; python3 -B -m py_compile .agent/bootstrap/validate.py .agent/bootstrap/test_bootstrap.py ; deterministic PROGRAM JSON/invariant/coverage audit ; git diff --check. All must PASS on the exact committed candidate."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Publish the exact candidate non-force to dev; author and validate report_revision 1 as the report-only direct child adding only .agent/tasks/TASK-0035/report.yaml; publish it non-force; fresh-prove final local HEAD = origin/dev = remote dev, clean tree, main unchanged and topology exactly dev/main; then stop for Governing Architect review."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
