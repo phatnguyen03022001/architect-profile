@@ -1,0 +1,248 @@
+protocol_version: 3
+
+task_id: TASK-0038
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: STABLE_ACTIVATION_AFTER_MECHANICAL_FREEZE
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+
+architect_analysis_skills:
+  - architect
+  - verification
+  - simplicity
+  - github-workflow
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "Current operator FINAL FREEZE / STABLE ACTIVATION instruction."
+    role: "Explicitly authorizes architect-profile stable activation after all five exact repository-local mechanical ref-integrity predicates pass, followed by post-activation proof."
+    precedence: 1
+  - source: "phatnguyen03022001/agent-runtime@383dffa011e383aa88eb19577df7442d9915b0fe:.agent/tasks/TASK-0023/review.yaml"
+    role: "Accepted fifth repository-local ref-integrity closure and Governing Architect aggregate proof that MECHANICAL_FREEZE=PASS across architect-profile, agent-skills, agent-documents, agent-standards and agent-runtime."
+    precedence: 2
+  - source: "phatnguyen03022001/architect-profile@b0a1e5f54f0704c0c1332835bedd9b2524be851f:.agent/tasks/TASK-0036/review.yaml"
+    role: "Exact accepted activation-readiness authority: TECHNICAL_CLOSURE=PASS, FINAL_SWEEP=PASS, AUTHORITY_SELECTION=SELECTED and ACTIVATION_READINESS=READY. This review commit is the exact stable-activation subject."
+    precedence: 3
+  - source: "phatnguyen03022001/architect-profile@3f016cdb5b610bb8ed6be6203e2b790138ab3447:.agent/tasks/TASK-0037/review.yaml"
+    role: "Accepted architect-profile repository-local ref-integrity closure. Exact comparison from the activation subject b0a1e5f54f0704c0c1332835bedd9b2524be851f through this review adds only TASK-0037 lifecycle evidence and does not change authority-bearing bytes."
+    precedence: 4
+  - source: "phatnguyen03022001/architect-profile@b0a1e5f54f0704c0c1332835bedd9b2524be851f:.agent/bootstrap/authority.lock.json"
+    role: "Exact selected four-support immutable authority set to become active on main."
+    precedence: 5
+  - source: "phatnguyen03022001/agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26:github-workflow/SKILL.md"
+    role: "Canonical DEV_MAIN promotion semantics: exact accepted subject, exact expected stable ref, fresh strict fast-forward/non-force guard, and post-publication proof."
+    precedence: 6
+  - source: "phatnguyen03022001/agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26:protocols/TASK_PROTOCOL.md"
+    role: "Canonical task/review/promotion separation and consequence-boundary evidence semantics."
+    precedence: 7
+  - source: "Fresh GitHub aggregate verification immediately before this task"
+    role: "All five repositories each have exactly one active dev-main-ref-integrity ruleset targeting exactly dev/main, no excludes, no bypass actors, current_user_can_bypass=never and rules exactly deletion plus non_fast_forward; all ten dev/main refs are protected."
+    precedence: 8
+
+structure_authority:
+  status: RESOLVED
+  source: "Existing canonical DEV_MAIN activation pattern already used by architect-profile historical activation tasks."
+  rationale: >-
+    Stable activation is one strict non-force update of architect-profile/main from the exact old main to the exact accepted
+    TASK-0036 activation-readiness review commit, followed by fresh post-activation proof and one report-only publication on dev.
+    TASK-0037 and TASK-0038 lifecycle artifacts remain evidence-plane descendants and do not replace the exact activation subject.
+
+objective: >-
+  Strictly non-force activate architect-profile commit b0a1e5f54f0704c0c1332835bedd9b2524be851f on main,
+  preserving all five repository ref-integrity protections and the exact selected support authority set, then prove the
+  activated main bootstrap boundary before stopping for Governing Architect review.
+
+scope:
+  required_changes:
+    - >-
+      Fresh-bind this exact task/base and re-resolve TASK-0036 accepted review, TASK-0037 accepted review, agent-runtime
+      TASK-0023 accepted review, exact activation subject b0a1e5f54f0704c0c1332835bedd9b2524be851f, current architect-profile
+      dev/main refs, and current promotion capability before any main mutation.
+    - >-
+      Fresh-prove MECHANICAL_FREEZE remains PASS immediately before promotion: each of architect-profile, agent-skills,
+      agent-documents, agent-standards and agent-runtime has exactly one active repository-level ruleset named
+      dev-main-ref-integrity; each targets exactly refs/heads/dev and refs/heads/main; excludes none; bypass_actors is empty;
+      current_user_can_bypass is never; rules are exactly deletion and non_fast_forward; both dev and main are protected.
+    - >-
+      Fresh-prove architect-profile main is exactly d47114404c97fcfd74b0f37f646586ec46de6987 and the exact activation subject
+      b0a1e5f54f0704c0c1332835bedd9b2524be851f is a strict fast-forward descendant of that main. Prove the activation subject
+      is the accepted TASK-0036 review child and its authority.lock contains exactly the selected four immutable support pins.
+    - >-
+      Fresh-prove later architect-profile descendants from b0a1e5f54f0704c0c1332835bedd9b2524be851f through pre-task dev
+      3f016cdb5b610bb8ed6be6203e2b790138ab3447 contain only TASK-0037 task/report/review lifecycle evidence and no authority-bearing
+      source/bootstrap/profile/lock change. Do not promote 3f016cdb5b610bb8ed6be6203e2b790138ab3447 or the current task base merely because they are newer.
+    - >-
+      Execute exactly one strict non-force fast-forward update of architect-profile/main to
+      b0a1e5f54f0704c0c1332835bedd9b2524be851f. No force, merge, rebase, cherry-pick, reconstructed candidate or alternate SHA is allowed.
+    - >-
+      Immediately after promotion, fresh-prove remote main equals exactly b0a1e5f54f0704c0c1332835bedd9b2524be851f, topology remains exactly
+      dev/main, architect-profile dev/main protections remain effective, and all five repository ref-integrity policies remain exact and active.
+    - >-
+      Prove the activated main authority.lock equals exactly agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26,
+      agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb,
+      agent-documents@6a087c7559235b47cfa365bd78c351b3a52b1e82 and
+      agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23; prove the locked Case Router remains exactly EXECUTE -> executor and all nine capability routes resolve.
+    - >-
+      Run the exact post-activation bootstrap proof against the exact activated main subject without changing canonical refs or candidate bytes:
+      python3 -B .agent/bootstrap/validate.py ; python3 -B .agent/bootstrap/validate.py --remote ;
+      python3 -B -m unittest discover -s .agent/bootstrap -p 'test_*.py' ;
+      python3 -B -m py_compile .agent/bootstrap/validate.py .agent/bootstrap/test_bootstrap.py.
+      Use a repository-native exact-SHA/detached verification surface if needed; create no branch and clean any temporary verification surface.
+    - >-
+      Publish only .agent/tasks/TASK-0038/report.yaml on dev as the Executor-authored repository-content mutation after this planning commit.
+      Validate the actual report with the current artifact validator, run git diff --check, commit/push the report-only direct child non-force to dev,
+      then fresh-prove final dev/main/topology/protections and stop at NEEDS_REVIEW.
+
+invariants:
+  - "Exact stable-activation subject is b0a1e5f54f0704c0c1332835bedd9b2524be851f and never changes during this task."
+  - "Old main before promotion is exactly d47114404c97fcfd74b0f37f646586ec46de6987."
+  - "The main update is strict fast-forward and non-force; no other branch or ref moves."
+  - "architect-profile dev remains the integration/evidence ref and may advance only by TASK-0038/report.yaml publication after the planning commit."
+  - "The five exact dev-main-ref-integrity rulesets remain active and unchanged; no bypass actor, extra rule, overlapping classic protection or process rule is introduced."
+  - "Selected immutable support authorities remain exactly de060ab9c61627eeec02937519eddfffd8bc1e26, 1141b9dbfce0110d6623f5a877c2d04843caa6eb, 6a087c7559235b47cfa365bd78c351b3a52b1e82 and 69c4760ab07e9cb04263eae36d95f39887f31c23."
+  - "No support repository content/ref/metadata mutation and no ilets mutation occurs."
+  - "No tag, release, branch creation/deletion/rename, repository setting change, source change, dependency change, workflow change, PROGRAM regeneration or authority.lock rewrite occurs."
+  - "Stable activation does not itself permit support-main promotion. All support mains remain unchanged."
+  - "SYSTEM_FREEZE is not FROZEN until Governing Architect independently reviews the published TASK-0038 report and fresh final state."
+
+forbidden_changes:
+  - "Do not promote current dev, task base, TASK-0037 review head or any SHA other than b0a1e5f54f0704c0c1332835bedd9b2524be851f."
+  - "Do not force-push, reset, rebase, merge, cherry-pick or reconstruct the activation subject."
+  - "Do not modify any architect-profile existing file other than the new TASK-0038 report artifact on dev."
+  - "Do not modify any prior task/report/review artifact."
+  - "Do not mutate any ruleset, classic branch protection, repository setting, tag or release."
+  - "Do not mutate agent-skills, agent-documents, agent-standards, agent-runtime or ilets."
+  - "Do not roll back a successful main promotion solely because a later verification capability becomes unavailable; record the truthful post-promotion state and fail closed on SYSTEM_FREEZE instead."
+
+gap_policy:
+  local_auto_fix: false
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: forbidden
+  blocking_gap_behavior: BLOCKED
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+    - repository_metadata_read
+  REVIEW:
+    - repository_content_read
+    - repository_content_write
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+    - repository_metadata_read
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Mechanical freeze remains effective immediately before stable activation."
+    evidence_required: "Fresh aggregate proof of the five exact sole rulesets and all ten protected dev/main refs, plus accepted TASK-0023 review with MECHANICAL_FREEZE=PASS."
+  - id: AC-2
+    requirement: "The exact stable-activation subject and old stable ref are bound without ambiguity."
+    evidence_required: "TASK-0036 review ACCEPTED at b0a1e5f54f0704c0c1332835bedd9b2524be851f; main exactly d47114404c97fcfd74b0f37f646586ec46de6987; strict ancestry/fast-forward proof; exact subject lock proof; later TASK-0037 descendants proven evidence-only."
+  - id: AC-3
+    requirement: "Stable activation is exactly one strict non-force promotion to the accepted subject."
+    evidence_required: "Fresh post-push GitHub truth proves main=b0a1e5f54f0704c0c1332835bedd9b2524be851f, topology dev/main and no other ref/repository mutation."
+  - id: AC-4
+    requirement: "The activated main is operationally valid at the exact selected authority set."
+    evidence_required: "Exact main authority.lock equality, locked Case Router EXECUTE -> executor, all nine routes resolve, post-activation bootstrap default PASS, --remote PASS, 27/27 unittests PASS and py_compile PASS against the exact activated subject."
+  - id: AC-5
+    requirement: "Mechanical freeze remains intact after activation."
+    evidence_required: "Fresh post-activation detail and collection reads prove all five sole rulesets are unchanged and effective and all ten dev/main refs remain protected."
+  - id: AC-6
+    requirement: "TASK-0038 publication is evidence-only on dev and does not self-certify final system freeze."
+    evidence_required: "Report commit is sole direct child of exact planning base and adds only TASK-0038/report.yaml; final remote dev equals report commit, main equals exact activated subject, support mains unchanged, and report records MECHANICAL_FREEZE=PASS, STABLE_ACTIVATION=ACTIVATED, POST_ACTIVATION_PROOF=PASS, SYSTEM_FREEZE=PENDING_ARCHITECT_VERIFICATION before stopping NEEDS_REVIEW."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: >-
+        Fresh-bind TASK-0038 revision 1 at exact handoff base; require local dev=origin/dev=remote dev=base, clean tree,
+        report absent, remote main=d47114404c97fcfd74b0f37f646586ec46de6987, topology dev/main, exact activation subject and TASK-0036/TASK-0037/TASK-0023 identities resolved,
+        all five exact rulesets/ten protected refs fresh-proven, and all required EXECUTION capabilities available.
+      required: true
+    - id: CHECK-2
+      command_or_check: >-
+        Fresh-prove candidate ancestry, exact activation-subject authority.lock, evidence-only TASK-0037 descendants and strict non-force promotion guard;
+        then update only architect-profile/main to b0a1e5f54f0704c0c1332835bedd9b2524be851f and immediately fresh-prove remote main/topology.
+      required: true
+    - id: CHECK-3
+      command_or_check: >-
+        Fresh-prove activated main lock/router/9 routes and all five ref-integrity policies, then run the four exact post-activation bootstrap commands against the exact activated main subject. Stop/fail closed on any contradiction without rolling back a successful promotion.
+      required: true
+    - id: CHECK-4
+      command_or_check: >-
+        Author and validate TASK-0038 report_revision 1 only, run git diff --check, commit/push report-only direct child non-force to dev,
+        fresh-prove final dev/main/topology/protections plus no support/tag/release mutation, and stop NEEDS_REVIEW.
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: true
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
