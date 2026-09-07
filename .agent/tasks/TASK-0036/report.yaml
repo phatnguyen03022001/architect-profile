@@ -1,0 +1,90 @@
+protocol_version: 3
+task_id: TASK-0036
+task_revision: 1
+report_revision: 1
+state: REPORTED
+
+task_source:
+  path: .agent/tasks/TASK-0036/task.yaml
+
+execution:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+  authorized_base_head: "f536a9a7cd7d3ab6b8e6dd6cce125fe015b7db93"
+  final_execution_head: "f536a9a7cd7d3ab6b8e6dd6cce125fe015b7db93"
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  authorized_revision: "ed8d9fb35bb8b052530ca879e68a227d77e4a8a6"
+
+capability_preflight:
+  phase: EXECUTION
+  required:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  available:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+  missing: []
+  passed: true
+
+authoritative_verification:
+  required: false
+  performed: false
+  result: NOT_REQUIRED
+  evidence: "TASK-0036 declares no separate authoritative verification mechanism."
+
+pushed: true
+
+closure_status:
+  TECHNICAL_CLOSURE: PASS
+  FINAL_SWEEP: PASS
+  AUTHORITY_SELECTION: SELECTED
+  ACTIVATION_READINESS: READY
+  STABLE_ACTIVATION: NOT_ACTIVATED
+  STABLE_ACTIVATION_AUTHORITY: AUTHORITY_REQUIRED
+
+acceptance_evidence:
+  - criterion_id: AC-1
+    status: PASS
+    evidence: "Fresh remote resolution at the TASK-0036 boundary proved agent-skills/dev=de060ab9c61627eeec02937519eddfffd8bc1e26, agent-standards/dev=1141b9dbfce0110d6623f5a877c2d04843caa6eb, agent-documents/dev=6a087c7559235b47cfa365bd78c351b3a52b1e82, agent-runtime/dev=69c4760ab07e9cb04263eae36d95f39887f31c23, architect-profile/dev=f536a9a7cd7d3ab6b8e6dd6cce125fe015b7db93 and ilets/dev=831f90424251e2ff2e9ccb0d619ec1f14859f4e2. Immutable owner evidence remains ACCEPTED at agent-skills TASK-0046 review 407c11d598340d1a754d862b760e0d3e55b4d791, TASK-0047 review 321566705a2714c4265f56b01008f22ee3efa670, TASK-0048 review 22f430499c8f483ce2c868e2c84a92fe3ebbc62b, TASK-0049 review de060ab9c61627eeec02937519eddfffd8bc1e26, agent-documents TASK-0008 revision-2 review 6a087c7559235b47cfa365bd78c351b3a52b1e82, agent-standards TASK-0013 revision-2 review 1141b9dbfce0110d6623f5a877c2d04843caa6eb and architect-profile TASK-0035 review 593062e63c7bab4d353fcd2843dfddd9e61a21f2. No support drift, unresolved admitted MUST_CLOSE finding or fresh material contradiction was reproduced; the independent red-team advisory is corroborating evidence only."
+  - criterion_id: AC-2
+    status: PASS
+    evidence: "Current authority.lock contains exactly four immutable entries and exactly equals the intentional dev authority selection: agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26, agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb, agent-documents@6a087c7559235b47cfa365bd78c351b3a52b1e82 and agent-runtime@69c4760ab07e9cb04263eae36d95f39887f31c23. Exact locked .agent/case-router.yaml contains one case only, EXECUTE, with executor as its sole capability. All nine bootstrap capability routes resolve at the selected immutable revisions. No authority.lock mutation occurred."
+  - criterion_id: AC-3
+    status: PASS
+    evidence: "Fresh ilets/dev resolution equals accepted TASK-0046 revision-4 review commit 831f90424251e2ff2e9ccb0d619ec1f14859f4e2; that review is ACCEPTED and binds immutable natural-product candidate 9aa6be322f71a9c978534d2536aabc8788fe2cb9, which resolves as a commit and is an ancestor of the accepted review head. On exact architect-profile task base f536a9a7cd7d3ab6b8e6dd6cce125fe015b7db93, default bootstrap validation returned OPM_BOOTSTRAP = TRUE, --remote validation returned OPM_BOOTSTRAP = TRUE, the complete bootstrap unittest suite passed 27/27, and py_compile passed."
+  - criterion_id: AC-4
+    status: PASS
+    evidence: "This report records TECHNICAL_CLOSURE=PASS, FINAL_SWEEP=PASS, AUTHORITY_SELECTION=SELECTED and ACTIVATION_READINESS=READY while separately recording STABLE_ACTIVATION=NOT_ACTIVATED and STABLE_ACTIVATION_AUTHORITY=AUTHORITY_REQUIRED. READY is not represented as ACTIVATED, and TASK-0036 performs no main promotion, tag, release, freeze or successor handoff."
+  - criterion_id: AC-5
+    status: NOT_PROVEN
+    evidence: "Before report authorship, exact base f536a9a7cd7d3ab6b8e6dd6cce125fe015b7db93 was already published on dev, the worktree was clean, architect-profile main remained d47114404c97fcfd74b0f37f646586ec46de6987, remote branch topology was exactly dev/main, and protected bootstrap/PROGRAM bytes were unchanged. This report is the only authored path. Its own report-only direct-child commit identity, non-force publication and final post-publication remote/local/main/topology proof are consequence-boundary predicates and are not self-certified inside the report."
+
+executor_checks:
+  - check_id: CHECK-1
+    result: PASS
+    evidence: "Fresh preflight bound TASK-0036 revision 1 in APPROVED state with execution_ready=true at exact handoff base f536a9a7cd7d3ab6b8e6dd6cce125fe015b7db93. Local branch dev was fast-forwarded without content authorship to exact HEAD=origin/dev=remote dev, the worktree was clean, main=d47114404c97fcfd74b0f37f646586ec46de6987, remote topology was exactly dev/main, report.yaml was absent, dry-run non-force push succeeded and all seven required EXECUTION capabilities were available before report authorship."
+  - check_id: CHECK-2
+    result: PASS
+    evidence: "Fresh mutable dev-head resolution matched the six exact closure identities; accepted owner reviews were resolved by immutable commit identity; authority.lock equality was confirmed; the exact locked Case Router remained EXECUTE -> executor; and all nine routed paths resolved at the selected support commits. Immutable accepted evidence was reused without repeating the independent red-team audit."
+  - check_id: CHECK-3
+    result: PASS
+    evidence: "On exact task base f536a9a7cd7d3ab6b8e6dd6cce125fe015b7db93, python3 -B .agent/bootstrap/validate.py PASS, python3 -B .agent/bootstrap/validate.py --remote PASS, python3 -B -m unittest discover -s .agent/bootstrap -p test_*.py PASS with 27/27 tests, and python3 -B -m py_compile .agent/bootstrap/validate.py .agent/bootstrap/test_bootstrap.py PASS. The worktree remained clean after these checks."
+  - check_id: CHECK-4
+    result: NOT_PROVEN
+    evidence: "The report has been authored only at .agent/tasks/TASK-0036/report.yaml. Validation of this actual artifact, git diff --check, report-only direct-child commit creation, non-force push and final consequence-boundary ref/topology proof occur after this report content exists and therefore are not self-asserted here."
+
+result: NEEDS_REVIEW
