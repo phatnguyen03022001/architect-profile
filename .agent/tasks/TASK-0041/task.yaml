@@ -1,0 +1,171 @@
+protocol_version: 3
+
+task_id: TASK-0041
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: TASK0040_PROMOTION_LINEAGE_AND_IDENTITY_RECONCILIATION
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "3c4a31598da4c4e12cb0925bee1b471f160d3b4e"
+
+architect_analysis_skills:
+  - architect
+  - verification
+  - simplicity
+  - github-workflow
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+  recommended: []
+
+authority_sources:
+  - source: "Current operator post-red-team remediation-round instruction"
+    role: "Authorizes one bounded, forward-only reconciliation of a reproduced TASK-0040 promotion-lineage and identity defect, followed only later by independent review and separately authorized stable activation."
+    precedence: 1
+  - source: "phatnguyen03022001/architect-profile@239e5659cbebfd3c7b1663601e53832cf8011561:.agent/tasks/TASK-0040/review.yaml"
+    role: "Historical review evidence whose accepted activation and final_execution_head claims require forward reconciliation; it is immutable evidence and must not be edited."
+    precedence: 2
+  - source: "phatnguyen03022001/architect-profile@83afb7a656dcf6c1ddc8cd0433b62ccf2be9e63f:.agent/bootstrap/authority.lock.json"
+    role: "Current activated support-authority bytes; all four pins must remain unchanged by this task."
+    precedence: 3
+  - source: "phatnguyen03022001/agent-skills@3c4a31598da4c4e12cb0925bee1b471f160d3b4e:protocols/TASK_PROTOCOL.md"
+    role: "Defines current protocol-v3 identity meanings, report/review lifecycle, and exact post-review promotion lineage."
+    precedence: 4
+  - source: "phatnguyen03022001/agent-skills@3c4a31598da4c4e12cb0925bee1b471f160d3b4e:github-workflow/SKILL.md"
+    role: "Defines current strict non-force GitHub promotion semantics and stale-ref guards."
+    precedence: 5
+
+structure_authority:
+  status: RESOLVED
+  source: "Existing canonical task/report/review artifact ownership and protocol-v3 promotion lineage"
+  rationale: "The reconciliation needs no source, bootstrap, route, lock, workflow, dependency, or historical-artifact mutation. The sole Executor-owned artifact is the new TASK-0041 report."
+
+objective: "Create one report-only forward reconciliation record for the reproduced TASK-0040 promotion-lineage and final_execution_head defect, preserving the current authority bytes and providing exact evidence for a later independent review and separately authorized strict activation of a protocol-v3-valid candidate."
+
+scope:
+  required_changes:
+    - "Fresh-bind TASK-0041 revision 1 at its exact handoff base; fresh-resolve GitHub dev/main, the current main authority lock, TASK-0039 and TASK-0040 immutable task/report/review identities, and the current locked protocol before mutation."
+    - "Make no pre-report implementation commit and change no existing repository byte. Set final_execution_head in the report to the exact handoff base, because it is the Executor HEAD immediately before the report commit; never use it as an activation-subject alias."
+    - "Create only .agent/tasks/TASK-0041/report.yaml as a single-parent direct child of the exact handoff base. The report records pre-publication evidence only and stops at NEEDS_REVIEW."
+    - "Prove the current main lock still resolves exactly agent-skills@3c4a31598da4c4e12cb0925bee1b471f160d3b4e, agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb, agent-documents@6a087c7559235b47cfa365bd78c351b3a52b1e82, and agent-runtime@a9e79a1bb1e6d442d17bbfea2f8083116fc49359."
+    - "Run the existing bootstrap default and remote validation, complete bootstrap unittest suite, compilation, exact Case Router EXECUTE-to-executor proof, all nine locked route resolutions, and git diff checks against the unchanged authority bytes."
+    - "Validate the actual report, publish only its non-force dev child, fresh-prove remote candidate/report lineage and unchanged main, then stop at NEEDS_REVIEW."
+  allowed_existing_files_or_components:
+    - ".agent/tasks/TASK-0041/report.yaml"
+  expected_files_are_restrictive: true
+
+invariants:
+  - "TASK-0039 and TASK-0040 task/report/review artifacts remain immutable historical evidence and are never modified, deleted, renamed, or rewritten."
+  - "bootstrap.json, authority.lock.json, validate.py, test_bootstrap.py, ARCHITECT_PROFILE.md, ARCHITECT_CALIBRATION.md, README.md, Case Router semantics, all capability routes, and every support pin remain byte-identical."
+  - "The Executor must not move main, create a branch, tag, release, mutate rulesets or repository metadata, or mutate any support repository."
+  - "The four support revisions remain exactly agent-skills@3c4a31598da4c4e12cb0925bee1b471f160d3b4e, agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb, agent-documents@6a087c7559235b47cfa365bd78c351b3a52b1e82, and agent-runtime@a9e79a1bb1e6d442d17bbfea2f8083116fc49359."
+  - "A future promotion candidate is not final_execution_head. After independent review, only the exact reviewed report commit or its permitted review-artifact child may be selected under protocol-v3 promotion lineage."
+  - "The temporary operator Architect/Executor exception is remediation-round-only and is not written into ARCHITECT_PROFILE.md or bootstrap configuration."
+  - "SYSTEM_FREEZE remains pending until a later independent Architect review and separately authorized stable activation have both completed with fresh proof."
+
+forbidden_changes:
+  - "Do not modify any existing source, bootstrap, lock, task, report, review, workflow, dependency, release, ruleset, branch-protection, support-repository, or repository-metadata artifact."
+  - "Do not force-push, reset, rebase, merge, cherry-pick, create a branch, move main, create a tag/release, or create an activation claim in the Executor report."
+  - "Do not represent the historical TASK-0040 activation subject as final_execution_head, an implementation candidate, a current promotion candidate, or a valid post-review promotion lineage."
+  - "Do not add a new protocol, role, validator, registry, daemon, queue, scheduler, workflow engine, database, CI path, or governance framework."
+
+gap_policy:
+  local_auto_fix: false
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: forbidden
+  blocking_gap_behavior: BLOCKED
+
+structure_policy:
+  expected_new_files:
+    - ".agent/tasks/TASK-0041/report.yaml"
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: "No unlisted files are authorized."
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "The report keeps identity meanings distinct: final_execution_head is the exact pre-report Executor head, while a possible future promotion candidate is determined only after independent review from the exact reviewed report lineage."
+    evidence_required: "Exact handoff/report parentage, final_execution_head equality to the handoff base, and a report that records no activation or self-certifying post-publication predicate."
+  - id: AC-2
+    requirement: "The bounded reconciliation changes only the new report artifact and preserves all current authority-bearing bootstrap bytes and all historical task evidence."
+    evidence_required: "Exact base-to-report changed-path proof, unchanged-byte proof for all named invariants, and git diff --check."
+  - id: AC-3
+    requirement: "The unchanged current authority set reconstructs correctly at the exact handoff state."
+    evidence_required: "Exact main lock and remote object resolution, default and remote bootstrap validation, complete bootstrap tests, compilation, Case Router proof, and nine route resolutions."
+  - id: AC-4
+    requirement: "Executor publication is report-only on dev and leaves main, support refs, topology, rulesets, branch protection, tags, releases, and repository metadata unchanged."
+    evidence_required: "Fresh pre/post GitHub ref and topology proof, report-only direct-child lineage, non-force publication proof, and no-mutation evidence for the named boundaries."
+  - id: AC-5
+    requirement: "The published report is suitable for independent Architect review without claiming its own acceptance, promotion, activation, or SYSTEM_FREEZE closure."
+    evidence_required: "Validated report state NEEDS_REVIEW, exact report commit identity, truthful NOT_PROVEN post-authorship predicate treatment, and report-only task terminal handoff."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Freshly prove exact task/base/remote identity, current main lock, required immutable historical identities, current protocol, clean target state, and current EXECUTION capability before mutation."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Without any source mutation, run bootstrap local/remote validation, complete bootstrap tests, compilation, exact Case Router and nine route resolution, four support-object resolution, GitHub topology/protection/ruleset observations, and diff checks."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Author and validate only the truthful report, commit it as the sole direct child of the exact base, publish non-force to dev, refresh remote dev/main and report lineage, then stop at NEEDS_REVIEW."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - non_force_git_push
+    - remote_ref_read
+    - repository_metadata_read
+  REVIEW:
+    - repository_content_read
+    - native_repository_execution
+    - git_history_read
+    - remote_ref_read
+    - repository_metadata_read
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+execution_ready: true
