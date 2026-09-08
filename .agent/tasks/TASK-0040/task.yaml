@@ -1,0 +1,195 @@
+protocol_version: 3
+
+task_id: TASK-0040
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: accepted_review
+  task_id: TASK-0039
+  gap_id: STABLE_ACTIVATION_AFTER_POST_FREEZE_REMEDIATION
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "de060ab9c61627eeec02937519eddfffd8bc1e26"
+
+architect_analysis_skills:
+  - architect
+  - verification
+  - simplicity
+  - github-workflow
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "Current operator post-freeze remediation instruction"
+    role: "Authorizes a separate strict stable activation only after accepted remediation authority selection and fresh proof."
+    precedence: 1
+  - source: "phatnguyen03022001/architect-profile@398fc8adf1d64118d3dbb0c7498edf423bc9e8dd:.agent/tasks/TASK-0039/review.yaml"
+    role: "Accepted authority selection that binds exact activation subject 83afb7a656dcf6c1ddc8cd0433b62ccf2be9e63f."
+    precedence: 2
+  - source: "phatnguyen03022001/architect-profile@b0a1e5f54f0704c0c1332835bedd9b2524be851f:.agent/bootstrap/authority.lock.json"
+    role: "Current stable predecessor authority set."
+    precedence: 3
+  - source: "phatnguyen03022001/agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26:github-workflow/SKILL.md"
+    role: "Current canonical DEV_MAIN strict non-force promotion semantics."
+    precedence: 4
+  - source: "phatnguyen03022001/agent-skills@de060ab9c61627eeec02937519eddfffd8bc1e26:protocols/TASK_PROTOCOL.md"
+    role: "Current canonical task, independent review, activation, and consequence-boundary evidence semantics."
+    precedence: 5
+
+structure_authority:
+  status: RESOLVED
+  source: "Existing architect-profile stable activation pattern"
+  rationale: "Perform one exact non-force update of main to the accepted authority-selection candidate. Publish only a report on dev and leave final freeze to independent Architect review."
+
+objective: "Strictly non-force activate architect-profile candidate 83afb7a656dcf6c1ddc8cd0433b62ccf2be9e63f on main, prove the exact activated authority boundary, and stop at NEEDS_REVIEW."
+
+scope:
+  required_changes:
+    - "Fresh-bind TASK-0040 revision 1 at its exact handoff base, resolve TASK-0039 accepted review, candidate 83afb7a656dcf6c1ddc8cd0433b62ccf2be9e63f, current dev/main, all five repository rulesets, all ten protected dev/main refs, and required execution capability before mutation."
+    - "Fresh-prove current main is exactly b0a1e5f54f0704c0c1332835bedd9b2524be851f and is a strict ancestor of exact activation subject 83afb7a656dcf6c1ddc8cd0433b62ccf2be9e63f. Prove the candidate lock pins skills 3c4a31598da4c4e12cb0925bee1b471f160d3b4e, runtime a9e79a1bb1e6d442d17bbfea2f8083116fc49359, standards 1141b9dbfce0110d6623f5a877c2d04843caa6eb, and documents 6a087c7559235b47cfa365bd78c351b3a52b1e82."
+    - "Run fresh bootstrap validation and resolve the exact locked Case Router EXECUTE to executor plus all nine capability routes before promotion."
+    - "Execute exactly one strict non-force fast-forward update of architect-profile/main to 83afb7a656dcf6c1ddc8cd0433b62ccf2be9e63f."
+    - "After promotion, fresh-prove remote main equals exactly 83afb7a656dcf6c1ddc8cd0433b62ccf2be9e63f, all five rulesets and ten protected refs remain effective, exact main lock/router/routes resolve, and bootstrap validation, remote bootstrap validation, bootstrap tests, compilation, and diff checks pass."
+    - "Publish only .agent/tasks/TASK-0040/report.yaml on dev as a report-only direct child, validate the actual report, refresh all relevant remote refs, and stop at NEEDS_REVIEW."
+  allowed_existing_files_or_components:
+    - ".agent/tasks/TASK-0040/report.yaml"
+  expected_files_are_restrictive: true
+
+invariants:
+  - "The only main subject is 83afb7a656dcf6c1ddc8cd0433b62ccf2be9e63f; do not promote current dev, a report, a review, or any reconstructed SHA."
+  - "Old main before promotion is exactly b0a1e5f54f0704c0c1332835bedd9b2524be851f."
+  - "The main update is strict fast-forward and non-force; no other branch or ref moves except the report-only dev child."
+  - "No support repository content, ref, ruleset, tag, release, or metadata is mutated."
+  - "No bootstrap source, profile source, route, role semantics, temporary-exception text, dependency, workflow, or authority lock byte is changed by this task."
+  - "SYSTEM_FREEZE is not FROZEN until independent Governing Architect review of the report and final state."
+
+forbidden_changes:
+  - "Do not force-push, reset, rebase, merge, cherry-pick, or create a branch."
+  - "Do not modify any existing architect-profile file or prior task artifact."
+  - "Do not mutate main if exact subject, ancestry, ruleset, ref-protection, or required capability proof is ambiguous before promotion."
+  - "Do not roll back a successful exact main promotion solely because a later postcondition cannot be proven; record the truthful state and stop."
+
+gap_policy:
+  local_auto_fix: false
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: forbidden
+  blocking_gap_behavior: BLOCKED
+
+structure_policy:
+  expected_new_files:
+    - ".agent/tasks/TASK-0040/report.yaml"
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: "No unlisted file is authorized."
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "The exact activated subject and old main are bound without ambiguity."
+    evidence_required: "Accepted TASK-0039 review, exact old main, strict ancestry, and exact candidate lock proof."
+  - id: AC-2
+    requirement: "Stable activation is one strict non-force promotion to the accepted subject."
+    evidence_required: "Fresh remote post-push main identity and topology proof."
+  - id: AC-3
+    requirement: "The activated main reconstructs the selected immutable authority set correctly."
+    evidence_required: "Exact lock, Case Router, nine route proof, bootstrap default and remote validation, bootstrap tests, and compilation against exact main subject."
+  - id: AC-4
+    requirement: "All five dev-main integrity controls remain effective."
+    evidence_required: "Fresh sole-ruleset detail and all ten protected ref proof before and after activation."
+  - id: AC-5
+    requirement: "Publication is evidence-only on dev and does not self-certify SYSTEM_FREEZE."
+    evidence_required: "Validated report-only child lineage, final dev/main proof, and report state NEEDS_REVIEW with SYSTEM_FREEZE pending Architect review."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Fresh-bind exact task/base, selected review/candidate, all five repository policy/ref conditions, and capability before mutation."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Prove exact subject ancestry, candidate lock, Case Router, nine routes, and bootstrap validation before the single strict non-force promotion."
+      required: true
+    - id: CHECK-3
+      command_or_check: "After promotion, prove exact remote main, policy/ref conditions, exact activated bootstrap validation including remote validation, bootstrap tests, compilation, and diff checks."
+      required: true
+    - id: CHECK-4
+      command_or_check: "Validate and publish only the report-only dev child, then fresh-prove final dev/main and stop NEEDS_REVIEW."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+continuation_policy:
+  mode: MANUAL
+  stop_conditions:
+    - BLOCKED
+    - STALE_STATE
+    - AUTHORITY_REQUIRED
+    - CURRENT_PHASE_CAPABILITY_UNAVAILABLE
+    - REVIEW_REQUIRED
+    - REVERIFY_REQUIRED
+    - USER_STOP
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - git_push
+    - remote_ref_read
+    - repository_metadata_read
+  REVIEW:
+    - repository_content_read
+    - native_repository_execution
+    - git_history_read
+    - remote_ref_read
+    - repository_metadata_read
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: true
+
+release_authority:
+  create_version_tag: false
+  mutate_repository_metadata: false
+  publish_release: false
+
+blocking_decisions: []
+execution_ready: true
