@@ -1,0 +1,186 @@
+protocol_version: 3
+
+task_id: TASK-0043
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: SUPPORT_SOURCE_AUTHORITY_PIN_TYPE_CORRECTION
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "3c4a31598da4c4e12cb0925bee1b471f160d3b4e"
+
+architect_analysis_skills:
+  - architect
+  - verification
+  - simplicity
+  - github-workflow
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "Current operator five-repository fresh re-audit and bounded-remediation instruction"
+    role: "Requires source-bearing support authority selection to bind accepted source candidates rather than task/report/review evidence descendants, with the smallest independently reviewable correction."
+    precedence: 1
+  - source: "phatnguyen03022001/agent-documents@6a087c7559235b47cfa365bd78c351b3a52b1e82:.agent/tasks/TASK-0008/review.yaml"
+    role: "Accepted revision-2 review explicitly records accepted_candidate=c34d34d1842975fa895fc0e3d5273e5826b32205 and binds report c668692e2560b5d31ef1b026b84f0f974b8fd3fc."
+    precedence: 2
+  - source: "phatnguyen03022001/agent-standards@1141b9dbfce0110d6623f5a877c2d04843caa6eb:.agent/tasks/TASK-0013/review.yaml"
+    role: "Accepted revision-2 review explicitly records accepted_candidate=0da0d5864fe5e458af564f3c6ba9959cefd99639 and binds report 73f25757f0fc3a5acfe93399015538b9b1247cc7."
+    precedence: 3
+  - source: "phatnguyen03022001/architect-profile@1a711360afc201f286aeb66c093add98ae16f9ad:.agent/bootstrap/authority.lock.json"
+    role: "Current activated lock incorrectly selects the two accepted review descendants for agent-documents and agent-standards; agent-skills and agent-runtime pins remain correct accepted source candidates."
+    precedence: 4
+  - source: "phatnguyen03022001/agent-skills@3c4a31598da4c4e12cb0925bee1b471f160d3b4e:protocols/TASK_PROTOCOL.md"
+    role: "Defines exact task/report/review identity, authority/capability separation, accepted lineage, and no-change/anti-overengineering semantics."
+    precedence: 5
+  - source: "phatnguyen03022001/agent-skills@3c4a31598da4c4e12cb0925bee1b471f160d3b4e:github-workflow/SKILL.md"
+    role: "Defines fresh remote-ref guards, non-force publication, and stale-state behavior."
+    precedence: 6
+
+structure_authority:
+  status: RESOLVED
+  source: "Existing bootstrap authority-lock and exact-lock test ownership"
+  rationale: "The defect is two wrong immutable revision identities in one existing lock. The minimum correction changes those two revision literals and their exact expected values; no new abstraction or support-repository mutation is warranted."
+
+objective: "Replace the two evidence-only support revisions currently selected for agent-documents and agent-standards with their exact independently accepted source candidates, while preserving all selected source bytes, routes, execution surfaces, profile semantics, repository policies, and unrelated support pins."
+
+scope:
+  required_changes:
+    - "Fresh-bind TASK-0043 revision 1 at its exact handoff base and fresh-resolve architect-profile dev/main, the current activated lock, current Case Router, all four support repositories, and required current EXECUTION capabilities before mutation."
+    - "Reconstruct agent-documents TASK-0008 revision-2 lineage directly from Git: planning base c3b78c3ef34bf20a0482e13d6fcb003d4b89922d, accepted source candidate c34d34d1842975fa895fc0e3d5273e5826b32205, report c668692e2560b5d31ef1b026b84f0f974b8fd3fc, review 6a087c7559235b47cfa365bd78c351b3a52b1e82; verify the review is ACCEPTED and explicitly binds accepted_candidate c34d34d1842975fa895fc0e3d5273e5826b32205."
+    - "Reconstruct agent-standards TASK-0013 revision-2 closure directly from Git and review evidence; verify accepted review 1141b9dbfce0110d6623f5a877c2d04843caa6eb explicitly binds accepted_candidate 0da0d5864fe5e458af564f3c6ba9959cefd99639 and reviewed report 73f25757f0fc3a5acfe93399015538b9b1247cc7."
+    - "Prove candidate-to-selected-review descendants introduce no non-task source bytes: agent-documents c34d34d1842975fa895fc0e3d5273e5826b32205..6a087c7559235b47cfa365bd78c351b3a52b1e82 and agent-standards 0da0d5864fe5e458af564f3c6ba9959cefd99639..1141b9dbfce0110d6623f5a877c2d04843caa6eb must change only .agent/tasks/** authority/evidence artifacts."
+    - "Change only .agent/bootstrap/authority.lock.json and the exact expected lock values in .agent/bootstrap/test_bootstrap.py: agent-documents 6a087c7559235b47cfa365bd78c351b3a52b1e82 -> c34d34d1842975fa895fc0e3d5273e5826b32205; agent-standards 1141b9dbfce0110d6623f5a877c2d04843caa6eb -> 0da0d5864fe5e458af564f3c6ba9959cefd99639."
+    - "Keep agent-skills exactly 3c4a31598da4c4e12cb0925bee1b471f160d3b4e and agent-runtime exactly ebd62a2090ecf20759773061abcbc885677c0fb6."
+    - "Run bootstrap default and --remote validation, the complete bootstrap unittest suite, Python compilation, exact Case Router proof, all nine capability-route resolutions, exact four support-object resolutions, candidate diff checks, and prove routed source bytes at the corrected documents/standards pins are the accepted bytes already reviewed."
+    - "Create only .agent/tasks/TASK-0043/report.yaml after the source candidate. Set final_execution_head to the exact pre-report candidate, validate the report with the current locked artifact validator, publish candidate then report non-force to dev, fresh-prove report-only direct-child lineage and unchanged main, and stop at NEEDS_REVIEW."
+  allowed_existing_files_or_components:
+    - ".agent/bootstrap/authority.lock.json"
+    - ".agent/bootstrap/test_bootstrap.py"
+    - ".agent/tasks/TASK-0043/report.yaml"
+  expected_files_are_restrictive: true
+
+invariants:
+  - "The corrected agent-documents support pin is exactly accepted source candidate c34d34d1842975fa895fc0e3d5273e5826b32205, not task/report/review descendant 6a087c7559235b47cfa365bd78c351b3a52b1e82."
+  - "The corrected agent-standards support pin is exactly accepted source candidate 0da0d5864fe5e458af564f3c6ba9959cefd99639, not report/review descendant 1141b9dbfce0110d6623f5a877c2d04843caa6eb."
+  - "agent-skills and agent-runtime remain exactly 3c4a31598da4c4e12cb0925bee1b471f160d3b4e and ebd62a2090ecf20759773061abcbc885677c0fb6."
+  - "Bootstrap public schema, authority identity semantics, Case Router, all capability paths, exactly four execution surfaces, ARCHITECT_PROFILE.md, ARCHITECT_CALIBRATION.md, README.md, and repository topology/policy remain unchanged."
+  - ".agent/program.generated.json remains untouched because it is already explicitly authority NONE, stale by its own FULL_REGENERATION_ON_MATERIAL_INPUT_CHANGE contract, and is not a bootstrap or current authority input; this task must not expand into derived-program cleanup."
+  - "No support repository is mutated. Historical task/report/review evidence remains immutable."
+  - "The Executor must not move main, change rulesets/branch protection, create tags/releases/branches, or claim acceptance, activation, or SYSTEM_FREEZE."
+
+forbidden_changes:
+  - "Do not modify bootstrap.json, validate.py, ARCHITECT_PROFILE.md, ARCHITECT_CALIBRATION.md, README.md, .agent/program.generated.json, Case Router semantics, capability routes, workflows, dependencies, or any existing task/report/review artifact."
+  - "Do not mutate agent-skills, agent-documents, agent-standards, agent-runtime, ilets, or machine-level Runtime configuration."
+  - "Do not add roles, router cases, validators, registries, databases, services, schedulers, queues, planners, workflow engines, CI requirements, policy layers, or documentation files."
+  - "Do not force-push, reset, rebase, merge, cherry-pick, create a branch, promote main, or create a tag/release."
+  - "Do not select any task/report/review commit as the corrected documents or standards source-authority revision."
+
+gap_policy:
+  local_auto_fix: false
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: forbidden
+  blocking_gap_behavior: BLOCKED
+
+structure_policy:
+  expected_new_files:
+    - ".agent/tasks/TASK-0043/report.yaml"
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: "No unlisted files are authorized."
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "Both corrected support revisions are exact independently accepted source candidates and neither is a task/report/review evidence descendant."
+    evidence_required: "Fresh direct Git lineage plus exact accepted_candidate fields from the two accepted reviews, and exact changed-path proof from each candidate to the previously selected review descendant."
+  - id: AC-2
+    requirement: "The correction changes authority identity only; no selected support source semantics or routed capability bytes regress."
+    evidence_required: "Candidate-to-old-pin source-byte equivalence outside .agent/tasks/**, exact routed DOCUMENT_MODEL.md and STANDARD_MODEL.md byte proof, all support objects resolving, and unchanged skills/runtime pins."
+  - id: AC-3
+    requirement: "The bootstrap remains fully reconstructible and fail-closed with the corrected source identities."
+    evidence_required: "Default and remote bootstrap validation, complete bootstrap suite, compilation, exact Case Router EXECUTE -> executor proof, all nine route resolutions, and exact lock-test equality."
+  - id: AC-4
+    requirement: "The architect-profile source candidate is restricted to the two existing authority-selection files and contains no unrelated cleanup."
+    evidence_required: "Exact base/candidate parentage, changed-path and diff proof, git diff --check, and byte-identical forbidden surfaces."
+  - id: AC-5
+    requirement: "The report/publish boundary remains protocol-correct and independently reviewable."
+    evidence_required: "Valid report revision 1 with final_execution_head equal to the exact pre-report candidate, candidate/report-only direct-child lineage, non-force dev publication, fresh unchanged-main/topology/ruleset proof, and terminal NEEDS_REVIEW without self-acceptance."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Freshly prove exact task/base/remote identity, current activated lock, both accepted source-candidate lineages, clean target state, and current EXECUTION capability before mutation."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Perform only the two authorized lock/test literal corrections, then run full bootstrap default/remote/tests/compile, route resolution, support-object and source-byte equivalence checks, and exact diff verification."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Validate and publish only the candidate and report non-force to dev; refresh remote candidate/report lineage, main/topology/ruleset state, then stop at NEEDS_REVIEW."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - non_force_git_push
+    - remote_ref_read
+    - repository_metadata_read
+  REVIEW:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - remote_ref_read
+    - repository_metadata_read
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+blocking_decisions: []
+execution_ready: true
