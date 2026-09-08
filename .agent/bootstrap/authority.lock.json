@@ -7,11 +7,11 @@
     },
     "agent-standards": {
       "repository": "phatnguyen03022001/agent-standards",
-      "revision": "1141b9dbfce0110d6623f5a877c2d04843caa6eb"
+      "revision": "0da0d5864fe5e458af564f3c6ba9959cefd99639"
     },
     "agent-documents": {
       "repository": "phatnguyen03022001/agent-documents",
-      "revision": "6a087c7559235b47cfa365bd78c351b3a52b1e82"
+      "revision": "c34d34d1842975fa895fc0e3d5273e5826b32205"
     },
     "agent-runtime": {
       "repository": "phatnguyen03022001/agent-runtime",
