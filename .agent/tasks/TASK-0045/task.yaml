@@ -1,0 +1,256 @@
+protocol_version: 3
+
+task_id: TASK-0045
+task_revision: 1
+state: APPROVED
+
+origin:
+  type: user_request
+  task_id: ""
+  gap_id: ORBSTACK_REPOSITORY_CONTAINER_IDENTITY
+
+architect_binding:
+  target_repository: phatnguyen03022001/architect-profile
+
+target:
+  repository: phatnguyen03022001/architect-profile
+  branch:
+    name: dev
+    role: integration
+
+execution_base:
+  mode: handoff_snapshot
+  capture: after_final_planning_commit
+  require_exact_match: true
+
+skill_library:
+  repository: phatnguyen03022001/agent-skills
+  revision: "1826d33bd1e467896c133109b37db8b0656b3276"
+
+architect_analysis_skills:
+  - architect
+  - verification
+  - simplicity
+  - github-workflow
+
+execution_skills:
+  required:
+    - executor
+    - verification
+    - simplicity
+    - github-workflow
+  recommended: []
+
+external_skills:
+  architect_analysis: []
+  execution_required: []
+  execution_recommended: []
+
+authority_sources:
+  - source: "Current operator instruction: persistent repository containers are optional; when present, steady state permits at most one and its Docker/OrbStack container name must equal the GitHub repository basename exactly; the current one-time remediation authority is limited to deleting agent-runtime-sentinel and creating agent-runtime while preserving native macOS Agent Runtime."
+    role: "Primary operator authority for the repository-container identity invariant, the one-time agent-runtime sentinel lifecycle exception, protected-resource boundary, and fail-closed ownership requirement."
+    precedence: 1
+  - source: "phatnguyen03022001/architect-profile@508c64f02640911f1fdca81c8cde08748921eae7:ARCHITECT_PROFILE.md"
+    role: "Canonical owner for operator-specific configuration; current profile has no durable repository-container identity rule, so the smallest owner-correct change belongs here rather than agent-skills, agent-standards, or agent-runtime source."
+    precedence: 2
+  - source: "phatnguyen03022001/agent-skills@1826d33bd1e467896c133109b37db8b0656b3276:protocols/TASK_PROTOCOL.md"
+    role: "Exact selected protocol authority for one-repository task binding, fail-closed mutation authority, evidence, report/review lifecycle, and non-force publication."
+    precedence: 3
+
+structure_authority:
+  status: RESOLVED
+  source: "ARCHITECT_PROFILE.md operator-configuration ownership plus one bounded local remediation"
+  rationale: "The naming/count invariant is operator-specific rather than a universal engineering rule, so the durable owner is architect-profile. The minimum repository change is one compact subsection in ARCHITECT_PROFILE.md. The current local sentinel mismatch is the single explicitly authorized remediation. No agent-runtime source change, generic skill/standard change, registry, controller, supervisor, Compose redesign, or additional task is warranted."
+
+objective: "Persist the operator-specific OrbStack repository-container identity invariant in its narrow canonical owner and remediate only the freshly proven agent-runtime sentinel naming mismatch by replacing agent-runtime-sentinel with an equivalent sentinel-only container named exactly agent-runtime, without moving, restarting, stopping, signaling, proxying, or reconfiguring native macOS Agent Runtime, its tunnel, or port 8080."
+
+scope:
+  required_changes:
+    - "Fresh-bind TASK-0045 revision 1 at its exact handoff base. Before any mutation, fresh-resolve architect-profile dev/main, exact selected authority, Agent Runtime availability, Docker context, OrbStack engine identity, all current containers, exact names, labels, images, mounts, published ports, restart policies, healthchecks, capabilities, security options, CPU/memory/PID limits, current health, positive repository ownership mappings, the native macOS listener on 127.0.0.1:8080, and relevant GitHub repository basenames. Preflight itself is read-only; do not restart, stop, signal, remove, create, or reconfigure any container/process during preflight."
+    - "Require these exact mutation preconditions before lifecycle action: Docker context is orbstack; engine OperatingSystem is OrbStack on arm64; agent-runtime-sentinel exists; no container named agent-runtime exists; agent-runtime-sentinel is positively mapped to phatnguyen03022001/agent-runtime from fresh container evidence plus exact repository identity; its purpose remains a read-only health sentinel probing only host.docker.internal:8080; native port 8080 remains a macOS listener external to the container; the exact local image busybox@sha256:8d7b1636e974e0adfd8d945955fca609304f0a56c18799dfd032d6e661382d84 exists and resolves to arm64. If any precondition is not proven, perform no container mutation and return BLOCKED. Do not pull or build another image as a fallback."
+    - "Modify only ARCHITECT_PROFILE.md to add one compact operator-specific repository-container identity subsection. It must state: persistent repository containers are optional; if one exists, steady state permits at most one per repository and its container name must equal the GitHub repository basename exactly; container name alone never proves ownership; unknown/unrelated/OrbStack-internal resources fail closed; task-owned transient containers must be removed before terminal state; multiple logical services do not by themselves authorize multiple persistent repo containers; a genuine conflict with the one-container convention is reported as CONSTRAINT_CONFLICT rather than hidden by new orchestration; matching names grant no lifecycle authority over operator-owned shared infrastructure. Do not duplicate generic task/process ownership semantics already owned by agent-skills."
+    - "Prepare the repository implementation candidate for only the ARCHITECT_PROFILE.md change before infrastructure lifecycle mutation. No other existing repository source/configuration file may change."
+    - "DELETE AUTHORITY is exactly one container: agent-runtime-sentinel. Immediately before deletion, re-inspect that exact container and re-prove positive ownership and all sentinel-only safety predicates. Delete it exactly once. Do not delete by wildcard, prefix, Compose project, image, label selector, or bulk cleanup."
+    - "CREATE AUTHORITY is exactly one container: agent-runtime. Recreate the sentinel with the existing official tiny image digest busybox@sha256:8d7b1636e974e0adfd8d945955fca609304f0a56c18799dfd032d6e661382d84 and inert main process sleep 2147483647. The final container must be detached, use Docker-native HEALTHCHECK command nc -z -w 2 host.docker.internal 8080 with 10s interval, 3s timeout, and 2 retries, publish no ports, mount nothing, contain no Docker socket/repository/host filesystem/secrets/credentials, run non-privileged, drop ALL Linux capabilities, set no-new-privileges=true, use a read-only root filesystem, limit CPUs to 0.05, memory to 16 MiB with memory-swap also 16 MiB, PIDs to 16, use restart policy unless-stopped, and perform no repair or lifecycle action."
+    - "The final agent-runtime container labels must include at minimum: local.operator.agent-runtime.repository=phatnguyen03022001/agent-runtime; local.operator.agent-runtime.owner=operator; local.operator.agent-runtime.purpose=health-sentinel; local.operator.agent-runtime.lifecycle-authority=operator-only; local.operator.agent-runtime.protected=true; local.operator.agent-runtime.protected-port=8080. Do not copy the old sentinel label namespace as the canonical final namespace."
+    - "After successful creation of agent-runtime, the one-time infrastructure lifecycle authority is exhausted immediately. From that point onward, perform only read-only inspection against containers, Runtime, tunnel, listener, images, and host processes. The only permitted post-creation mutation is protocol-required repository evidence publication for this already-authorized task; it grants no renewed infrastructure mutation authority."
+    - "Post-creation read-only proof must show exactly one agent-runtime-owned persistent container, named agent-runtime; sentinel-only behavior; exact image digest/arm64; no published ports; no mounts; no Docker socket; no extra environment secrets; read-only rootfs; CapDrop ALL; no-new-privileges; non-privileged; exact CPU/memory/PID limits; unless-stopped; exact healthcheck target host.docker.internal:8080; current health consistent with port reachability; and the native macOS 127.0.0.1:8080 listener still present and was not restarted/replaced by task action. Do not stop Runtime to test the negative health case; prove the negative semantic from the exact nc healthcheck command and absence of auto-repair behavior."
+    - "Read-only classify all other current containers by positive ownership as COMPLIANT, NAME_MISMATCH, MULTIPLE_PERSISTENT_CONTAINERS, UNKNOWN_OWNER, or UNRELATED_INFRASTRUCTURE. Record any non-agent-runtime finding as observation only. In particular, do not mutate ielts-runner-1, ielts-postgres-1, ielts-redis-1, any later ielts container, unknown container, unrelated container, or OrbStack-internal resource under this task. A separate repository binding/task is required for any future non-agent-runtime remediation."
+    - "Run the repository-native bootstrap/profile verification that is applicable to the single ARCHITECT_PROFILE.md change, exact changed-path/diff checks, and git diff --check. Create only .agent/tasks/TASK-0045/report.yaml after all required runtime post-inspection and repository checks are complete. Set final_execution_head to the exact pre-report repository candidate, validate report structure with the selected agent-skills authority where supported, publish candidate then report non-force to dev, fresh-prove exact report-only direct-child lineage and unchanged main, and stop at NEEDS_REVIEW."
+  allowed_existing_files_or_components:
+    - "ARCHITECT_PROFILE.md"
+    - ".agent/tasks/TASK-0045/report.yaml"
+    - "local OrbStack container agent-runtime-sentinel (delete exactly once only after positive ownership proof)"
+    - "local OrbStack container agent-runtime (create exactly once with the specified sentinel-only configuration)"
+  expected_files_are_restrictive: true
+
+invariants:
+  - "Canonical steady-state invariant: ONE REPOSITORY -> <= 1 PERSISTENT CONTAINER -> EXACT GITHUB REPOSITORY BASENAME. A repository with zero persistent containers remains valid; this task never creates containers merely because a repository exists."
+  - "Current required final container identity is exactly agent-runtime for repository phatnguyen03022001/agent-runtime."
+  - "The container named agent-runtime remains a read-only health sentinel only. It does not host, proxy, supervise, restart, stop, signal, repair, expose, or own Agent Runtime."
+  - "Agent Runtime remains native macOS. The secure tunnel and macOS listener on port 8080 remain operator-owned shared infrastructure."
+  - "Runtime, tunnel, listener 8080, and final agent-runtime sentinel lifecycle authority are OPERATOR_ONLY after successful creation. Container naming is identity convention only and never grants lifecycle authority."
+  - "Unknown or unrelated containers fail closed. Positive repository ownership proof is required before deletion; name similarity alone is insufficient."
+  - "No second persistent agent-runtime container may remain after successful remediation."
+  - "No task-owned temporary container may remain at terminal state. Native Docker tooling must not leave -test, -tmp, -old, -backup, -dev, -worker, -sentinel, or equivalent repo-owned leftovers."
+  - "The durable rule exists only in architect-profile as operator configuration; agent-runtime source does not become the owner of generic repository-container naming policy."
+
+forbidden_changes:
+  - "Do not stop, restart, kill, signal, replace, proxy, move, rebind, or reconfigure native Agent Runtime, tunnel-client, secure tunnel, or the macOS port 8080 listener. Do not free port 8080."
+  - "Do not stop, restart, remove, recreate, rename, or reconfigure the final agent-runtime container after its successful creation."
+  - "Do not mutate any container other than deleting exactly agent-runtime-sentinel and creating exactly agent-runtime. No prune, system prune, container prune, rm by filter/prefix, Compose down, Compose rm, bulk stop, bulk restart, or image cleanup is authorized."
+  - "Do not mutate ielts-runner-1, ielts-postgres-1, ielts-redis-1, phat-portfolio resources, unknown resources, unrelated infrastructure, OrbStack internals, or any repository other than architect-profile."
+  - "Do not dockerize Agent Runtime, move Runtime into OrbStack, create a proxy/dashboard/monitor/watchdog/supervisor/daemon/controller/container manager/repo registry/service registry/database, introduce Kubernetes, or redesign into Docker Compose multi-container topology."
+  - "Do not mount Docker socket, host filesystem, repository source, or credentials into the final sentinel; do not publish a port; do not add Runtime secrets."
+  - "Do not modify agent-runtime source, agent-skills, agent-standards, agent-documents, target product repositories, bootstrap.json, authority.lock.json, ARCHITECT_CALIBRATION.md, README.md, workflows, dependencies, branch topology, or existing task/report/review artifacts."
+  - "Do not pull/build/substitute an image if the exact authorized BusyBox digest is unavailable. Do not widen resource limits or add capabilities to work around a failure."
+  - "Do not force-push, reset, rebase, merge, cherry-pick, create a branch, move main, create a tag/release, or claim ACCEPTED/stable activation."
+
+gap_policy:
+  local_auto_fix: false
+  scope_expansion: forbidden
+  architecture_change: forbidden
+  spec_change: forbidden
+  dependency_change: forbidden
+  public_contract_change: forbidden
+  blocking_gap_behavior: BLOCKED
+
+structure_policy:
+  expected_new_files:
+    - ".agent/tasks/TASK-0045/report.yaml"
+  unlisted_new_files:
+    allowed: false
+    max: 0
+    within: []
+    purpose: "No unlisted repository files are authorized."
+  allow_new_top_level_directories: false
+  allow_new_shared_modules: false
+
+acceptance_criteria:
+  - id: AC-1
+    requirement: "OrbStack engine is freshly proven before mutation."
+    evidence_required: "Exact docker context and docker info showing context orbstack and OperatingSystem OrbStack."
+  - id: AC-2
+    requirement: "agent-runtime-sentinel is positively proven to belong to phatnguyen03022001/agent-runtime before deletion."
+    evidence_required: "Fresh exact container inspect showing operator ownership/purpose/protected-resource evidence, exact sentinel health target, and exact GitHub repository identity/basename mapping; ambiguity blocks deletion."
+  - id: AC-3
+    requirement: "The mismatched agent-runtime-sentinel container is removed exactly once."
+    evidence_required: "Pre-delete exact identity plus post-delete absence proof, with no bulk deletion command or other removed container."
+  - id: AC-4
+    requirement: "Final persistent container name is exactly agent-runtime."
+    evidence_required: "Post-creation docker inspect/ps exact name proof."
+  - id: AC-5
+    requirement: "No second persistent agent-runtime-owned container remains."
+    evidence_required: "All-container post-audit plus positive ownership mapping shows exactly one agent-runtime-owned persistent container."
+  - id: AC-6
+    requirement: "Final container remains sentinel-only."
+    evidence_required: "Exact image, command, healthcheck, labels, mounts, ports, environment, and process configuration show inert main process plus read-only port reachability probe only."
+  - id: AC-7
+    requirement: "Native Agent Runtime still runs on macOS and not inside the container."
+    evidence_required: "Read-only host process/listener evidence plus final container command/configuration."
+  - id: AC-8
+    requirement: "macOS port 8080 listener was not killed, restarted, or replaced by task action."
+    evidence_required: "Pre/post read-only listener identity evidence; no task command may target its PID/process lifecycle."
+  - id: AC-9
+    requirement: "Sentinel probes only host.docker.internal:8080."
+    evidence_required: "Exact Docker healthcheck command inspection."
+  - id: AC-10
+    requirement: "Final sentinel publishes no ports."
+    evidence_required: "HostConfig/NetworkSettings published-port inspection is empty."
+  - id: AC-11
+    requirement: "Final sentinel has no mounts."
+    evidence_required: "Mounts and bind/volume configuration are empty."
+  - id: AC-12
+    requirement: "Final sentinel has no Docker socket."
+    evidence_required: "No mounts/binds/devices expose docker.sock or OrbStack socket."
+  - id: AC-13
+    requirement: "Final sentinel contains no secrets or credentials."
+    evidence_required: "Exact environment and mount inspection shows only image defaults and no task-added secrets/credentials."
+  - id: AC-14
+    requirement: "Final sentinel root filesystem is read-only."
+    evidence_required: "ReadonlyRootfs=true."
+  - id: AC-15
+    requirement: "All Linux capabilities are dropped."
+    evidence_required: "CapDrop contains ALL and CapAdd is empty."
+  - id: AC-16
+    requirement: "no-new-privileges is enabled."
+    evidence_required: "SecurityOpt contains no-new-privileges=true and Privileged=false."
+  - id: AC-17
+    requirement: "CPU, memory, swap, and PIDs are bounded exactly as authorized."
+    evidence_required: "NanoCpus=50000000, Memory=16777216, MemorySwap=16777216, and PidsLimit=16."
+  - id: AC-18
+    requirement: "Restart policy is unless-stopped."
+    evidence_required: "Exact RestartPolicy inspection."
+  - id: AC-19
+    requirement: "Final health reflects port reachability only: Runtime reachable yields HEALTHY; unreachable would yield UNHEALTHY; no auto-repair exists."
+    evidence_required: "Current healthy state while 8080 is reachable plus exact nc healthcheck exit semantics, inert main process, and absence of repair/lifecycle hooks. Do not stop Runtime for negative testing."
+  - id: AC-20
+    requirement: "Final agent-runtime container is labeled operator-owned, protected, operator-only lifecycle, repository-bound, and protected-port 8080."
+    evidence_required: "Exact required namespaced label key/value inspection."
+  - id: AC-21
+    requirement: "After successful creation, no further operator-infrastructure mutation occurs."
+    evidence_required: "Post-creation command evidence contains only read-only inspection of containers/Runtime/tunnel/listener/images/processes; any later repository-only report publication must not invoke infrastructure lifecycle commands."
+  - id: AC-22
+    requirement: "Repository source changes are limited to the separately proven canonical owner change in ARCHITECT_PROFILE.md plus task report evidence."
+    evidence_required: "Exact changed-path/diff proof and repository verification; no agent-runtime or other repository source changes."
+  - id: AC-23
+    requirement: "No unrelated container is touched."
+    evidence_required: "Pre/post all-container identity comparison and exact command log/bounded execution evidence."
+  - id: AC-24
+    requirement: "No orchestration, controller, supervisor, monitoring framework, registry, or other new machinery is introduced."
+    evidence_required: "Repository diff plus final container topology/configuration show one tiny sentinel replacement and one compact profile rule only."
+  - id: AC-25
+    requirement: "The durable operator rule is stored in exactly one narrow canonical owner and is reconstructible by fresh Architects without loading historical task chat."
+    evidence_required: "ARCHITECT_PROFILE.md contains the compact repository-container identity subsection; agent-skills, agent-standards, agent-documents, and agent-runtime source are unchanged."
+  - id: AC-26
+    requirement: "Global audit findings outside agent-runtime are observation-only in this task."
+    evidence_required: "Report classifies all current positively mapped containers and confirms zero non-agent-runtime lifecycle mutation."
+
+verification:
+  executor_checks:
+    - id: CHECK-1
+      command_or_check: "Freshly prove exact TASK-0045 task/base/remote identity, current selected authority, repository cleanliness/divergence safety, Agent Runtime/native execution availability, Docker context/OrbStack engine, complete container inventory/configuration, exact BusyBox digest/arm64, positive repository ownership mappings, and native macOS 8080 listener before any mutation."
+      required: true
+    - id: CHECK-2
+      command_or_check: "Apply only the compact ARCHITECT_PROFILE.md owner change; prove exact diff, run applicable bootstrap/profile repository checks and git diff --check, and prepare the exact repository candidate without touching any other file."
+      required: true
+    - id: CHECK-3
+      command_or_check: "Immediately before deletion, re-inspect agent-runtime-sentinel and re-prove ownership/safety. Remove exactly agent-runtime-sentinel, then create exactly agent-runtime with the exact authorized digest, labels, healthcheck, security limits, resources, restart policy, no ports, and no mounts. No other container lifecycle command is authorized."
+      required: true
+    - id: CHECK-4
+      command_or_check: "After successful creation, perform read-only post-verification only against operator infrastructure: exact final container inspect/ps/health, all-container inventory, exact image architecture/digest, and pre/post macOS listener/process identity. Prove all AC-1 through AC-26 without stopping Runtime for a negative health test."
+      required: true
+    - id: CHECK-5
+      command_or_check: "Create/validate only TASK-0045 report.yaml after runtime proof, publish the pre-report candidate then report non-force to dev, fresh-prove report-only direct-child lineage and unchanged main, and stop at NEEDS_REVIEW. Repository publication does not renew or extend container/Runtime lifecycle authority."
+      required: true
+  authoritative_verification:
+    required: false
+    mechanism: ""
+    expected_signal: ""
+
+capability_requirements:
+  EXECUTION:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - git_commit
+    - non_force_git_push
+    - remote_ref_read
+    - repository_metadata_read
+  REVIEW:
+    - repository_content_read
+    - repository_content_write
+    - native_repository_execution
+    - git_history_read
+    - remote_ref_read
+    - repository_metadata_read
+
+git_authority:
+  create_branch: false
+  commit: true
+  push: true
+  promote_to_main: false
+
+blocking_decisions: []
+execution_ready: true
